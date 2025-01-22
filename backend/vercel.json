@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api-hello.js": {
+    "index.js": {
       "runtime": "nodejs18.x"
     }
   },
