@@ -19,4 +19,5 @@
 <main>
 <h1 class="h-1">Hello world</h1>
 <p class="p-text">First meaningful stylistic change</p>
+<a href="/testPage">Go to Test page</a>
 </main>
