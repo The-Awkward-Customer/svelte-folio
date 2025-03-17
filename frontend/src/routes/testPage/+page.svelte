@@ -6,7 +6,6 @@
 
   //Components
   import Link from '$lib/components/actions/Link.svelte';
-  import BasicLayout from '$lib/components/layout/basic-layout.svelte';
 
   //Variables
   let apiMessage: string = 'loading...';
@@ -47,9 +46,5 @@
 <Link href="/" active={currentPath === '/'}>
     Home Page
 </Link>
-
-<BasicLayout>
-  
-</BasicLayout>
 
 </main>
