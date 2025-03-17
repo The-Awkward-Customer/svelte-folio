@@ -1,7 +1,13 @@
 
 <script lang="ts">
+  //Imports
   import { onMount } from 'svelte';
+  import { page } from '$app/stores';
 
+  //Components
+  import Link from '$lib/components/actions/Link.svelte';
+
+  //Variables
   let apiMessage: string = 'loading...';
 
   //onMount (When the connection in made) fetch the API data
@@ -17,6 +23,9 @@
         apiMessage = "Error loading data";
     }
   });
+
+  //Get the current path
+  $: currentPath = $page.url.pathname;
 </script>
 
 
@@ -34,4 +43,8 @@
 <h1 class="h-1">Test Page</h1>
 <p class="p-text">API message: {apiMessage}</p>
 <a href="/">Go to home page</a>
+<Link href="/" active={currentPath === '/'}>
+    Home Page
+</Link>
+
 </main>
