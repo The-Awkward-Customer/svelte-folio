@@ -5,7 +5,7 @@ on:
       base_branch:
         description: "Select the base branch to merge into"
         required: true
-        default: "main"
+        default: "dev"
       target_branch:
         description: "Name of the branch to create for the PR"
         required: false
