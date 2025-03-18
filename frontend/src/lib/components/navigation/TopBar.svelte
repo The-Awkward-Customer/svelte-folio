@@ -17,15 +17,16 @@
 
 <style>
     .top-bar-root {
-        height: 88px;
-        padding-left: 24px;
-        padding-right: 24px;
-        padding-bottom: 8px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
         box-sizing: border-box;
+        height: 88px;
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-bottom: 8px;
+        max-width: 568px;
 
     }
 
@@ -43,7 +44,7 @@
     }
 
     /* Hide on desktop */
-    @media (min-width: 768px) {
+    @media (min-width: 896px) {
         .top-bar-root {
             display: none;
         }

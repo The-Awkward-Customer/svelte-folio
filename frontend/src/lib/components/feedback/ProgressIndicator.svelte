@@ -68,14 +68,14 @@
   .indicator {
     display: flex;
     align-items: center;
-    color: var(--color-text-muted, #666);
+    color: var(--fg-text-muted, #666);
     opacity: 0.5;
-    font-family: monospace;
-    font-size: 1.2rem;
+    font-family: var(--font-family-alt);
+    font-size: var(--fs-);
   }
 
   .indicator.active {
-    color: var(--color-text, #000);
+    color: var(--fg-text, #000);
     opacity: 1;
   }
 
@@ -86,11 +86,11 @@
     flex: 1 0 0;
     position: relative;
     height: 2px;
-    background-color: var(--color-text-muted, #666);
+    background-color: var(--color-bdr-muted);
   }
 
   .bridge.active {
-    background-color: var(--color-text, #000);
+    background-color: var(--color-bdr-primary);
     opacity: 1;
   }
 
@@ -109,7 +109,7 @@
   }
 
   .bracket-left, .bracket-right {
-    font-weight: bold;
+    font-family: var(--font-family-alt);
   }
 
   .step-number {

@@ -185,10 +185,10 @@
   }
 
   /* Desktop styles */
-  @media (min-width: 768px) {
+  @media (min-width: 898px) {
     .video-tile-root {
       width: 767px;
-      max-width: 767px;
+      max-width: 568px;
       height: 506.44px;
     }
     

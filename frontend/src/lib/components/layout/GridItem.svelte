@@ -20,7 +20,6 @@
     .grid-item {
       height: 100%;
       width: 100%;
-      background-color: blueviolet;
     }
     
     /* Square cell aspect ratio */

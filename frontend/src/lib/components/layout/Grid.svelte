@@ -23,8 +23,8 @@
       display: grid;
       grid-template-columns: var(--grid-columns);
       grid-template-areas: var(--grid-areas);
-      gap: var(--spacing-xs);
-      padding: var(--spacing-md);
+      gap: var(--spc-xs);
+      padding: var(--spc-md);
       width: calc(100% - (2 * var(--grid-padding)));
       box-sizing: border-box;
       background-color: pink;

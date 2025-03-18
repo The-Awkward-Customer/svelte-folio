@@ -72,12 +72,12 @@
 
 <style>
   .link-list-root {
+    box-sizing: border-box;
     display: block;
   }
 
   ul {
     display: flex;
-    gap: 1rem;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -85,42 +85,45 @@
 
   .vertical ul {
     flex-direction: column;
+    align-items: flex-start;
   }
 
   .with-border {
-    border-bottom: 1px solid var(--border-color, #e2e8f0);
+    border-bottom: 1px solid var(--bdr-color, #e2e8f0);
   }
 
   a {
     text-decoration: none;
-    color: var(--text-color, #4a5568);
+    color: var(--color-txt-secondary);
     transition: all 0.2s ease;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
+    height: 32px;
+    border-radius: var(--bdr-radius-sm);
     display: inline-block;
     /* High contrast outline for focus state */
     outline: 2px solid transparent;
     outline-offset: 2px;
+    font-family: var(--font-family-alt);
+    font-size: var(--fs-300);
+    text-transform: var(--text-transform-uppercase);
   }
 
   /* Ensure focus is visible for keyboard users */
   a:focus-visible {
-    outline: 2px solid var(--focus-ring-color, #4299e1);
+    outline: 2px solid var(--color-bdr-primary);
     outline-offset: 2px;
   }
 
   a:hover:not(.disabled) {
-    color: var(--hover-color, #2d3748);
-    background-color: var(--hover-bg-color, rgba(0, 0, 0, 0.05));
+    color: var(--color-txt-primary);
   }
 
   a.active {
-    color: var(--active-color, #2b6cb0);
+    color: var(--color-txt-primary);
     font-weight: 500;
   }
 
   a.disabled {
-    color: var(--disabled-color, #a0aec0);
+    color: var(--color-txt-muted);
     cursor: not-allowed;
     pointer-events: none;
   }
