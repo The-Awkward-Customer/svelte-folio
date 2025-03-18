@@ -1,4 +1,46 @@
 
+ /* css reset */
+ /* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+ 
+ 
+ 
  /* Typography */
  @font-face {
   font-family: 'Geist';
@@ -98,32 +140,42 @@
 
 :root {
   /* Color variables */
-  --color-primary: #db34d3;
-  --color-secondary: #2ecc71;
-  --color-accent: #e74c3c;
-  --color-text-dark: rgb(60, 60, 60);
-  --color-text-light: rgb(80, 80, 80);
-  --color-background: #FAF6F6;
-  --color-background-alt: #ffffff;
+  --color-fg-primary: #26272D;
+  --color-fg-secondary: #70717D;
+  --color-fg-accent: #e74c3c;
+ 
+
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #F6F6F7;
+
+  --color-txt-primary: #26272D;
+  --color-txt-secondary: #70717D;
+  --color-txt-muted: #989CB8;
+
+  --color-bdr-primary: #26272D;
+  --color-bdr-muted: #989CB8;
+
 
   /* Typography */
   --font-family-main: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-family-alt: 'Geist-Mono', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, serif;
 
   /* Font sizes */
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
+  --fs-250: 0.75rem; /* 12px */
+  --fs-275: 0.875rem; /* 14px */
+  --fs-300: 1rem; /* 16px */
+  --fs-350: 1.125rem; /* 18px */
+  --fs-400: 1.25rem; /* 20px */
+  --fs-500: 1.5rem; /* 24px */
+  --fs-600: 1.875rem; /* 30px */
+  --fs-700: 2.5rem; /* 40px */
+  --fs-800: 3rem; /* 48px */
+  --fs-900: 4rem; /* 64px */
   
   /* Font weights */
-  --font-weight-thin: 300;
-  --font-weight-medium: 500;
-  --font-weight-super: 900;
+  --fw-thin: 300;
+  --fw-medium: 500;
+  --fw-super: 900;
   
   /* Font styles */
   --font-style-normal: normal;
@@ -135,16 +187,18 @@
   --text-transform-titlecase: capitalize;
   
   /* Spacing */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
+  --spc-0: 0rem; /* 0px */
+  --spc-50: 0.125rem; /* 2px */
+  --spc-75: 0.25rem; /* 4px */
+  --spc-100: 0.5rem; /* 8px */
+  --spc-200: 0.75rem; /* 12px */
+  --spc-300: 1rem; /* 16px */
+  --spc-400: 1.25rem; /* 20px */
+  --spc-500: 1.5rem; /* 24px */
+  --spc-600: 1.75rem; /* 28px */
+  --spc-700: 2rem; /* 32px */
+  --spc-800: 2.5rem; /* 40px */
   
-  /* Border radius */
-  --border-radius-sm: 0.25rem;
-  --border-radius-md: 0.5rem;
-  --border-radius-lg: 1rem;
   
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
@@ -157,18 +211,19 @@
   --transition-slow: 500ms ease;
 
   /* Breakpoints */
-  --breakpoint-mobile-max: 767px;
-  --breakpoint-mobile-min: 768px;
-  --breakpoint-tablet: 1024px;
-  --breakpoint-desktop: 1440px;
+  --bp-mobile-max: 767px;
+  --bp-mobile-min: 768px;
+  --bp-tablet: 1024px;
+  --bp-desktop: 1440px;
 }
+
 
 
 /* Base styles */
 body {
-  font-size: var(--font-size-base);
-  color: var(--color-text-dark);
-  background-color: var(--color-background);
+  font-size: var(--fs-base);
+  color: var(--fg-text-dark);
+  background-color: var(--fg-background);
   line-height: 1.5;
   margin: 0;
   padding: 0;
@@ -176,22 +231,22 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spc-md);
   font-family: var(--font-family-main);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--fw-medium);
 }
 
 p {
   margin-top: 0;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spc-md);
 }
 
 a {
-  color: var(--color-primary);
+  color: var(--fg-primary);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
 a:hover {
-  color: var(--color-accent);
+  color: var(--fg-accent);
 } 

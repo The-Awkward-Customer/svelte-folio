@@ -18,10 +18,10 @@
 
 <main class="main-root">
 <BasicLayout>
-    <TopBar slot="top-bar" />
+ <TopBar slot="top-bar" />
 
-    <SideBar slot="side-nav">
-        <LinkList
+<SideBar slot="side-nav">
+    <LinkList
         routes={[
           { path: '/', label: 'Home' },
           { path: '/about', label: 'About' },
@@ -30,42 +30,44 @@
         vertical={true}
         showBorder={true}
         ariaLabel="Main Navigation"
-      />
+     />
 
-    </SideBar>
- 
-<HeroHeader slot="main"/>
-</BasicLayout>
+ </SideBar>
 
-<ProgressIndicator totalSteps={3} activeStep={1} />
-<ProgressIndicator totalSteps={3} activeStep={2} />
-<ProgressIndicator totalSteps={3} activeStep={3} />
+
+ <div slot="main">
+
+<HeroHeader/>
 
 <SimpleContentSection 
-  title="Getting Started" 
-  paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation." 
-  activeStep={1} 
-/>
-<SimpleContentSection 
-  title="Key Features" 
-  paragraph="Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident." 
-  activeStep={2} 
-/>
-<SimpleContentSection 
-  title="Next Steps" 
-  paragraph="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis." 
-  activeStep={3} 
+    title="Getting Started" 
+    paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation." 
+    activeStep={1} 
 />
 
-<!-- Example usage of the VideoTile component -->
-<div class="video-section">
-  <VideoTile 
+<SimpleContentSection 
+    title="Key Features" 
+    paragraph="Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident." 
+    activeStep={2} 
+/>
+
+<SimpleContentSection 
+    title="Next Steps" 
+    paragraph="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis." 
+    activeStep={3} 
+/>
+
+<VideoTile 
     videoId="dQw4w9WgXcQ"
     subject="TUTORIAL"
     duration="3 MINUTES"
     title="Getting Started with Svelte Components"
-  />
+/>
+
 </div>
+</BasicLayout>
+
+
 </main>
 
 <style>   
@@ -76,6 +78,7 @@
     justify-content: center;
     align-items: center;
     width: 100vw;
-    background-color: rgb(154, 154, 154);
+    background-color: var(--color-bg-primary);
 }
+
 </style>

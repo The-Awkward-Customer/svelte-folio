@@ -18,8 +18,11 @@ import logoSvg from "$lib/assets/logo.svg"
   .sidebar {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    padding: 124px 32px 24px;
+    align-items: flex-start;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 124px;
+    padding-bottom: 24px;
     gap: 8px;
     width: 189px;
     height: 372px;

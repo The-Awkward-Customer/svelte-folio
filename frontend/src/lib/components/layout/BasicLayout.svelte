@@ -43,33 +43,28 @@
     
     // More reactive declarations - these automatically update when width changes
     // Similar to React's useMemo but with cleaner syntax
-    $: isMobile = width < 768;
-    $: isDesktop = width >= 768;
+    $: isMobile = width < 865;
+    $: isDesktop = width >= 869;
 </script>
 
 <!-- In Svelte, this is just HTML with some extras - no need to return JSX -->
 <div class="basic-layout-root">
-    <!-- Conditional rendering in Svelte uses {#if}, {/if} blocks instead of the ternary operator in React -->
     {#if isMobile || !isDesktop}
         <div class="basic-layout-top-bar">
-            <!-- Svelte uses <slot> for React's children concept, but with named slots -->
-            <!-- This is like React's props.children but more powerful -->
             <slot name="top-bar">
-                <!-- Default fallback content if nothing is provided to this slot -->
                 <p>Default Top Bar Content</p>
             </slot>
         </div>
     {/if}
     
-    {#if isDesktop}
-        <div class="basic-layout-side-nav">
-            <slot name="side-nav">
-                <p>Default Side Nav Content</p>
-            </slot>
-        </div>
-    {/if}
-    
     <div class="basic-layout-main">
+        {#if isDesktop}
+            <div class="basic-layout-side-nav">
+                <slot name="side-nav">
+                    <p>Default Side Nav Content</p>
+                </slot>
+            </div>
+        {/if}
         <slot name="main">
             <p>Default Main Content</p>
         </slot>
@@ -80,69 +75,55 @@
 <!-- No need for CSS-in-JS libraries or styled-components -->
 <style>
     .basic-layout-root {
-        display: grid;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         height: 100%;
         width: 100%;
-        background-color: var(--color-primary);
         max-width: 1200px;
         margin: 0 auto;
+        position: relative;
     }
     
-    /* Regular CSS @media queries work directly in Svelte components */
-    @media (max-width: 767px) {
+    @media (max-width: 898px) {
         .basic-layout-root {
-            grid-template-columns: 1fr;
-            grid-template-rows: 88px 1fr;
-            /* CSS grid template areas for layout */
-            grid-template-areas:
-                "top-bar"
-                "main";
-                background-color: red;
+            padding-top: var(--spc-500);
         }
         
-        /* This class won't apply on mobile due to the conditional rendering in the template */
-        /* But this is a failsafe to ensure it's hidden if it somehow did render */
         .basic-layout-side-nav {
             display: none;
         }
     }
     
-    @media (min-width: 768px) {
-        .basic-layout-root {
-            grid-template-columns: 200px 1fr;
-            grid-template-rows: 1fr;
-            grid-template-areas:
-                "side-nav main";
-                background-color:blue;
-        }
-        
-        /* Same failsafe for the top bar on desktop */
+    @media (min-width: 896px) {
         .basic-layout-top-bar {
             display: none;
         }
     }
     
-    /* These classes assign elements to the named grid areas */
     .basic-layout-top-bar {
-        grid-area: top-bar;
-        display: inline-flex;
+        display: flex;
         align-items: center;
         width: 100%;
-        height: fit-content;
-        background-color: rgba(0, 0, 255, 0.204);
+        max-width: 568px;
+        height: 88px;
+        z-index: 10;
     }
     
     .basic-layout-side-nav {
-        grid-area: side-nav;
+        position: absolute;
+        left: -180px;
+        top: 0;
         height: 100%;
-        width: 200px;
-        background-color: rgba(255, 0, 0, 0.21);
+        width: 180px;
     }
     
     .basic-layout-main {
-        grid-area: main;
+        position: relative;
+        flex: 1;
         height: 100%;
-        width: 100%;
-        background-color: rgba(0, 128, 0, 0.228);
+        max-width: 568px;
+        margin: 0 auto;
     }
 </style>

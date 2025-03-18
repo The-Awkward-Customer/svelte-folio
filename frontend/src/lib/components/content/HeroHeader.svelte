@@ -3,7 +3,7 @@
 <script lang="ts">
   // Props for customizable text content
   export let sideNote = "These case studies have been recorded for easy viewing.";
-  export let mainTitle = "the";
+  export let mainTitle = "PETER ABBOTT";
   export let description = "I work closely startups and established organisations to deliver high impact, high return products.";
   export let subDescription = "I do this exactly in three ways.";
 </script>
@@ -39,9 +39,9 @@
     align-items: flex-start;
     padding: 32px 24px 64px;
     gap: 24px;
-    width: 767px;
+    width: 100%;
     min-width: 360px;
-    max-width: 767px;
+    max-width: 100%;
     height: 403px;
     flex: 1 0 auto;
   }
@@ -52,19 +52,19 @@
     align-items: flex-start;
     padding: 0;
     gap: 28px;
-    width: 719px;
-    max-width: 767px;
+    width: 100%;
+    max-width: 100%;
     height: 307px;
     flex: 1 0 auto;
   }
 
   .content-wrapper {
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     padding: 0;
     gap: 32px;
-    width: 719px;
+    width: 100%;
     height: 307px;
     flex: 1 0 auto;
   }
@@ -73,23 +73,21 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    padding: 0;
-    width: 719px;
     height: 42px;
     align-self: stretch;
+    text-align: right;
   }
 
   .side-note {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     padding: 0 8px;
-    width: 128px;
-    max-width: 128px;
+    width: 100%;
     height: 42px;
     border-right: 1px solid #989CB8;
-    align-self: stretch;
+    align-self: flex-end;
   }
 
   .side-note p {
@@ -108,7 +106,6 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 0;
-    width: 719px;
     height: 105px;
     align-self: stretch;
   }
@@ -119,13 +116,12 @@
     align-items: flex-start;
     padding: 0;
     gap: 8px;
-    width: 719px;
     height: 105px;
     align-self: stretch;
   }
 
   h1 {
-    width: 719px;
+    width: 100%;
     height: 105px;
     font-family: 'Geist', sans-serif;
     font-weight: 700;
@@ -142,7 +138,6 @@
     align-items: flex-start;
     padding: 0;
     gap: 20px;
-    width: 372px;
     max-width: 372px;
     height: 96px;
     align-self: stretch;
@@ -172,37 +167,13 @@
   /* Desktop styles (min-width: 768px) */
   @media (min-width: 768px) {
     .hero-header {
-      padding: 40px 0;
-      width: 568px;
-      max-width: 568px;
-      height: 437px;
+      padding: 40px 24px;
+      width: 100%;
     }
 
     .hero-content {
-      padding: 0 20px;
-      width: 568px;
-      max-width: 568px;
-      height: 357px;
-    }
-
-    .content-wrapper {
-      gap: 24px;
-      width: 528px;
-      height: 357px;
-    }
-
-    .page-details {
-      width: 528px;
-    }
-
-    .title-section {
-      width: 528px;
-      height: 159px;
-    }
-
-    .title-wrapper {
-      width: 528px;
-      height: 159px;
+      width: 100%;
+      max-width: 100%;
     }
 
     h1 {
@@ -211,9 +182,5 @@
       font-size: 48px;
     }
 
-    .description-section {
-      gap: 32px;
-      height: 108px;
-    }
   }
 </style>
