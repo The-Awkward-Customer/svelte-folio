@@ -1,0 +1,49 @@
+name: Generate Folio Tokens
+on:
+  workflow_dispatch:
+    inputs:
+      base_branch:
+        description: "Select the base branch to merge into"
+        required: true
+        default: "dev"
+      target_branch:
+        description: "Name of the branch to create for the PR"
+        required: false
+        default: "tokens-update-branch"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false # Important to prevent pushing with the default GITHUB_TOKEN
+          fetch-depth: 0 # Fetch all history for accurate git operations
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20" # Specify your Node.js version
+      
+      - name: Install dependencies
+        run: cd frontend && npm install && npm install --save-dev style-dictionary
+      
+      - name: Run tokens generation
+        run: cd frontend && npm run tokens
+        env:
+          FIGMA_TOKEN: ${{ secrets.FIGMA_SVELTE_FOLIO_ACCESS_TOKEN }}
+          FIGMA_FILE_ID: ${{ secrets.FIGMA_FILE_ID }}
+      
+      - name: Commit and push changes
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.ACTIONS_PAT }} # Use a PAT stored in repository secrets
+          branch: ${{ github.event.inputs.target_branch }}
+          commit-message: "chore: update tokens"
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+          title: "Update Tokens"
+          body: "This pull request updates the tokens from Figma."
+          base: ${{ github.event.inputs.base_branch }}
+          labels: "automation, tokens"
+          delete-branch: true
