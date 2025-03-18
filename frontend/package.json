@@ -17,7 +17,9 @@
 		"db:start": "docker compose up",
 		"db:push": "drizzle-kit push",
 		"db:migrate": "drizzle-kit migrate",
-		"db:studio": "drizzle-kit studio"
+		"db:studio": "drizzle-kit studio",
+		"tokens": "node ../../scripts/generate-tokens.js",
+    	"build:tokens": "style-dictionary build"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
@@ -34,6 +36,7 @@
 		"mdsvex": "^0.12.3",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.3",
+		"style-dictionary": "^4.3.3",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
 		"typescript": "^5.0.0",
@@ -42,10 +45,10 @@
 		"vitest": "^2.1.8"
 	},
 	"dependencies": {
-		"@supabase/supabase-js": "^2.0.0",
 		"@node-rs/argon2": "^2.0.2",
 		"@oslojs/crypto": "^1.0.1",
 		"@oslojs/encoding": "^1.1.0",
+		"@supabase/supabase-js": "^2.0.0",
 		"drizzle-orm": "^0.38.4",
 		"postgres": "^3.4.5"
 	}
