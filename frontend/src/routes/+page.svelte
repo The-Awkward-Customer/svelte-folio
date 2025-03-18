@@ -8,6 +8,9 @@
     import LinkList from "$lib/components/actions/LinkList.svelte";
     import HeroHeader from "$lib/components/content/HeroHeader.svelte";
     import SideBar from "$lib/components/navigation/SideBar.svelte";
+    import ProgressIndicator from "$lib/components/feedback/ProgressIndicator.svelte";
+    import SimpleContentSection from "$lib/components/content/SimpleContentSection.svelte";
+    import VideoTile from "$lib/components/media/VideoTile.svelte";
     $: currentPath = $page.url.pathname;
 </script>
 
@@ -34,6 +37,35 @@
 <HeroHeader slot="main"/>
 </BasicLayout>
 
+<ProgressIndicator totalSteps={3} activeStep={1} />
+<ProgressIndicator totalSteps={3} activeStep={2} />
+<ProgressIndicator totalSteps={3} activeStep={3} />
+
+<SimpleContentSection 
+  title="Getting Started" 
+  paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation." 
+  activeStep={1} 
+/>
+<SimpleContentSection 
+  title="Key Features" 
+  paragraph="Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident." 
+  activeStep={2} 
+/>
+<SimpleContentSection 
+  title="Next Steps" 
+  paragraph="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis." 
+  activeStep={3} 
+/>
+
+<!-- Example usage of the VideoTile component -->
+<div class="video-section">
+  <VideoTile 
+    videoId="dQw4w9WgXcQ"
+    subject="TUTORIAL"
+    duration="3 MINUTES"
+    title="Getting Started with Svelte Components"
+  />
+</div>
 </main>
 
 <style>   
