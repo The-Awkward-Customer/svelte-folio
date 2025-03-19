@@ -1,6 +1,5 @@
-
- /* css reset */
- /* Reset */
+/* css reset */
+/* Reset */
 *,
 *::before,
 *::after {
@@ -41,8 +40,8 @@ select {
  
  
  
- /* Typography */
- @font-face {
+/* Typography */
+@font-face {
   font-family: 'Geist';
   src: url('/fonts/Geist-Thin.otf') format('opentype');
   font-weight: 100;
@@ -50,7 +49,7 @@ select {
   font-display: swap;
 }
 
- @font-face {
+@font-face {
   font-family: 'Geist';
   src: url('/fonts/Geist-Regular.otf') format('opentype');
   font-weight: 400;
@@ -97,7 +96,7 @@ select {
   font-display: swap;
 }
 
- @font-face {
+@font-face {
   font-family: 'Geist-Mono';
   src: url('/fonts/GeistMono-Regular.otf') format('opentype');
   font-weight: 400;
@@ -158,7 +157,7 @@ select {
 
   /* Typography */
   --font-family-main: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-alt: 'Geist-Mono', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, serif;
+  --font-family-alt: 'Geist-Mono', monospace;
 
   /* Font sizes */
   --fs-250: 0.75rem; /* 12px */
@@ -215,6 +214,8 @@ select {
   --bp-mobile-min: 768px;
   --bp-tablet: 1024px;
   --bp-desktop: 1440px;
+
+
 }
 
 
@@ -249,4 +250,12 @@ a {
 
 a:hover {
   color: var(--fg-accent);
+}
+
+/* Add this to ensure consistent monospace font rendering */
+.indicator, 
+[class*='bracket-'], 
+.step-number {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 } 

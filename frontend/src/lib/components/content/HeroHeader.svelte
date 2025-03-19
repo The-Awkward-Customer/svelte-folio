@@ -40,7 +40,6 @@
     padding: 32px 24px 64px;
     gap: 24px;
     width: 100%;
-    min-width: 360px;
     max-width: 100%;
     height: 403px;
     flex: 1 0 auto;
@@ -138,14 +137,18 @@
     align-items: flex-start;
     padding: 0;
     gap: 20px;
+    width: 100%;
     max-width: 372px;
-    height: 96px;
+    height: auto;
+    min-height: 96px;
     align-self: stretch;
   }
 
   .main-description {
-    width: 372px;
-    height: 57px;
+    width: 100%;
+    max-width: 372px;
+    height: auto;
+    min-height: 57px;
     font-family: 'Geist', sans-serif;
     font-size: 16px;
     line-height: 120%;
@@ -154,8 +157,10 @@
   }
 
   .sub-description {
-    width: 372px;
-    height: 19px;
+    width: 100%;
+    max-width: 372px;
+    height: auto;
+    min-height: 19px;
     font-family: 'Geist', sans-serif;
     font-weight: 500;
     font-size: 16px;
@@ -165,7 +170,7 @@
   }
 
   /* Desktop styles (min-width: 768px) */
-  @media (min-width: 768px) {
+  @media (min-width: 896px) {
     .hero-header {
       padding: 40px 24px;
       width: 100%;
