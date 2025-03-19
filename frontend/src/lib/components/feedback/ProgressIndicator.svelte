@@ -56,22 +56,29 @@
 
 <style>
   .progress-container {
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-direction: row;
     flex-direction: row;
+    -webkit-align-items: center;
     align-items: center;
+    -webkit-justify-content: center;
     justify-content: center;
     gap: 0;
     width: 100%;
-    height: 200px
+    height: 200px;
   }
 
   .indicator {
+    display: -webkit-flex;
     display: flex;
+    -webkit-align-items: center;
     align-items: center;
     color: var(--fg-text-muted, #666);
     opacity: 0.5;
-    font-family: var(--font-family-alt);
-    font-size: var(--fs-);
+    font-size: var(--fs-300);
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
 
   .indicator.active {
@@ -80,9 +87,13 @@
   }
 
   .bridge {
+    display: -webkit-flex;
     display: flex;
+    -webkit-justify-content: center;
     justify-content: center;
+    -webkit-align-items: center;
     align-items: center;
+    -webkit-flex: 1 0 0;
     flex: 1 0 0;
     position: relative;
     height: 2px;
@@ -91,14 +102,15 @@
 
   .bridge.active {
     background-color: var(--color-bdr-primary);
-    opacity: 1;
   }
 
   .indicator.animated {
+    -webkit-transition: color 0.3s ease, opacity 0.3s ease;
     transition: color 0.3s ease, opacity 0.3s ease;
   }
 
   .bridge.animated {
+    -webkit-transition: background-color 0.3s ease, opacity 0.3s ease;
     transition: background-color 0.3s ease, opacity 0.3s ease;
   }
 
@@ -108,12 +120,15 @@
     }
   }
 
-  .bracket-left, .bracket-right {
+  .bracket-left, .bracket-right, .step-number {
     font-family: var(--font-family-alt);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
   }
 
   .step-number {
-    margin: 0 0.2rem;
+    padding: 0 0.2rem;
   }
 </style>
 

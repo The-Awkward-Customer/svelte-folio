@@ -55,14 +55,14 @@
     title="Next Steps" 
     paragraph="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis." 
     activeStep={3} 
-/>
+/> 
 
-<VideoTile 
+<!-- <!-- <VideoTile 
     videoId="dQw4w9WgXcQ"
     subject="TUTORIAL"
     duration="3 MINUTES"
     title="Getting Started with Svelte Components"
-/>
+/> -->
 
 </div>
 </BasicLayout>
@@ -77,8 +77,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     background-color: var(--color-bg-primary);
+    overflow-x: hidden;
 }
 
 </style>
