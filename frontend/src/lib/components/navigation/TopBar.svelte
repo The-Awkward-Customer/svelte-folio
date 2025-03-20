@@ -3,17 +3,14 @@
 
 <script lang="ts">
     import logoSvg from "$lib/assets/logo.svg"
-    import { MobileNavigation, MobileNavigationMenu, MobileNavigationTrigger } from '$lib/components/navigation/MobileNavigation';
+    import OverlayMenu from '$lib/components/navigation/OverlayMenu.svelte';
 </script>
 
 <div class="top-bar-root">
     <img class="logo" src={logoSvg} alt="logo" />
 
     <div class="action-slot">
-        <MobileNavigation>
-            <MobileNavigationTrigger />
-            <MobileNavigationMenu />
-        </MobileNavigation>
+        <OverlayMenu />
     </div>
 </div>
 
