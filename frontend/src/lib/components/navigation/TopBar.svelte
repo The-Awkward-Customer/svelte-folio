@@ -1,17 +1,19 @@
 <!-- TopBar component -->
 
 
-<script>
+<script lang="ts">
     import logoSvg from "$lib/assets/logo.svg"
+    import { MobileNavigation, MobileNavigationMenu, MobileNavigationTrigger } from '$lib/components/navigation/MobileNavigation';
 </script>
 
 <div class="top-bar-root">
     <img class="logo" src={logoSvg} alt="logo" />
 
     <div class="action-slot">
-        <slot name="action">
-            <!-- Default action content if needed -->
-        </slot>
+        <MobileNavigation>
+            <MobileNavigationTrigger />
+            <MobileNavigationMenu />
+        </MobileNavigation>
     </div>
 </div>
 
@@ -27,7 +29,6 @@
         padding-right: 24px;
         padding-bottom: 8px;
         max-width: 568px;
-
     }
 
     .logo {
@@ -39,6 +40,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        gap: 1rem;
         width: fit-content;
         height: fit-content;
     }
