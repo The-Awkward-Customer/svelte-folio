@@ -33,10 +33,9 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 28px;
+    gap: var(--spc-400);
     width: 100%;
     max-width: none;
-    background-color: rgb(94, 180, 255);
     box-sizing: border-box;
     overflow-x: hidden;
   }
