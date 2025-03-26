@@ -9,11 +9,13 @@
     import HeroHeader from "$lib/components/content/HeroHeader.svelte";
     import SideBar from "$lib/components/navigation/SideBar.svelte";
     import RainDrops from "$lib/components/Marginalia/RainDrops.svelte";
+    import LocationInfo from "$lib/components/Snoop/LocationInfo.svelte";
     $: currentPath = $page.url.pathname;
 </script>
 
 <main class="main-root">
     <RainDrops />
+    <LocationInfo />
 <BasicLayout>
     <TopBar slot="top-bar" />
 
