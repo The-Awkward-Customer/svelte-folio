@@ -19,11 +19,11 @@ import logoSvg from "$lib/assets/logo.svg"
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-left: 32px;
-    padding-right: 32px;
-    padding-top: 124px;
+    padding-left: 24px;
+    padding-right: 48px;
+    padding-top: 20vh;
     padding-bottom: 24px;
-    gap: 8px;
+    gap: var(--spc-600);
     width: 189px;
     height: 372px;
     flex: none;
@@ -31,7 +31,7 @@ import logoSvg from "$lib/assets/logo.svg"
     flex-grow: 0;
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 898px) {
     .sidebar {
       /* Add mobile-specific styles if needed */
     }
