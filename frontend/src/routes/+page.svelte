@@ -13,7 +13,6 @@
 </script>
 
 <main class="main-root">
-    <RainDrops />
 <BasicLayout>
     <TopBar slot="top-bar" />
 
