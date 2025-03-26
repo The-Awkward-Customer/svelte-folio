@@ -4,13 +4,11 @@
  <!-- anchors are wrapped in a root div with a class of link-list-root -->
   <!-- anchors have states: default, hover, active, disabled -->
    <!-- catches the current page and sets the corresponding anchor to the active state -->
- <!-- accepts a prop to display a bottom border -->
 
 <script lang="ts">
   // Props
   export let routes: Array<{ path: string; label: string; disabled?: boolean }> = [];
   export let vertical: boolean = false;
-  export let showBorder: boolean = false;
   export let ariaLabel = 'Navigation';
 
   // Get current page path
@@ -47,8 +45,7 @@
 
 <nav 
   class="link-list-root" 
-  class:vertical 
-  class:with-border={showBorder}
+  class:vertical
   aria-label={ariaLabel}
 >
   <ul role="menubar" class:vertical on:keydown={handleKeydown}>
@@ -80,7 +77,6 @@
     display: flex;
     list-style: none;
     padding: 0;
-    margin: 0;
   }
 
   .vertical ul {
@@ -88,13 +84,9 @@
     align-items: flex-start;
   }
 
-  .with-border {
-    border-bottom: 1px solid var(--bdr-color, #e2e8f0);
-  }
-
   a {
     text-decoration: none;
-    color: var(--color-txt-secondary);
+    color: rgb(var(--color-txt-secondary));
     transition: all 0.2s ease;
     height: 32px;
     border-radius: var(--bdr-radius-sm);
@@ -103,7 +95,7 @@
     outline: 2px solid transparent;
     outline-offset: 2px;
     font-family: var(--font-family-alt);
-    font-size: var(--fs-300);
+    font-size: var(--fs-275);
     text-transform: var(--text-transform-uppercase);
   }
 
@@ -114,16 +106,16 @@
   }
 
   a:hover:not(.disabled) {
-    color: var(--color-txt-primary);
+    color: rgb(var(--color-txt-primary));
   }
 
   a.active {
-    color: var(--color-txt-primary);
+    color: rgb(var(--color-txt-primary));
     font-weight: 500;
   }
 
   a.disabled {
-    color: var(--color-txt-muted);
+    color: rgb(var(--color-txt-muted));
     cursor: not-allowed;
     pointer-events: none;
   }
@@ -131,17 +123,17 @@
   /* Ensure sufficient color contrast */
   @media (prefers-contrast: more) {
     a {
-      color: var(--high-contrast-text, #000);
+      color: rgb(var(--high-contrast-text, #000));
     }
     
     a.active {
-      color: var(--high-contrast-active, #000);
+      color: rgb(var(--high-contrast-active, #000));
       text-decoration: underline;
       font-weight: 700;
     }
 
     a.disabled {
-      color: var(--high-contrast-disabled, #666);
+      color: rgb(var(--high-contrast-disabled, #666)  );
     }
   }
 </style>

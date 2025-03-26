@@ -2,7 +2,15 @@
 
 <!-- requirements -->
 
-<script>
+<!-- set the total step to 3
+ for each totalstep create a indicator and bridge 
+ if the active step is equal to the step number, the indicator should be active and the bridge should be active
+ if the active step is not equal to the step number, the indicator should be inactive and the bridge should be inactive
+ -->
+
+
+
+<script lang="ts">
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
   
@@ -17,17 +25,33 @@
   // Component state
   let mounted = false;
   let prefersReducedMotion = false;
+  let isInView = false;
+  let containerRef: HTMLElement;
 
   onMount(() => {
     if (browser) {
       prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      mounted = true;
+      
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const [entry] = entries;
+          if (entry.isIntersecting) {
+            isInView = true;
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 }
+      );
+
+      observer.observe(containerRef);
+      return () => observer.disconnect();
     }
   });
 </script>
 
 <div
   class="progress-container"
+  bind:this={containerRef}
   role="progressbar"
   aria-label="Portfolio section progress"
   aria-valuemin="1"
@@ -36,20 +60,22 @@
 >
   {#each Array(totalSteps) as _, index}
     {@const stepNumber = index + 1}
-    {#if index > 0}
-      <div   class="bridge"
-      class:active={stepNumber <= activeStep}
-      class:animated={mounted && !prefersReducedMotion}>
-    </div>
-    {/if}
     <div 
       class="indicator"
-      class:active={stepNumber <= activeStep}
-      class:animated={mounted && !prefersReducedMotion}
+      class:active={stepNumber === activeStep && isInView}
+      class:animated={!prefersReducedMotion}
+      style="transition-delay: {stepNumber * 0.3}s"
     >
       <span class="bracket-left">[</span>
       <span class="step-number">{stepNumber}</span>
       <span class="bracket-right">]</span>
+    </div>
+    <div 
+      class="bridge"
+      class:active={stepNumber === activeStep && isInView}
+      class:animated={!prefersReducedMotion}
+      style="transition-delay: {stepNumber * 0.3}s"
+    >
     </div>
   {/each}
 </div>
@@ -63,7 +89,7 @@
     -webkit-align-items: center;
     align-items: center;
     -webkit-justify-content: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 0;
     width: 100%;
   }
@@ -73,11 +99,15 @@
     display: flex;
     -webkit-align-items: center;
     align-items: center;
+    background-color: rgb(var(--color-bg-page));
     color: var(--fg-text-muted, #666);
     opacity: 0.5;
     font-size: var(--fs-300);
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
+    transition-property: color, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
   }
 
   .indicator.active {
@@ -86,31 +116,27 @@
   }
 
   .bridge {
-    display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: center;
     justify-content: center;
-    -webkit-align-items: center;
     align-items: center;
-    -webkit-flex: 1 0 0;
-    flex: 1 0 0;
-    position: relative;
-    height: 2px;
-    background-color: var(--color-bdr-muted);
+    flex: 0 0 16px; /* Don't grow, don't shrink, fixed width */
+    height: 1px;
+    background-color: rgb(var(--color-bdr-muted));
+    transition-property: flex-basis, background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
   }
 
   .bridge.active {
-    background-color: var(--color-bdr-primary);
+    flex: 1 0 auto; /* Grow to fill available space */
+    background-color: rgb(var(--color-bdr-primary));
   }
 
-  .indicator.animated {
-    -webkit-transition: color 0.3s ease, opacity 0.3s ease;
-    transition: color 0.3s ease, opacity 0.3s ease;
-  }
-
+  .indicator.animated,
   .bridge.animated {
-    -webkit-transition: background-color 0.3s ease, opacity 0.3s ease;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
   }
 
   @media (prefers-reduced-motion: reduce) {

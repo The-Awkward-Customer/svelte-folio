@@ -1,25 +1,17 @@
 <!-- SimpleContentSection.svelte -->
 
-
 <script lang="ts">
-  import ProgressIndicator from '$lib/components/feedback/ProgressIndicator.svelte';
-
   interface Props {
     title: string;
     paragraph: string;
-    activeStep: number;
   }
 
   export let title: Props['title'];
   export let paragraph: Props['paragraph'];
-  export let activeStep: Props['activeStep'];
-
-  const totalSteps = 3;
 </script>
 
 <section class="section-root">
-  <div class="content-container">
-    <ProgressIndicator {activeStep} {totalSteps} />
+  <div class="content">
     <h2>{title}</h2>
     <p>{paragraph}</p>
   </div>
@@ -35,18 +27,17 @@
     align-items: flex-start;
     gap: var(--spc-400);
     width: 100%;
-    max-width: none;
+    padding: var(--spc-500) 0;
     box-sizing: border-box;
     overflow-x: hidden;
   }
 
-  .content-container {
+  .content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    box-sizing: border-box;
+    gap: var(--spc-200);
     padding: 0 16px;
+    width: 100%;
   }
 
   h2 {
@@ -55,7 +46,7 @@
     font-size: 20px;
     line-height: 120%;
     color: #26272D;
-
+    margin: 0;
   }
 
   p {
@@ -64,7 +55,7 @@
     font-size: 16px;
     line-height: 120%;
     color: #26272D;
-
+    margin: 0;
   }
 
   @media (min-width: 896px) {

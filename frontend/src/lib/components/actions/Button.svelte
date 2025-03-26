@@ -48,31 +48,61 @@
       align-items: center;
       justify-content: center;
       border: none;
-      border-radius: 0.25rem;
+      border-radius: var(--bdr-radius-pill);
       cursor: pointer;
       font-family: inherit;
       font-weight: 500;
       text-decoration: none;
-      transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+      transition: all 0.2s ease;
+      position: relative;
+      /* Ensure button is visible and interactive */
+      z-index: 1;
+      visibility: visible;
+      opacity: 1;
+      font-family: var(--font-family-main);
     }
     
     .btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
+      /* Even when disabled, keep some visual feedback */
+      pointer-events: none;
+    }
+    
+    /* Focus visible styles */
+    .btn:focus {
+      /* Add this to ensure focus ring shows */
+      outline: revert;
+    }
+    
+    .btn:focus-visible {
+      outline: none !important;
+      /* Make focus ring more prominent and force it with !important */
+      box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.8) !important;
+      z-index: 2;
+    }
+
+    /* Primary variant focus - white ring for better contrast on dark background */
+    .btn-primary:focus-visible {
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.9) !important;
     }
     
     /* Variants */
     .btn-primary {
-      background-color: #3949ab;
-      color: white;
+      background-color: rgba(var(--color-bg-inverse), 1.0);
+      color: var(--color-text-primary);
     }
     
     .btn-primary:hover:not(:disabled) {
-      background-color: #303f9f;
+      background-color: rgb(var(--color-bg-inverse) / var(--opacity-hover));
+    }
+
+    .btn-primary:active:not(:disabled) {
+      background-color: rgb(var(--color-bg-inverse) / var(--opacity-active));
     }
     
     .btn-secondary {
-      background-color: #f5f5f5;
+      background-color: #ff1414;
       color: #333;
     }
     
@@ -85,17 +115,23 @@
       font-size: 0.875rem;
       padding: 0.25rem 0.5rem;
       height: 2rem;
+      font-size: var(--fs-250);
+      font-weight: var(--fw-medium);
     }
     
     .btn-md {
       font-size: 1rem;
       padding: 0.5rem 1rem;
       height: 2.5rem;
+      font-size: var(--fs-300);
+      font-weight: var(--fw-medium);
     }
     
     .btn-lg {
       font-size: 1.125rem;
       padding: 0.75rem 1.5rem;
       height: 3rem;
+      font-size: var(--fs-400);
+      font-weight: var(--fw-medium);
     }
   </style>

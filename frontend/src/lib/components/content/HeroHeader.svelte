@@ -2,190 +2,92 @@
 
 <script lang="ts">
   // Props for customizable text content
-  export let sideNote = "These case studies have been recorded for easy viewing.";
-  export let mainTitle = "PETER ABBOTT";
-  export let description = "I work closely startups and established organisations to deliver high impact, high return products.";
-  export let subDescription = "I do this exactly in three ways.";
+  export let sideNote = "Available for new projects and collaborations.";
+  export let mainTitle = "PETER ABBOTT. PRODUCT DESIGNER";
+  export let description = "Hello, welcome to the grey area. Here you will find a collection of my work and thoughts gathered from over a decade of experience working as a product designer.";
+  export let subDescription = "Most recently I built and led the Design System team at Fresha, a platform for booking and managing beauty and wellness appointments. I've also worked for a range of other companies, including Shell, Suzuki and more…";
+
+  import SideNote from './SideNote.svelte';
 </script>
 
 <section class="hero-header">
-  <div class="hero-content">
-    <div class="content-wrapper">
-      <div class="page-details">
-        <div class="side-note">
-          <p>{sideNote}</p>
-        </div>
-      </div>
+  <div class="content">
 
-      <div class="title-section">
-        <div class="title-wrapper">
-          <h1>{mainTitle}</h1>
-        </div>
-      </div>
+    
+    <h1>{mainTitle}</h1>
 
-      <div class="description-section">
-        <p class="main-description">{description}</p>
-        <p class="sub-description">{subDescription}</p>
-      </div>
+    <div class="description">
+      <p class="main-description">{description}</p>
+      <p class="sub-description">{subDescription}</p>
     </div>
+    <SideNote text={sideNote} />
   </div>
 </section>
 
 <style>
-  /* Mobile-first base styles */
   .hero-header {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 32px 24px 64px;
-    gap: 24px;
+    padding-top: var(--spc-800);
+    padding-right: var(--spc-400);
+    padding-bottom: var(--spc-800);
+    padding-left: var(--spc-400);
     width: 100%;
-    max-width: 100%;
-    height: 403px;
-    flex: 1 0 auto;
+    margin-top: -8px;
   }
 
-  .hero-content {
+  .content {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0;
-    gap: 28px;
-    width: 100%;
-    max-width: 100%;
-    height: 307px;
-    flex: 1 0 auto;
-  }
-
-  .content-wrapper {
-    display: inline-flex;
     flex-direction: column;
-    align-items: flex-end;
-    padding: 0;
     gap: 32px;
     width: 100%;
-    height: 307px;
-    flex: 1 0 auto;
-  }
-
-  .page-details {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    height: 42px;
-    align-self: stretch;
-    text-align: right;
-  }
-
-  .side-note {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: 0 8px;
-    width: 100%;
-    height: 42px;
-    border-right: 1px solid #989CB8;
-    align-self: flex-end;
-  }
-
-  .side-note p {
-    width: 112px;
-    height: 42px;
-    font-family: 'Geist', sans-serif;
-    font-size: 12px;
-    line-height: 120%;
-    text-align: right;
-    color: #70717D;
-    margin: 0;
-  }
-
-  .title-section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0;
-    height: 105px;
-    align-self: stretch;
-  }
-
-  .title-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0;
-    gap: 8px;
-    height: 105px;
-    align-self: stretch;
   }
 
   h1 {
-    width: 100%;
-    height: 105px;
-    font-family: 'Geist', sans-serif;
+    font-family: var(--font-family-main);
     font-weight: 700;
     font-size: 32px;
     line-height: 110%;
-    color: #26272D;
+    color: rgb(var(--color-txt-primary));
     margin: 0;
-    flex-grow: 1;
   }
 
-  .description-section {
+  .description {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 0;
     gap: 20px;
     width: 100%;
-    max-width: 372px;
-    height: auto;
-    min-height: 96px;
-    align-self: stretch;
+    font-family: var(--font-family-main);
+    color: rgb(var(--color-txt-secondary));
+    font-weight: var(--fw-medium);
   }
 
-  .main-description {
-    width: 100%;
-    max-width: 372px;
-    height: auto;
-    min-height: 57px;
-    font-family: 'Geist', sans-serif;
-    font-size: 16px;
+  .main-description,
+  .sub-description {
+    font-size: var(--fs-300);
     line-height: 120%;
-    color: #26272D;
     margin: 0;
   }
 
   .sub-description {
-    width: 100%;
-    max-width: 372px;
-    height: auto;
-    min-height: 19px;
-    font-family: 'Geist', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 120%;
-    color: #26272D;
-    margin: 0;
+    color: rgb(var(--color-txt-primary));
   }
 
-  /* Desktop styles (min-width: 768px) */
+  /* Desktop styles */
   @media (min-width: 896px) {
     .hero-header {
-      padding: 40px 24px;
-      width: 100%;
-    }
-
-    .hero-content {
-      width: 100%;
-      max-width: 100%;
+      padding-top: 20vh ;
+    padding-right: var(--spc-400);
+    padding-bottom: var(--spc-800);
+    padding-left: var(--spc-400);
     }
 
     h1 {
-      width: 528px;
-      height: 159px;
       font-size: 48px;
     }
 
+
+  .main-description,
+  .sub-description {
+    font-size: var(--fs-400);
+  }
   }
 </style>

@@ -27,7 +27,6 @@
           { path: '/visualDesign', label: 'visual design' },
         ]}
         vertical={true}
-        showBorder={true}
         ariaLabel="Main Navigation"
      />
 
