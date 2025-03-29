@@ -1,7 +1,7 @@
 <script lang="ts">
     // Props interface
     interface ButtonProps {
-        variant?: 'primary' | 'secondary';
+        variant: 'primary' | 'secondary' | 'primary-icon' | 'secondary-icon';
         size?: 'sm' | 'md' | 'lg';
         type?: 'button' | 'submit' | 'reset';
         disabled?: boolean;
@@ -19,10 +19,13 @@
     export let ariaControls: ButtonProps['ariaControls'] = undefined;
     export let ariaExpanded: ButtonProps['ariaExpanded'] = undefined;
     
-    // Compute classes based on props
+    // Compute classes and determine if it's an icon variant
+    $: isIconVariant = variant.includes('icon');
+    $: baseVariant = isIconVariant ? variant.replace('-icon', '') : variant;
     $: componentClasses = `
       btn 
-      btn-${variant} 
+      btn-${baseVariant}
+      ${isIconVariant ? 'btn-icon' : ''}
       btn-${size}
     `.trim();
   </script>
@@ -37,9 +40,13 @@
     on:click
     {...$$restProps}
   >
-    <span class="btn-text">
-      <slot />
-    </span>
+    {#if isIconVariant}
+        <slot />
+    {:else}
+        <span class="btn-text">
+            <slot />
+        </span>
+    {/if}
   </button>
   
   <style>
@@ -133,5 +140,26 @@
       height: 3rem;
       font-size: var(--fs-400);
       font-weight: var(--fw-medium);
+    }
+
+    /* Icon variant styles */
+    .btn-icon {
+        padding: 0;
+        aspect-ratio: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-icon.btn-sm {
+        width: 2rem;
+    }
+    
+    .btn-icon.btn-md {
+        width: 2.5rem;
+    }
+    
+    .btn-icon.btn-lg {
+        width: 3rem;
     }
   </style>

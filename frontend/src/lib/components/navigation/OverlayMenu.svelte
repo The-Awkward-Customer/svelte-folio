@@ -1,6 +1,7 @@
 <script lang="ts">
   import Button from '$lib/components/actions/Button.svelte';
   import LinkList from '$lib/components/actions/LinkList.svelte';
+  import LocationInfo from '$lib/components/Snoop/LocationInfo.svelte';
   
   // Use Svelte's writable store instead of state
   import { writable } from 'svelte/store';
@@ -50,6 +51,7 @@
       aria-label="Close navigation menu"
       on:keydown={handleKeydown}
     ></button>
+
     <section 
       class="menu-content" 
       role="navigation"
@@ -64,6 +66,7 @@
         </Button>
       </div>
       <LinkList {routes} vertical={true} on:click={closeMenu} />
+      <LocationInfo />
     </section>
   </div>
 {/if}
