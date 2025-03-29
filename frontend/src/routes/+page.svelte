@@ -1,21 +1,25 @@
 <script lang="ts">
     let helloWorld: string = "Hello world";
     console.log(helloWorld);
-    // imports
+
+
+    // components
     import { page } from "$app/stores";
     import BasicLayout from "$lib/components/layout/BasicLayout.svelte";
     import TopBar from "$lib/components/navigation/TopBar.svelte";
     import LinkList from "$lib/components/actions/LinkList.svelte";
     import HeroHeader from "$lib/components/content/HeroHeader.svelte";
     import SideBar from "$lib/components/navigation/SideBar.svelte";
-    import RainDrops from "$lib/components/Marginalia/RainDrops.svelte";
-    import LocationInfo from "$lib/components/Snoop/LocationInfo.svelte";
+    import Button from "$lib/components/actions/Button.svelte";
+
+    //Icons
+    import IconRefresh from "$lib/components/primatives/IconRefresh.svelte";
+
+
     $: currentPath = $page.url.pathname;
 </script>
 
 <main class="main-root">
-
-    <LocationInfo />
 
 <BasicLayout>
     <TopBar slot="top-bar" />
@@ -33,6 +37,11 @@
     </SideBar>
 
     <div slot="main">
+        <IconRefresh />
+        <Button variant="primary" on:click={() => console.log("clicked")}>Click me</Button>
+        <Button variant="primary-icon" on:click={() => console.log("Icon button clicked")}>
+            <IconRefresh />
+        </Button>
         <HeroHeader/>
     </div>
 </BasicLayout>
@@ -48,4 +57,6 @@
     background-color: var(--color-bg-primary);
     overflow-x: hidden;
 }
+
+
 </style>

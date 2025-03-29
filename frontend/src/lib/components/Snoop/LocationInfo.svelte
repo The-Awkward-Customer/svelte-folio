@@ -1,6 +1,10 @@
 <!-- LocationInfo.svelte -->
 <script>
     import { onMount } from 'svelte';
+
+    //components 
+    import Button from '$lib/components/actions/Button.svelte';
+    import IconRefresh from '$lib/components/primatives/IconRefresh.svelte';
     
     let locationData = {
       geoLocation: null,
@@ -57,7 +61,7 @@
         console.log('Weather Data:', weatherData);
       } catch (error) {
         console.error('Error fetching weather:', error);
-        weatherError = error.message;
+        weatherError = "Looks like I can't find your location."
       } finally {
         isLoading = false;
       }
@@ -127,17 +131,20 @@
     });
   </script>
   
-  <div>
+  <div class="location-info-root">
     <!-- <button on:click={logLocationData}>Log Location Data</button> -->
-    <button on:click={fetchWeather} disabled={isLoading}>
+    <!-- <Button variant="primary" on:click={fetchWeather} disabled={isLoading}>
       {isLoading ? 'Loading Weather...' : 'Get Weather'}
-    </button>
+    </Button>
+
+    {#if isLoading}
+        <div>
+            <p>Loading weather data...</p>
+        </div>
+    {/if} -->
     
     {#if weatherData}
       <div>
-        <p>Weather data is available in the console</p>
-        <!-- Optionally display weather info directly in the UI -->
-        
         <div class="weather-display">
             <img 
               src="https://openweathermap.org/img/wn/{weatherData.weather[0].icon}@2x.png" 
@@ -145,20 +152,43 @@
               width="50"
               height="50"
             />
-            <p>Current weather in {weatherData.name}: {weatherData.weather[0].main}</p>
+            <p>
+                {#if isLoading}
+                    Fetching weather information...
+                {:else}
+                    Current weather in {weatherData.name}: {weatherData.weather[0].main}
+                {/if}
+            </p>
           </div>
        
       </div>
     {/if}
     
     {#if weatherError}
-      <p class="error">Error: {weatherError}</p>
+    <div class="weather-error-root">
+        <p class="error">{weatherError}</p>
+        <Button variant="primary-icon" on:click={() => {
+            console.log("Attempting to fetch weather data");
+            fetchWeather();
+        }}>
+            <IconRefresh />
+        </Button>
+    </div>
     {/if}
-    
-    <p>Location data is being collected and logged to the console.</p>
   </div>
 
   <style>
+    .location-info-root {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    height:64px;
+    font-family: var(--font-family-alt);
+    font-size: var(--fs-275);
+}
+
     .weather-display {
       display: flex;
       align-items: center;
@@ -167,5 +197,14 @@
     
     img {
       vertical-align: middle;
+    }
+
+    .weather-error-root {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        width: 100%;
     }
   </style>
