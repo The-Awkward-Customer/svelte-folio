@@ -62,8 +62,8 @@
 
   .main-description,
   .sub-description {
-    font-size: var(--fs-300);
-    line-height: 120%;
+    font-size: var(--fs-400);
+    line-height: 130%;
     margin: 0;
   }
 

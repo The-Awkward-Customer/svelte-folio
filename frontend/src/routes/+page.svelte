@@ -14,8 +14,9 @@
 </script>
 
 <main class="main-root">
-    <RainDrops />
+
     <LocationInfo />
+
 <BasicLayout>
     <TopBar slot="top-bar" />
 

@@ -43,52 +43,63 @@
 </Button>
 
 {#if $isOpen}
-  <button 
-    class="overlay" 
-    on:click={closeMenu}
-    aria-label="Close navigation menu"
-    on:keydown={handleKeydown}
-  >
+  <div class="overlay-container">
+    <button 
+      class="overlay" 
+      on:click={closeMenu}
+      aria-label="Close navigation menu"
+      on:keydown={handleKeydown}
+    ></button>
     <section 
       class="menu-content" 
       role="navigation"
     >
+      <div class="menu-header">
+        <Button 
+          variant="primary" 
+          on:click={closeMenu} 
+          ariaLabel="Close menu"
+        >
+          Close
+        </Button>
+      </div>
       <LinkList {routes} vertical={true} on:click={closeMenu} />
-      <Button 
-        variant="secondary" 
-        on:click={closeMenu} 
-        ariaLabel="Close menu"
-      >
-        Close Menu
-      </Button>
     </section>
-  </button>
+  </div>
 {/if}
 
 <style>
-  .overlay {
+  .overlay-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: flex-end;
     z-index: var(--z-index-overlay, 1000);
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
     border: none;
     padding: 0;
     cursor: pointer;
   }
-  
+
   .menu-content {
-    background-color: var(--color-bg-primary, white);
-    padding: 2rem;
-    border-radius: var(--bdr-radius-md, 5px) var(--bdr-radius-md, 5px) 0 0;
     position: relative;
+    z-index: 1;
+    background-color: rgb(var(--color-bg-primary));
+    padding: var(--spc-400);
+    border-radius: var(--bdr-radius-md, 5px) var(--bdr-radius-md, 5px) 0 0;
     width: 100%;
-    max-width: 568px;
     transform: translateY(0);
     transition: transform 0.3s ease-out;
     box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
@@ -97,6 +108,14 @@
   /* Add animation for opening */
   .menu-content {
     animation: slideUp 0.3s ease-out;
+  }
+
+  .menu-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: var(--spc-400);
   }
 
   @keyframes slideUp {
