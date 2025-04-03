@@ -2,12 +2,12 @@
 
 <script lang="ts">
   // Props for customizable text content
-  export let sideNote = "Available for new projects and collaborations.";
-  export let mainTitle = "PETER ABBOTT. PRODUCT DESIGNER";
-  export let description = "Hello, welcome to the grey area. Here you will find a collection of my work and thoughts gathered from over a decade of experience working as a product designer.";
-  export let subDescription = "Most recently I built and led the Design System team at Fresha, a platform for booking and managing beauty and wellness appointments. I've also worked for a range of other companies, including Shell, Suzuki and more…";
+  export let sideNote: "Available for new projects and collaborations.";
+  export let mainTitle: String = "PETER ABBOTT. PRODUCT DESIGNER";
+  export let description: String = "Hello, welcome to the grey area. Here you will find a collection of my work and thoughts gathered from over a decade of experience working as a product designer.";
+  export let subDescription: String = "Most recently I built and led the Design System team at Fresha, a platform for booking and managing beauty and wellness appointments. I've also worked for a range of other companies, including Shell, Suzuki and more…";
 
-  import SideNote from './SideNote.svelte';
+  import SideNote from '../SideNote.svelte';
 </script>
 
 <section class="hero-header">

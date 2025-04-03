@@ -96,7 +96,7 @@
     
     /* Variants */
     .btn-primary {
-      background-color: rgba(var(--color-bg-inverse), 1.0);
+      background-color: rgba(var(--color-bg-inverse) / var(--opacity-invisible));
       color: var(--color-text-primary);
     }
     

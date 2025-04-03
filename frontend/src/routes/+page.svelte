@@ -8,9 +8,8 @@
     import BasicLayout from "$lib/components/layout/BasicLayout.svelte";
     import TopBar from "$lib/components/navigation/TopBar.svelte";
     import LinkList from "$lib/components/actions/LinkList.svelte";
-    import HeroHeader from "$lib/components/content/HeroHeader.svelte";
     import SideBar from "$lib/components/navigation/SideBar.svelte";
-    import Button from "$lib/components/actions/Button.svelte";
+    import Hero from "$lib/components/content/Hero/Hero.svelte";
 
     //Icons
     import IconRefresh from "$lib/components/primatives/IconRefresh.svelte";
@@ -37,14 +36,14 @@
     </SideBar>
 
     <div slot="main">
-        <HeroHeader/>
+        <Hero />
     </div>
 </BasicLayout>
 </main>
 
 <style>   
 .main-root {
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;

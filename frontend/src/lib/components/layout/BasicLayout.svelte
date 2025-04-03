@@ -123,7 +123,8 @@
         position: relative;
         flex: 1;
         height: 100%;
-        max-width: 568px;
+        width: 100%;
+        max-width: 1200px;
         margin: 0 auto;
     }
 </style>
