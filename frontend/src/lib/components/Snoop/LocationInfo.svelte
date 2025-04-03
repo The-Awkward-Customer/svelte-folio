@@ -132,19 +132,13 @@
   </script>
   
   <div class="location-info-root">
-    <!-- <button on:click={logLocationData}>Log Location Data</button> -->
-    <!-- <Button variant="primary" on:click={fetchWeather} disabled={isLoading}>
-      {isLoading ? 'Loading Weather...' : 'Get Weather'}
-    </Button>
 
     {#if isLoading}
         <div>
-            <p>Loading weather data...</p>
+            <p>Snooping around...</p>
         </div>
-    {/if} -->
-    
-    {#if weatherData}
-      <div>
+    {:else if weatherData}
+    <div>
         <div class="weather-display">
             <img 
               src="https://openweathermap.org/img/wn/{weatherData.weather[0].icon}@2x.png" 
@@ -153,18 +147,11 @@
               height="50"
             />
             <p>
-                {#if isLoading}
-                    Fetching weather information...
-                {:else}
-                    Current weather in {weatherData.name}: {weatherData.weather[0].main}
-                {/if}
+              Current weather in {weatherData.name}: {weatherData.weather[0].main}
             </p>
           </div>
-       
       </div>
-    {/if}
-    
-    {#if weatherError}
+    {:else if weatherError}
     <div class="weather-error-root">
         <p class="error">{weatherError}</p>
         <Button variant="primary-icon" on:click={() => {

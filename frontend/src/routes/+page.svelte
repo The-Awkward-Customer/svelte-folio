@@ -37,11 +37,6 @@
     </SideBar>
 
     <div slot="main">
-        <IconRefresh />
-        <Button variant="primary" on:click={() => console.log("clicked")}>Click me</Button>
-        <Button variant="primary-icon" on:click={() => console.log("Icon button clicked")}>
-            <IconRefresh />
-        </Button>
         <HeroHeader/>
     </div>
 </BasicLayout>
