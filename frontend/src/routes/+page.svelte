@@ -8,13 +8,15 @@
     import BasicLayout from "$lib/components/layout/BasicLayout.svelte";
     import TopBar from "$lib/components/navigation/TopBar.svelte";
     import LinkList from "$lib/components/actions/LinkList.svelte";
-    import HeroHeader from "$lib/components/content/HeroHeader.svelte";
     import SideBar from "$lib/components/navigation/SideBar.svelte";
-    import Button from "$lib/components/actions/Button.svelte";
-
+    import { HeroRoot, HeroTitle, HeroIntro, HeroButton } from "$lib/components/content/Hero";
+    import Callout from "$lib/components/feedback/Callout.svelte";
     //Icons
     import IconRefresh from "$lib/components/primatives/IconRefresh.svelte";
 
+    function handleClick() {
+        console.log('hero button clicked');
+    }
 
     $: currentPath = $page.url.pathname;
 </script>
@@ -37,14 +39,19 @@
     </SideBar>
 
     <div slot="main">
-        <HeroHeader/>
+        <HeroRoot>
+            <Callout />
+            <HeroTitle />
+            <HeroIntro>High growth, high impact solutions using design, technology and data.</HeroIntro>
+            <HeroIntro color="secondary">some simple text for now <HeroButton onClick={handleClick} label="click me"/> and this is the rest. </HeroIntro> 
+        </HeroRoot>
     </div>
 </BasicLayout>
 </main>
 
 <style>   
 .main-root {
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;

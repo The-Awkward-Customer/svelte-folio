@@ -25,7 +25,6 @@
         padding-left: 24px;
         padding-right: 24px;
         padding-bottom: 8px;
-        max-width: 568px;
     }
 
     .logo {

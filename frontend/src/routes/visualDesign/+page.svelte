@@ -6,10 +6,7 @@
     import BasicLayout from "$lib/components/layout/BasicLayout.svelte";
     import TopBar from "$lib/components/navigation/TopBar.svelte";
     import LinkList from "$lib/components/actions/LinkList.svelte";
-    import HeroHeader from "$lib/components/content/HeroHeader.svelte";
     import SideBar from "$lib/components/navigation/SideBar.svelte";
-    import SimpleContentSection from "$lib/components/content/SimpleContentSection.svelte";
-    import VideoTile from "$lib/components/media/VideoTile.svelte";
     $: currentPath = $page.url.pathname;
 </script>
 
@@ -35,7 +32,7 @@
 
  <div slot="main">
 
-<HeroHeader/>
+<p>Visual Design</p>
 
 
 </div>
