@@ -81,7 +81,7 @@
         justify-content: center;
         height: 100%;
         width: 100%;
-        max-width: 1200px;
+        max-width: 568px;
         margin: 0 auto;
         position: relative;
     }

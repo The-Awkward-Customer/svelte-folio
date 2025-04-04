@@ -11,13 +11,9 @@
     }
 </script>
 
-<div class="hero-root">
-    <Callout />
-    <HeroTitle />
-    <HeroIntro color="secondary">High growth, high impact solutions using design, technology and data.</HeroIntro>
-    <HeroIntro>some simple text for now <HeroButton onClick={handleClick} label="click me"/> and this is the rest. </HeroIntro> 
-    
-</div>
+<section class="hero-root">
+    <slot></slot>
+</section>
 
 <style>
     .hero-root {
