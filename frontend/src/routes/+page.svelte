@@ -13,13 +13,23 @@
     import Callout from "$lib/components/feedback/Callout.svelte";
     //Icons
     import IconRefresh from "$lib/components/primatives/IconRefresh.svelte";
+    import { dialogManager } from '$lib/stores/dialogManager';
+    import DialogRoot from '$lib/components/modals/DialogRoot.svelte';
 
     function handleClick() {
-        console.log('hero button clicked');
+        // This is not being called
+        console.log('hero button clicked!!');
+    }
+
+    function openTheDialog() {
+        console.log('Opening dialog...');
+        dialogManager.showDialog('mainPageDialog', { message: 'Hello from the page!' });
     }
 
     $: currentPath = $page.url.pathname;
 </script>
+
+<DialogRoot />
 
 <main class="main-root">
 
@@ -43,7 +53,11 @@
             <Callout />
             <HeroTitle />
             <HeroIntro>High growth, high impact solutions using design, technology and data.</HeroIntro>
-            <HeroIntro color="secondary">some simple text for now <HeroButton onClick={handleClick} label="click me"/> and this is the rest. </HeroIntro> 
+            <HeroIntro color="secondary">
+                Trigger the dialog with this button: 
+                <HeroButton on:click={openTheDialog} label="open dialog" /> 
+                and this is the rest of the text.
+            </HeroIntro>
         </HeroRoot>
     </div>
 </BasicLayout>

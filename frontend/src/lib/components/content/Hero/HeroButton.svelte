@@ -7,12 +7,17 @@
     }
     export let onClick: ButtonProps['onClick'] = () => {};
     export let label: string = "Placeholder Button Text";
+
+    // Log when the component initializes and receives the prop
+    console.log('HeroButton initialized. onClick prop type:', typeof onClick, 'Label:', label);
+
+    
 </script>
   
 <div class="hero-button-root">
     <p class="hero-button-label">{label}</p>
 <button 
-    on:click={onClick}
+    on:click
     class="hero-button"
     aria-label={label}
 ></button>
