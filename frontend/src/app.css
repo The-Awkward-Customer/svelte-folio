@@ -163,6 +163,7 @@ select {
   --color-txt-primary: 38 39 45;    /* #26272D */
   --color-txt-secondary: 112 113 125;  /* #70717D */
   --color-txt-muted: 152 156 184;   /* #989CB8 */
+  --color-txt-inverse: 255 255 255;  /* #ffffff */
 
   --color-bdr-primary: 38 39 45;    /* #26272D */
   --color-bdr-muted: 152 156 184;   /* #989CB8 */
@@ -188,6 +189,12 @@ select {
   --fs-700: 2.5rem; /* 40px */
   --fs-800: 3rem; /* 48px */
   --fs-900: 4rem; /* 64px */
+  --fs-1000: 5rem; /* 80px */
+  --fs-1100: 6rem; /* 96px */
+  --fs-1200: 7rem; /* 112px */
+  --fs-1300: 8rem; /* 128px */
+  --fs-1400: 9rem; /* 144px */
+  --fs-1500: 10rem; /* 160px */
 
   /* Semantic font sizes */
   --fs-tiny: var(--fs-275);
@@ -226,6 +233,9 @@ select {
 
   /* semanticBorder radius */
   --bdr-radius-tiny: 4px;
+  --bdr-radius-small: 8px;
+  --bdr-radius-medium: 16px;
+  --bdr-radius-large: 24px;
   --bdr-radius-pill: 999px;
 
   /* Opacity */
@@ -257,4 +267,12 @@ select {
 :focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-main);
+}
+
+p, span, a, li, ol, ul {
+  font-family: var(--font-family-main);
 }

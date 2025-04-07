@@ -27,14 +27,12 @@
       padding: var(--spc-md);
       width: calc(100% - (2 * var(--grid-padding)));
       box-sizing: border-box;
-      background-color: pink;
     }
   
     /* Desktop breakpoint - switch to square cells */
     @media (min-width: 400px) {
       .grid-container {
         grid-template-columns: var(--grid-desktop-columns);
-        background-color: rgb(186, 66, 86);
       }
     }
   </style>

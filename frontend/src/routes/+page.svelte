@@ -16,10 +16,9 @@
     import { dialogManager } from '$lib/stores/dialogManager';
     import DialogRoot from '$lib/components/modals/DialogRoot.svelte';
 
-    function handleClick() {
-        // This is not being called
-        console.log('hero button clicked!!');
-    }
+    //Page Content
+    let HeroIntroText: string = "Currently based in sunny Madrid, and available for new projects in Q3 2025.";
+
 
     function openTheDialog() {
         console.log('Opening dialog...');
@@ -52,12 +51,16 @@
         <HeroRoot>
             <Callout />
             <HeroTitle />
-            <HeroIntro>High growth, high impact solutions using design, technology and data.</HeroIntro>
             <HeroIntro color="secondary">
-                Trigger the dialog with this button: 
-                <HeroButton on:click={openTheDialog} label="open dialog" /> 
-                and this is the rest of the text.
+                I've worked with scaleups such as <HeroButton on:click={openTheDialog} label="Fresha"/>,
+                Co-founded a <HeroButton on:click={openTheDialog} label="startup" />.
+                I've also delivered digital transformational solutions for <HeroButton on:click={openTheDialog} label="Shell"/>
+                <HeroButton on:click={openTheDialog} label="Suzuki"/>,
+                <HeroButton on:click={openTheDialog} label="TSB"/> and,
+                <HeroButton on:click={openTheDialog} label="AXA"/>.
+                I'm also making a native iOS game <HeroButton on:click={openTheDialog} label="Game"/> for fun.
             </HeroIntro>
+            <HeroIntro>{HeroIntroText}</HeroIntro>
         </HeroRoot>
     </div>
 </BasicLayout>

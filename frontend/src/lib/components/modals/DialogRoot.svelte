@@ -1,8 +1,8 @@
 <!-- DialogRoot.svelte -->
 <script>
 	import { dialogManager } from '$lib/stores/dialogManager';
-	import Button from '$lib/components/actions/Button.svelte'; // Assuming a general Button component exists
-
+    import DialogHeader from '$lib/components/modals/DialogHeader.svelte';
+    import DialogContent from '$lib/components/modals/DialogContent.svelte';
 	// Define the ID for this specific dialog instance
 	const DIALOG_ID = 'mainPageDialog';
 
@@ -20,11 +20,10 @@
 {#if isActive}
 	<button class="dialog-backdrop" on:click={handleClose}>
 		<div class="dialog-content">
-			<h2>Dialog Title</h2>
-			<p>This is the content of the dialog.</p>
-			<p>State received: {JSON.stringify($dialogManager.dialogState)}</p>
-			<Button variant="secondary" on:click={handleClose}>Close Dialog</Button>
-			<!-- Add more dialog content/structure here -->
+			<DialogHeader title="Dialog Title" />
+            <DialogContent> 
+                <p>This is the content of the dialog.</p>
+            </DialogContent>
 		</div>
 	</button>
 {/if}
@@ -40,17 +39,22 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		z-index: 1000; /* Ensure it's above other content */
+		z-index: 999; /* Ensure it's above other content */
 	}
 
 	.dialog-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
 		background-color: white;
-		padding: 2rem;
 		border-radius: 8px;
-		min-width: 300px;
-		max-width: 80%;
+		width:calc(100vw - 2rem);
+        height:calc(100vh - 2rem);
 		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 		color: #333; /* Ensure text is visible on white background */
+        z-index: 1000;
+        pointer-events: none;
 	}
 
 	/* Add more specific styling as needed */

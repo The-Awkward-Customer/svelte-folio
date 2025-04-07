@@ -6,9 +6,6 @@
     import HeroIntro from '$lib/components/content/Hero/HeroIntro.svelte';
     import HeroButton from '$lib/components/content/Hero/HeroButton.svelte';
 
-    function handleClick() {
-        console.log('hero button clicked');
-    }
 </script>
 
 <section class="hero-root">
@@ -30,8 +27,7 @@
 
     @media (min-width: 896px) {
         .hero-root {
-            background-color: rgba(0, 0, 255, 0.074);
-            padding-top: 20vh ;
+            padding-top: 146px ;
             padding-left: var(--padding-mobile-default);
             padding-right: var(--padding-mobile-default);
           

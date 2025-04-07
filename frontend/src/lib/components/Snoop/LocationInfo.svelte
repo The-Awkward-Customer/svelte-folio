@@ -132,7 +132,6 @@
   </script>
   
   <div class="location-info-root">
-
     {#if isLoading}
         <div>
             <p>Snooping around...</p>

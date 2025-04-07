@@ -6,7 +6,7 @@
     let title: String = "Hero Title";
 </script>
 
-<h1 class="hero-title">Peter Abbott, <br> <span class="profession">Product Design.</span></h1>
+<h1 class="hero-title">Product Designer, <br> <span class="profession"> 10 years experience.</span></h1>
 
 <style>
     .hero-title {
