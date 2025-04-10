@@ -6,50 +6,47 @@
     import Button from '$lib/components/actions/Button.svelte';
 
     interface $$Props {
-        title: string;
+        focus: string;
     }
 
     function closeDialog() {
         dialogManager.closeDialog();
     }
 
-    export let title: $$Props['title'] = 'Dialog Title';
+    export let focus: $$Props['focus'] = 'Design Systems | Product Design | Team Leadership';
 
 </script>
 
 <div class="dialog-header">
-    <h2 class="dialog-title">{title}</h2>
-    <p class="dialog-read-time"> 2mins read</p>
+    <h2 class="dialog-title">{focus}</h2>
     <Button variant="primary" on:click={closeDialog}>Close</Button>
 </div>
 
 <style>
     .dialog-header {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr auto;
         grid-template-rows: 1fr;
         width: 100%;
-        padding: var(--spc-800);
+        padding: var(--spc-1000);
         justify-content: space-between;
         align-items: center;
         border-radius: var(--bdr-radius-large);
-        background-color: rgb(var(--color-bg-inverse));
     }
 
     .dialog-title{
         display: flex;
         justify-content: flex-start;
         font-size: var(--fs-200);
-        font-weight: var(--fw-super);
+        font-weight: var(--fw-medium);
         width: 100%;
-        color: rgb(var(--color-txt-inverse));
+        color: rgb(var(--color-txt-muted));
     }
 
-    .dialog-read-time{
-        display: flex;
-        justify-content:center;
-        font-size: var(--fs-200);
-        color: rgb(var(--color-txt-inverse));
+    @media (max-width: 768px) {
+        .dialog-title{
+            font-size: var(--fs-100);
+        }
     }
 
 </style>

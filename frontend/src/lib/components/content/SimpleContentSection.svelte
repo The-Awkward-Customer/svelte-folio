@@ -45,7 +45,7 @@
     font-weight: 500;
     font-size: 20px;
     line-height: 120%;
-    color: #26272D;
+    color: rgb(var(--color-bg-primary));
     margin: 0;
   }
 

@@ -49,7 +49,6 @@
 
     <div slot="main">
         <HeroRoot>
-            <Callout />
             <HeroTitle />
             <HeroIntro color="secondary">
                 I've worked with scaleups such as <HeroButton on:click={openTheDialog} label="Fresha"/>,
@@ -58,8 +57,9 @@
                 <HeroButton on:click={openTheDialog} label="Suzuki"/>,
                 <HeroButton on:click={openTheDialog} label="TSB"/> and,
                 <HeroButton on:click={openTheDialog} label="AXA"/>.
-                I'm also making a native iOS game <HeroButton on:click={openTheDialog} label="Game"/> for fun.
+                I'm also make iOS <HeroButton on:click={openTheDialog} label="Games"/> for fun.
             </HeroIntro>
+            <Callout />
             <HeroIntro>{HeroIntroText}</HeroIntro>
         </HeroRoot>
     </div>

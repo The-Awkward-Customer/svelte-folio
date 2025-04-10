@@ -149,6 +149,9 @@ select {
 
 
 :root {
+/* dev colors */
+  --color-dev-pink: 241 114 255;    /* #F172FF */
+
   /* Color variables */
   --color-fg-primary: 38 39 45;    /* #26272D */
   --color-fg-secondary: 112 113 125;  /* #70717D */
@@ -167,6 +170,9 @@ select {
 
   --color-bdr-primary: 38 39 45;    /* #26272D */
   --color-bdr-muted: 152 156 184;   /* #989CB8 */
+
+  /* project colors */
+  --fresha-purple: 105, 80, 243;
 
   /* focus ring */
   --focus-ring-color: #ff6200;
@@ -201,8 +207,10 @@ select {
   
   /* Font weights */
   --fw-thin: 300;
+  --fw-regular: 400;
   --fw-medium: 500;
   --fw-semibold: 600;
+  --fw-bold: 700;
   --fw-super: 900;
   
   /* Font styles */
@@ -226,6 +234,13 @@ select {
   --spc-600: 1.75rem; /* 28px */
   --spc-700: 2rem; /* 32px */
   --spc-800: 3rem; /* 48px */
+  --spc-900: 4rem; /* 64px */
+  --spc-1000: 5rem; /* 80px */
+  --spc-1100: 6rem; /* 96px */
+  --spc-1200: 7rem; /* 112px */
+  --spc-1300: 8rem; /* 128px */
+  --spc-1400: 9rem; /* 144px */
+  --spc-1500: 10rem; /* 160px */
 
   /* Semantic spacing */
   --padding-mobile-default: var(--spc-500);
