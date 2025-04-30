@@ -33,6 +33,7 @@
         padding-left: var(--spc-1000);
         padding-right: var(--spc-1000);
         padding-top: var(--spc-1000);
+        padding-bottom: var(--spc-1000);
     }
 
     .dialog-details-item {

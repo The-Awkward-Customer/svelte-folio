@@ -12,6 +12,9 @@
 
     import { onMount, onDestroy } from 'svelte';
     
+    // Receive scroll position from parent
+    export let scrollPosition: number = 0;
+    
     // Define the structure for circle objects
     interface Circle {
         x: number;
@@ -72,6 +75,10 @@
         const animate = () => {
             if (!ctx || !canvas) return; // Ensure ctx and canvas are available
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Calculate opacity based on scroll position
+            const opacity = Math.max(0, 1 - scrollPosition / 600);
+
             circles.forEach(circle => {
                 if (!ctx || !canvas) return; // Ensure ctx and canvas are available inside loop too
                 ctx.beginPath();
@@ -81,7 +88,7 @@
                 
                 ctx.arc(circle.x, circle.y, scaledRadius, 0, Math.PI * 2, false);
                 ctx.fillStyle = circle.color;
-                ctx.globalAlpha = 0.9; // Making circles slightly transparent
+                ctx.globalAlpha = opacity; // Set alpha per circle based on scroll
                 ctx.filter = 'blur(124px)'; // Applying blur for overlap effect
                 ctx.fill();
                 ctx.filter = 'none'; // Reset filter for other potential drawings
@@ -117,7 +124,7 @@
 
 <style>
     .background-container {
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
