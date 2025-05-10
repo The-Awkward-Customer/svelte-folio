@@ -1,7 +1,14 @@
 <script lang="ts">
-	export let src: string;
-	export let alt: string;
-	export let aspectRatio: string | undefined = undefined; // e.g., '16/9', '1/1'
+
+	interface ImageProps{
+		src: String;
+		alt: String;
+		aspectRatio: string | undefined;
+	}
+
+	let { src, alt, aspectRatio = "16/9"} = $props();
+
+	
 </script>
 
 <!-- Image component -->

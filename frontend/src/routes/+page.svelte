@@ -14,7 +14,7 @@
     //Icons
     import IconRefresh from "$lib/components/primatives/IconRefresh.svelte";
     import { dialogManager } from '$lib/stores/dialogManager';
-    import DialogRoot from '$lib/components/modals/DialogRoot.svelte';
+    import DialogRoot from '$lib/components/Dialog/DialogRoot.svelte';
 
     //Page Content
     let HeroIntroText: string = "Currently based in sunny Madrid, and available for new projects in Q3 2025.";

@@ -1,12 +1,26 @@
 <!-- DialogTextSection.svelte -->
 
 <script lang="ts">
+
+
+    interface DialogTextProps {
+        title?: string;
+        content?: string;
+    }
+
+    
+
+    let {
+        title = "Placeholder",
+        content="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    } : DialogTextProps = $props();
+
 </script>
 
 <section class="dialog-text-section">
     <div class="dialog-text-section-content">
-        <h3 class="dialog-text-section-title">Catalysing growth at Fresha</h3>
-        <p class="dialog-text-section-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <h3 class="dialog-text-section-title">{title}</h3>
+        <p class="dialog-text-section-text">{content}</p>
     </div>
 </section>
 
@@ -17,10 +31,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding-top: var(--spc-1000);
-        padding-bottom: var(--spc-1000);
-        padding-left: var(--spc-1000);
-        padding-right: var(--spc-1000);
     }
 
     .dialog-text-section-content {

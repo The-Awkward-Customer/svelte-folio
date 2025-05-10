@@ -1,15 +1,23 @@
 <!-- DialogRoot.svelte -->
 <script lang="ts">
-	import { dialogManager } from '$lib/stores/dialogManager';
-    import DialogHeader from '$lib/components/modals/DialogHeader.svelte';
-    import DialogContent from '$lib/components/modals/DialogContent.svelte';
-    import DialogDetails from '$lib/components/modals/DialogDetails.svelte';
-    import DialogAnimatedBackground from '$lib/components/modals/DialogAnimatedBackground.svelte';
-	import DialogImageSection from '$lib/components/modals/DialogImageSection.svelte';
-	import DialogCallout from '$lib/components/modals/DialogCallout.svelte';
-	import DialogTextSection from '$lib/components/modals/DialogTextSection.svelte';
+
     import { onMount, onDestroy, tick } from 'svelte';
+	import { dialogManager } from '$lib/stores/dialogManager';
     import { browser } from '$app/environment'; // Import browser
+	import DialogSection from './DialogSection.svelte';
+    import DialogPrefix from './DialogPrefix.svelte';
+    import DialogHeader from '$lib/components/Dialog/DialogHeader.svelte';
+    import DialogAnimatedBackground from '$lib/components/Dialog/DialogAnimatedBackground.svelte';
+
+    // Images
+    import placeholder from "$lib/assets/placeholder-image.jpg"
+	import Image from '../content/image.svelte';
+	import DialogTitle from './DialogTitle.svelte';
+    import DialogIntro from './DialogIntro.svelte';
+    import DialogText from './DialogText.svelte';
+	import DialogDetails from './DialogDetails.svelte';
+
+
 
 	// Define the ID for this specific dialog instance
 	const DIALOG_ID = 'mainPageDialog';
@@ -17,6 +25,7 @@
     let dialogRootElement: HTMLDivElement; // Reference to the dialog container
     let scrollWrapperElement: HTMLDivElement; // Reference to the scroll wrapper
     let currentScrollTop = 0; // Track scroll position
+
 
     $: console.log("dialogRoot store check: ", $dialogManager, 'Is active: ', $dialogManager.activeDialogId === DIALOG_ID);
 
@@ -110,6 +119,9 @@
             }
         }
     }
+
+
+
 </script>
 
 {#if isActive}
@@ -118,20 +130,48 @@
 
 	<!-- Content Area: Centered on top of backdrop -->
 	<div class="dialog-root" bind:this={dialogRootElement}>
+
+
 		<DialogHeader />
+
+
 		<div 
             class="dialog-root-scroll-wrapper" 
             bind:this={scrollWrapperElement} 
             on:scroll={() => currentScrollTop = scrollWrapperElement.scrollTop}
         >
 			<DialogAnimatedBackground scrollPosition={currentScrollTop} />
-			<DialogContent/>
-			<DialogDetails/>
-			<DialogTextSection/>
-			<DialogImageSection/>
-			<DialogImageSection/>
-			<DialogImageSection/>
-			<DialogCallout/>
+
+            <DialogSection hasPadding={true}>
+                <DialogTitle title="FRESHA" subcopy="some sub copy"/>
+                <DialogIntro introText="In my time at Fresha I founded and led a multidisciplinary team to designers and impliment a design system across web and iOS and Android platforms. intro text for tresting"/>
+            </DialogSection>
+
+            <DialogSection hasPadding={true}>
+                <DialogDetails/>
+            </DialogSection>
+
+            <DialogSection hasPadding={true}>
+                <DialogPrefix variant="image" src={placeholder} alt="This is an image" aspectRatio="1/1" />
+                <DialogText/>
+            </DialogSection>
+
+            <DialogSection hasPadding={true}>
+                <DialogPrefix variant="header" text="This is a header"/>
+                <p style="grid-area: trailing;">Replace me</p>
+            </DialogSection>
+
+            <DialogSection hasPadding={true}>
+                 <DialogPrefix variant="subtitle" text="This is a subtitle" />
+                <p>Replace me</p>
+            </DialogSection>
+
+            <DialogSection hasPadding={true}>
+                 <DialogPrefix variant="image" src={placeholder} alt="This is an image" aspectRatio="1/1" />
+                <Image src={placeholder} alt="placeholder"/>   
+            </DialogSection>
+            
+
 		</div>
 	</div>
 {/if}
@@ -151,8 +191,10 @@
 	}
 
 	.dialog-root-scroll-wrapper {
+		width: 100%;
 		overflow-y: auto; /* Enable vertical scrolling for content */
 		scrollbar-width: none;
+        padding-top: 124px;
 	}
 
 	.dialog-root {
@@ -162,8 +204,8 @@
 		transform: translate(-50%, -50%); /* Adjust for element size */
 		display: flex;
 		flex-direction: column;
-		justify-content: flex-start;
 		align-items: center;
+		justify-content: flex-start;
 		background-color: rgb(var(--color-bg-primary));
 		border-radius: var(--bdr-radius-large);
 		width: calc(100vw - 2rem);

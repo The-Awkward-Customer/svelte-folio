@@ -15,7 +15,7 @@
 </script>
 
 <div class="dialog-header">
-    <Button variant="primary" on:click={closeDialog} id="dialog-close-button">Close</Button>
+    <Button variant="primary" on:click={closeDialog}>Close</Button>
 </div>
 
 <style>
@@ -31,6 +31,7 @@
         padding-top: var(--spc-200);
         justify-content: flex-end;
         align-items: center;
+        
     }
 
 </style>
