@@ -16,6 +16,7 @@
     import DialogIntro from './DialogIntro.svelte';
     import DialogText from './DialogText.svelte';
 	import DialogDetails from './DialogDetails.svelte';
+    import DialogPrinciples from './DialogPrinciples.svelte';
 
 
 
@@ -157,8 +158,13 @@
             </DialogSection>
 
             <DialogSection hasPadding={true}>
-                <DialogPrefix variant="header" text="This is a header"/>
-                <p style="grid-area: trailing;">Replace me</p>
+                <DialogPrefix variant="image" src={placeholder} alt="This is an image" aspectRatio="1/1" />
+                <DialogText/>
+            </DialogSection>
+
+            <DialogSection hasPadding={true}>
+                <DialogPrefix variant="header" text="Principles"/>
+                <DialogPrinciples/>
             </DialogSection>
 
             <DialogSection hasPadding={true}>
