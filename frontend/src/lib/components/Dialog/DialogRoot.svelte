@@ -8,16 +8,16 @@
     import DialogPrefix from './DialogPrefix.svelte';
     import DialogHeader from '$lib/components/Dialog/DialogHeader.svelte';
     import DialogAnimatedBackground from '$lib/components/Dialog/DialogAnimatedBackground.svelte';
-
-    // Images
-    import placeholder from "$lib/assets/placeholder-image.jpg"
-	import Image from '../content/image.svelte';
 	import DialogTitle from './DialogTitle.svelte';
     import DialogIntro from './DialogIntro.svelte';
     import DialogText from './DialogText.svelte';
 	import DialogDetails from './DialogDetails.svelte';
     import DialogPrinciples from './DialogPrinciples.svelte';
+    import Image from '../content/image.svelte';
 
+
+    // Images
+    import placeholder from "$lib/assets/placeholder-image.jpg"
 
 
 	// Define the ID for this specific dialog instance
