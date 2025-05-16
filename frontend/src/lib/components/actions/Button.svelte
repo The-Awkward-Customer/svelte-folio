@@ -1,7 +1,7 @@
 <script lang="ts">
     // Props interface
     interface ButtonProps {
-        variant: 'primary' | 'secondary' | 'primary-icon' | 'secondary-icon';
+        variant: 'primary' | 'inverse' | 'primary-icon' | 'inverse-icon';
         size?: 'sm' | 'md' | 'lg';
         type?: 'button' | 'submit' | 'reset';
         disabled?: boolean;
@@ -108,13 +108,18 @@
       background-color: rgb(var(--color-bg-inverse) / var(--opacity-active));
     }
     
-    .btn-secondary {
-      background-color: #ff1414;
-      color: #333;
+    .btn-inverse {
+      background-color: rgba(var(--color-bg-primary) / var(--opacity-invisible));
+      color: rgb(var(--color-txt-inverse));
     }
     
-    .btn-secondary:hover:not(:disabled) {
-      background-color: #e0e0e0;
+    .btn-inverse:hover:not(:disabled) {
+      background-color: rgba(var(--color-bg-primary) / var(--opacity-hover))
+
+    }
+
+    .btn-inverse:active:not(:disabled) {
+      background-color: rgba(var(--color-bg-primary) / var(--opacity-active))
     }
     
     /* Sizes */

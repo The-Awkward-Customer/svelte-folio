@@ -12,14 +12,22 @@
     import { HeroRoot, HeroTitle, HeroIntro, HeroButton } from "$lib/components/content/Hero";
     import Callout from "$lib/components/feedback/Callout.svelte";
     //Icons
-    import IconRefresh from "$lib/components/primatives/IconRefresh.svelte";
+    import { dialogManager } from '$lib/stores/dialogManager';
+    import DialogRoot from '$lib/components/Dialog/DialogRoot.svelte';
 
-    function handleClick() {
-        console.log('hero button clicked');
+    //Page Content
+    let HeroIntroText: string = "Currently based in sunny Madrid, and available for new projects in Q3 2025.";
+
+
+    function openTheDialog() {
+        console.log('Opening dialog...');
+        dialogManager.showDialog('mainPageDialog', { message: 'Hello from the page!' });
     }
 
     $: currentPath = $page.url.pathname;
 </script>
+
+<DialogRoot />
 
 <main class="main-root">
 
@@ -40,10 +48,18 @@
 
     <div slot="main">
         <HeroRoot>
-            <Callout />
             <HeroTitle />
-            <HeroIntro>High growth, high impact solutions using design, technology and data.</HeroIntro>
-            <HeroIntro color="secondary">some simple text for now <HeroButton onClick={handleClick} label="click me"/> and this is the rest. </HeroIntro> 
+            <HeroIntro color="secondary">
+                I've worked with scaleups such as <HeroButton on:click={openTheDialog} label="Fresha"/>,
+                Co-founded a <HeroButton on:click={openTheDialog} label="startup" />.
+                I've also delivered digital transformational solutions for <HeroButton on:click={openTheDialog} label="Shell"/>
+                <HeroButton on:click={openTheDialog} label="Suzuki"/>,
+                <HeroButton on:click={openTheDialog} label="TSB"/> and,
+                <HeroButton on:click={openTheDialog} label="AXA"/>.
+                I'm also make iOS <HeroButton on:click={openTheDialog} label="Games"/> for fun.
+            </HeroIntro>
+            <Callout />
+            <HeroIntro>{HeroIntroText}</HeroIntro>
         </HeroRoot>
     </div>
 </BasicLayout>

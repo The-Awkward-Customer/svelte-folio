@@ -20,9 +20,10 @@
         display: block;
         align-items: flex-start;
         font-family: var(--font-family-main);
-        font-size: var(--fs-300);
+        font-size: var(--fs-400);
         font-weight: var(--fw-medium);
-        padding-top: var(--spc-500);
+        padding-bottom: var(--spc-500);
+        line-height: 130%;
     }
 
 

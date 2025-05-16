@@ -7,12 +7,17 @@
     }
     export let onClick: ButtonProps['onClick'] = () => {};
     export let label: string = "Placeholder Button Text";
+
+    // Log when the component initializes and receives the prop
+    console.log('HeroButton initialized. onClick prop type:', typeof onClick, 'Label:', label);
+
+    
 </script>
   
 <div class="hero-button-root">
     <p class="hero-button-label">{label}</p>
 <button 
-    on:click={onClick}
+    on:click
     class="hero-button"
     aria-label={label}
 ></button>
@@ -32,6 +37,7 @@
         padding: 2px 0;
         color: rgb(var(--color-txt-primary));
         font-weight: var(--fw-semibold);
+        text-decoration: underline;
         pointer-events: none; /* Allow clicks to pass through to button */
     }
 
@@ -47,8 +53,8 @@
         padding: 0;
         z-index: 1;
         box-sizing: border-box;
-        margin: 0 -4px;
-        width: calc(100% + 8px);
+        margin: 0 -2px;
+        width: calc(100% + 4px);
    }
 
    .hero-button:hover { 
