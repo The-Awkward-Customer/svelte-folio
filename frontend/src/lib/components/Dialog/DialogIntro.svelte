@@ -18,14 +18,13 @@
 <style>
 
 .dialog-intro-root{
-    border-bottom: 1px black solid;
     grid-area: trailing;
 }
 
 p{
-    font-size: 32px;
-    font-weight: var(--fw-regular);
-    line-height: 130%;
+    font-size: var(--fs-700);
+    font-weight: var(--fw-medium);
+    line-height: 120%;
     padding-bottom: var(--spc-400) ;
 }
 

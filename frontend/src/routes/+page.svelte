@@ -12,7 +12,6 @@
     import { HeroRoot, HeroTitle, HeroIntro, HeroButton } from "$lib/components/content/Hero";
     import Callout from "$lib/components/feedback/Callout.svelte";
     //Icons
-    import IconRefresh from "$lib/components/primatives/IconRefresh.svelte";
     import { dialogManager } from '$lib/stores/dialogManager';
     import DialogRoot from '$lib/components/Dialog/DialogRoot.svelte';
 

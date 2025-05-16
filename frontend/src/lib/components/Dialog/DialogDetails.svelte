@@ -3,7 +3,7 @@
 <script lang="ts">
 
 
-const defaultSections = ["intro", "body", "insights", "conclussion"]
+const defaultSections = ["Intro", "Body", "Insights", "Conclussion"]
 
 interface ProjectDetail{
     title:string;
@@ -11,8 +11,8 @@ interface ProjectDetail{
 }
 
 const defaultDetails: ProjectDetail[] = [
-    {title: "Example One", details: '2020-2023'},
-    {title: "Example Two", details: '2020-2023'}
+    {title: "Role", details: 'Design Lead'},
+    {title: "Date", details: '2020-2023'}
 ]
 
 interface DialogDetailsProps{
@@ -37,7 +37,7 @@ let {projectDetails=defaultDetails, projectSections=defaultSections} : DialogDet
 
 {#snippet ProjectSections()}
 <div class="layout">
-    <span class="title">Sections</span>
+    <span class="title">Contents</span>
     <ul>
         {#each projectSections as sections}
            <li>{sections}</li> 
@@ -81,7 +81,7 @@ let {projectDetails=defaultDetails, projectSections=defaultSections} : DialogDet
     }
 
    span {
-        font-weight: var(--fw-regular);
+        font-weight: var(--fw-medium);
         color: rgb(var(--color-txt-primary));
     }
 
@@ -94,7 +94,7 @@ let {projectDetails=defaultDetails, projectSections=defaultSections} : DialogDet
     }
 
    li{
-        font-weight: var(--fw-regular);
+        font-weight: var(--fw-medium);
         color: rgb(var(--color-txt-primary));
         position: relative;
         padding-left: var(--spc-400);

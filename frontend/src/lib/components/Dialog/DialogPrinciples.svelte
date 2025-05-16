@@ -48,20 +48,14 @@
 		display: inline-flex; 
 		flex-wrap: wrap; 
 		align-items: center;
-		background-color: rgba(0, 0, 255, 0.1); /* Light blue with opacity for the wrapper */
-		
-		/* Base font size for the component, children can use 'em' units based on this */
 		font-size: 40px; /* From your original component's .principle-text */
 		line-height: 130%; /* Adjust for overall readability and vertical rhythm */
     grid-area: trailing; /* From your original CSS */
 	}
 
 	.text-segment {
-		/* Text segments will naturally flow as flex items. */
-		/* No specific display property needed, defaults to inline for span, flex item handles it. */
-		background-color: rgba(173, 216, 230, 0.25); /* Lighter blue with opacity for text parts */
     white-space: break-spaces; /* KEY CHANGE HERE */
-
+		font-weight: var(--fw-semibold);
 	}
 
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
 
-  type SectionVariant = 'default' | 'centered' 
+  type SectionVariant = 'default' | 'full-width' 
 
  interface SectionProps {
 
@@ -15,7 +15,7 @@
 </script>
 
 <section class="section-root">
-<div class="section-grid" class:has-padding="{hasPadding}">
+<div class="section-grid" class:has-padding="{hasPadding}" class:full-width="{variant === 'full-width'}">
   {@render children?.()}
 </section>
 
@@ -38,7 +38,6 @@
       "leading"
       "trailing";
     gap: 64px;
-    background-color:rgba(0, 255, 255, 0.025);
     padding-left: var(--spc-1000);
     padding-right: var(--spc-1000);
     padding-bottom: var(--spc-1000);
@@ -56,10 +55,19 @@
       padding-right: 80px;
     }
 
-    .section-grid {
+    .section-grid:not(.full-width) {
       grid-template-columns: 1fr 2fr;
       grid-template-rows: 1fr;
       grid-template-areas: "leading trailing";
+    }
+    
+    /* Full-width variant stays as a single column even on larger screens */
+    .full-width {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "leading"
+        "trailing";
     }
   }
   

@@ -38,7 +38,7 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
-        gap: var(--spc-400);
+        gap: var(--spc-200);
     }
 
 
@@ -53,7 +53,7 @@
     .dialog-text-section-text {
         font-size: var(--fs-500);
         font-weight: var(--fw-regular);
-        color: rgb(var(--color-txt-secondary));
+        color: rgb(var(--color-txt-primary));
         max-width: 47ch;
         line-height: 130%
     }

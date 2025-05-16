@@ -13,7 +13,9 @@
     import DialogText from './DialogText.svelte';
 	import DialogDetails from './DialogDetails.svelte';
     import DialogPrinciples from './DialogPrinciples.svelte';
+    import DialogInsight from './DialogInsight.svelte';
     import Image from '../content/image.svelte';
+    import DialogFooter from './DialogFooter.svelte';
 
 
     // Images
@@ -144,8 +146,8 @@
 			<DialogAnimatedBackground scrollPosition={currentScrollTop} />
 
             <DialogSection hasPadding={true}>
-                <DialogTitle title="FRESHA" subcopy="some sub copy"/>
-                <DialogIntro introText="In my time at Fresha I founded and led a multidisciplinary team to designers and impliment a design system across web and iOS and Android platforms. intro text for tresting"/>
+                <DialogTitle title="FRESHA" subcopy="Helping health and beauty businesses succeed."/>
+                <DialogIntro introText="In my time at Fresha I founded and led a multidisciplinary team to designers and impliment a design system across web and iOS and Android platforms."/>
             </DialogSection>
 
             <DialogSection hasPadding={true}>
@@ -158,8 +160,17 @@
             </DialogSection>
 
             <DialogSection hasPadding={true}>
-                <DialogPrefix variant="image" src={placeholder} alt="This is an image" aspectRatio="1/1" />
-                <DialogText/>
+                <DialogPrefix variant="subtitle" text="flexible component composition is key."/>
+                <Image src={placeholder} alt="placeholder"/>
+            </DialogSection>
+            
+            <DialogSection hasPadding={true}>
+                <DialogPrefix variant="subtitle" text="flexible component composition is key."/>
+                <Image src={placeholder} alt="placeholder"/>
+            </DialogSection>
+
+            <DialogSection hasPadding={true} variant="full-width">
+                <Image src={placeholder} alt="placeholder"/>
             </DialogSection>
 
             <DialogSection hasPadding={true}>
@@ -168,14 +179,21 @@
             </DialogSection>
 
             <DialogSection hasPadding={true}>
-                 <DialogPrefix variant="subtitle" text="This is a subtitle" />
-                <p>Replace me</p>
+                <DialogInsight/>
             </DialogSection>
+
+
 
             <DialogSection hasPadding={true}>
                  <DialogPrefix variant="image" src={placeholder} alt="This is an image" aspectRatio="1/1" />
                 <Image src={placeholder} alt="placeholder"/>   
             </DialogSection>
+
+            <DialogSection hasPadding={true} variant="full-width">
+                 <DialogFooter/>   
+            </DialogSection>
+
+            
             
 
 		</div>
@@ -189,7 +207,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: rgba(0, 0, 0, 0.8);
 		z-index: 999;
 		border: none; 
 		padding: 0; 

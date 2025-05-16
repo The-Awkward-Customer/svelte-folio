@@ -30,10 +30,15 @@ h2,h3,div{
     grid-area: leading;
 }
 
+h3{
+    font-size: var(--fs-400);
+    font-weight: var(--fw-medium);
+    color: rgb(var(--color-fg-secondary));
+}
+
 .image-container {
 		overflow: hidden; /* Ensure image doesn't overflow container */
-		/* Aspect ratio is applied via inline style */
-        background-color: aqua;
+        width: 80%;
 	}
 
 	.image-container img {

@@ -11,22 +11,26 @@
 </script>
 
 
-<div>
+<section>
 <h1>{title}</h1>
 {#if subcopy}
     <p>{subcopy}</p>
 {/if}
-</div>
+</section>
 
 <style>
 
+
 h1{
-    font-size: var(--fs-700);
-    color:blue;
+    font-size: var(--fs-800);
+    color: var(--color-bg-primary);
+    padding-bottom: var(--spc-300);
+    font-weight: var(--fw-bold);
 }
 
 p{
-    font-size: var(--fs-200);
+    font-size: var(--fs-600);
+    line-height: 120%;
 }
 
 </style>
