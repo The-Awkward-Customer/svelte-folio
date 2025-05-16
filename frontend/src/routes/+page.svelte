@@ -11,7 +11,6 @@
     import SideBar from "$lib/components/navigation/SideBar.svelte";
     import { HeroRoot, HeroTitle, HeroIntro, HeroButton } from "$lib/components/content/Hero";
     import Callout from "$lib/components/feedback/Callout.svelte";
-    //Icons
     import { dialogManager } from '$lib/stores/dialogManager';
     import DialogRoot from '$lib/components/Dialog/DialogRoot.svelte';
 
@@ -22,6 +21,13 @@
     function openTheDialog() {
         console.log('Opening dialog...');
         dialogManager.showDialog('mainPageDialog', { message: 'Hello from the page!' });
+    }
+
+    function openFreshaDialog() {
+        dialogManager.showDialog('freshaDialog')
+    }
+    function openShellDialog() {
+        dialogManager.showDialog('shellDialog')
     }
 
     $: currentPath = $page.url.pathname;
@@ -50,9 +56,9 @@
         <HeroRoot>
             <HeroTitle />
             <HeroIntro color="secondary">
-                I've worked with scaleups such as <HeroButton on:click={openTheDialog} label="Fresha"/>,
+                I've worked with scaleups such as <HeroButton on:click={openFreshaDialog} label="Fresha"/>,
                 Co-founded a <HeroButton on:click={openTheDialog} label="startup" />.
-                I've also delivered digital transformational solutions for <HeroButton on:click={openTheDialog} label="Shell"/>
+                I've also delivered digital transformational solutions for <HeroButton on:click={openShellDialog} label="Shell"/>
                 <HeroButton on:click={openTheDialog} label="Suzuki"/>,
                 <HeroButton on:click={openTheDialog} label="TSB"/> and,
                 <HeroButton on:click={openTheDialog} label="AXA"/>.
