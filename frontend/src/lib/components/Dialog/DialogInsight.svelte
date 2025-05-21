@@ -22,7 +22,7 @@
         data?: InsightData
     }
 
-    let { data = exampleInsightData, } : InsightButton = $props();
+    let { label=exampleInsightData.label, number=exampleInsightData.number, insight=exampleInsightData.insight } : InsightData = $props();
 
     let isVisible: boolean = $state(false)
 
@@ -37,13 +37,13 @@
 
 
 
-<button aria-label={exampleInsightData.label} onclick={handleInsightClick}>
+<button aria-label={label} onclick={handleInsightClick}>
     <div class="insight-header">
-        <p>{exampleInsightData.label}</p>
-        <p>{exampleInsightData.number}</p>
+        <p>{label}</p>
+        <p>{number}</p>
     </div>
     <span style={`filter: blur(${isVisible ? '0px' : '6px' });`}>
-        {exampleInsightData.insight}
+        {insight}
     </span>
 
 </button>

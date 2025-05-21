@@ -16,13 +16,13 @@ const defaultDetails: ProjectDetail[] = [
 ]
 
 interface DialogDetailsProps{
-    projectSections?:string[]; // array of strings
+    sections?:string[]; // array of strings
     projectDetails?: ProjectDetail[]; // array of objects
 }
 
 
 
-let {projectDetails=defaultDetails, projectSections=defaultSections} : DialogDetailsProps = $props();
+let {projectDetails=defaultDetails, sections=defaultSections} : DialogDetailsProps = $props();
 
 </script>
 
@@ -39,7 +39,7 @@ let {projectDetails=defaultDetails, projectSections=defaultSections} : DialogDet
 <div class="layout">
     <span class="title">Contents</span>
     <ul>
-        {#each projectSections as sections}
+        {#each sections as sections}
            <li>{sections}</li> 
         {/each}
     </ul>

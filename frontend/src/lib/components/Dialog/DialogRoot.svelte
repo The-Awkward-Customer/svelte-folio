@@ -139,12 +139,6 @@
 		cursor: default; 
 	}
 
-	.dialog-root-scroll-wrapper {
-		width: 100%;
-		overflow-y: auto; /* Enable vertical scrolling for content */
-		scrollbar-width: none;
-        padding-top: 124px;
-	}
 
 	.dialog-root {
 		position: fixed; /* Position independently */

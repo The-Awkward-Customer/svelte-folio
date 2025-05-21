@@ -4,7 +4,7 @@
   type SectionVariant = 'default' | 'full-width' 
 
  interface SectionProps {
-
+  id?:string
   hasPadding: Boolean;
   children?: Snippet;
   variant?: SectionVariant;
