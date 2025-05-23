@@ -1,22 +1,31 @@
 <script lang="ts">
 
+import type { Snippet } from 'svelte';
+
+
+interface TopNavProps{
+    children? : Snippet
+}
+
+let { children }: TopNavProps = $props();
+
+
 </script>
 
 <nav>
-    <p>Header</p>
-    <p>slot</p>
+    {@render children?.()}
 </nav>
 
 <style>
 nav{
     display: inline-flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    height: 44px;
     width: 100%;
     max-width: 1024px;
-    background-color: rgba(255, 192, 203, 0.20);
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
 
 </style>
