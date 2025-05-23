@@ -76,9 +76,10 @@
         align-items: center;
         gap: 0.5em;
         width: 100%;
-        padding: 0.5em;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
         border: none;
-        font-size: clamp(16px, 4vw, 24px);
+        font-size: clamp(18px, 4vw, 28px);
         font-weight: var(--fw-semibold);
         background-color: rgba(0, 255, 255, 0.0);
     }

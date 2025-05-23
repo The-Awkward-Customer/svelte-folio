@@ -13,7 +13,7 @@
     import Callout from "$lib/components/feedback/Callout.svelte";
     import { dialogManager } from '$lib/stores/dialogManager';
     import DialogRoot from '$lib/components/Dialog/DialogRoot.svelte';
-
+    import IntroText from "$lib/components/content/IntroText.svelte";
     import Accordian from "$lib/components/accordian/Accordian.svelte";
 
     //Page Content
@@ -36,10 +36,16 @@
 </script>
 <ol>
 <Accordian number="1"  label="Start here" >
-    <p>Hello world</p>
+    <IntroText/>
 </Accordian>
-<Accordian number="2"  label="Experience"/>
-<Accordian number="3"  label="How I work"/>
+
+<Accordian number="2"  label="Experience">
+    <IntroText/>
+</Accordian>
+
+<Accordian number="3"  label="How I work">
+    <IntroText/>
+</Accordian>
 </ol>
 
 <style>   

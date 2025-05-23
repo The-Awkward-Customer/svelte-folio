@@ -25,6 +25,9 @@ main{
   background-color: rgba(0, 255, 255, 0.0);
   flex-grow: 1;
   justify-content: center;
+  width: 100%;
+  max-width: 1024px;
+  background-color: rgba(255, 192, 203, 0.20);
 }
 
 

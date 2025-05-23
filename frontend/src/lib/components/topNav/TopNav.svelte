@@ -14,7 +14,9 @@ nav{
     justify-content: space-between;
     align-items: center;
     height: 44px;
-    background-color: rgba(255, 192, 203, 0.1);
+    width: 100%;
+    max-width: 1024px;
+    background-color: rgba(255, 192, 203, 0.20);
 }
 
 </style>

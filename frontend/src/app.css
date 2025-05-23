@@ -24,6 +24,8 @@ body {
   text-rendering: optimizeSpeed;
   padding-left: 24px;
   padding-right: 24px;
+  justify-content: center;
+  align-items: center;
 }
 
 img,
