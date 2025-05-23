@@ -13,6 +13,8 @@
     import Callout from "$lib/components/feedback/Callout.svelte";
     import { dialogManager } from '$lib/stores/dialogManager';
     import DialogRoot from '$lib/components/Dialog/DialogRoot.svelte';
+    import IntroText from "$lib/components/content/IntroText.svelte";
+    import Accordian from "$lib/components/accordian/Accordian.svelte";
 
     //Page Content
     let HeroIntroText: string = "Currently based in sunny Madrid, and available for new projects in Q3 2025.";
@@ -32,55 +34,21 @@
 
     $: currentPath = $page.url.pathname;
 </script>
+<ol>
+<Accordian number="1"  label="Start here" >
+    <IntroText/>
+</Accordian>
 
-<DialogRoot />
+<Accordian number="2"  label="Experience">
+    <IntroText/>
+</Accordian>
 
-<main class="main-root">
-
-<BasicLayout>
-    <TopBar slot="top-bar" />
-
-    <SideBar slot="side-nav">
-        <LinkList
-            routes={[
-                { path: '/', label: 'Welcome' },
-                { path: '/caseStudies', label: 'case studies' },
-                { path: '/visualDesign', label: 'visual design' },
-            ]}
-            vertical={true}
-            ariaLabel="Main Navigation"
-        />
-    </SideBar>
-
-    <div slot="main">
-        <HeroRoot>
-            <HeroTitle />
-            <HeroIntro color="secondary">
-                I've worked with scaleups such as <HeroButton on:click={openFreshaDialog} label="Fresha"/>,
-                Co-founded a <HeroButton on:click={openTheDialog} label="startup" />.
-                I've also delivered digital transformational solutions for <HeroButton on:click={openShellDialog} label="Shell"/>
-                <HeroButton on:click={openTheDialog} label="Suzuki"/>,
-                <HeroButton on:click={openTheDialog} label="TSB"/> and,
-                <HeroButton on:click={openTheDialog} label="AXA"/>.
-                I'm also make iOS <HeroButton on:click={openTheDialog} label="Games"/> for fun.
-            </HeroIntro>
-            <Callout />
-            <HeroIntro>{HeroIntroText}</HeroIntro>
-        </HeroRoot>
-    </div>
-</BasicLayout>
-</main>
+<Accordian number="3"  label="How I work">
+    <IntroText/>
+</Accordian>
+</ol>
 
 <style>   
-.main-root {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: var(--color-bg-primary);
-    overflow-x: hidden;
-}
 
 
 </style>
