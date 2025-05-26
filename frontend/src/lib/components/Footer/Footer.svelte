@@ -13,7 +13,7 @@ interface LinkListArray{
 
 let listData : LinkItem[] = [ 
   {label:"Index", href:"/"},
-  {label:"Graphics", href:"/visualDesign"}
+  {label:"Graphics", href:"/graphics"}
  ] 
 
 let { list =listData } : LinkListArray = $props()
