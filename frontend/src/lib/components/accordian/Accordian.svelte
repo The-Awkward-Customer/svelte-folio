@@ -67,7 +67,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     background-color: rgba(255, 192, 203, 0.0);
-}
+    }
 
     button{
         display: flex;
@@ -90,9 +90,13 @@
     }
 
     button:hover{
-        background-color: rgba(0, 255, 255, 0.1);
+        background-color: rgba(0, 255, 255, 0.0);
     }
     button:active{
-        background-color: rgba(0, 255, 255, 0.15);
+        background-color: rgba(0, 255, 255, 0.0);
+    }
+
+    .details{
+        padding-bottom: 0.5em;
     }
 </style>
