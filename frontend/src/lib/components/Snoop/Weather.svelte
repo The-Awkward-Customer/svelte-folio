@@ -5,7 +5,9 @@
     //components 
     import Button from '$lib/components/actions/Button.svelte';
     import IconRefresh from '$lib/components/primatives/IconRefresh.svelte';
-    
+    import WeatherIcon from './WeatherIcon.svelte';
+
+
     let locationData = {
       geoLocation: null,
       ipInfo: null,
@@ -130,6 +132,8 @@
       logLocationData();
     });
   </script>
+
+  
   
   <div class="location-info-root">
     {#if isLoading}
@@ -139,14 +143,12 @@
     {:else if weatherData}
     <div>
         <div class="weather-display">
-            <img 
-              src="https://openweathermap.org/img/wn/{weatherData.weather[0].icon}@2x.png" 
-              alt="{weatherData.weather[0].description}"
-              width="50"
-              height="50"
-            />
+            <WeatherIcon iconCode={weatherData.weather[0].icon} size={48} />
+             <p>
+         {weatherData.weather[0].main}
+            </p>
             <p>
-              Current weather in {weatherData.name}: {weatherData.weather[0].main}
+            {weatherData.name}
             </p>
           </div>
       </div>
@@ -163,6 +165,8 @@
     {/if}
   </div>
 
+
+
   <style>
     .location-info-root {
     display: flex;
@@ -177,14 +181,24 @@
 
     .weather-display {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      font-size:var(--fs-300);
+      font-weight: var(--fw-semibold);
+      color: rgb(var(--color-fg-primary));
       gap: 8px;
+      padding-bottom: 24px;
+    }
+
+    .weather-display p:nth-child(3){
+     
+      color:rgb(var(--color-fg-secondary))
     }
     
     img {
       vertical-align: middle;
     }
-
     .weather-error-root {
         display: flex;
         flex-direction: row;
