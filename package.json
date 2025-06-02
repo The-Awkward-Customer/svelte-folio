@@ -1,12 +1,15 @@
 {
   "dependencies": {
-    "@supabase/supabase-js": "^2.48.0"
+    "@supabase/supabase-js": "^2.48.0",
+    "gsap": "^3.13.0"
   },
   "devDependencies": {
     "prettier-plugin-svelte": "^3.3.3"
   },
   "prettier": {
-    "plugins": ["prettier-plugin-svelte"],
+    "plugins": [
+      "prettier-plugin-svelte"
+    ],
     "svelteSortOrder": "options-scripts-markup-styles",
     "svelteStrictMode": false,
     "svelteIndentScriptAndStyle": true
