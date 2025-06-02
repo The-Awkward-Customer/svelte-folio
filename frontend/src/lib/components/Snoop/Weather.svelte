@@ -4,8 +4,9 @@
 
     //components 
     import Button from '$lib/components/actions/Button.svelte';
-    import IconRefresh from '$lib/components/primatives/IconRefresh.svelte';
-    
+    import WeatherIcon from './WeatherIcon.svelte';
+
+
     let locationData = {
       geoLocation: null,
       ipInfo: null,
@@ -130,61 +131,76 @@
       logLocationData();
     });
   </script>
+
+  
   
   <div class="location-info-root">
     {#if isLoading}
-        <div>
-            <p>Snooping around...</p>
+        <div class="weather-display">
+            <p>Snooping…</p>
         </div>
     {:else if weatherData}
     <div>
         <div class="weather-display">
-            <img 
-              src="https://openweathermap.org/img/wn/{weatherData.weather[0].icon}@2x.png" 
-              alt="{weatherData.weather[0].description}"
-              width="50"
-              height="50"
-            />
+            <WeatherIcon iconCode={weatherData.weather[0].icon} size={40} />
+             <p>
+         {weatherData.weather[0].main}
+            </p>
             <p>
-              Current weather in {weatherData.name}: {weatherData.weather[0].main}
+            {weatherData.name}, {weatherData.sys.country}
             </p>
           </div>
       </div>
     {:else if weatherError}
     <div class="weather-error-root">
+
         <p class="error">{weatherError}</p>
-        <Button variant="primary-icon" on:click={() => {
-            console.log("Attempting to fetch weather data");
-            fetchWeather();
-        }}>
-            <IconRefresh />
-        </Button>
+
+        <Button label="Enable Weather" handleClick={ () => {
+          console.log('Attempting to fetch weather data');
+          fetchWeather();
+        }
+        }/>
+
     </div>
     {/if}
   </div>
+
+
 
   <style>
     .location-info-root {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 16px;
-    height:64px;
+    height: 100px;
     font-family: var(--font-family-alt);
     font-size: var(--fs-275);
+    border-bottom: 1px solid rgb(var(--color-fg-primary));
 }
 
     .weather-display {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      font-size:var(--fs-300);
+      font-weight: var(--fw-semibold);
+      color: rgb(var(--color-fg-primary));
       gap: 8px;
+      padding-bottom: 12px;
+    }
+
+    .weather-display p:nth-child(3){
+     
+      color:rgb(var(--color-fg-secondary))
     }
     
     img {
       vertical-align: middle;
     }
-
     .weather-error-root {
         display: flex;
         flex-direction: row;
