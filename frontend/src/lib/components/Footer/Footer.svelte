@@ -59,7 +59,6 @@
     display: flex;
     flex-direction: column;
     gap: 0.5em;
-
     font-size: var(--fs-250);
     color: rgb(var(--color-fg-secondary));
     max-width: 64ch;

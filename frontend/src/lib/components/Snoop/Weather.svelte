@@ -4,7 +4,6 @@
 
     //components 
     import Button from '$lib/components/actions/Button.svelte';
-    import IconRefresh from '$lib/components/primatives/IconRefresh.svelte';
     import WeatherIcon from './WeatherIcon.svelte';
 
 
@@ -137,30 +136,32 @@
   
   <div class="location-info-root">
     {#if isLoading}
-        <div>
-            <p>Snooping around...</p>
+        <div class="weather-display">
+            <p>Snooping…</p>
         </div>
     {:else if weatherData}
     <div>
         <div class="weather-display">
-            <WeatherIcon iconCode={weatherData.weather[0].icon} size={48} />
+            <WeatherIcon iconCode={weatherData.weather[0].icon} size={40} />
              <p>
          {weatherData.weather[0].main}
             </p>
             <p>
-            {weatherData.name}
+            {weatherData.name}, {weatherData.sys.country}
             </p>
           </div>
       </div>
     {:else if weatherError}
     <div class="weather-error-root">
+
         <p class="error">{weatherError}</p>
-        <Button variant="primary-icon" on:click={() => {
-            console.log("Attempting to fetch weather data");
-            fetchWeather();
-        }}>
-            <IconRefresh />
-        </Button>
+
+        <Button label="Enable Weather" handleClick={ () => {
+          console.log('Attempting to fetch weather data');
+          fetchWeather();
+        }
+        }/>
+
     </div>
     {/if}
   </div>
@@ -172,11 +173,12 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 16px;
-    height:64px;
+    height: 100px;
     font-family: var(--font-family-alt);
     font-size: var(--fs-275);
+    border-bottom: 1px solid rgb(var(--color-fg-primary));
 }
 
     .weather-display {
@@ -188,7 +190,7 @@
       font-weight: var(--fw-semibold);
       color: rgb(var(--color-fg-primary));
       gap: 8px;
-      padding-bottom: 24px;
+      padding-bottom: 12px;
     }
 
     .weather-display p:nth-child(3){
