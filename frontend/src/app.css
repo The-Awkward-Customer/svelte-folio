@@ -57,6 +57,11 @@ select {
   outline: revert;
 }
 
+button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 /* Typography */
 @font-face {
   font-family: 'Geist';
