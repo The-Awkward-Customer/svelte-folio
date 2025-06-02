@@ -70,6 +70,8 @@
     }
 
     button{
+        -webkit-appearance: none;
+        appearance: none;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
