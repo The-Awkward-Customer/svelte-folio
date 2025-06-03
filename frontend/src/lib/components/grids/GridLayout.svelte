@@ -48,13 +48,14 @@ const sizeMap = {
     .grid{
         display: grid;
         grid-template-columns: repeat(1fr, 1fr);
-        gap: 1rem;
+        gap: 0.5rem;
         grid-auto-flow: row dense;
     }
 
     .grid-item {
-        border-radius: var(--bdr-radius-tiny);
-        min-height: 200px;
+        border-radius: var(--bdr-radius-small);
+        min-height: 124px;
+        overflow: hidden;
     }
 
  @media (min-width: 896px){

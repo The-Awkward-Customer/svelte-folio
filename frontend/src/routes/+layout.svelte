@@ -5,7 +5,21 @@
   import TopNav from '$lib/components/topNav/TopNav.svelte'
   import Button from '$lib/components/actions/Button.svelte';
 
+  import { onMount } from 'svelte';
+  import { theme } from '$lib/theme.svelte';
+
+
+  onMount(() => {
+    console.log('About to call theme.init()');
+    theme.init();
+    console.log('After theme.init(), current theme is:', theme.current);
+  });
+
+
+
   let { children } = $props()
+
+
 </script>
 
 
@@ -30,12 +44,9 @@ main{
   justify-content: center;
   width: 100%;
   max-width: 1024px;
+  background-color: rgb(var(--bg-page));
 }
 
-
-p{
-font-size:clamp(16px, 4vw, 32px);
-}
 
 </style>
 

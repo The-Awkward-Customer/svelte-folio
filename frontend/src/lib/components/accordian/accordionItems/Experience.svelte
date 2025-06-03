@@ -22,10 +22,11 @@
         font-size: clamp(18px, 4vw, 28px);
         gap: 0.5em;
         padding-left: 2em;
+        color: rgb(var(--fg-text-primary));
     }
 
     .p-3{
-        color:green;
+        color:rgb(var(--fg-positive));
         font-weight: var(--fw-regular);
     }
 
