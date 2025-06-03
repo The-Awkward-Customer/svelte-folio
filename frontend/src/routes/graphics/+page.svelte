@@ -228,7 +228,6 @@ const gridItems = [
 <section>
     <div class="header-root">
         <div class="row-wrapper">
-        <p>GRAPHICS</p>
         <p>2016-2025</p>
         </div>
         <p>An assorted collection of graphical artefacts from various projects over the years.</p>  
@@ -241,16 +240,16 @@ const gridItems = [
 <style>
 h1{
     font-size: clamp(48px, 15vw, 124px);
-    color: rgb(var(--color-fg-primary));
+    color: rgb(var(--fg-text-primary));
 }
 
 .header-root{
      display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    gap: 12px;
     padding-top: 64px;
-    padding-bottom: 64px;
+    padding-bottom: 2em;
+    max-width: 64ch;
 }
 
 .row-wrapper{
@@ -262,12 +261,12 @@ h1{
 }
 
 p{
-    color: rgb(var(--color-fg-primary));
+    color: rgb(var(--fg-text-primary));
     font-size: clamp(18px, 4vw, 24px);
 }
 
 p:nth-child(2){
-    color:rgb(var(--color-fg-secondary));
+    color:rgb(var(--fg-text-secondary));
 }
 
 @media (min-width: 896px){

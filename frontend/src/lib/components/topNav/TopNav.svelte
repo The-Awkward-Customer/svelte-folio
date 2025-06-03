@@ -54,7 +54,7 @@ nav{
 div{
     display: flex;
     flex-direction: column;
-    color: rgb(var(--color-fg-primary));
+    color: rgb(var(--fg-text-primary));
     font-size: var(--fs-300);
     font-weight: var(--fw-semibold);
     max-width: 32ch;
@@ -62,7 +62,7 @@ div{
 
 div p:nth-child(2){
  font-weight: var(--fw-regular);
- color:rgb(var(--color-fg-secondary))
+ color:rgb(var(--fg-text-secondary))
 }
 
 @media (min-width: 896px){

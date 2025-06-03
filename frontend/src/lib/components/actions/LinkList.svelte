@@ -86,12 +86,11 @@
 
   a {
     text-decoration: none;
-    color: rgb(var(--color-txt-secondary));
+    color: rgb(var(--fg-txt-secondary));
     transition: all 0.2s ease;
     height: 32px;
     border-radius: var(--bdr-radius-sm);
     display: inline-block;
-    /* High contrast outline for focus state */
     outline: 2px solid transparent;
     outline-offset: 2px;
     font-family: var(--font-family-alt);
@@ -101,39 +100,23 @@
 
   /* Ensure focus is visible for keyboard users */
   a:focus-visible {
-    outline: 2px solid var(--color-bdr-primary);
-    outline-offset: 2px;
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: 2px;  
   }
 
   a:hover:not(.disabled) {
-    color: rgb(var(--color-txt-primary));
+    color: rgb(var(--fg-txt-primary));
   }
 
   a.active {
-    color: rgb(var(--color-txt-primary));
+    color: rgb(var(--fg-txt-primary));
     font-weight: 500;
   }
 
   a.disabled {
-    color: rgb(var(--color-txt-muted));
+    color: rgb(var(--fg-txt-muted));
     cursor: not-allowed;
     pointer-events: none;
   }
 
-  /* Ensure sufficient color contrast */
-  @media (prefers-contrast: more) {
-    a {
-      color: rgb(var(--high-contrast-text, #000));
-    }
-    
-    a.active {
-      color: rgb(var(--high-contrast-active, #000));
-      text-decoration: underline;
-      font-weight: 700;
-    }
-
-    a.disabled {
-      color: rgb(var(--high-contrast-disabled, #666)  );
-    }
-  }
 </style>

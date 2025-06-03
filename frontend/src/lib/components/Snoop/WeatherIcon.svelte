@@ -13,6 +13,7 @@
     iconCode: WeatherIconCode;
     size?: number;
     class?: string;
+    color?: string;
   }
 
   let { iconCode, size = 24, class: className = '' }: Props = $props();
@@ -47,6 +48,7 @@
   width={size}
   height={size}
   class={className}
+  color={`rgb(var(--fg-text-primary))`}
 />
 
 <style>

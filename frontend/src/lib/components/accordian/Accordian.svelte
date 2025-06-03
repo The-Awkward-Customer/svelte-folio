@@ -83,7 +83,7 @@
         font-size: clamp(18px, 4vw, 28px);
         font-weight: var(--fw-semibold);
         color: rgb(var(--fg-text-primary));
-        background-color: rgb(var(--bg-page));
+        background-color: rgba(var(--bg-page) / 0);
     }
 
     svg{
@@ -92,10 +92,10 @@
     }
 
     button:hover{
-        color: rgb(var(---fg--text-primary))
+        color: rgba(var(--fg-text-primary) / 0.8)
     }
     button:active{
-        color: rgb(var(--fg--text-primary))
+        color: rgba(var(--fg-text-primary) / 0.6)
     }
 
     .details{

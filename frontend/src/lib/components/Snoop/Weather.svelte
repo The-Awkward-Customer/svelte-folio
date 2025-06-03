@@ -259,7 +259,7 @@
     height: 100px;
     font-family: var(--font-family-alt);
     font-size: var(--fs-275);
-    border-bottom: 1px solid rgb(var(--color-fg-primary));
+    border-bottom: 1px solid rgb(var(--fg-text-primary));
   }
 
   .weather-display {
@@ -269,7 +269,7 @@
     align-items: flex-start;
     font-size: var(--fs-300);
     font-weight: var(--fw-semibold);
-    color: rgb(var(--color-fg-primary));
+    color: rgb(var(--fg-text-primary));
     gap: 8px;
     padding-bottom: 12px;
   }
@@ -289,11 +289,11 @@
 
   .weather-condition {
     font-weight: var(--fw-semibold);
-    color: rgb(var(--color-fg-primary));
+    color: rgb(var(--fg-text-primary));
   }
 
   .weather-location {
-    color: rgb(var(--color-fg-secondary));
+    color: rgb(var(--fg-text-secondary));
   }
 
   .weather-error-root {
@@ -308,7 +308,7 @@
   }
 
   .error {
-    color: rgb(var(--color-fg-primary));
+    color: rgb(var(--fg-text-primary));
   }
 
   /* Mobile-first responsive design */
