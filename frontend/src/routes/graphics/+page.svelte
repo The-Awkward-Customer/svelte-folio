@@ -5,7 +5,6 @@
     import TextCard from "$lib/components/cards/TextCard.svelte";
     import ImageCard from "$lib/components/cards/ImageCard.svelte";
 
-    import { Introduction, Experience, Process} from '$lib/components/accordian/accordionItems'
 
 
 

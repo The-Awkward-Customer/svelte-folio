@@ -66,7 +66,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    background-color: rgba(255, 192, 203, 0.0);
     }
 
     button{
@@ -83,7 +82,8 @@
         border: none;
         font-size: clamp(18px, 4vw, 28px);
         font-weight: var(--fw-semibold);
-        background-color: rgba(0, 255, 255, 0.0);
+        color: rgb(var(--fg-text-primary));
+        background-color: rgb(var(--bg-page));
     }
 
     svg{
@@ -92,10 +92,10 @@
     }
 
     button:hover{
-        background-color: rgba(0, 255, 255, 0.0);
+        color: rgb(var(---fg--text-primary))
     }
     button:active{
-        background-color: rgba(0, 255, 255, 0.0);
+        color: rgb(var(--fg--text-primary))
     }
 
     .details{
