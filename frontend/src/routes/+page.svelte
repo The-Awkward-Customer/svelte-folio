@@ -7,8 +7,8 @@
     import { page } from "$app/stores";
     import { dialogManager } from '$lib/stores/dialogManager';
     import Accordian from "$lib/components/accordian/Accordian.svelte";
-    import { Introduction, Experience, Process} from '$lib/components/accordian/accordionItems'
-	import IntroText from "$lib/components/content/IntroText.svelte";
+    import { Introduction, Experience, Process} from '$lib/components/accordian/accordionItems';
+	import { Icon } from "$lib/components/primatives";
 
     //Page Content
     let HeroIntroText: string = "Currently based in sunny Madrid, and available for new projects in Q3 2025.";
@@ -28,7 +28,14 @@
 
     $: currentPath = $page.url.pathname;
 </script>
+
+
 <ol>
+<!-- Test with direct color first -->
+<Icon name="placeholder" fill="#ff0000" />
+<Icon name="placeholder" fill="red" />
+<Icon name="placeholder" fill="--fg-positive" />
+
 <Accordian number="1"  label="Start here" >
     <Introduction/>
 </Accordian>
