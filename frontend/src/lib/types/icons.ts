@@ -3,14 +3,15 @@
 // Weather icon codes
 export type IconName = 
 // Weather Icons
-    | '01d' | '01n' 
-    | '02d' | '02n' 
-    | '03d' | '03n' 
-    | '04d' | '04n' 
-    | '05d' | '05n' 
-    | '06d' | '06n' 
-    | '07d' | '07n' 
-    | '08d' | '08n'
+    | '01d' | '01n' // Clear Sky
+    | '02d' | '02n' // Fewd Clouds
+    | '03d' | '03n' // Scattered Clouds
+    | '04d' | '04n' // Broken Clouds
+    | '00d' | '09n' // Shower Rain
+    | '10d' | '10n' // Rain
+    | '11d' | '11n' // Thunderstorm
+    | '13d' | '13n' // Snow
+    | '50d' | '50n' // Mist
 
 // Generic Icons
     | 'placeholder'
