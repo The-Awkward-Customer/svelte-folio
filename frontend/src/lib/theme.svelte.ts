@@ -5,6 +5,9 @@ type Theme = 'light' | 'dark' | 'high-contrast';
 let currentTheme = $state<Theme>('light');
 
 
+let mediaQuery: MediaQueryList | null = null;
+
+
 
 export const theme = {
     get current(): Theme {
@@ -38,8 +41,39 @@ export const theme = {
                 document.documentElement.setAttribute('data-theme', initialTheme);
                 currentTheme = initialTheme;
 
+                this.setupSystemListener();
+
                     console.log('  Theme applied to DOM:', document.documentElement.getAttribute('data-theme'));
                     console.log('  Current theme state after update:', currentTheme);
             }
+        },
+
+
+        setupSystemListener(): void {
+    if (browser) {
+      mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      
+      const handleSystemThemeChange = (e: MediaQueryListEvent) => {
+        // Only auto-switch if no manual preference is saved
+        const hasManualPreference = localStorage.getItem('theme');
+        if (!hasManualPreference) {
+          const newTheme: Theme = e.matches ? 'dark' : 'light';
+          console.log('🌓 System theme changed to:', newTheme);
+          document.documentElement.setAttribute('data-theme', newTheme);
+          currentTheme = newTheme;
         }
+      };
+      
+      mediaQuery.addEventListener('change', handleSystemThemeChange);
+    }
+  },
+
+  // Method to clear manual preference and follow system
+  followSystem(): void {
+    if (browser) {
+      localStorage.removeItem('theme');
+      const systemPrefers: Theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      this.setTheme(systemPrefers);
+    }
+  }
     };
