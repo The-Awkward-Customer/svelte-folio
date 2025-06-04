@@ -7,7 +7,7 @@ export type IconName =
     | '02d' | '02n' // Fewd Clouds
     | '03d' | '03n' // Scattered Clouds
     | '04d' | '04n' // Broken Clouds
-    | '00d' | '09n' // Shower Rain
+    | '09d' | '09n' // Shower Rain
     | '10d' | '10n' // Rain
     | '11d' | '11n' // Thunderstorm
     | '13d' | '13n' // Snow
