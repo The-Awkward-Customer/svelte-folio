@@ -1,7 +1,7 @@
 <!-- Graphics +page -->
 <script lang="ts">
 	import GridLayout from '$lib/components/grids/GridLayout.svelte';
-	import { TextCard, ImageCard } from '$lib/components/cards';
+	import { TextCard, ImageCard, VideoCard } from '$lib/components/cards';
 	import FilterGroup from '$lib/components/filters/FilterGroup.svelte';
 	import { shuffleArray } from '$lib/utils/shuffle.js';
 
@@ -9,17 +9,17 @@
 	console.log(`${P} rendered!`);
 
 	import exampleImageOne from '$lib/assets/exampleImage1.png';
+	const ExampleVid = '/videos/ExampleVid.webm';
 
 	const allGridItems = [
 		{
 			id: '1',
-			component: TextCard,
+			component: VideoCard,
 			size: '2-2',
 			props: {
-				title: 'Large square',
-				content: 'This is a demo of our grid layout system!',
+				src: ExampleVid,
 				bgColor: '#e3f2fd',
-				tag: 'Layout'
+				tag: 'video'
 			}
 		},
 		{
