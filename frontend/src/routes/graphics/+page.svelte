@@ -1,279 +1,235 @@
 <!-- Graphics +page -->
 <script lang="ts">
+	import GridLayout from '$lib/components/grids/GridLayout.svelte';
+	import { TextCard, ImageCard, VideoCard } from '$lib/components/cards';
+	import FilterGroup from '$lib/components/filters/FilterGroup.svelte';
+	import { shuffleArray } from '$lib/utils/shuffle.js';
 
-    import GridLayout from "$lib/components/grids/GridLayout.svelte";
-    import TextCard from "$lib/components/cards/TextCard.svelte";
-    import ImageCard from "$lib/components/cards/ImageCard.svelte";
+	let P: string = 'GRAPHICS';
+	console.log(`${P} rendered!`);
 
+	import exampleImageOne from '$lib/assets/exampleImage1.png';
+	const ExampleVid = '/videos/ExampleVid.webm';
 
+	const allGridItems = [
+		{
+			id: '1',
+			component: VideoCard,
+			size: '2-2',
+			props: {
+				src: ExampleVid,
+				bgColor: '#e3f2fd',
+				tag: 'video'
+			}
+		},
+		{
+			id: '2',
+			component: TextCard,
+			size: '1-1',
+			props: {
+				title: 'Small Square',
+				content: 'This is a demo of our grid layout system!',
+				bgColor: '#f3e5f5',
+				tag: 'Typography'
+			}
+		},
+		{
+			id: '3',
+			component: TextCard,
+			size: '1-1',
+			props: {
+				title: 'Interactive Demo',
+				content: 'This is a demo of our grid layout system!',
+				bgColor: '#e8f5e8',
+				tag: 'Interactive'
+			}
+		},
+		{
+			id: '4',
+			component: TextCard,
+			size: '2-1',
+			props: {
+				title: 'Small Rectangle',
+				content: 'This is a demo of our grid layout system!',
+				bgColor: '#fff3e0',
+				tag: 'Layout'
+			}
+		},
+		{
+			id: '5',
+			component: TextCard,
+			size: '4-2',
+			props: {
+				title: 'Featured Project',
+				content: 'This is a demo of our grid layout system!',
+				bgColor: '#fce4ec',
+				tag: 'Featured'
+			}
+		},
+		{
+			id: '6',
+			component: TextCard,
+			size: '1-1',
+			props: {
+				title: 'Experimental',
+				content: 'Testing new concepts and ideas!',
+				bgColor: '#f1f8e9',
+				tag: 'Experimental'
+			}
+		},
+		{
+			id: '7',
+			component: TextCard,
+			size: '2-2',
+			props: {
+				title: 'Large square',
+				content: 'This is a demo of our grid layout system!',
+				bgColor: '#e3f2fd',
+				tag: 'Layout'
+			}
+		},
+		{
+			id: '8',
+			component: TextCard,
+			size: '1-1',
+			props: {
+				title: 'Small Square',
+				content: 'This is a demo of our grid layout system!',
+				bgColor: '#f3e5f5',
+				tag: 'Typography'
+			}
+		},
+		{
+			id: '9',
+			component: TextCard,
+			size: '1-1',
+			props: {
+				title: 'Interactive Demo',
+				content: 'This is a demo of our grid layout system!',
+				bgColor: '#e8f5e8',
+				tag: 'Interactive'
+			}
+		},
+		{
+			id: '10',
+			component: TextCard,
+			size: '2-1',
+			props: {
+				title: 'Small Rectangle',
+				content: 'This is a demo of our grid layout system!',
+				bgColor: '#fff3e0',
+				tag: 'Layout'
+			}
+		},
+		{
+			id: '11',
+			component: TextCard,
+			size: '4-2',
+			props: {
+				title: 'Featured Project',
+				content: 'This is a demo of our grid layout system!',
+				bgColor: '#fce4ec',
+				tag: 'Featured'
+			}
+		},
+		{
+			id: '12',
+			component: TextCard,
+			size: '1-1',
+			props: {
+				title: 'Experimental',
+				content: 'Testing new concepts and ideas!',
+				bgColor: '#f1f8e9',
+				tag: 'Experimental'
+			}
+		},
+		{
+			id: '13',
+			component: ImageCard,
+			size: '1-1',
+			props: {
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'UI'
+			}
+		},
+		{
+			id: '14',
+			component: ImageCard,
+			size: '2-2',
+			props: {
+				src: exampleImageOne,
+				bgColor: '#F4F4F4',
+				tag: 'UI'
+			}
+		}
+	] as const;
 
+	// Initialize shuffled items as state to avoid SSR hydration mismatch
+	let shuffledGridItems = $state([...allGridItems]);
 
+	// Shuffle on client-side only to prevent hydration mismatch
+	$effect(() => {
+		shuffledGridItems = shuffleArray(allGridItems);
+	});
 
-let P : string = "GRAPHICS"
-console.log(`${P} rendered!`)
+	// Extract unique filter categories reactively
+	const filterCategories = $derived([...new Set(shuffledGridItems.map((item) => item.props.tag))]);
 
-import exampleImage1 from '$lib/assets/exampleImage1.jpg'
-import exampleImage2 from '$lib/assets/exampleImage2.jpg'
+	// Reactive filter state
+	let activeFilters = $state<Record<string, boolean>>({});
 
-
-const gridItems = [
-    {
-      id: '1',
-      component: ImageCard,
-      size: '2-2', // Takes 2 columns, 1 row (wide)
-      props: {
-        src: exampleImage1,
-        alt: 'Hero image',
-        title: 'wide'
-      }
-    },
-    {
-      id: '2',
-      component: TextCard,
-      size: '1-1', // Takes 1 column, 1 row (square)
-      props: {
-        title: 'Welcome',
-        content: 'This is a demo of our grid layout system!',
-        bgColor: '#e3f2fd'
-      }
-    },
-    {
-      id: '3',
-      component: ImageCard,
-      size: '1-1', // Takes 1 column, 2 rows (tall)
-      props: {
-        src: exampleImage2,
-        alt: 'Gallery photo 1'
-      }
-    },
-    {
-      id: '4',
-      component: TextCard,
-      size: '2-2',
-      props: {
-        title: 'Card 2',
-        content: 'Another text card',
-        bgColor: '#f3e5f5'
-      }
-    },
-    {
-      id: '5',
-      component: ImageCard,
-      size: '2-2', // Takes 2 columns, 2 rows (large square)
-      props: {
-        src: exampleImage1,
-        alt: 'Large featured image',
-        title: 'Big Feature'
-      }
-    },
-    {
-      id: '6',
-      component: TextCard,
-      size: '1-1',
-      props: {
-        title: 'Small Card',
-        content: 'Compact content',
-        bgColor: '#e8f5e8'
-      }
-    },{
-      id: '1',
-      component: ImageCard,
-      size: '2-2', // Takes 2 columns, 1 row (wide)
-      props: {
-        src: exampleImage1,
-        alt: 'Hero image',
-        title: 'wide'
-      }
-    },
-    {
-      id: '2',
-      component: TextCard,
-      size: '1-1', // Takes 1 column, 1 row (square)
-      props: {
-        title: 'Welcome',
-        content: 'This is a demo of our grid layout system!',
-        bgColor: '#e3f2fd'
-      }
-    },
-    {
-      id: '3',
-      component: ImageCard,
-      size: '2-1', // Takes 1 column, 2 rows (tall)
-      props: {
-        src: exampleImage2,
-        alt: 'Gallery photo 1'
-      }
-    },
-    {
-      id: '4',
-      component: TextCard,
-      size: '2-2',
-      props: {
-        title: 'Card 2',
-        content: 'Another text card',
-        bgColor: '#f3e5f5'
-      }
-    },
-    {
-      id: '5',
-      component: ImageCard,
-      size: '2-2', // Takes 2 columns, 2 rows (large square)
-      props: {
-        src: exampleImage1,
-        alt: 'Large featured image',
-        title: 'Big Feature'
-      }
-    },{
-      id: '1',
-      component: ImageCard,
-      size: '2-2', // Takes 2 columns, 1 row (wide)
-      props: {
-        src: exampleImage1,
-        alt: 'Hero image',
-        title: 'wide'
-      }
-    },
-    {
-      id: '2',
-      component: TextCard,
-      size: '1-1', // Takes 1 column, 1 row (square)
-      props: {
-        title: 'Welcome',
-        content: 'This is a demo of our grid layout system!',
-        bgColor: '#e3f2fd'
-      }
-    },
-    {
-      id: '3',
-      component: ImageCard,
-      size: '1-1', // Takes 1 column, 2 rows (tall)
-      props: {
-        src: exampleImage2,
-        alt: 'Gallery photo 1'
-      }
-    },
-    {
-      id: '4',
-      component: TextCard,
-      size: '2-2',
-      props: {
-        title: 'Card 2',
-        content: 'Another text card',
-        bgColor: '#f3e5f5'
-      }
-    },
-    {
-      id: '5',
-      component: ImageCard,
-      size: '2-2', // Takes 2 columns, 2 rows (large square)
-      props: {
-        src: exampleImage1,
-        alt: 'Large featured image',
-        title: 'Big Feature'
-      }
-    },{
-      id: '1',
-      component: ImageCard,
-      size: '2-2', // Takes 2 columns, 1 row (wide)
-      props: {
-        src: exampleImage1,
-        alt: 'Hero image',
-        title: 'wide'
-      }
-    },
-    {
-      id: '2',
-      component: TextCard,
-      size: '1-1', // Takes 1 column, 1 row (square)
-      props: {
-        title: 'Welcome',
-        content: 'This is a demo of our grid layout system!',
-        bgColor: '#e3f2fd'
-      }
-    },
-    {
-      id: '3',
-      component: ImageCard,
-      size: '1-1', // Takes 1 column, 2 rows (tall)
-      props: {
-        src: exampleImage2,
-        alt: 'Gallery photo 1'
-      }
-    },
-    {
-      id: '4',
-      component: TextCard,
-      size: '2-2',
-      props: {
-        title: 'Card 2',
-        content: 'Another text card',
-        bgColor: '#f3e5f5'
-      }
-    },
-    {
-      id: '5',
-      component: ImageCard,
-      size: '2-2', // Takes 2 columns, 2 rows (large square)
-      props: {
-        src: exampleImage1,
-        alt: 'Large featured image',
-        title: 'Big Feature'
-      }
-    },
-  ] as const;
-
-
+	// Filtered grid items based on active filters
+	const filteredGridItems = $derived(
+		shuffledGridItems.filter((item) => activeFilters[item.props.tag] ?? true)
+	);
 </script>
 
 <section>
-    <div class="header-root">
-        <div class="row-wrapper">
-        <p>2016-2025</p>
-        </div>
-        <p>An assorted collection of graphical artefacts from various projects over the years.</p>  
-    </div>
-    
-    <GridLayout items={gridItems} columns={4}/>
+	<div class="header-root">
+		<div class="row-wrapper">
+			<p>2016-2025</p>
+		</div>
+		<p>An assorted collection of graphical artefacts from various projects over the years.</p>
+	</div>
+
+	<!-- Filter Controls -->
+	<FilterGroup filters={filterCategories} bind:activeFilters />
+
+	<!-- Filtered Grid -->
+	<GridLayout items={filteredGridItems} columns={4} />
 </section>
 
-
 <style>
-h1{
-    font-size: clamp(48px, 15vw, 124px);
-    color: rgb(var(--fg-text-primary));
-}
+	.header-root {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		padding-top: 64px;
+		padding-bottom: 2em;
+		max-width: 64ch;
+	}
 
-.header-root{
-     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding-top: 64px;
-    padding-bottom: 2em;
-    max-width: 64ch;
-}
+	.row-wrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		gap: 12px;
+		font-weight: var(--fw-semibold);
+	}
 
-.row-wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 12px;
-    font-weight:var(--fw-semibold);
-}
+	p {
+		color: rgb(var(--fg-text-primary));
+		font-size: clamp(18px, 4vw, 24px);
+	}
 
-p{
-    color: rgb(var(--fg-text-primary));
-    font-size: clamp(18px, 4vw, 24px);
-}
+	p:nth-child(2) {
+		color: rgb(var(--fg-text-secondary));
+	}
 
-p:nth-child(2){
-    color:rgb(var(--fg-text-secondary));
-}
-
-@media (min-width: 896px){
-    .row-wrapper{
-    flex-direction: row;
-    }
-}
-
-
+	@media (min-width: 896px) {
+		.row-wrapper {
+			flex-direction: row;
+		}
+	}
 </style>

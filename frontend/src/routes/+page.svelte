@@ -7,7 +7,6 @@
 	import { dialogManager } from '$lib/stores/dialogManager';
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
 	import { Introduction, Experience, Process } from '$lib/components/accordian/accordionItems';
-	import { Icon } from '$lib/components/primatives';
 
 	//Page Content
 	let HeroIntroText: string =
