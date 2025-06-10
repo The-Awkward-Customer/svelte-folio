@@ -266,6 +266,7 @@ select {
   /* Foreground/Text colors */
   --fg-text-primary: 38 39 45; /* #26272D */
   --fg-text-secondary: 112 113 125; /* #70717D */
+  --fg-text-inverse: 255 255 255; /* #FFFFFF */
   --fg-text-danger: 255 62 0; /* #FF3E00 */
   --fg-text-muted: 146 147 161; /* #9293A1 */
 
@@ -276,6 +277,7 @@ select {
   /* Background colors */
   --bg-page: 255 255 255; /* #FFFFFF */
   --bg-component: 180 180 180; /* #B4B4B4 */
+  --bg-primary: 38 39 45; /* #26272D */
 
   /* Status colors */
   --fg-positive: 42 83 20; /* #2A5314 */
@@ -300,6 +302,7 @@ select {
   /* Foreground/Text colors */
   --fg-text-primary: 255 255 255; /* #FFFFFF */
   --fg-text-secondary: 196 197 215; /* #C4C5D7 */
+  --fg-text-inverse: 45 45 51; /* #2D2D33 */
   --fg-text-danger: 255 94 0; /* #FF5E00 */
   --fg-text-muted: 198 197 217; /* #C6C5D9 */
 
@@ -310,6 +313,7 @@ select {
   /* Background colors */
   --bg-page: 45 45 51; /* #2D2D33 */
   --bg-component: 180 180 180; /* #B4B4B4 */
+  --bg-primary: 255 255 255; /* #FFFFFF */
 
   /* Status colors */
   --fg-positive: 140 255 0; /* #8CFF00 */
@@ -334,6 +338,7 @@ select {
   /* Foreground/Text colors */
   --fg-text-primary: 0 0 0; /* #000000 */
   --fg-text-secondary: 0 0 0; /* #000000 */
+  --fg-text-inverse: 255 255 255; /* #FFFFFF */
   --fg-text-danger: 199 56 0; /* #C73800 */
   --fg-text-muted: 0 0 0; /* #000000 */
 
@@ -344,6 +349,7 @@ select {
   /* Background colors */
   --bg-page: 255 255 255; /* #FFFFFF */
   --bg-component: 180 180 180; /* #B4B4B4 */
+  --bg-primary: 38 39 45; /* #26272D */
 
   /* Status colors */
   --fg-positive: 63 115 0; /* #3F7300 */
