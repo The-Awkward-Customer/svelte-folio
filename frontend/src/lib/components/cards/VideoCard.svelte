@@ -73,7 +73,9 @@
 		{src}
 		muted
 		loop
+		playsinline
 		preload="metadata"
+		controls={false}
 		style="background-color: {bgColor};"
 	>
 		<track kind="captions" />
@@ -124,6 +126,19 @@
 		height: 100%;
 		object-fit: cover;
 		z-index: 0;
+		-webkit-appearance: none;
+		-webkit-media-controls: none;
+		-webkit-media-controls-panel: none;
+		-webkit-media-controls-play-button: none;
+		-webkit-media-controls-start-playback-button: none;
+	}
+
+	.cover-video::-webkit-media-controls {
+		display: none !important;
+	}
+
+	.cover-video::-webkit-media-controls-panel {
+		display: none !important;
 	}
 
 	.play-indicator {
