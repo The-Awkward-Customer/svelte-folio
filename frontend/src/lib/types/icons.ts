@@ -15,7 +15,9 @@ export type IconName =
 
 // Generic Icons
     | 'placeholder'
+    | 'plus'
     | 'close';
+
 
 
 

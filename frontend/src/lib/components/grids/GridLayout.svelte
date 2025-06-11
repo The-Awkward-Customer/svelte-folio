@@ -5,7 +5,7 @@
 	export interface GridItem {
 		readonly id: string;
 		readonly component: any;
-		readonly size: '1-1' | '2-2' | '2-1' | '4-2';
+		readonly size: '1-1' | '2-2' | '4-2';
 		readonly props?: Record<string, any>;
 	}
 
@@ -19,7 +19,6 @@
 	const sizeMap = {
 		'1-1': { cols: 1, rows: 1 }, // small square
 		'2-2': { cols: 2, rows: 2 }, // large square
-		'2-1': { cols: 2, rows: 1 }, // small rectangle
 		'4-2': { cols: 4, rows: 2 } // large rectangle
 	} as const;
 </script>

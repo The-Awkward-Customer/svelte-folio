@@ -110,6 +110,7 @@
 		overflow: hidden;
 		background-color: rgba(240, 248, 255, 0.041);
 		border: none;
+		cursor: pointer;
 	}
 
 	.tag-container {

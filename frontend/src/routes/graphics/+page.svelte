@@ -4,11 +4,14 @@
 	import { TextCard, ImageCard, VideoCard } from '$lib/components/cards';
 	import FilterGroup from '$lib/components/filters/FilterGroup.svelte';
 	import { shuffleArray } from '$lib/utils/shuffle.js';
+	import { dialogManager } from '$lib/stores/dialogManager';
+	import DialogRoot from '$lib/components/Dialog/DialogRoot.svelte';
 
 	let P: string = 'GRAPHICS';
 	console.log(`${P} rendered!`);
 
 	import exampleImageOne from '$lib/assets/exampleImage1.png';
+	import IconRefresh from '$lib/components/primatives/IconRefresh.svelte';
 	const ExampleVid = '/videos/ExampleVid.webm';
 
 	const allGridItems = [
@@ -19,40 +22,37 @@
 			props: {
 				src: ExampleVid,
 				bgColor: '#e3f2fd',
-				tag: 'video'
+				tag: 'Motion'
 			}
 		},
 		{
 			id: '2',
-			component: TextCard,
+			component: VideoCard,
 			size: '1-1',
 			props: {
-				title: 'Small Square',
-				content: 'This is a demo of our grid layout system!',
-				bgColor: '#f3e5f5',
-				tag: 'Typography'
+				src: ExampleVid,
+				bgColor: '#e3f2fd',
+				tag: 'Motion'
 			}
 		},
 		{
 			id: '3',
-			component: TextCard,
+			component: VideoCard,
 			size: '1-1',
 			props: {
-				title: 'Interactive Demo',
-				content: 'This is a demo of our grid layout system!',
-				bgColor: '#e8f5e8',
-				tag: 'Interactive'
+				src: ExampleVid,
+				bgColor: '#e3f2fd',
+				tag: 'Motion'
 			}
 		},
 		{
 			id: '4',
-			component: TextCard,
-			size: '2-1',
+			component: ImageCard,
+			size: '2-2',
 			props: {
-				title: 'Small Rectangle',
-				content: 'This is a demo of our grid layout system!',
-				bgColor: '#fff3e0',
-				tag: 'Layout'
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
 			}
 		},
 		{
@@ -60,65 +60,62 @@
 			component: TextCard,
 			size: '4-2',
 			props: {
-				title: 'Featured Project',
+				title: 'Featured Two',
 				content: 'This is a demo of our grid layout system!',
-				bgColor: '#fce4ec',
-				tag: 'Featured'
+				bgColor: '--bg-primary',
+				tag: 'Case Study',
+				button: 'primary',
+				handleClick: openFreshaDialog
 			}
 		},
 		{
 			id: '6',
-			component: TextCard,
+			component: ImageCard,
 			size: '1-1',
 			props: {
-				title: 'Experimental',
-				content: 'Testing new concepts and ideas!',
-				bgColor: '#f1f8e9',
-				tag: 'Experimental'
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
 			}
 		},
 		{
 			id: '7',
-			component: TextCard,
-			size: '2-2',
+			component: ImageCard,
+			size: '1-1',
 			props: {
-				title: 'Large square',
-				content: 'This is a demo of our grid layout system!',
-				bgColor: '#e3f2fd',
-				tag: 'Layout'
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
 			}
 		},
 		{
 			id: '8',
-			component: TextCard,
+			component: ImageCard,
 			size: '1-1',
 			props: {
-				title: 'Small Square',
-				content: 'This is a demo of our grid layout system!',
-				bgColor: '#f3e5f5',
-				tag: 'Typography'
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
 			}
 		},
 		{
 			id: '9',
-			component: TextCard,
+			component: ImageCard,
 			size: '1-1',
 			props: {
-				title: 'Interactive Demo',
-				content: 'This is a demo of our grid layout system!',
-				bgColor: '#e8f5e8',
-				tag: 'Interactive'
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
 			}
 		},
 		{
 			id: '10',
-			component: TextCard,
-			size: '2-1',
+			component: ImageCard,
+			size: '1-1',
 			props: {
-				title: 'Small Rectangle',
-				content: 'This is a demo of our grid layout system!',
-				bgColor: '#fff3e0',
-				tag: 'Layout'
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
 			}
 		},
 		{
@@ -126,21 +123,21 @@
 			component: TextCard,
 			size: '4-2',
 			props: {
-				title: 'Featured Project',
+				title: 'Featured One',
 				content: 'This is a demo of our grid layout system!',
-				bgColor: '#fce4ec',
-				tag: 'Featured'
+				bgColor: '--bg-primary',
+				tag: 'Case Study',
+				button: 'primary'
 			}
 		},
 		{
 			id: '12',
-			component: TextCard,
+			component: ImageCard,
 			size: '1-1',
 			props: {
-				title: 'Experimental',
-				content: 'Testing new concepts and ideas!',
-				bgColor: '#f1f8e9',
-				tag: 'Experimental'
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
 			}
 		},
 		{
@@ -150,7 +147,7 @@
 			props: {
 				src: exampleImageOne,
 				bgColor: '#FFFFFF',
-				tag: 'UI'
+				tag: 'Design'
 			}
 		},
 		{
@@ -160,7 +157,7 @@
 			props: {
 				src: exampleImageOne,
 				bgColor: '#F4F4F4',
-				tag: 'UI'
+				tag: 'Design'
 			}
 		}
 	] as const;
@@ -183,6 +180,14 @@
 	const filteredGridItems = $derived(
 		shuffledGridItems.filter((item) => activeFilters[item.props.tag] ?? true)
 	);
+
+	// Dialog functions
+	function openFreshaDialog() {
+		dialogManager.showDialog('freshaDialog');
+	}
+	function openShellDialog() {
+		dialogManager.showDialog('shellDialog');
+	}
 </script>
 
 <section>
@@ -199,6 +204,9 @@
 	<!-- Filtered Grid -->
 	<GridLayout items={filteredGridItems} columns={4} />
 </section>
+
+<!-- Dialog Root - handles all dialog rendering -->
+<DialogRoot />
 
 <style>
 	.header-root {
