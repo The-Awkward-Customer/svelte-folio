@@ -1,0 +1,243 @@
+<!-- Graphics +page -->
+<script lang="ts">
+	import GridLayout from '$lib/components/grids/GridLayout.svelte';
+	import { TextCard, ImageCard, VideoCard } from '$lib/components/cards';
+	import FilterGroup from '$lib/components/filters/FilterGroup.svelte';
+	import { shuffleArray } from '$lib/utils/shuffle.js';
+	import { dialogManager } from '$lib/stores/dialogManager';
+	import DialogRoot from '$lib/components/Dialog/DialogRoot.svelte';
+
+	let P: string = 'GRAPHICS';
+	console.log(`${P} rendered!`);
+
+	import exampleImageOne from '$lib/assets/exampleImage1.png';
+	import IconRefresh from '$lib/components/primatives/IconRefresh.svelte';
+	const ExampleVid = '/videos/ExampleVid.webm';
+
+	const allGridItems = [
+		{
+			id: '1',
+			component: VideoCard,
+			size: '2-2',
+			props: {
+				src: ExampleVid,
+				bgColor: '#e3f2fd',
+				tag: 'Motion'
+			}
+		},
+		{
+			id: '2',
+			component: VideoCard,
+			size: '1-1',
+			props: {
+				src: ExampleVid,
+				bgColor: '#e3f2fd',
+				tag: 'Motion'
+			}
+		},
+		{
+			id: '3',
+			component: VideoCard,
+			size: '1-1',
+			props: {
+				src: ExampleVid,
+				bgColor: '#e3f2fd',
+				tag: 'Motion'
+			}
+		},
+		{
+			id: '4',
+			component: ImageCard,
+			size: '2-2',
+			props: {
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
+			}
+		},
+		{
+			id: '5',
+			component: TextCard,
+			size: '4-2',
+			props: {
+				title: 'Featured Two',
+				content: 'This is a demo of our grid layout system!',
+				bgColor: '--bg-primary',
+				tag: 'Case Study',
+				button: 'primary',
+				handleClick: openFreshaDialog
+			}
+		},
+		{
+			id: '6',
+			component: ImageCard,
+			size: '1-1',
+			props: {
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
+			}
+		},
+		{
+			id: '7',
+			component: ImageCard,
+			size: '1-1',
+			props: {
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
+			}
+		},
+		{
+			id: '8',
+			component: ImageCard,
+			size: '1-1',
+			props: {
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
+			}
+		},
+		{
+			id: '9',
+			component: ImageCard,
+			size: '1-1',
+			props: {
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
+			}
+		},
+		{
+			id: '10',
+			component: ImageCard,
+			size: '1-1',
+			props: {
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
+			}
+		},
+		{
+			id: '11',
+			component: TextCard,
+			size: '4-2',
+			props: {
+				title: 'Featured One',
+				content: 'This is a demo of our grid layout system!',
+				bgColor: '--bg-primary',
+				tag: 'Case Study',
+				button: 'primary'
+			}
+		},
+		{
+			id: '12',
+			component: ImageCard,
+			size: '1-1',
+			props: {
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
+			}
+		},
+		{
+			id: '13',
+			component: ImageCard,
+			size: '1-1',
+			props: {
+				src: exampleImageOne,
+				bgColor: '#FFFFFF',
+				tag: 'Design'
+			}
+		},
+		{
+			id: '14',
+			component: ImageCard,
+			size: '2-2',
+			props: {
+				src: exampleImageOne,
+				bgColor: '#F4F4F4',
+				tag: 'Design'
+			}
+		}
+	] as const;
+
+	// Initialize shuffled items as state to avoid SSR hydration mismatch
+	let shuffledGridItems = $state([...allGridItems]);
+
+	// Shuffle on client-side only to prevent hydration mismatch
+	$effect(() => {
+		shuffledGridItems = shuffleArray(allGridItems);
+	});
+
+	// Extract unique filter categories reactively
+	const filterCategories = $derived([...new Set(shuffledGridItems.map((item) => item.props.tag))]);
+
+	// Reactive filter state
+	let activeFilters = $state<Record<string, boolean>>({});
+
+	// Filtered grid items based on active filters
+	const filteredGridItems = $derived(
+		shuffledGridItems.filter((item) => activeFilters[item.props.tag] ?? true)
+	);
+
+	// Dialog functions
+	function openFreshaDialog() {
+		dialogManager.showDialog('freshaDialog');
+	}
+	function openShellDialog() {
+		dialogManager.showDialog('shellDialog');
+	}
+</script>
+
+<section>
+	<div class="header-root">
+		<div class="row-wrapper">
+			<p>2016-2025</p>
+		</div>
+		<p>An assorted collection of graphical artefacts from various projects over the years.</p>
+	</div>
+
+	<!-- Filter Controls -->
+	<FilterGroup filters={filterCategories} bind:activeFilters />
+
+	<!-- Filtered Grid -->
+	<GridLayout items={filteredGridItems} columns={4} />
+</section>
+
+<!-- Dialog Root - handles all dialog rendering -->
+<DialogRoot />
+
+<style>
+	.header-root {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		padding-top: 64px;
+		padding-bottom: 2em;
+		max-width: 64ch;
+	}
+
+	.row-wrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		gap: 12px;
+		font-weight: var(--fw-semibold);
+	}
+
+	p {
+		color: rgb(var(--fg-text-primary));
+		font-size: clamp(18px, 4vw, 24px);
+	}
+
+	p:nth-child(2) {
+		color: rgb(var(--fg-text-secondary));
+	}
+
+	@media (min-width: 896px) {
+		.row-wrapper {
+			flex-direction: row;
+		}
+	}
+</style>

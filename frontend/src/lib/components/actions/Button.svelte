@@ -1,170 +1,62 @@
 <script lang="ts">
-    // Props interface
-    interface ButtonProps {
-        variant: 'primary' | 'inverse' | 'primary-icon' | 'inverse-icon';
-        size?: 'sm' | 'md' | 'lg';
-        type?: 'button' | 'submit' | 'reset';
-        disabled?: boolean;
-        ariaLabel?: string;
-        ariaControls?: string;
-        ariaExpanded?: boolean;
-    }
+	import type { handle } from '../../../hooks.server';
 
-    // Props with defaults
-    export let variant: ButtonProps['variant'] = 'primary';
-    export let size: ButtonProps['size'] = 'md';
-    export let type: ButtonProps['type'] = 'button';
-    export let disabled: ButtonProps['disabled'] = false;
-    export let ariaLabel: ButtonProps['ariaLabel'] = undefined;
-    export let ariaControls: ButtonProps['ariaControls'] = undefined;
-    export let ariaExpanded: ButtonProps['ariaExpanded'] = undefined;
-    
-    // Compute classes and determine if it's an icon variant
-    $: isIconVariant = variant.includes('icon');
-    $: baseVariant = isIconVariant ? variant.replace('-icon', '') : variant;
-    $: componentClasses = `
-      btn 
-      btn-${baseVariant}
-      ${isIconVariant ? 'btn-icon' : ''}
-      btn-${size}
-    `.trim();
-  </script>
-  
-  <button
-    {type}
-    class={componentClasses}
-    {disabled}
-    aria-label={ariaLabel}
-    aria-controls={ariaControls}
-    aria-expanded={ariaExpanded}
-    on:click
-    {...$$restProps}
-  >
-    {#if isIconVariant}
-        <slot />
-    {:else}
-        <span class="btn-text">
-            <slot />
-        </span>
-    {/if}
-  </button>
-  
-  <style>
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: none;
-      border-radius: var(--bdr-radius-pill);
-      cursor: pointer;
-      font-family: inherit;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      position: relative;
-      /* Ensure button is visible and interactive */
-      z-index: 1;
-      visibility: visible;
-      opacity: 1;
-      font-family: var(--font-family-main);
-    }
-    
-    .btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      /* Even when disabled, keep some visual feedback */
-      pointer-events: none;
-    }
-    
-    /* Focus visible styles */
-    .btn:focus {
-      /* Add this to ensure focus ring shows */
-      outline: revert;
-    }
-    
-    .btn:focus-visible {
-      outline: none !important;
-      /* Make focus ring more prominent and force it with !important */
-      box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.8) !important;
-      z-index: 2;
-    }
+	// Props interface
 
-    /* Primary variant focus - white ring for better contrast on dark background */
-    .btn-primary:focus-visible {
-      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.9) !important;
-    }
-    
-    /* Variants */
-    .btn-primary {
-      background-color: rgba(var(--color-bg-inverse) / var(--opacity-invisible));
-      color: var(--color-text-primary);
-    }
-    
-    .btn-primary:hover:not(:disabled) {
-      background-color: rgb(var(--color-bg-inverse) / var(--opacity-hover));
-    }
+	type buttonVariants = 'ghost' | 'strong';
 
-    .btn-primary:active:not(:disabled) {
-      background-color: rgb(var(--color-bg-inverse) / var(--opacity-active));
-    }
-    
-    .btn-inverse {
-      background-color: rgba(var(--color-bg-primary) / var(--opacity-invisible));
-      color: rgb(var(--color-txt-inverse));
-    }
-    
-    .btn-inverse:hover:not(:disabled) {
-      background-color: rgba(var(--color-bg-primary) / var(--opacity-hover))
+	type buttonRole = 'button' | 'submit' | 'reset';
 
-    }
+	interface ButtonProps {
+		variant?: buttonVariants;
+		type?: buttonRole;
+		disabled?: boolean;
+		// ariaLabel?: string; // Combine with label
+		label: string;
+		handleClick: () => void;
+	}
 
-    .btn-inverse:active:not(:disabled) {
-      background-color: rgba(var(--color-bg-primary) / var(--opacity-active))
-    }
-    
-    /* Sizes */
-    .btn-sm {
-      font-size: 0.875rem;
-      padding: 0.25rem 0.5rem;
-      height: 2rem;
-      font-size: var(--fs-250);
-      font-weight: var(--fw-medium);
-    }
-    
-    .btn-md {
-      font-size: 1rem;
-      padding: 0.5rem 1rem;
-      height: 2.5rem;
-      font-size: var(--fs-300);
-      font-weight: var(--fw-medium);
-    }
-    
-    .btn-lg {
-      font-size: 1.125rem;
-      padding: 0.75rem 1.5rem;
-      height: 3rem;
-      font-size: var(--fs-400);
-      font-weight: var(--fw-medium);
-    }
+	let { label = 'Replace me', variant = 'ghost', handleClick }: ButtonProps = $props();
+</script>
 
-    /* Icon variant styles */
-    .btn-icon {
-        padding: 0;
-        aspect-ratio: 1;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
+<span class="btn-root">
+	<button class={` btn ${variant} `} aria-label={label} onclick={handleClick}>
+		<span class="btn-layout">
+			<span class="middle">{label}</span>
+		</span>
+	</button>
+</span>
 
-    .btn-icon.btn-sm {
-        width: 2rem;
-    }
-    
-    .btn-icon.btn-md {
-        width: 2.5rem;
-    }
-    
-    .btn-icon.btn-lg {
-        width: 3rem;
-    }
-  </style>
+<style>
+	.btn {
+		border: none;
+		border-radius: var(--bdr-radius-small);
+		font-weight: var(--fw-semibold);
+		height: 44px;
+		padding-left: 8px;
+		padding-right: 8px;
+	}
+
+	.ghost {
+		background-color: rgb(255, 255, 255);
+	}
+
+	.ghost:hover {
+		background-color: rgb(218, 218, 225);
+	}
+
+	.ghost:active {
+		background-color: rgb(184, 185, 187);
+	}
+
+	.btn-layout {
+		display: inline-grid;
+		grid-template-columns: auto;
+		grid-template-rows: 1fr;
+		gap: 4px;
+		padding-left: 12px;
+		padding-top: 8px;
+		padding-right: 12px;
+		padding-bottom: 8px;
+	}
+</style>

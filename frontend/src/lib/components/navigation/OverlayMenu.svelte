@@ -1,7 +1,7 @@
 <script lang="ts">
   import Button from '$lib/components/actions/Button.svelte';
   import LinkList from '$lib/components/actions/LinkList.svelte';
-  import LocationInfo from '$lib/components/Snoop/LocationInfo.svelte';
+  import Weather from '$lib/components/Snoop/Weather.svelte';
   
   // Use Svelte's writable store instead of state
   import { writable } from 'svelte/store';
@@ -20,6 +20,7 @@
   // Toggle function
   function toggleMenu() {
     $isOpen = !$isOpen;
+    console.log("menu open")
   }
   
   // Close menu function
@@ -39,9 +40,7 @@
   }
 </script>
 
-<Button on:click={toggleMenu} ariaLabel="Toggle navigation menu">
-  Menu
-</Button>
+<Button handleClick={toggleMenu} label="Menu"/>
 
 {#if $isOpen}
   <div class="overlay-container">
@@ -57,16 +56,10 @@
       role="navigation"
     >
       <div class="menu-header">
-        <Button 
-          variant="primary" 
-          on:click={closeMenu} 
-          ariaLabel="Close menu"
-        >
-          Close
-        </Button>
+        <Button handleClick={closeMenu} label="Close Menu"/>
       </div>
       <LinkList {routes} vertical={true} on:click={closeMenu} />
-      <LocationInfo />
+      <Weather />
     </section>
   </div>
 {/if}

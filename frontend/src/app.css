@@ -1,5 +1,4 @@
-/* css reset */
-/* Reset */
+/* CSS Reset (unchanged) */
 *,
 *::before,
 *::after {
@@ -17,9 +16,15 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
+  padding-left: 24px;
+  padding-right: 24px;
+  justify-content: center;
+  align-items: center;
 }
 
 img,
@@ -38,7 +43,6 @@ select {
   font: inherit;
 }
 
-/* Add after your reset section */
 :focus {
   outline: revert;
 }
@@ -51,7 +55,7 @@ select {
   outline: revert;
 }
 
-/* Typography */
+/* Typography (unchanged) */
 @font-face {
   font-family: 'Geist';
   src: url('/fonts/Geist-Thin.otf') format('opentype');
@@ -99,6 +103,7 @@ select {
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Geist-Mono';
   src: url('/fonts/GeistMono-Thin.otf') format('opentype');
@@ -147,38 +152,18 @@ select {
   font-display: swap;
 }
 
-
+/* Theme-independent variables */
 :root {
-/* dev colors */
-  --color-dev-pink: 241 114 255;    /* #F172FF */
+  /* Dev colors */
+  --color-dev-pink: 241 114 255; /* #F172FF */
 
-  /* Color variables */
-  --color-fg-primary: 38 39 45;    /* #26272D */
-  --color-fg-secondary: 112 113 125;  /* #70717D */
-  --color-fg-accent: 231 76 60;    /* #e74c3c */
- 
-
-  --color-bg-primary: 255 255 255;  /* #ffffff */
-  --color-bg-secondary: 246 246 247;  /* #F6F6F7 */
-  --color-bg-inverse: 38 39 45;    /* #26272D */
-
-
-  --color-txt-primary: 38 39 45;    /* #26272D */
-  --color-txt-secondary: 112 113 125;  /* #70717D */
-  --color-txt-muted: 152 156 184;   /* #989CB8 */
-  --color-txt-inverse: 255 255 255;  /* #ffffff */
-
-  --color-bdr-primary: 38 39 45;    /* #26272D */
-  --color-bdr-muted: 152 156 184;   /* #989CB8 */
-
-  /* project colors */
+  /* Project colors */
   --fresha-purple: 105, 80, 243;
 
-  /* focus ring */
+  /* Focus ring */
   --focus-ring-color: #ff6200;
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
-
 
   /* Typography */
   --font-family-main: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -245,8 +230,7 @@ select {
   /* Semantic spacing */
   --padding-mobile-default: var(--spc-500);
 
-
-  /* semanticBorder radius */
+  /* Border radius */
   --bdr-radius-tiny: 4px;
   --bdr-radius-small: 8px;
   --bdr-radius-medium: 16px;
@@ -258,7 +242,6 @@ select {
   --opacity-hover: 0.04; /* 4% */
   --opacity-active: 0.08; /* 10% */
   --opacity-selected: 0.12; /* 12% */
-
   
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
@@ -275,19 +258,132 @@ select {
   --bp-mobile-min: 768px;
   --bp-tablet: 1024px;
   --bp-desktop: 1440px;
-
-
 }
 
+/* Light theme (default) */
+:root,
+[data-theme="light"] {
+  /* Foreground/Text colors */
+  --fg-text-primary: 38 39 45; /* #26272D */
+  --fg-text-secondary: 112 113 125; /* #70717D */
+  --fg-text-inverse: 255 255 255; /* #FFFFFF */
+  --fg-text-danger: 255 62 0; /* #FF3E00 */
+  --fg-text-muted: 146 147 161; /* #9293A1 */
+
+  /* Border colors */
+  --bdr-primary: 38 39 45; /* #26272D */
+  --bdr-secondary: 192 192 192; /* #C0C0C0 */
+
+  /* Background colors */
+  --bg-page: 255 255 255; /* #FFFFFF */
+  --bg-component: 180 180 180; /* #B4B4B4 */
+  --bg-primary: 38 39 45; /* #26272D */
+
+  /* Status colors */
+  --fg-positive: 42 83 20; /* #2A5314 */
+  --bg-positive: 140 255 0; /* #8CFF00 */
+
+  /* Legacy variable mappings for backward compatibility */
+  --color-fg-primary: var(--fg-text-primary);
+  --color-fg-secondary: var(--fg-text-secondary);
+  --color-fg-accent: var(--fg-text-danger);
+  --color-bg-primary: var(--bg-page);
+  --color-bg-secondary: var(--bg-component);
+  --color-bg-inverse: var(--fg-text-primary);
+  --color-txt-primary: var(--fg-text-primary);
+  --color-txt-secondary: var(--fg-text-secondary);
+  --color-txt-muted: var(--fg-text-muted);
+  --color-txt-inverse: var(--bg-page);
+  --color-bdr-muted: var(--fg-text-muted);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  /* Foreground/Text colors */
+  --fg-text-primary: 255 255 255; /* #FFFFFF */
+  --fg-text-secondary: 196 197 215; /* #C4C5D7 */
+  --fg-text-inverse: 45 45 51; /* #2D2D33 */
+  --fg-text-danger: 255 94 0; /* #FF5E00 */
+  --fg-text-muted: 198 197 217; /* #C6C5D9 */
+
+  /* Border colors */
+  --bdr-primary: 240 240 247; /* #F0F0F7 */
+  --bdr-secondary: 76 75 179; /* #4C4BB3 */
+
+  /* Background colors */
+  --bg-page: 45 45 51; /* #2D2D33 */
+  --bg-component: 180 180 180; /* #B4B4B4 */
+  --bg-primary: 255 255 255; /* #FFFFFF */
+
+  /* Status colors */
+  --fg-positive: 140 255 0; /* #8CFF00 */
+  --bg-positive: 42 83 20; /* #2A5314 */
+
+  /* Legacy variable mappings for backward compatibility */
+  --color-fg-primary: var(--fg-text-primary);
+  --color-fg-secondary: var(--fg-text-secondary);
+  --color-fg-accent: var(--fg-text-danger);
+  --color-bg-primary: var(--bg-page);
+  --color-bg-secondary: var(--bg-component);
+  --color-bg-inverse: var(--fg-text-primary);
+  --color-txt-primary: var(--fg-text-primary);
+  --color-txt-secondary: var(--fg-text-secondary);
+  --color-txt-muted: var(--fg-text-muted);
+  --color-txt-inverse: var(--bg-page);
+  --color-bdr-muted: var(--fg-text-muted);
+}
+
+/* High contrast theme */
+[data-theme="high-contrast"] {
+  /* Foreground/Text colors */
+  --fg-text-primary: 0 0 0; /* #000000 */
+  --fg-text-secondary: 0 0 0; /* #000000 */
+  --fg-text-inverse: 255 255 255; /* #FFFFFF */
+  --fg-text-danger: 199 56 0; /* #C73800 */
+  --fg-text-muted: 0 0 0; /* #000000 */
+
+  /* Border colors */
+  --bdr-primary: 0 0 0; /* #000000 */
+  --bdr-secondary: 0 0 0; /* #000000 */
+
+  /* Background colors */
+  --bg-page: 255 255 255; /* #FFFFFF */
+  --bg-component: 180 180 180; /* #B4B4B4 */
+  --bg-primary: 38 39 45; /* #26272D */
+
+  /* Status colors */
+  --fg-positive: 63 115 0; /* #3F7300 */
+  --bg-positive: 255 255 255; /* #FFFFFF */
+
+  /* Legacy variable mappings for backward compatibility */
+  --color-fg-primary: var(--fg-text-primary);
+  --color-fg-secondary: var(--fg-text-secondary);
+  --color-fg-accent: var(--fg-text-danger);
+  --color-bg-primary: var(--bg-page);
+  --color-bg-secondary: var(--bg-component);
+  --color-bg-inverse: var(--fg-text-primary);
+  --color-txt-primary: var(--fg-text-primary);
+  --color-txt-secondary: var(--fg-text-secondary);
+  --color-txt-muted: var(--fg-text-muted);
+  --color-txt-inverse: var(--bg-page);
+  --color-bdr-muted: var(--fg-text-muted);
+}
+
+/* Focus styles */
 :focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
 
+/* Typography styles */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-family-main);
 }
 
 p, span, a, li, ol, ul {
   font-family: var(--font-family-main);
+}
+
+body{
+  background-color: rgb(var(--bg-page));
 }

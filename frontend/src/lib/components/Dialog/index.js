@@ -1,3 +1,14 @@
-export { default as DialogRoot } from './DialogRoot.svelte';
+export { default as DialogAnimatedBackground } from './DialogAnimatedBackground.svelte';
+export { default as DialogDetails } from './DialogDetails.svelte';
+export { default as DialogFooter } from './DialogFooter.svelte';
 export { default as DialogHeader } from './DialogHeader.svelte';
-export { default as DialogContent } from './DialogContent.svelte';
+export { default as DialogInsight } from './DialogInsight.svelte';
+export { default as DialogIntro } from './DialogIntro.svelte';
+export { default as DialogPrefix } from './DialogPrefix.svelte';
+export { default as DialogPrinciples } from './DialogPrinciples.svelte';
+export { default as DialogRoot } from './DialogRoot.svelte';
+export { default as DialogSection } from './DialogSection.svelte';
+export { default as DialogText } from './DialogText.svelte';
+export { default as DialogTitle } from './DialogTitle.svelte';
+export { default as FreshaDialog } from './FreshaDialog.svelte';
+export { default as ImageGrid } from './ImageGrid.svelte';

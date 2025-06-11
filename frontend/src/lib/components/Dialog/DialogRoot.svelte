@@ -4,36 +4,13 @@
     import { onMount, onDestroy, tick } from 'svelte';
 	import { dialogManager } from '$lib/stores/dialogManager';
     import { browser } from '$app/environment'; // Import browser
-	import DialogSection from './DialogSection.svelte';
-    import DialogPrefix from './DialogPrefix.svelte';
-    import DialogHeader from '$lib/components/Dialog/DialogHeader.svelte';
-    import DialogAnimatedBackground from '$lib/components/Dialog/DialogAnimatedBackground.svelte';
-	import DialogTitle from './DialogTitle.svelte';
-    import DialogIntro from './DialogIntro.svelte';
-    import DialogText from './DialogText.svelte';
-	import DialogDetails from './DialogDetails.svelte';
-    import DialogPrinciples from './DialogPrinciples.svelte';
-    import DialogInsight from './DialogInsight.svelte';
-    import Image from '../content/image.svelte';
-    import DialogFooter from './DialogFooter.svelte';
 
+    import FreshaDialog from './FreshaDialog.svelte';
+    import ShellDialog from './ShellDialog.svelte';
 
-    // Images
-    import placeholder from "$lib/assets/placeholder-image.jpg"
-
-
-	// Define the ID for this specific dialog instance
-	const DIALOG_ID = 'mainPageDialog';
-
-    let dialogRootElement: HTMLDivElement; // Reference to the dialog container
-    let scrollWrapperElement: HTMLDivElement; // Reference to the scroll wrapper
-    let currentScrollTop = 0; // Track scroll position
-
-
-    $: console.log("dialogRoot store check: ", $dialogManager, 'Is active: ', $dialogManager.activeDialogId === DIALOG_ID);
 
 	// Reactive statement to check if this dialog should be active
-	$: isActive = $dialogManager.activeDialogId === DIALOG_ID;
+	$: isActive = $dialogManager.activeDialogId !==null;
 
 	// Function to close the dialog via the store
 	function handleClose() {
@@ -41,6 +18,8 @@
 	}
 
     const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), details, [tabindex]:not([tabindex="-1"])';
+
+    let dialogRootElement: HTMLDivElement; // Reference to the dialog container
 
     // Function to handle keydown events
     function handleKeydown(event: KeyboardEvent) {
@@ -135,68 +114,14 @@
 	<div class="dialog-root" bind:this={dialogRootElement}>
 
 
-		<DialogHeader />
 
-
-		<div 
-            class="dialog-root-scroll-wrapper" 
-            bind:this={scrollWrapperElement} 
-            on:scroll={() => currentScrollTop = scrollWrapperElement.scrollTop}
-        >
-			<DialogAnimatedBackground scrollPosition={currentScrollTop} />
-
-            <DialogSection hasPadding={true}>
-                <DialogTitle title="FRESHA" subcopy="Helping health and beauty businesses succeed."/>
-                <DialogIntro introText="In my time at Fresha I founded and led a multidisciplinary team to designers and impliment a design system across web and iOS and Android platforms."/>
-            </DialogSection>
-
-            <DialogSection hasPadding={true}>
-                <DialogDetails/>
-            </DialogSection>
-
-            <DialogSection hasPadding={true}>
-                <DialogPrefix variant="image" src={placeholder} alt="This is an image" aspectRatio="1/1" />
-                <DialogText/>
-            </DialogSection>
-
-            <DialogSection hasPadding={true}>
-                <DialogPrefix variant="subtitle" text="flexible component composition is key."/>
-                <Image src={placeholder} alt="placeholder"/>
-            </DialogSection>
-            
-            <DialogSection hasPadding={true}>
-                <DialogPrefix variant="subtitle" text="flexible component composition is key."/>
-                <Image src={placeholder} alt="placeholder"/>
-            </DialogSection>
-
-            <DialogSection hasPadding={true} variant="full-width">
-                <Image src={placeholder} alt="placeholder"/>
-            </DialogSection>
-
-            <DialogSection hasPadding={true}>
-                <DialogPrefix variant="header" text="Principles"/>
-                <DialogPrinciples/>
-            </DialogSection>
-
-            <DialogSection hasPadding={true}>
-                <DialogInsight/>
-            </DialogSection>
-
-
-
-            <DialogSection hasPadding={true}>
-                 <DialogPrefix variant="image" src={placeholder} alt="This is an image" aspectRatio="1/1" />
-                <Image src={placeholder} alt="placeholder"/>   
-            </DialogSection>
-
-            <DialogSection hasPadding={true} variant="full-width">
-                 <DialogFooter/>   
-            </DialogSection>
-
-            
-            
-
-		</div>
+        
+        {#if $dialogManager.activeDialogId === 'freshaDialog'}
+            <FreshaDialog/>
+        {:else if $dialogManager.activeDialogId === 'shellDialog'}
+            <ShellDialog/>
+        {/if}
+			
 	</div>
 {/if}
 
@@ -214,12 +139,6 @@
 		cursor: default; 
 	}
 
-	.dialog-root-scroll-wrapper {
-		width: 100%;
-		overflow-y: auto; /* Enable vertical scrolling for content */
-		scrollbar-width: none;
-        padding-top: 124px;
-	}
 
 	.dialog-root {
 		position: fixed; /* Position independently */
