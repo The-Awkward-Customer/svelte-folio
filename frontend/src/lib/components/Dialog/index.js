@@ -2,6 +2,7 @@ export { default as DialogAnimatedBackground } from './DialogAnimatedBackground.
 export { default as DialogDetails } from './DialogDetails.svelte';
 export { default as DialogFooter } from './DialogFooter.svelte';
 export { default as DialogHeader } from './DialogHeader.svelte';
+export { default as DialogImage } from './DialogImage.svelte';
 export { default as DialogInsight } from './DialogInsight.svelte';
 export { default as DialogIntro } from './DialogIntro.svelte';
 export { default as DialogPrefix } from './DialogPrefix.svelte';

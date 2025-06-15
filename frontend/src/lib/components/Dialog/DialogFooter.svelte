@@ -1,48 +1,70 @@
-<!-- DialogHeader.svelte -->
+<!-- DialogFooter.svelte -->
 
 <script lang="ts">
-import { dialogManager } from '$lib/stores/dialogManager';
+	import { dialogManager } from '$lib/stores/dialogManager';
+	import type { GridArea } from './DialogSection.svelte';
+	import Button from '../actions/Button.svelte';
 
-interface DialogFooterProps{
-    label?: string
-}
+	interface DialogFooterProps {
+		label?: string;
+		gridArea?: GridArea;
+		variant?: 'ghost' | 'strong';
+	}
 
-let { label="Click me"} : DialogFooterProps = $props(); 
+	const {
+		label = 'Close Dialog',
+		gridArea = 'footer',
+		variant = 'strong'
+	}: DialogFooterProps = $props();
 
-function closeDialog() {
-        console.log("closed Dialog")
-        dialogManager.closeDialog();
-    }
-
+	function closeDialog() {
+		console.log('closed Dialog');
+		dialogManager.closeDialog();
+	}
 </script>
 
-<div class="footer-section-root">
-         <button type="button" onclick={closeDialog}>{label}</button>
+<div class="footer-section-root" style:--grid-area={gridArea}>
+	<Button
+		as="link"
+		label="View Graphics"
+		iconName="placeholder"
+		variant="inverse"
+		href="/graphics"
+	/>
+	<Button as="button" {label} variant="inverse" handleClick={closeDialog} fullWidth={true} />
 </div>
 
-
 <style>
+	.footer-section-root {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		justify-content: center;
+		align-items: stretch;
+		gap: 1rem;
+		/* Visual debugging - pink background with opacity */
+		background-color: rgba(255, 192, 203, 0.3);
+		border: 2px solid rgba(255, 192, 203, 0.6);
+		grid-area: var(--grid-area);
+		/* Mobile first - base padding */
+		padding-top: var(--spc-300);
+		padding-bottom: var(--spc-300);
+		padding-left: var(--spc-400);
+		padding-right: var(--spc-400);
+	}
 
-    .footer-section-root{
-        display: flex;
-    width: 100%;
-    justify-content: center;
-    align-content: center;
-    background-color: aqua;
-    grid-area:  trailing ;
-    }
+	/* Desktop breakpoint at 896px */
+	@media (min-width: 896px) {
+		.footer-section-root {
+			flex-direction: row;
+			padding-top: var(--spc-400);
+			padding-bottom: var(--spc-400);
+			padding-left: var(--spc-500);
+			padding-right: var(--spc-500);
+		}
 
-    button{
-        width: 100%;
-        font-family:var(--font-family-main);
-        font-size: 24px;
-        padding-top: var(--spc-300);
-        padding-bottom: var(--spc-300);
-        color: white;
-        background-color: rgb(var(--color-bg-inverse));
-        border-radius:var(--bdr-radius-medium);
-        border: none;
-    }
-
+		.footer-section-root :global(.full-width) {
+			flex: 1;
+		}
+	}
 </style>
-
