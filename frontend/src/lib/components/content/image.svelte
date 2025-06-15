@@ -1,19 +1,17 @@
 <script lang="ts">
-
-	interface ImageProps{
-		src: String;
-		alt: String;
-		aspectRatio: string | undefined;
+	interface ImageProps {
+		src: string;
+		alt: string;
+		aspectRatio?: string;
+		gridArea?: string;
 	}
 
-	let { src, alt, aspectRatio = "16/9"} = $props();
-
-	
+	let { src, alt, aspectRatio = '16/9', gridArea } = $props();
 </script>
 
 <!-- Image component -->
 
-<div class="image-container" style:aspect-ratio={aspectRatio}>
+<div class="image-container" style:aspect-ratio={aspectRatio} style:grid-area={gridArea}>
 	<img {src} {alt} />
 </div>
 
@@ -28,8 +26,7 @@
 		display: block; /* Remove extra space below image */
 		width: 100%;
 		height: auto;
-        border-radius: var(--bdr-radius-medium);
+		border-radius: var(--bdr-radius-medium);
 		object-fit: cover; /* Cover the container, cropping if necessary */
 	}
 </style>
-
