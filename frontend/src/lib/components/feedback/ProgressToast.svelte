@@ -1,46 +1,56 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import type { DialogId } from '$lib/config/dialogRegistry.js';
 
 	interface ProgressToastProps {
-		currentProgress: number;
-		totalItems: number;
-		hasErrors?: boolean;
-		errorCount?: number;
+		dialogHistory: DialogId[];
+		availableDialogs: readonly DialogId[];
+		currentDialog: DialogId | null;
 		label?: string;
-		showProgressBar?: boolean;
 		animateOnView?: boolean;
 	}
 
 	const {
-		currentProgress,
-		totalItems,
-		hasErrors = false,
-		errorCount = 0,
+		dialogHistory,
+		availableDialogs,
+		currentDialog,
 		label = 'Progress',
-		showProgressBar = false,
 		animateOnView = false
 	}: ProgressToastProps = $props();
 
-	// Derived values for display
-	const progressText = $derived(`${label}: ${currentProgress}/${totalItems}`);
-	const hasErrorsToShow = $derived(hasErrors && errorCount > 0);
-	const progressPercentage = $derived((currentProgress / totalItems) * 100);
-
 	// State for animation
 	let isInView = $state(false);
-	let progressBarContainer: HTMLDivElement | undefined;
+	let progressContainer = $state<HTMLDivElement | undefined>(undefined);
 	let observer: IntersectionObserver | undefined;
 
+	// Track which dots have been animated
+	let animatedDots = $state(new Set<DialogId>());
+
+	// Check if a dialog has been visited
+	function isVisited(dialogId: DialogId): boolean {
+		return dialogHistory.includes(dialogId);
+	}
+
+	// Check if a dot should animate
+	function shouldAnimate(dialogId: DialogId): boolean {
+		return isInView && isVisited(dialogId) && !animatedDots.has(dialogId);
+	}
+
+	// Mark a dot as animated
+	function markAnimated(dialogId: DialogId) {
+		animatedDots = new Set([...animatedDots, dialogId]);
+	}
+
 	onMount(() => {
-		if (animateOnView && showProgressBar && progressBarContainer) {
+		if (animateOnView && progressContainer) {
 			observer = new IntersectionObserver(
 				(entries) => {
 					entries.forEach((entry) => {
 						if (entry.isIntersecting) {
-							// Add 0.3s delay before triggering animation
+							// Add delay before showing
 							setTimeout(() => {
 								isInView = true;
-							}, 400); // 400ms delay
+							}, 400);
 						}
 					});
 				},
@@ -50,7 +60,7 @@
 				}
 			);
 
-			observer.observe(progressBarContainer);
+			observer.observe(progressContainer);
 		} else if (!animateOnView) {
 			// If not animating on view, show immediately with delay
 			setTimeout(() => {
@@ -65,42 +75,39 @@
 		};
 	});
 
-	// Reset animation when progress resets to 0
+	// Animate dots when they become visited
 	$effect(() => {
-		if (currentProgress === 0) {
-			isInView = false;
-			// Trigger re-animation after a brief delay
-			setTimeout(() => {
-				if (animateOnView && showProgressBar) {
-					isInView = true;
+		if (isInView) {
+			availableDialogs.forEach((dialogId, index) => {
+				if (shouldAnimate(dialogId)) {
+					// Stagger the animations
+					setTimeout(() => {
+						markAnimated(dialogId);
+					}, index * 100);
 				}
-			}, 50);
+			});
 		}
 	});
 </script>
 
-{#if currentProgress > 0}
-	<div class="progress-toast" bind:this={progressBarContainer}>
-		<div class="progress-content">
-			<span class="progress-text">{progressText}</span>
-			{#if hasErrorsToShow}
-				<span class="error-indicator">
-					({errorCount} failed)
-				</span>
-			{/if}
-		</div>
-
-		{#if showProgressBar}
-			<div class="progress-bar-container">
+<div class="progress-toast" bind:this={progressContainer}>
+	<div class="progress-content">
+		<span class="progress-text">{label}:</span>
+		<div class="progress-dots">
+			{#each availableDialogs as dialogId, index}
 				<div
-					class="progress-bar"
-					class:animate={isInView}
-					style:--progress-width="{progressPercentage}%"
-				></div>
-			</div>
-		{/if}
+					class="progress-dot"
+					class:visited={isVisited(dialogId)}
+					class:current={currentDialog === dialogId}
+					class:animated={animatedDots.has(dialogId)}
+					style="--dot-index: {index}"
+				>
+					<div class="dot-inner"></div>
+				</div>
+			{/each}
+		</div>
 	</div>
-{/if}
+</div>
 
 <style>
 	.progress-toast {
@@ -125,41 +132,95 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		flex-wrap: nowrap;
+		gap: var(--spc-300);
 	}
 
 	.progress-text {
 		font-family: var(--font-family-alt);
-		display: flex;
 		font-weight: var(--fw-semibold);
 		white-space: nowrap;
 	}
 
-	.error-indicator {
-		color: rgba(var(--color-error), 0.8);
-		font-weight: var(--fw-medium);
-		font-size: var(--fs-150);
+	.progress-dots {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: var(--spc-200);
 	}
 
-	.progress-bar-container {
-		width: 100%;
-		height: 8px;
-		background-color: rgba(var(--fg-positive) / 0.2);
-		border-radius: var(--bdr-radius-small);
-		overflow: hidden;
+	.progress-dot {
+		width: 12px;
+		height: 12px;
+		position: relative;
 		/* Visual debugging - light blue background with opacity */
-		border: 1px solid rgba(var(--bg-positive) / 1);
+		background-color: rgba(135, 206, 235, 0.1);
+		border-radius: 50%;
 	}
 
-	.progress-bar {
+	.dot-inner {
+		width: 100%;
 		height: 100%;
-		background-color: rgba(var(--fg-positive) / 1);
-		border-radius: var(--bdr-radius-small);
-		width: 0%;
-		transition: width 0.4s ease-in-out;
+		border-radius: 50%;
+		background-color: rgba(var(--fg-positive) / 0.2);
+		border: 2px solid rgba(var(--fg-positive) / 0.4);
+		transition: all 0.3s ease-in-out;
+		transform: scale(1);
 	}
 
-	.progress-bar.animate {
-		width: var(--progress-width);
+	/* Visited state - filled dot */
+	.progress-dot.visited .dot-inner {
+		background-color: rgba(var(--fg-positive) / 1);
+		border-color: rgba(var(--fg-positive) / 1);
+	}
+
+	/* Current dialog - pulsing effect */
+	.progress-dot.current .dot-inner {
+		animation: pulse 1.5s ease-in-out infinite;
+	}
+
+	/* Animation when dot becomes visited */
+	.progress-dot.visited.animated .dot-inner {
+		animation: fillDot 0.4s ease-out forwards;
+	}
+
+	@keyframes fillDot {
+		0% {
+			transform: scale(0.8);
+			opacity: 0.5;
+		}
+		50% {
+			transform: scale(1.2);
+		}
+		100% {
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+
+	@keyframes pulse {
+		0% {
+			transform: scale(1);
+			opacity: 1;
+		}
+		50% {
+			transform: scale(1.1);
+			opacity: 0.8;
+		}
+		100% {
+			transform: scale(1);
+			opacity: 1;
+		}
+	}
+
+	/* Mobile adjustments */
+	@media (max-width: 896px) {
+		.progress-dot {
+			width: 10px;
+			height: 10px;
+		}
+
+		.progress-dots {
+			gap: var(--spc-150);
+		}
 	}
 </style>

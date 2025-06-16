@@ -31,8 +31,21 @@
 				? `${nextDialogTitle}`
 				: 'Next Case Study'
 	);
-	const availableDialogsCount = $derived(
-		COMPOSED_DIALOGS.length - dialogManager.state.failedDialogs.size
+	const availableDialogsCount = $derived(COMPOSED_DIALOGS.length);
+
+	// Calculate unique dialogs viewed (handles revisits correctly)
+	const uniqueDialogsViewed = $derived(new Set(dialogManager.dialogHistory).size);
+
+	// Calculate progress values for animation
+	const currentProgress = $derived(uniqueDialogsViewed);
+
+	// The issue: when switching dialogs, we need to know what the progress was BEFORE adding the new dialog
+	// But by the time this component renders, the new dialog is already in the history
+	// So we need to look at the history length from before the current dialog was added
+	const previousProgress = $derived(
+		dialogManager.dialogHistory.length <= 1
+			? undefined
+			: new Set(dialogManager.dialogHistory.slice(0, -1)).size
 	);
 
 	function handleLeftButtonClick() {
@@ -50,7 +63,6 @@
 				timestamp: new Date().toISOString(),
 				totalDialogs: COMPOSED_DIALOGS.length,
 				completedHistory: dialogManager.dialogHistory,
-				failedDialogs: Array.from(dialogManager.state.failedDialogs),
 				availableDialogs: availableDialogsCount,
 				sessionDetails: {
 					cycleStartTime: dialogManager.getCycleStartTime(),
@@ -124,12 +136,10 @@
 <div class="footer-section-root" style:--grid-area={gridArea}>
 	<!-- Progress Toast Component -->
 	<ProgressToast
-		currentProgress={dialogManager.dialogHistory.length}
-		totalItems={availableDialogsCount}
-		hasErrors={dialogManager.hasErrors}
-		errorCount={dialogManager.state.failedDialogs.size}
-		label="Total"
-		showProgressBar={true}
+		dialogHistory={dialogManager.dialogHistory}
+		availableDialogs={COMPOSED_DIALOGS}
+		currentDialog={dialogManager.currentDialog}
+		label="Progress"
 		animateOnView={true}
 	/>
 	<div class="footer-section-content">
