@@ -10,9 +10,7 @@
 		DialogIntro,
 		DialogPrefix,
 		DialogPrinciples,
-		DialogTitle,
-		FreshaDialog,
-		DialogRoot
+		DialogTitle
 	} from './index';
 	import DialogImage from './DialogImage.svelte';
 

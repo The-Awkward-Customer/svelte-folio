@@ -43,7 +43,6 @@
 	}
 
 	h2,
-	h3,
 	div {
 		color: rgb(var(--fg-text-primary));
 	}

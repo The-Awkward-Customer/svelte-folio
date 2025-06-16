@@ -4,14 +4,13 @@
 	import { TextCard, ImageCard, VideoCard } from '$lib/components/cards';
 	import FilterGroup from '$lib/components/filters/FilterGroup.svelte';
 	import { shuffleArray } from '$lib/utils/shuffle.js';
-	import { dialogManager } from '$lib/stores/dialogManager';
+	import { dialogManager } from '$lib/stores/dialogManager.svelte.js';
 	import DialogRoot from '$lib/components/Dialog/DialogRoot.svelte';
 
 	let P: string = 'GRAPHICS';
 	console.log(`${P} rendered!`);
 
 	import exampleImageOne from '$lib/assets/exampleImage1.png';
-	import IconRefresh from '$lib/components/primatives/IconRefresh.svelte';
 	const ExampleVid = '/videos/ExampleVid.webm';
 
 	const allGridItems = [
@@ -183,10 +182,10 @@
 
 	// Dialog functions
 	function openFreshaDialog() {
-		dialogManager.showDialog('freshaDialog');
+		dialogManager.showDialog('fresha');
 	}
 	function openShellDialog() {
-		dialogManager.showDialog('shellDialog');
+		dialogManager.showDialog('shell');
 	}
 </script>
 

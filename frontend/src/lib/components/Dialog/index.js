@@ -11,5 +11,5 @@ export { default as DialogRoot } from './DialogRoot.svelte';
 export { default as DialogSection } from './DialogSection.svelte';
 export { default as DialogText } from './DialogText.svelte';
 export { default as DialogTitle } from './DialogTitle.svelte';
-export { default as FreshaDialog } from './FreshaDialog.svelte';
+export { default as Fresha } from './Fresha.svelte';
 export { default as ImageGrid } from './ImageGrid.svelte';

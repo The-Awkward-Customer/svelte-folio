@@ -55,14 +55,14 @@
 	}
 
 	/* Visual debugging - add colored backgrounds to all grid children */
-	.section-grid > :global(*:not(button)) {
+	/* .section-grid > :global(*:not(button)) {
 		border: 1px solid rgba(173, 216, 230, 0.3);
 		background-color: rgba(173, 216, 230, 0.1);
 	}
 	.section-grid > :global(*:not(button):nth-child(odd)) {
 		border: 1px solid rgba(255, 192, 203, 0.3);
 		background-color: rgba(255, 192, 203, 0.1);
-	}
+	} */
 
 	.has-padding {
 		padding-left: 24px;

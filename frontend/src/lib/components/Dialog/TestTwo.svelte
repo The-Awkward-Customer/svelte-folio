@@ -11,8 +11,6 @@
 		DialogPrefix,
 		DialogPrinciples,
 		DialogTitle,
-		FreshaDialog,
-		DialogRoot
 	} from './index';
 	import DialogImage from './DialogImage.svelte';
 
@@ -22,7 +20,7 @@
 
 	const freshaData = {
 		title: {
-			title: 'Fresha',
+			title: 'DialogTwo',
 			subcopy: 'Empowering health and beauty for everyone',
 			introText:
 				'During my time at Fresha, I founded and led a multidisciplinary team of designers and engineers to develop a design system across Web, iOS, and Android platforms. This resulted in a best-in-class user experience and highly automated system that catalyzed rapid global growth.'

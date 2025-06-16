@@ -4,25 +4,13 @@
 
 	// components
 	import { page } from '$app/stores';
-	import { dialogManager } from '$lib/stores/dialogManager';
+	import { dialogManager } from '$lib/stores/dialogManager.svelte.js';
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
 	import { Introduction, Experience, Process } from '$lib/components/accordian/accordionItems';
 
 	//Page Content
 	let HeroIntroText: string =
 		'Currently based in sunny Madrid, and available for new projects in Q3 2025.';
-
-	function openTheDialog() {
-		console.log('Opening dialog...');
-		dialogManager.showDialog('mainPageDialog', { message: 'Hello from the page!' });
-	}
-
-	function openFreshaDialog() {
-		dialogManager.showDialog('freshaDialog');
-	}
-	function openShellDialog() {
-		dialogManager.showDialog('shellDialog');
-	}
 
 	$: currentPath = $page.url.pathname;
 </script>
