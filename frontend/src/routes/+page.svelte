@@ -4,7 +4,7 @@
 
 	// components
 	import { page } from '$app/stores';
-	import { dialogManager } from '$lib/stores/dialogManager';
+	import { dialogManager } from '$lib/stores/dialogManager.svelte.js';
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
 	import { Introduction, Experience, Process } from '$lib/components/accordian/accordionItems';
 
@@ -12,20 +12,16 @@
 	let HeroIntroText: string =
 		'Currently based in sunny Madrid, and available for new projects in Q3 2025.';
 
-	function openTheDialog() {
-		console.log('Opening dialog...');
-		dialogManager.showDialog('mainPageDialog', { message: 'Hello from the page!' });
-	}
-
-	function openFreshaDialog() {
-		dialogManager.showDialog('freshaDialog');
-	}
-	function openShellDialog() {
-		dialogManager.showDialog('shellDialog');
-	}
-
 	$: currentPath = $page.url.pathname;
 </script>
+
+<svelte:head>
+	<title>Peter Abbott - Interactive Designer & Developer</title>
+	<meta
+		name="description"
+		content="Interactive designer and frontend developer based in Madrid. Available for UI/UX design, development, and consulting projects in Q3 2025."
+	/>
+</svelte:head>
 
 <ol>
 	<!-- Test with direct color first -->

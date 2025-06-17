@@ -1,14 +1,16 @@
 <!-- DialogRoot.svelte -->
 <script lang="ts">
 	import { onMount, onDestroy, tick } from 'svelte';
-	import { dialogManager } from '$lib/stores/dialogManager';
+	import { dialogManager } from '$lib/stores/dialogManager.svelte.js';
 	import { browser } from '$app/environment'; // Import browser
 
-	import FreshaDialog from './FreshaDialog.svelte';
-	import ShellDialog from './ShellDialog.svelte';
+	import Fresha from './Fresha.svelte';
+	import TestOne from './TestOne.svelte';
+	import TestTwo from './TestTwo.svelte';
+	import TestThree from './TestThree.svelte';
 
 	// Reactive statement to check if this dialog should be active
-	$: isActive = $dialogManager.activeDialogId !== null;
+	const isActive = $derived(dialogManager.currentDialog !== null);
 
 	// Function to close the dialog via the store
 	function handleClose() {
@@ -18,7 +20,7 @@
 	const FOCUSABLE_SELECTOR =
 		'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), details, [tabindex]:not([tabindex="-1"])';
 
-	let dialogRootElement: HTMLDivElement; // Reference to the dialog container
+	let dialogRootElement: HTMLDivElement | undefined = $state(); // Reference to the dialog container
 
 	// Function to handle keydown events
 	function handleKeydown(event: KeyboardEvent) {
@@ -93,7 +95,7 @@
 	});
 
 	// Freeze body scroll and manage focus when dialog is active
-	$: {
+	$effect(() => {
 		if (browser) {
 			// Replace typeof check with browser check
 			document.body.classList.toggle('dialog-open', isActive);
@@ -112,19 +114,23 @@
 				});
 			}
 		}
-	}
+	});
 </script>
 
 {#if isActive}
 	<!-- Backdrop: Full screen, closes dialog on click -->
-	<button class="dialog-backdrop" on:click={handleClose} aria-label="Close dialog"></button>
+	<button class="dialog-backdrop" onclick={handleClose} aria-label="Close dialog"></button>
 
 	<!-- Content Area: Centered on top of backdrop -->
 	<div class="dialog-root" bind:this={dialogRootElement}>
-		{#if $dialogManager.activeDialogId === 'freshaDialog'}
-			<FreshaDialog />
-		{:else if $dialogManager.activeDialogId === 'shellDialog'}
-			<ShellDialog />
+		{#if dialogManager.currentDialog === 'fresha'}
+			<Fresha />
+		{:else if dialogManager.currentDialog === 'testOne'}
+			<TestOne />
+		{:else if dialogManager.currentDialog === 'testTwo'}
+			<TestTwo />
+		{:else if dialogManager.currentDialog === 'testThree'}
+			<TestThree />
 		{/if}
 	</div>
 {/if}

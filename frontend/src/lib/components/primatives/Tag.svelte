@@ -26,7 +26,7 @@
 		text-transform: uppercase;
 		background-color: rgba(0, 0, 0, 0);
 		color: rgb(var(--fg-text-inverse));
-		border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+		border-bottom: 1px solid rgb(var(--fg-text-inverse));
 		white-space: nowrap;
 	}
 

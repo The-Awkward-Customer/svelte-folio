@@ -1,7 +1,7 @@
 <!-- DialogHeader.svelte -->
 
 <script lang="ts">
-	import { dialogManager } from '$lib/stores/dialogManager';
+	import { dialogManager } from '$lib/stores/dialogManager.svelte.js';
 	import IconButton from '../actions/IconButton.svelte';
 
 	function closeDialog() {

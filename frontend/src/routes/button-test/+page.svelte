@@ -1,10 +1,37 @@
 <script lang="ts">
 	import Button from '$lib/components/actions/Button.svelte';
+	import { dialogManager } from '$lib/stores/dialogManager.svelte.js';
+	import DialogRoot from '$lib/components/Dialog/DialogRoot.svelte';
 
 	function handleButtonClick() {
 		alert('Button clicked!');
 	}
+
+	function openFreshaDialog() {
+		dialogManager.showDialog('fresha');
+	}
+
+	function openTestDialogOne() {
+		dialogManager.showDialog('testOne');
+	}
+
+	function openTestDialogTwo() {
+		dialogManager.showDialog('testTwo');
+	}
+
+	function resetDialogCycle() {
+		dialogManager.devReset();
+		console.log('Dialog cycle reset');
+	}
 </script>
+
+<svelte:head>
+	<title>Button Component Test - Peter Abbott</title>
+	<meta
+		name="description"
+		content="Interactive testing page for button components, variants, and dialog functionality. Development and testing environment for UI components."
+	/>
+</svelte:head>
 
 <div class="test-container">
 	<h1>Button Component Test</h1>
@@ -47,7 +74,7 @@
 			<Button
 				as="button"
 				label="Save"
-				iconName="checksfilled"
+				iconName="checks_filled"
 				variant="inverse"
 				handleClick={handleButtonClick}
 			/>
@@ -128,7 +155,7 @@
 			<Button
 				as="button"
 				label="Full Width with Icon"
-				iconName="checksfilled"
+				iconName="checks_filled"
 				variant="primary"
 				fullWidth={true}
 				handleClick={handleButtonClick}
@@ -158,7 +185,48 @@
 			/>
 		</div>
 	</section>
+
+	<section class="test-section">
+		<h2>Dialog Cycling Test</h2>
+		<p>
+			Test the new dialog cycling feature. Open any dialog and use the "Next Dialog" button to cycle
+			through all available dialogs.
+		</p>
+
+		<div class="button-group">
+			<Button
+				as="button"
+				label="Open Fresha Dialog"
+				variant="primary"
+				handleClick={openFreshaDialog}
+			/>
+
+			<Button
+				as="button"
+				label="Open Test Dialog One"
+				variant="primary"
+				handleClick={openTestDialogOne}
+			/>
+
+			<Button
+				as="button"
+				label="Open Test Dialog Two"
+				variant="primary"
+				handleClick={openTestDialogTwo}
+			/>
+
+			<Button
+				as="button"
+				label="Reset Dialog Cycle (Dev)"
+				variant="inverse"
+				handleClick={resetDialogCycle}
+			/>
+		</div>
+	</section>
 </div>
+
+<!-- Dialog Root Component -->
+<DialogRoot />
 
 <style>
 	.test-container {
@@ -189,5 +257,19 @@
 	h2 {
 		color: rgba(30, 144, 255, 0.8);
 		margin-bottom: 1rem;
+	}
+
+	.dialog-status {
+		margin-top: 1.5rem;
+		padding: 1rem;
+		background-color: rgba(255, 192, 203, 0.1);
+		border-radius: 6px;
+		border: 1px solid rgba(255, 192, 203, 0.3);
+	}
+
+	.dialog-status p {
+		margin: 0.5rem 0;
+		font-size: 0.9rem;
+		color: rgba(var(--color-txt-primary), 0.8);
 	}
 </style>

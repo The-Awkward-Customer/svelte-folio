@@ -53,7 +53,7 @@
 <style>
 	.text-card {
 		display: flex;
-		flex-direction: column;
+		flex-direction: column-reverse;
 		justify-content: space-between;
 		padding-top: var(--spc-200);
 		padding-left: var(--spc-300);
@@ -71,11 +71,10 @@
 	}
 
 	h2 {
-		color: #333;
+		color: rgb(var(--color-txt-primary));
 	}
 
 	p {
-		color: #666;
-		line-height: 1.5;
+		color: rgb(var(--color-txt-primary));
 	}
 </style>
