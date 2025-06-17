@@ -62,7 +62,7 @@
 	<div class="progress-flag">
 		<span>{progress}</span>
 		{#if isComplete}
-			<Icon name="checksfilled" fill="currentColor" />
+			<Icon name="checks_filled" fill="currentColor" />
 		{/if}
 	</div>
 {/snippet}
