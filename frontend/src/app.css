@@ -258,6 +258,8 @@ select {
   --bp-mobile-min: 768px;
   --bp-tablet: 1024px;
   --bp-desktop: 1440px;
+
+  --brand-fresha-accent: 105, 80, 243; /* #694CF3 */
 }
 
 /* Light theme (default) */

@@ -17,7 +17,8 @@ export type IconName =
     | 'placeholder'
     | 'plus'
     | 'close'
-    | 'checksfilled';
+    | 'checks_filled'
+    | 'diamond_filled'
 
 
 

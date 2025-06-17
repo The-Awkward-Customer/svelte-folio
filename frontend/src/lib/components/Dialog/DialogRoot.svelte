@@ -5,9 +5,9 @@
 	import { browser } from '$app/environment'; // Import browser
 
 	import Fresha from './Fresha.svelte';
-	import Shell from './Shell.svelte';
 	import TestOne from './TestOne.svelte';
 	import TestTwo from './TestTwo.svelte';
+	import TestThree from './TestThree.svelte';
 
 	// Reactive statement to check if this dialog should be active
 	const isActive = $derived(dialogManager.currentDialog !== null);
@@ -125,12 +125,12 @@
 	<div class="dialog-root" bind:this={dialogRootElement}>
 		{#if dialogManager.currentDialog === 'fresha'}
 			<Fresha />
-		{:else if dialogManager.currentDialog === 'shell'}
-			<Shell />
 		{:else if dialogManager.currentDialog === 'testOne'}
 			<TestOne />
 		{:else if dialogManager.currentDialog === 'testTwo'}
 			<TestTwo />
+		{:else if dialogManager.currentDialog === 'testThree'}
+			<TestThree />
 		{/if}
 	</div>
 {/if}

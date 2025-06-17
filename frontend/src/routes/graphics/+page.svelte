@@ -59,9 +59,9 @@
 			component: TextCard,
 			size: '4-2',
 			props: {
-				title: 'Featured Two',
+				title: 'Fresha Case Study',
 				content: 'This is a demo of our grid layout system!',
-				bgColor: '--bg-primary',
+				bgColor: '--brand-fresha-accent',
 				tag: 'Case Study',
 				button: 'primary',
 				handleClick: openFreshaDialog
@@ -122,11 +122,12 @@
 			component: TextCard,
 			size: '4-2',
 			props: {
-				title: 'Featured One',
+				title: 'Test Dialog',
 				content: 'This is a demo of our grid layout system!',
 				bgColor: '--bg-primary',
 				tag: 'Case Study',
-				button: 'primary'
+				button: 'primary',
+				handleClick: openThirdDialog
 			}
 		},
 		{
@@ -184,10 +185,18 @@
 	function openFreshaDialog() {
 		dialogManager.showDialog('fresha');
 	}
-	function openShellDialog() {
-		dialogManager.showDialog('shell');
+	function openThirdDialog() {
+		dialogManager.showDialog('testThree');
 	}
 </script>
+
+<svelte:head>
+	<title>Graphics & Portfolio - Peter Abbott</title>
+	<meta
+		name="description"
+		content="An assorted collection of graphical artefacts from various design and development projects spanning 2016-2025. UI/UX design, motion graphics, and case studies."
+	/>
+</svelte:head>
 
 <section>
 	<div class="header-root">

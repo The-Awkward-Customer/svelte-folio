@@ -1,12 +1,13 @@
 <!-- DialogFooter.svelte -->
 
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { dialogManager } from '$lib/stores/dialogManager.svelte.js';
 	import { COMPOSED_DIALOGS, DIALOG_METADATA } from '$lib/config/dialogRegistry.js';
 	import type { GridArea } from './DialogSection.svelte';
 	import Button from '../actions/Button.svelte';
 	import ProgressToast from '../feedback/ProgressToast.svelte';
-	import IconButton from '../actions/IconButton.svelte';
+	import Icon from '../primatives/Icon.svelte';
 
 	interface DialogFooterProps {
 		label?: string;
@@ -28,7 +29,7 @@
 		dialogManager.cycleCompleted
 			? 'Lets chat ❤️'
 			: nextDialogTitle
-				? `${nextDialogTitle}`
+				? `Up Next${nextDialogTitle}`
 				: 'Next Case Study'
 	);
 	const availableDialogsCount = $derived(COMPOSED_DIALOGS.length);
@@ -84,13 +85,12 @@
 		}
 	}
 
-	// Placeholder for future view transition logic
+	// Navigate to contact page when cycle is complete
 	function triggerCycleCompletionFlow() {
-		// This function will be replaced with actual view navigation
-		console.log('🎉 Triggering cycle completion flow - ready for view transition');
+		console.log('🎉 Dialog cycle completed - navigating to contact page');
 
-		// Future implementation will navigate to new view
-		// For now, provide hook point for next development phase
+		// Navigate to contact page using SvelteKit's goto
+		goto('/contact');
 	}
 
 	// Simple keyboard shortcuts for dev mode
@@ -127,8 +127,11 @@
 {#snippet SuccessMessage()}
 	{#if dialogManager.cycleCompleted}
 		<div class="dialog-completion-message">
-			<p>All available case studies have been cycled through.</p>
-			<p>Click the button below to start a new conversation.</p>
+			<Icon name="diamond_filled" size={32} fill="--fg-positive" />
+			<div>
+				<span>COMPLETED</span>
+				<p>Click the button below to start a new conversation.</p>
+			</div>
 		</div>
 	{/if}
 {/snippet}
@@ -158,7 +161,7 @@
 <style>
 	.footer-section-root {
 		display: flex;
-		flex-direction: column;
+		flex-direction: column-reverse;
 		width: 100%;
 		justify-content: center;
 		align-items: stretch;
@@ -180,16 +183,25 @@
 	.dialog-completion-message {
 		display: flex;
 		flex-direction: column;
-		align-items: stretch;
-		justify-content: center;
-		gap: 0.5em;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 1em;
 		font-size: var(--fs-200);
 		color: rgb(var(--color-txt-primary));
 		text-align: center;
-		padding: 1em;
+		padding: 2em;
 		background-color: rgba(var(--bg-inverse) / 0.8);
 		border-radius: var(--bdr-radius-small);
-		box-shadow: inset 0 0 0 1px rgba(var(--bdr-primary) / 1);
+		box-shadow: inset 0 0 0 1px rgba(var(--bdr-primary) / 0);
+	}
+	.dialog-completion-message span {
+		font-weight: var(--fw-bold);
+		font-size: var(--fs-300);
+	}
+	.dialog-completion-message p {
+		font-size: var(--fs-200);
+		color: rgba(var(--color-txt-secondary), 0.8);
+		margin: 0;
 	}
 
 	/* Desktop breakpoint at 896px */
@@ -203,7 +215,7 @@
 		.footer-section-content {
 			flex-direction: column;
 			justify-content: stretch;
-			gap: 0.5em;
+			gap: 1em;
 		}
 	}
 </style>

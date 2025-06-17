@@ -92,7 +92,7 @@
 
 <div class="progress-toast" bind:this={progressContainer}>
 	<div class="progress-content">
-		<span class="progress-text">{label}:</span>
+		<!-- <span class="progress-text">{label}</span> -->
 		<div class="progress-dots">
 			{#each availableDialogs as dialogId, index}
 				<div
@@ -122,9 +122,9 @@
 		align-items: center;
 		justify-content: center;
 		gap: var(--spc-200);
-		background-color: rgba(var(--bg-inverse) / 1);
+		background-color: rgba(var(--bg-inverse) / 0);
 		min-width: 250px;
-		box-shadow: inset 0 0 0 1px rgba(var(--bdr-primary) / 1);
+		box-shadow: inset 0 0 0 1px rgba(var(--bdr-primary) / 0);
 	}
 
 	.progress-content {
@@ -135,34 +135,29 @@
 		gap: var(--spc-300);
 	}
 
-	.progress-text {
-		font-family: var(--font-family-alt);
-		font-weight: var(--fw-semibold);
-		white-space: nowrap;
-	}
-
 	.progress-dots {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		gap: var(--spc-200);
+		gap: var(--spc-100);
+		background-color: rgba(var(--bg-positive) / 0.8);
+		padding: var(--spc-100);
+		border-radius: var(--bdr-radius-pill);
 	}
 
 	.progress-dot {
-		width: 12px;
-		height: 12px;
+		width: 16px;
+		height: 8px;
 		position: relative;
-		/* Visual debugging - light blue background with opacity */
-		background-color: rgba(135, 206, 235, 0.1);
-		border-radius: 50%;
+		border-radius: var(--bdr-radius-pill);
 	}
 
 	.dot-inner {
 		width: 100%;
 		height: 100%;
-		border-radius: 50%;
+		border-radius: var(--bdr-radius-pill);
 		background-color: rgba(var(--fg-positive) / 0.2);
-		border: 2px solid rgba(var(--fg-positive) / 0.4);
+		border: 1px solid rgba(var(--fg-positive) / 0.4);
 		transition: all 0.3s ease-in-out;
 		transform: scale(1);
 	}
@@ -214,13 +209,6 @@
 
 	/* Mobile adjustments */
 	@media (max-width: 896px) {
-		.progress-dot {
-			width: 10px;
-			height: 10px;
-		}
-
-		.progress-dots {
-			gap: var(--spc-150);
-		}
+		/*  */
 	}
 </style>

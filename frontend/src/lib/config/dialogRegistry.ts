@@ -1,9 +1,9 @@
 // Define all available dialogs as a const assertion for type safety
 export const COMPOSED_DIALOGS = [
   'fresha',
-  'shell', 
   'testOne',
-  'testTwo'
+  'testTwo',
+  'testThree'
 ] as const;
 
 // Create union type from the array
@@ -22,11 +22,6 @@ export const DIALOG_METADATA: Record<DialogId, DialogMetadata> = {
     title: 'Fresha',
     description: 'Fresha integration dialog'
   },
-  shell: {
-    id: 'shell',
-    title: 'Shell',
-    description: 'Shell command dialog'
-  },
   testOne: {
     id: 'testOne',
     title: 'Test One',
@@ -36,6 +31,11 @@ export const DIALOG_METADATA: Record<DialogId, DialogMetadata> = {
     id: 'testTwo',
     title: 'Test Two',
     description: 'Second test dialog'
+  },
+  testThree: {
+    id: 'testThree',
+    title: 'Test Three',
+    description: 'Third test dialog'
   }
 };
 

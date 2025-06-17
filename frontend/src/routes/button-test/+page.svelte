@@ -11,10 +11,6 @@
 		dialogManager.showDialog('fresha');
 	}
 
-	function openShellDialog() {
-		dialogManager.showDialog('shell');
-	}
-
 	function openTestDialogOne() {
 		dialogManager.showDialog('testOne');
 	}
@@ -28,6 +24,14 @@
 		console.log('Dialog cycle reset');
 	}
 </script>
+
+<svelte:head>
+	<title>Button Component Test - Peter Abbott</title>
+	<meta
+		name="description"
+		content="Interactive testing page for button components, variants, and dialog functionality. Development and testing environment for UI components."
+	/>
+</svelte:head>
 
 <div class="test-container">
 	<h1>Button Component Test</h1>
@@ -70,7 +74,7 @@
 			<Button
 				as="button"
 				label="Save"
-				iconName="checksfilled"
+				iconName="checks_filled"
 				variant="inverse"
 				handleClick={handleButtonClick}
 			/>
@@ -151,7 +155,7 @@
 			<Button
 				as="button"
 				label="Full Width with Icon"
-				iconName="checksfilled"
+				iconName="checks_filled"
 				variant="primary"
 				fullWidth={true}
 				handleClick={handleButtonClick}
@@ -199,13 +203,6 @@
 
 			<Button
 				as="button"
-				label="Open Shell Dialog"
-				variant="primary"
-				handleClick={openShellDialog}
-			/>
-
-			<Button
-				as="button"
 				label="Open Test Dialog One"
 				variant="primary"
 				handleClick={openTestDialogOne}
@@ -224,18 +221,6 @@
 				variant="inverse"
 				handleClick={resetDialogCycle}
 			/>
-		</div>
-
-		<div class="dialog-status">
-			<p><strong>Current Dialog:</strong> {dialogManager.currentDialog || 'None'}</p>
-			<p><strong>Dialogs Viewed:</strong> {dialogManager.dialogHistory.length}</p>
-			<p><strong>Cycle Complete:</strong> {dialogManager.cycleCompleted ? 'Yes' : 'No'}</p>
-			{#if dialogManager.hasErrors}
-				<p>
-					<strong>Failed Dialogs:</strong>
-					{Array.from(dialogManager.state.failedDialogs).join(', ')}
-				</p>
-			{/if}
 		</div>
 	</section>
 </div>
