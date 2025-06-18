@@ -1,7 +1,8 @@
 import type { AnimationManifest, AnimationSequence, RenderOptions, AnimationState } from '$lib/animations/types';
+import manifestData from '$lib/animations/assets/manifest.json';
 
 export class AnimationEngine {
-  private manifest!: AnimationManifest;
+  private manifest: AnimationManifest = manifestData;
   private loadedAnimations: Map<string, AnimationSequence> = new Map();
   private preloadedImages: Map<string, HTMLImageElement[]> = new Map();
 
@@ -10,27 +11,7 @@ export class AnimationEngine {
   }
 
   /**
-   * Loads the animation manifest file
-   */
-  private async loadManifest(): Promise<AnimationManifest> {
-    if (this.manifest) return this.manifest;
-
-    try {
-      console.log('Loading animation manifest...');
-      const response = await fetch('/animations/manifest.json');
-      if (!response.ok) throw new Error('Failed to load animation manifest');
-      const manifest = await response.json();
-      console.log('Loaded manifest:', manifest);
-      this.manifest = manifest;
-      return manifest;
-    } catch (error) {
-      console.error('Error loading animation manifest:', error);
-      throw error;
-    }
-  }
-
-  /**
-   * Preloads all frames for a given animation
+   * Preloads all frames for a given animation using Vite's dynamic imports
    */
   private async preloadFrames(name: string, frameCount: number): Promise<HTMLImageElement[]> {
     const frames: HTMLImageElement[] = [];
@@ -38,19 +19,25 @@ export class AnimationEngine {
 
     for (let i = 0; i < frameCount; i++) {
       const paddedIndex = i.toString().padStart(5, '0');
-      const imagePath = `/animations/${name}/${paddedIndex}.webp`;
       
-      const loadPromise = new Promise<void>((resolve, reject) => {
-        const img = new Image();
-        img.onload = () => {
-          frames[i] = img;
-          resolve();
-        };
-        img.onerror = () => {
-          console.warn(`Failed to load frame ${i} for animation ${name}`);
+      const loadPromise = new Promise<void>(async (resolve, reject) => {
+        try {
+          // Use dynamic import to load the image through Vite
+          const imageModule = await import(`$lib/animations/assets/${name}/${paddedIndex}.webp`);
+          const img = new Image();
+          img.onload = () => {
+            frames[i] = img;
+            resolve();
+          };
+          img.onerror = () => {
+            console.warn(`Failed to load frame ${i} for animation ${name}`);
+            resolve(); // Resolve anyway to continue loading other frames
+          };
+          img.src = imageModule.default;
+        } catch (error) {
+          console.warn(`Failed to import frame ${i} for animation ${name}:`, error);
           resolve(); // Resolve anyway to continue loading other frames
-        };
-        img.src = imagePath;
+        }
       });
 
       loadPromises.push(loadPromise);
@@ -70,8 +57,7 @@ export class AnimationEngine {
       return this.loadedAnimations.get(name)!;
     }
 
-    const manifest = await this.loadManifest();
-    const animationData = manifest[name];
+    const animationData = this.manifest[name];
 
     if (!animationData) {
       console.error(`Animation "${name}" not found in manifest`);
