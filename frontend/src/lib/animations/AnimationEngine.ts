@@ -1,17 +1,45 @@
 import type { AnimationManifest, AnimationSequence, RenderOptions, AnimationState } from '$lib/animations/types';
-import manifestData from '$lib/animations/assets/manifest.json';
 
 export class AnimationEngine {
-  private manifest: AnimationManifest = manifestData;
+  private manifest: AnimationManifest = {};
   private loadedAnimations: Map<string, AnimationSequence> = new Map();
   private preloadedImages: Map<string, HTMLImageElement[]> = new Map();
+  private manifestLoaded: boolean = false;
 
   constructor() {
     this.checkReducedMotion();
+    this.loadManifest();
   }
 
   /**
-   * Preloads all frames for a given animation using Vite's dynamic imports
+   * Loads the animation manifest from the static folder
+   */
+  private async loadManifest(): Promise<void> {
+    try {
+      const response = await fetch('/animations/manifest.json');
+      if (!response.ok) {
+        throw new Error(`Failed to load manifest: ${response.statusText}`);
+      }
+      this.manifest = await response.json();
+      this.manifestLoaded = true;
+      console.log('Animation manifest loaded:', this.manifest);
+    } catch (error) {
+      console.error('Error loading animation manifest:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Ensures manifest is loaded before proceeding
+   */
+  private async ensureManifestLoaded(): Promise<void> {
+    if (!this.manifestLoaded) {
+      await this.loadManifest();
+    }
+  }
+
+  /**
+   * Preloads all SVG frames for a given animation
    */
   private async preloadFrames(name: string, frameCount: number): Promise<HTMLImageElement[]> {
     const frames: HTMLImageElement[] = [];
@@ -22,20 +50,20 @@ export class AnimationEngine {
       
       const loadPromise = new Promise<void>(async (resolve, reject) => {
         try {
-          // Use dynamic import to load the image through Vite
-          const imageModule = await import(`$lib/animations/assets/${name}/${paddedIndex}.webp`);
-          const img = new Image();
-          img.onload = () => {
-            frames[i] = img;
+          // Load SVG from static folder
+          const svgResponse = await fetch(`/animations/${name}/${paddedIndex}.svg`);
+          if (!svgResponse.ok) {
+            console.warn(`Failed to fetch SVG frame ${i} for animation ${name}`);
             resolve();
-          };
-          img.onerror = () => {
-            console.warn(`Failed to load frame ${i} for animation ${name}`);
-            resolve(); // Resolve anyway to continue loading other frames
-          };
-          img.src = imageModule.default;
+            return;
+          }
+          
+          const svgText = await svgResponse.text();
+          const img = await this.renderSVGToImage(svgText, 512, 512); // Default size, will be scaled later
+          frames[i] = img;
+          resolve();
         } catch (error) {
-          console.warn(`Failed to import frame ${i} for animation ${name}:`, error);
+          console.warn(`Failed to load frame ${i} for animation ${name}:`, error);
           resolve(); // Resolve anyway to continue loading other frames
         }
       });
@@ -48,6 +76,27 @@ export class AnimationEngine {
   }
 
   /**
+   * Converts SVG string to HTMLImageElement for canvas rendering
+   */
+  private async renderSVGToImage(svgString: string, width: number, height: number): Promise<HTMLImageElement> {
+    return new Promise((resolve, reject) => {
+      const blob = new Blob([svgString], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      
+      const img = new Image();
+      img.onload = () => {
+        URL.revokeObjectURL(url); // Clean up blob URL
+        resolve(img);
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(url); // Clean up blob URL
+        reject(new Error('Failed to load SVG as image'));
+      };
+      img.src = url;
+    });
+  }
+
+  /**
    * Loads an animation sequence by name
    */
   public async loadAnimation(name: string): Promise<AnimationSequence> {
@@ -56,6 +105,9 @@ export class AnimationEngine {
       console.log(`Using cached animation: ${name}`);
       return this.loadedAnimations.get(name)!;
     }
+
+    // Ensure manifest is loaded before proceeding
+    await this.ensureManifestLoaded();
 
     const animationData = this.manifest[name];
 

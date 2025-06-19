@@ -1,20 +1,11 @@
 {
-  "blue-motion": {
+  "yellow-green-motion": {
     "frameCount": 72,
     "duration": 3.0,
     "fps": 24,
-    "description": "Blue motion animation sequence"
-  },
-  "magenta-motion": {
-    "frameCount": 72,
-    "duration": 3.0,
-    "fps": 24,
-    "description": "Magenta motion animation sequence"
-  },
-  "yellow-motion": {
-    "frameCount": 72,
-    "duration": 3.0,
-    "fps": 24,
-    "description": "Yellow motion animation sequence"
+    "description": "Yellow-green motion animation sequence",
+    "format": "svg",
+    "viewBox": "0 0 512 512",
+    "preserveAspectRatio": "xMidYMid meet"
   }
 }
