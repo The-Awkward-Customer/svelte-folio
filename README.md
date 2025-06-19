@@ -39,13 +39,13 @@ npm run build        # Production build
 
 **Asset Loading** - Uses Vite's `import.meta.glob` for static discovery
 ```typescript
-const imageModules = import.meta.glob('/src/lib/animations/assets/**/*.webp');
+const imageModules = import.meta.glob('/src/lib/animations/assets/**/*.svg');
 ```
 
 **File Structure**
 ```
 src/lib/animations/
-├── assets/           # Animation frames (.webp)
+├── assets/           # Animation frames (.svg)
 ├── manifest.json     # Animation metadata  
 ├── AnimationEngine.ts
 └── CanvasAnimation.svelte
@@ -66,16 +66,16 @@ src/lib/animations/
 
 ### Adding Animations
 
-1. Place `.webp` frames in `src/lib/animations/assets/[name]/`
+1. Place `.svg` frames in `src/lib/animations/assets/[name]/`
 2. Update `manifest.json` 
-3. Use naming: `00000.webp`, `00001.webp`, etc.
+3. Use naming: `00000.svg`, `00001.svg`, etc.
 4. Test dev + production builds
 
 ### Troubleshooting
 
 **Missing animations in production:**
 ```bash
-ls build/_app/immutable/assets/ | grep webp
+ls build/_app/immutable/assets/ | grep svg
 ```
 
 **Debug mode:**
