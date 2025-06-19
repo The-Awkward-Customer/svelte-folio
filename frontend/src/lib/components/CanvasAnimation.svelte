@@ -100,6 +100,7 @@
 				canvas.addEventListener('mouseleave', pauseHandler);
 			} else if (trigger === 'click') {
 				canvas.addEventListener('click', clickHandler);
+				canvas.addEventListener('keydown', keydownHandler);
 			} else if (trigger === 'auto') {
 				// Add delay if specified
 				setTimeout(playHandler, delay);
@@ -122,6 +123,7 @@
 	let playHandler: () => void;
 	let pauseHandler: () => void;
 	let clickHandler: () => void;
+	let keydownHandler: (event: KeyboardEvent) => void;
 
 	// Initialize event handlers
 	playHandler = () => renderer?.play();
@@ -131,6 +133,13 @@
 			renderer.pause();
 		} else {
 			renderer?.play();
+		}
+	};
+	keydownHandler = (event: KeyboardEvent) => {
+		// Handle Enter and Space key presses for accessibility
+		if (event.key === 'Enter' || event.key === ' ') {
+			event.preventDefault();
+			clickHandler();
 		}
 	};
 
@@ -146,6 +155,7 @@
 				canvas.removeEventListener('mouseleave', pauseHandler);
 			} else if (trigger === 'click') {
 				canvas.removeEventListener('click', clickHandler);
+				canvas.removeEventListener('keydown', keydownHandler);
 			}
 
 			// Clean up animation resources
@@ -159,9 +169,12 @@
 		bind:this={canvas}
 		id={canvasId}
 		class="animation-canvas"
+		class:clickable={trigger === 'click'}
+		class:hoverable={trigger === 'hover'}
+		class:hidden={animationState.isLoading || error}
 		role="img"
 		aria-label={`Animation: ${animationName}`}
-		class:hidden={animationState.isLoading || error}
+		tabindex={trigger === 'click' ? 0 : -1}
 	/>
 	{#if animationState.isLoading}
 		<div class="loading">
@@ -189,6 +202,15 @@
 		width: 100%;
 		height: 100%;
 		display: block;
+		cursor: default;
+	}
+
+	.animation-canvas.clickable {
+		cursor: pointer;
+	}
+
+	.animation-canvas.hoverable {
+		cursor: pointer;
 	}
 
 	.animation-canvas.hidden {
@@ -205,6 +227,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background-color: rgba(207, 8, 154, 0.813); /* Light blue with opacity */
+		background-color: rgba(207, 8, 154, 0); /* Light blue with opacity */
 	}
 </style>
