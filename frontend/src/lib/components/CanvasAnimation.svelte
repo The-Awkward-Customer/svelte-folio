@@ -182,7 +182,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background-color: rgba(255, 192, 203, 0.1); /* Light pink with opacity */
+		background-color: rgba(255, 192, 203, 0); /* Light pink with opacity */
 	}
 
 	.animation-canvas {
@@ -205,6 +205,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background-color: rgba(173, 216, 230, 0.1); /* Light blue with opacity */
+		background-color: rgba(207, 8, 154, 0.813); /* Light blue with opacity */
 	}
 </style>

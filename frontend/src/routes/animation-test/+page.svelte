@@ -7,25 +7,31 @@
 
 	<section>
 		<h2>Auto-playing Animation</h2>
-		<CanvasAnimation animationName="blue-motion" size="200px" trigger="auto" delay={0} loop={true}>
-			<div slot="loading">Loading blue motion...</div>
-			<div slot="fallback">Static blue motion fallback</div>
+		<CanvasAnimation
+			animationName="yellow-green-motion"
+			size="200px"
+			trigger="auto"
+			delay={0}
+			loop={true}
+		>
+			<div slot="loading">Loading yellow-green motion...</div>
+			<div slot="fallback">Static yellow-green motion fallback</div>
 		</CanvasAnimation>
 	</section>
 
 	<section>
 		<h2>Hover-triggered Animation</h2>
-		<CanvasAnimation animationName="magenta-motion" size="300px" trigger="hover" loop={true}>
-			<div slot="loading">Loading magenta motion...</div>
-			<div slot="fallback">Static magenta motion fallback</div>
+		<CanvasAnimation animationName="yellow-green-motion" size="300px" trigger="hover" loop={true}>
+			<div slot="loading">Loading yellow-green motion...</div>
+			<div slot="fallback">Static yellow-green motion fallback</div>
 		</CanvasAnimation>
 	</section>
 
 	<section>
 		<h2>Click-triggered Animation</h2>
-		<CanvasAnimation animationName="yellow-motion" size="400px" trigger="click" loop={true}>
-			<div slot="loading">Loading yellow motion...</div>
-			<div slot="fallback">Static yellow motion fallback</div>
+		<CanvasAnimation animationName="yellow-green-motion" size="600px" trigger="click" loop={true}>
+			<div slot="loading">Loading yellow-green motion...</div>
+			<div slot="fallback">Static yellow-green motion fallback</div>
 		</CanvasAnimation>
 	</section>
 </div>
