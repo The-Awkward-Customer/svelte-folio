@@ -1,8 +1,6 @@
 <script lang="ts">
 	import Weather from '../Snoop/Weather.svelte';
 
-	import WeatherIcon from '../Snoop/WeatherIcon.svelte';
-
 	let CopyRight: string = '© 2025 by Peter Abbott';
 	let TechStack: string =
 		'This website is built with Svelte and hosted on Vercel and uses your IP address to gather but not store Location Information.';
@@ -32,8 +30,10 @@
 
 <footer>
 	<Weather />
-	{@render Details()}
-	{@render Languages()}
+	<div class="footer-prefix">
+		{@render Details()}
+		{@render Languages()}
+	</div>
 </footer>
 
 <style>
@@ -41,12 +41,20 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		align-items: stretch;
+		align-items: flex-start;
 		gap: 1em;
 		padding-bottom: 16px;
 		padding-top: 16px;
 		width: 100%;
 		max-width: 1024px;
+	}
+
+	.footer-prefix {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		gap: 1em;
 	}
 
 	.details {
@@ -73,5 +81,5 @@
 		flex-direction: row;
 		list-style: none;
 		gap: 0.5em;
-	}
+	}s
 </style>
