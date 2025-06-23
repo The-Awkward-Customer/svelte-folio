@@ -47,6 +47,7 @@
 	<button
 		class={`btn ${variant}`}
 		class:full-width={fullWidth}
+		class:has-icon={iconName}
 		aria-label={label}
 		type={buttonProps.type || 'button'}
 		{disabled}
@@ -54,7 +55,7 @@
 	>
 		<span class="btn-layout">
 			{#if iconName}
-				<Icon name={iconName} size={16} fill={iconFillColor} />
+				<Icon name={iconName} size={24} fill={iconFillColor} />
 			{/if}
 			<span class="middle">{label}</span>
 		</span>
@@ -64,6 +65,7 @@
 	<a
 		class={`btn ${variant}`}
 		class:full-width={fullWidth}
+		class:has-icon={iconName}
 		aria-label={label}
 		href={linkProps.href}
 		target={linkProps.target}
@@ -71,7 +73,7 @@
 	>
 		<span class="btn-layout">
 			{#if iconName}
-				<Icon name={iconName} size={20} fill={iconFillColor} />
+				<Icon name={iconName} size={24} fill={iconFillColor} />
 			{/if}
 			<span class="middle">{label}</span>
 		</span>
@@ -82,7 +84,8 @@
 	.btn {
 		border: none;
 		border-radius: var(--bdr-radius-small);
-		font-weight: var(--fw-semibold);
+		font-weight: var(--fw-bold);
+		font-size: var(--fs-300);
 		height: 44px;
 		padding-left: 8px;
 		padding-right: 8px;
@@ -94,6 +97,8 @@
 		cursor: pointer;
 		color: inherit;
 		width: fit-content;
+		min-width: max-content;
+		flex-shrink: 0;
 	}
 
 	.inverse {
@@ -139,5 +144,9 @@
 		padding-top: 8px;
 		padding-right: 12px;
 		padding-bottom: 8px;
+	}
+
+	.has-icon {
+		padding-left: 6px;
 	}
 </style>

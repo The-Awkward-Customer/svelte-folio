@@ -19,6 +19,8 @@ export type IconName =
     | 'close'
     | 'checks_filled'
     | 'diamond_filled'
+    | 'emoji_dead'
+    | 'location_geo'
 
 
 

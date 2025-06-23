@@ -192,8 +192,11 @@ select {
   --fs-1400: 9rem; /* 144px */
   --fs-1500: 10rem; /* 160px */
 
+
+
   /* Semantic font sizes */
-  --fs-tiny: var(--fs-275);
+  --fs-tiny: clamp(14px, 4vw, 32px);
+  --fs-large-clamped: clamp(18px, 4vw, 40px);
   
   /* Font weights */
   --fw-thin: 300;

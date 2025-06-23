@@ -1,290 +1,136 @@
 <script lang="ts">
-	// TypeScript interfaces
-	interface GeoLocation {
-		latitude: number;
-		longitude: number;
-		accuracy: number;
-	}
-
-	interface IPInfo {
-		loc: string;
-		city?: string;
-		region?: string;
-		country?: string;
-		[key: string]: any;
-	}
-
-	interface TimeZoneInfo {
-		timezone: string;
-		offset: number;
-	}
-
-	interface LanguageInfo {
-		language: string;
-		languages: readonly string[];
-	}
-
-	interface ScreenInfo {
-		width: number;
-		height: number;
-		colorDepth: number;
-		orientation: string;
-	}
-
-	interface LocationData {
-		geoLocation: GeoLocation | null;
-		ipInfo: IPInfo | null;
-		timeZone: TimeZoneInfo | null;
-		language: LanguageInfo | null;
-		screenInfo: ScreenInfo | null;
-		userAgent: string | null;
-	}
-
-	interface WeatherData {
-		weather: Array<{
-			main: string;
-			description: string;
-			icon: string;
-		}>;
-		name: string;
-		sys: {
-			country: string;
-		};
-		main: {
-			temp: number;
-			feels_like: number;
-			humidity: number;
-		};
-	}
-
-	interface WeatherProps {
-		class?: string;
-	}
+	// Import the composable and types
+	import { useWeather } from '$lib/composables';
+	import type {
+		WeatherData,
+		WeatherProps,
+		LoadingStateType,
+		WeatherErrorTypeType
+	} from '$lib/types';
+	import { LoadingState, WeatherErrorType } from '$lib/types';
 
 	// Components
 	import Button from '$lib/components/actions/Button.svelte';
-	import WeatherIcon from './WeatherIcon.svelte';
+	import IconButton from '../actions/IconButton.svelte';
 	import { Icon } from '../primatives';
 	import type { IconName } from '$lib/types';
 
-	// Import WeatherIconCode type
-	type WeatherIconCode =
-		| '01d'
-		| '01n'
-		| '02d'
-		| '02n'
-		| '03d'
-		| '03n'
-		| '04d'
-		| '04n'
-		| '05d'
-		| '05n'
-		| '06d'
-		| '06n'
-		| '07d'
-		| '07n'
-		| '08d'
-		| '08n';
+	// Debug imports
+	import { weatherDebugManager } from '$lib/stores/weatherDebugManager.svelte.js';
+	import WeatherDebugPanel from './WeatherDebugPanel.svelte';
 
-	// Props with TypeScript generics
+	// Props - exactly the same as before
 	let { class: className = '' }: WeatherProps = $props();
 
-	// State using Svelte 5 runes
-	let locationData = $state<LocationData>({
-		geoLocation: null,
-		ipInfo: null,
-		timeZone: null,
-		language: null,
-		screenInfo: null,
-		userAgent: null
-	});
+	// Use the weather composable - this replaces all the inline logic
+	const weather = useWeather();
 
-	let weatherData = $state<WeatherData | null>(null);
-	let isLoading = $state<boolean>(false);
-	let weatherError = $state<string | null>(null);
-	let initialized = $state<boolean>(false);
+	// Debug integration - derived values (same as before)
+	const isDebugActive = $derived(weatherDebugManager.isActive);
 
-	// Functions
-	function logLocationData(): void {
-		console.log('User Location Data:', locationData);
-		if (weatherData) {
-			console.log('Weather Data:', weatherData);
-		}
+	// Helper function (same as before)
+	function getErrorMessage(errorType: WeatherErrorTypeType): string {
+		return weather.getErrorMessage(errorType);
 	}
-
-	async function fetchWeather(): Promise<void> {
-		isLoading = true;
-		weatherError = null;
-
-		try {
-			let lat: string | number;
-			let lon: string | number;
-
-			// Try to use precise geolocation first
-			if (locationData.geoLocation) {
-				lat = locationData.geoLocation.latitude;
-				lon = locationData.geoLocation.longitude;
-			}
-			// Fall back to IP-based location if geolocation isn't available
-			else if (locationData.ipInfo?.loc) {
-				const [ipLat, ipLon] = locationData.ipInfo.loc.split(',');
-				lat = ipLat;
-				lon = ipLon;
-			} else {
-				throw new Error('No location data available');
-			}
-
-			// Using OpenWeatherMap API
-			const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
-			const response = await fetch(
-				`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
-			);
-
-			if (!response.ok) {
-				throw new Error(`Weather API error: ${response.statusText}`);
-			}
-
-			weatherData = await response.json();
-			console.log('Weather Data:', weatherData);
-		} catch (error) {
-			console.error('Error fetching weather:', error);
-			weatherError = "Looks like I can't find your location.";
-		} finally {
-			isLoading = false;
-		}
-	}
-
-	async function fetchWeatherWithIPFallback(): Promise<void> {
-		try {
-			const response = await fetch('https://ipinfo.io/json');
-			locationData.ipInfo = await response.json();
-			// Only fetch weather after we have the IP-based location
-			await fetchWeather();
-		} catch (error) {
-			console.log('IP info error:', error instanceof Error ? error.message : 'Unknown error');
-		}
-	}
-
-	function handleGeolocationSuccess(position: GeolocationPosition): void {
-		locationData.geoLocation = {
-			latitude: position.coords.latitude,
-			longitude: position.coords.longitude,
-			accuracy: position.coords.accuracy
-		};
-		// Automatically fetch weather when we get geolocation
-		fetchWeather();
-	}
-
-	function handleGeolocationError(error: GeolocationPositionError): void {
-		console.log('Geolocation error:', error.message);
-		// Try IP-based fallback
-		fetchWeatherWithIPFallback();
-	}
-
-	function handleWeatherRetry(): void {
-		console.log('Attempting to fetch weather data');
-		fetchWeather();
-	}
-
-	// Svelte 5 effect for initialization - runs only once
-	$effect(() => {
-		if (initialized) return;
-
-		initialized = true;
-
-		// Get geolocation data
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(handleGeolocationSuccess, handleGeolocationError);
-		} else {
-			// Try IP-based fallback if geolocation isn't available
-			fetchWeatherWithIPFallback();
-		}
-
-		// Get timezone info
-		locationData.timeZone = {
-			timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-			offset: new Date().getTimezoneOffset()
-		};
-
-		// Get language preferences
-		locationData.language = {
-			language: navigator.language,
-			languages: navigator.languages
-		};
-
-		// Get screen info
-		locationData.screenInfo = {
-			width: window.screen.width,
-			height: window.screen.height,
-			colorDepth: window.screen.colorDepth,
-			orientation: window.screen.orientation.type
-		};
-
-		// Get user agent
-		locationData.userAgent = navigator.userAgent;
-
-		// Log all collected data
-		logLocationData();
-	});
 </script>
 
-<div class="location-info-root {className}">
-	{#if isLoading}
+<!-- loading weatherDisplay Snippet -->
+{#snippet WeatherDisplayLoading(loadingState: LoadingStateType)}
+	<div class="weather-loading-container">
 		<div class="weather-display loading-state">
-			<p>Snooping…</p>
+			<p>
+				{#if loadingState === LoadingState.GETTING_LOCATION}
+					Sneaking…
+				{:else if loadingState === LoadingState.FETCHING_WEATHER}
+					Looking out of the window…
+				{:else}
+					Brewing tea…
+				{/if}
+			</p>
 		</div>
-	{:else if weatherData}
-		<div class="weather-success-container">
-			<div class="weather-display success-state">
-				<Icon name={weatherData.weather[0].icon as IconName} size={40} fill="--fg-text-primary" />
+	</div>
+{/snippet}
+
+<!-- successful weatherDisplay Snippet -->
+{#snippet WeatherDisplaySuccess(data: WeatherData)}
+	<div class="weather-success-container">
+		<div class="weather-display success-state">
+			<Icon name={data.weather[0].icon as IconName} size={40} fill="--fg-text-primary" />
+			<div class="weather-info">
 				<p class="weather-condition">
-					{weatherData.weather[0].main}
+					{data.weather[0].main}
 				</p>
 				<p class="weather-location">
-					{weatherData.name}, {weatherData.sys.country}
+					{data.name}, {data.sys.country}
 				</p>
 			</div>
 		</div>
-	{:else if weatherError}
-		<div class="weather-error-root">
-			<p class="error">{weatherError}</p>
-			<Button label="Enable Weather" handleClick={handleWeatherRetry} />
-		</div>
+	</div>
+{/snippet}
+
+<!-- unsuccessful weatherDisplay Snippet -->
+{#snippet WeatherDisplayError(errorType: WeatherErrorTypeType)}
+	<div class="weather-error-root">
+		<Button
+			iconName="location_geo"
+			as="button"
+			variant="inverse"
+			label={errorType === WeatherErrorType.LOCATION_DENIED ? 'Try Again' : 'Retry'}
+			handleClick={errorType === WeatherErrorType.LOCATION_DENIED
+				? weather.requestLocation
+				: weather.retry}
+		/>
+		<p class="error">{getErrorMessage(errorType)}</p>
+	</div>
+{/snippet}
+
+<div class="location-info-root {className}">
+	{#if weather.loading !== LoadingState.IDLE}
+		{@render WeatherDisplayLoading(weather.loading)}
+	{:else if weather.data}
+		{@render WeatherDisplaySuccess(weather.data)}
+	{:else if weather.error}
+		{@render WeatherDisplayError(weather.error)}
 	{/if}
 </div>
+
+<!-- Debug Panel - only renders when debug is active -->
+{#if isDebugActive}
+	<WeatherDebugPanel />
+{/if}
 
 <style>
 	.location-info-root {
 		display: flex;
 		flex-direction: column;
+		justify-content: flex-start;
 		align-items: flex-start;
-		justify-content: flex-end;
-		gap: 16px;
-		height: 100px;
-		font-family: var(--font-family-alt);
+		font-family: var(--font-family-main);
 		font-size: var(--fs-275);
-		border-bottom: 1px solid rgb(var(--fg-text-primary));
 	}
 
 	.weather-display {
 		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
+		flex-direction: row;
+		justify-content: flex-start;
 		align-items: flex-start;
+		gap: 12px;
+		padding-right: 16px;
+		padding-top: 8px;
+		padding-bottom: 8px;
+	}
+
+	.weather-info {
 		font-size: var(--fs-300);
-		font-weight: var(--fw-semibold);
-		color: rgb(var(--fg-text-primary));
-		gap: 8px;
-		padding-bottom: 12px;
 	}
 
 	.loading-state {
-		padding: 8px;
-		border-radius: 4px;
-	}
-
-	.success-state {
-		border-radius: 4px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		height: 44px;
+		color: rgb(var(--fg-positive));
+		font-family: var(--font-family-alt) !important;
 	}
 
 	.weather-success-container {
@@ -297,7 +143,7 @@
 	}
 
 	.weather-location {
-		color: rgb(var(--fg-text-secondary));
+		color: rgb(var(--fg-text-primary));
 	}
 
 	.weather-error-root {
@@ -312,24 +158,6 @@
 	}
 
 	.error {
-		color: rgb(var(--fg-text-primary));
-	}
-
-	/* Mobile-first responsive design */
-	@media (min-width: 896px) {
-		.location-info-root {
-			height: 120px;
-			gap: 20px;
-		}
-
-		.weather-display {
-			font-size: var(--fs-350);
-			gap: 12px;
-			padding-bottom: 16px;
-		}
-
-		.weather-error-root {
-			padding-bottom: 12px;
-		}
+		color: rgb(var(--fg-text-secondary));
 	}
 </style>
