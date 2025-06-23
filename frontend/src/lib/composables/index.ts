@@ -1,0 +1,4 @@
+// Composables index - clean imports for weather functionality
+
+export { useWeather } from './useWeather.svelte.js';
+export type { UseWeatherReturn } from './useWeather.svelte.js';

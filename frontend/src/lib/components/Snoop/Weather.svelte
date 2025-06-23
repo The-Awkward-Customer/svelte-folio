@@ -1,61 +1,13 @@
 <script lang="ts">
-	// TypeScript interfaces
-	interface GeoLocation {
-		latitude: number;
-		longitude: number;
-		accuracy: number;
-	}
-
-	interface IPInfo {
-		loc: string;
-		city?: string;
-		region?: string;
-		country?: string;
-		[key: string]: any;
-	}
-
-	interface WeatherData {
-		weather: Array<{
-			main: string;
-			description: string;
-			icon: string;
-		}>;
-		name: string;
-		sys: {
-			country: string;
-		};
-		main: {
-			temp: number;
-			feels_like: number;
-			humidity: number;
-		};
-	}
-
-	interface WeatherProps {
-		class?: string;
-	}
-
-	interface WeatherCache {
-		data: WeatherData | null;
-		timestamp: number;
-	}
-
-	// Use const objects instead of enums for Svelte compatibility
-	const LoadingState = {
-		IDLE: 'idle',
-		GETTING_LOCATION: 'getting_location',
-		FETCHING_WEATHER: 'fetching_weather'
-	} as const;
-
-	const WeatherErrorType = {
-		LOCATION_DENIED: 'location_denied',
-		API_ERROR: 'api_error',
-		NETWORK_ERROR: 'network_error',
-		NO_LOCATION: 'no_location'
-	} as const;
-
-	type LoadingStateType = (typeof LoadingState)[keyof typeof LoadingState];
-	type WeatherErrorTypeType = (typeof WeatherErrorType)[keyof typeof WeatherErrorType];
+	// Import the composable and types
+	import { useWeather } from '$lib/composables';
+	import type {
+		WeatherData,
+		WeatherProps,
+		LoadingStateType,
+		WeatherErrorTypeType
+	} from '$lib/types';
+	import { LoadingState, WeatherErrorType } from '$lib/types';
 
 	// Components
 	import Button from '$lib/components/actions/Button.svelte';
@@ -67,284 +19,19 @@
 	import { weatherDebugManager } from '$lib/stores/weatherDebugManager.svelte.js';
 	import WeatherDebugPanel from './WeatherDebugPanel.svelte';
 
-	// Constants
-	const WEATHER_API_BASE = 'https://api.openweathermap.org/data/2.5';
-	const IP_INFO_API = 'https://ipinfo.io/json';
-	const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
-	const GEO_OPTIONS = {
-		timeout: 10000,
-		maximumAge: 300000, // 5 minutes
-		enableHighAccuracy: false
-	};
-
-	const ERROR_MESSAGES = {
-		[WeatherErrorType.LOCATION_DENIED]: 'Enable location in browser settings.',
-		[WeatherErrorType.API_ERROR]: 'Location unavailable.',
-		[WeatherErrorType.NETWORK_ERROR]: 'Oops, somethings broke!.',
-		[WeatherErrorType.NO_LOCATION]: 'Enable location.'
-	};
-
-	// Props
+	// Props - exactly the same as before
 	let { class: className = '' }: WeatherProps = $props();
 
-	// Simplified state management
-	let weatherState = $state<{
-		data: WeatherData | null;
-		loading: LoadingStateType;
-		error: WeatherErrorTypeType | null;
-	}>({
-		data: null,
-		loading: LoadingState.IDLE,
-		error: null
-	});
+	// Use the weather composable - this replaces all the inline logic
+	const weather = useWeather();
 
-	let locationData = $state<{
-		geoLocation: GeoLocation | null;
-		ipInfo: IPInfo | null;
-	}>({
-		geoLocation: null,
-		ipInfo: null
-	});
-
-	let weatherCache = $state<WeatherCache>({
-		data: null,
-		timestamp: 0
-	});
-
-	let initialized = $state<boolean>(false);
-	let retryTimeout = $state<number>(0);
-
-	// Debug integration
+	// Debug integration - derived values (same as before)
 	const isDebugActive = $derived(weatherDebugManager.isActive);
-	const isDebugOverride = $derived(weatherDebugManager.isOverrideMode);
 
-	// Apply debug overrides to state when debug is active
-	$effect(() => {
-		if (!isDebugActive || !isDebugOverride) return;
-
-		// Override loading state
-		if (weatherDebugManager.currentForcedLoading !== null) {
-			weatherState.loading = weatherDebugManager.currentForcedLoading;
-			weatherState.error = null;
-		}
-
-		// Override error state
-		if (weatherDebugManager.currentForcedError !== null) {
-			weatherState.error = weatherDebugManager.currentForcedError;
-			weatherState.loading = LoadingState.IDLE;
-			weatherState.data = null;
-		}
-
-		// Override weather data
-		if (weatherDebugManager.currentMockWeather !== null) {
-			weatherState.data = weatherDebugManager.currentMockWeather;
-			weatherState.loading = LoadingState.IDLE;
-			weatherState.error = null;
-		}
-
-		// Override location data
-		if (
-			weatherDebugManager.currentMockLocation.geoLocation ||
-			weatherDebugManager.currentMockLocation.ipInfo
-		) {
-			locationData.geoLocation = weatherDebugManager.currentMockLocation.geoLocation;
-			locationData.ipInfo = weatherDebugManager.currentMockLocation.ipInfo;
-		}
-	});
-
-	// Helper functions
-	function isCacheValid(): boolean {
-		return weatherCache.data !== null && Date.now() - weatherCache.timestamp < CACHE_DURATION;
-	}
-
+	// Helper function (same as before)
 	function getErrorMessage(errorType: WeatherErrorTypeType): string {
-		return ERROR_MESSAGES[errorType] || 'An unexpected error occurred.';
+		return weather.getErrorMessage(errorType);
 	}
-
-	function getGeolocationErrorType(error: GeolocationPositionError): WeatherErrorTypeType {
-		switch (error.code) {
-			case error.PERMISSION_DENIED:
-				return WeatherErrorType.LOCATION_DENIED;
-			case error.POSITION_UNAVAILABLE:
-			case error.TIMEOUT:
-			default:
-				return WeatherErrorType.NO_LOCATION;
-		}
-	}
-
-	// Main weather fetching function
-	async function fetchWeatherData(): Promise<void> {
-		// Check cache first
-		if (isCacheValid()) {
-			weatherState.data = weatherCache.data;
-			weatherState.loading = LoadingState.IDLE;
-			return;
-		}
-
-		weatherState.loading = LoadingState.FETCHING_WEATHER;
-		weatherState.error = null;
-
-		try {
-			let lat: string | number;
-			let lon: string | number;
-
-			// Try to use precise geolocation first
-			if (locationData.geoLocation) {
-				lat = locationData.geoLocation.latitude;
-				lon = locationData.geoLocation.longitude;
-			}
-			// Fall back to IP-based location if geolocation isn't available
-			else if (locationData.ipInfo?.loc) {
-				const [ipLat, ipLon] = locationData.ipInfo.loc.split(',');
-				lat = ipLat;
-				lon = ipLon;
-			} else {
-				throw new Error('No location data available');
-			}
-
-			// Using OpenWeatherMap API
-			const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
-			const response = await fetch(
-				`${WEATHER_API_BASE}/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
-			);
-
-			if (!response.ok) {
-				throw new Error(`Weather API error: ${response.statusText}`);
-			}
-
-			const data = await response.json();
-
-			// Update cache and state
-			weatherCache.data = data;
-			weatherCache.timestamp = Date.now();
-			weatherState.data = data;
-		} catch (error) {
-			console.error('Error fetching weather:', error);
-			weatherState.error =
-				error instanceof Error && error.message.includes('No location')
-					? WeatherErrorType.NO_LOCATION
-					: WeatherErrorType.API_ERROR;
-		} finally {
-			weatherState.loading = LoadingState.IDLE;
-		}
-	}
-
-	async function fetchIPLocation(): Promise<void> {
-		try {
-			const response = await fetch(IP_INFO_API);
-			if (!response.ok) throw new Error('IP info fetch failed');
-
-			locationData.ipInfo = await response.json();
-			await fetchWeatherData();
-		} catch (error) {
-			console.error('IP info error:', error);
-			weatherState.error = WeatherErrorType.NETWORK_ERROR;
-			weatherState.loading = LoadingState.IDLE;
-		}
-	}
-
-	function handleGeolocationSuccess(position: GeolocationPosition): void {
-		locationData.geoLocation = {
-			latitude: position.coords.latitude,
-			longitude: position.coords.longitude,
-			accuracy: position.coords.accuracy
-		};
-		fetchWeatherData();
-	}
-
-	function handleGeolocationError(error: GeolocationPositionError): void {
-		const errorType = getGeolocationErrorType(error);
-		console.warn('Geolocation error:', error.message);
-
-		// Try IP-based fallback for non-permission errors
-		if (errorType !== WeatherErrorType.LOCATION_DENIED) {
-			fetchIPLocation();
-		} else {
-			weatherState.error = errorType;
-			weatherState.loading = LoadingState.IDLE;
-		}
-	}
-
-	function handleLocationPermissionRequest(): void {
-		if (retryTimeout) return; // Prevent rapid retries
-
-		retryTimeout = window.setTimeout(() => (retryTimeout = 0), 2000);
-
-		// Reset error state and try location request
-		weatherState.error = null;
-		weatherState.loading = LoadingState.GETTING_LOCATION;
-
-		// Clear any existing location data to force a fresh permission request
-		locationData.geoLocation = null;
-		locationData.ipInfo = null;
-
-		// Try geolocation request - this may fail silently if permission was previously denied
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(
-				handleGeolocationSuccess,
-				(error: GeolocationPositionError) => {
-					// If permission is still denied, fall back to IP location
-					if (error.code === error.PERMISSION_DENIED) {
-						console.warn('Location permission still denied, falling back to IP location');
-						fetchIPLocation();
-					} else {
-						handleGeolocationError(error);
-					}
-				},
-				{
-					...GEO_OPTIONS,
-					maximumAge: 0 // Force fresh request
-				}
-			);
-		} else {
-			// Fallback to IP location if geolocation is not supported
-			fetchIPLocation();
-		}
-	}
-
-	function handleWeatherRetry(): void {
-		if (retryTimeout) return; // Prevent rapid retries
-
-		retryTimeout = window.setTimeout(() => (retryTimeout = 0), 2000);
-
-		// Reset error state and try again
-		weatherState.error = null;
-
-		if (locationData.geoLocation || locationData.ipInfo) {
-			fetchWeatherData();
-		} else {
-			// Try to get location again
-			initializeLocation();
-		}
-	}
-
-	function initializeLocation(): void {
-		weatherState.loading = LoadingState.GETTING_LOCATION;
-
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(
-				handleGeolocationSuccess,
-				handleGeolocationError,
-				GEO_OPTIONS
-			);
-		} else {
-			fetchIPLocation();
-		}
-	}
-
-	// Svelte 5 effect for initialization - runs only once
-	$effect(() => {
-		if (initialized) return;
-		initialized = true;
-
-		// Skip normal initialization if debug override is active
-		if (isDebugActive && isDebugOverride) {
-			console.log('🐛 Weather Debug: Skipping normal initialization due to debug override');
-			return;
-		}
-
-		initializeLocation();
-	});
 </script>
 
 <!-- loading weatherDisplay Snippet -->
@@ -390,20 +77,20 @@
 			variant="inverse"
 			label={errorType === WeatherErrorType.LOCATION_DENIED ? 'Try Again' : 'Retry'}
 			handleClick={errorType === WeatherErrorType.LOCATION_DENIED
-				? handleLocationPermissionRequest
-				: handleWeatherRetry}
+				? weather.requestLocation
+				: weather.retry}
 		/>
 		<p class="error">{getErrorMessage(errorType)}</p>
 	</div>
 {/snippet}
 
 <div class="location-info-root {className}">
-	{#if weatherState.loading !== LoadingState.IDLE}
-		{@render WeatherDisplayLoading(weatherState.loading)}
-	{:else if weatherState.data}
-		{@render WeatherDisplaySuccess(weatherState.data)}
-	{:else if weatherState.error}
-		{@render WeatherDisplayError(weatherState.error)}
+	{#if weather.loading !== LoadingState.IDLE}
+		{@render WeatherDisplayLoading(weather.loading)}
+	{:else if weather.data}
+		{@render WeatherDisplaySuccess(weather.data)}
+	{:else if weather.error}
+		{@render WeatherDisplayError(weather.error)}
 	{/if}
 </div>
 
