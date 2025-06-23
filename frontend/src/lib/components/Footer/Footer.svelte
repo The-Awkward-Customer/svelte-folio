@@ -81,5 +81,5 @@
 		flex-direction: row;
 		list-style: none;
 		gap: 0.5em;
-	}s
+	}
 </style>
