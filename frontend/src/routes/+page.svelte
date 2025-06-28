@@ -33,11 +33,11 @@
 		<Introduction />
 	</Accordian>
 
-	<Accordian number="2" label="scalable" suffix="Engineering">
+	<Accordian number="2" label="Modular" suffix="Engineering">
 		<Experience />
 	</Accordian>
 
-	<Accordian number="3" label="Considered" suffix="Strategy">
+	<Accordian number="3" label="Elegant" suffix="Strategy">
 		<Process />
 	</Accordian>
 </ol>

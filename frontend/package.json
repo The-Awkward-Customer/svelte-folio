@@ -50,6 +50,7 @@
 		"@oslojs/encoding": "^1.1.0",
 		"@supabase/supabase-js": "^2.0.0",
 		"drizzle-orm": "^0.38.4",
+		"gsap": "^3.13.0",
 		"postgres": "^3.4.5"
 	}
 }
