@@ -4,7 +4,13 @@
 	import { gsap } from 'gsap';
 
 	// Props
-	export let texts: string[] = ['LETS COOK', 'LETS TRY', 'LETS CREATE, LETS BUILD'];
+	export let texts: string[] = [
+		'LETS COOK',
+		'LETS TRY',
+		'LETS CREATE',
+		'LETS PLAY',
+		'LETS EXPLORE'
+	];
 	export let speed: number = 50; // pixels per second
 	export let pathWildness: number = 0.7; // 0-1 scale
 	export let verticalBounds: number = 0.2; // 0.2 = 20% margin from top/bottom
