@@ -2,8 +2,6 @@
 	import { slide } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import { shuffleText } from '$lib/animations/gsap';
-	// import { openAccordions, toggleAccordion } from "$lib/stores/accordianManager.svelte.";
-	// import { derived, fromStore } from "svelte/store";
 
 	import {
 		createAccordionState,

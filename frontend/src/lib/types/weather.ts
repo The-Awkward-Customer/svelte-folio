@@ -80,8 +80,8 @@ export const GEO_OPTIONS = {
 };
 
 export const ERROR_MESSAGES = {
-	[WeatherErrorType.LOCATION_DENIED]: 'Enable location in browser settings.',
-	[WeatherErrorType.API_ERROR]: 'Location unavailable.',
-	[WeatherErrorType.NETWORK_ERROR]: 'Oops, somethings broke!.',
-	[WeatherErrorType.NO_LOCATION]: 'Enable location.'
+	[WeatherErrorType.LOCATION_DENIED]: 'Let me in!',
+	[WeatherErrorType.API_ERROR]: 'Sh*t broke…',
+	[WeatherErrorType.NETWORK_ERROR]: 'No interwebs…',
+	[WeatherErrorType.NO_LOCATION]: 'On the moon?.'
 };

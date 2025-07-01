@@ -1,6 +1,6 @@
 <script>
 	import '../app.css';
-	import OverlayMenu from '$lib/components/navigation/OverlayMenu.svelte';
+
 	import Footer from '$lib/components/Footer/Footer.svelte';
 	import TopNav from '$lib/components/topNav/TopNav.svelte';
 
@@ -16,9 +16,7 @@
 	let { children } = $props();
 </script>
 
-<TopNav>
-	<OverlayMenu />
-</TopNav>
+<TopNav></TopNav>
 
 <main>
 	{@render children()}
@@ -33,8 +31,6 @@
 		flex-grow: 1;
 		justify-content: flex-start;
 		width: 100%;
-		max-width: 1024px;
-		background-color: rgb(var(--bg-page));
-		padding-top: var(--spc-1000);
+		background-color: rgba(255, 192, 203, 0);
 	}
 </style>
