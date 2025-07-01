@@ -1,9 +1,16 @@
 <script lang="ts">
 	import Weather from '../Snoop/Weather.svelte';
+	import FooterTitle from './FooterTitle.svelte';
 
 	let CopyRight: string = '© 2025 by Peter Abbott';
 	let TechStack: string =
 		'This website is built with Svelte and hosted on Vercel and uses your IP address to gather but not store Location Information.';
+
+	interface FooterProps {
+		enableShuffleAnimation?: boolean;
+	}
+
+	let { enableShuffleAnimation = true }: FooterProps = $props();
 </script>
 
 {#snippet Languages()}
@@ -28,33 +35,53 @@
 	</div>
 {/snippet}
 
+{#snippet Title()}
+	<FooterTitle {enableShuffleAnimation} />
+{/snippet}
+
 <footer>
-	<Weather />
-	<div class="footer-prefix">
-		{@render Details()}
-		{@render Languages()}
+	{@render Title()}
+	<div class="trailing-slot">
+		<Weather />
+		<div class="footer-details-wrapper">
+			{@render Details()}
+		</div>
 	</div>
 </footer>
 
 <style>
+	/* root */
 	footer {
 		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: flex-start;
-		gap: 1em;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-end;
+		flex-wrap: wrap;
+		grid-template-rows: 1fr auto;
+		gap: 2em;
 		padding-bottom: 16px;
 		padding-top: 16px;
 		width: 100%;
+	}
+
+	.trailing-slot {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: flex-end;
+		gap: 0.4em;
 		max-width: 1024px;
 	}
 
-	.footer-prefix {
+	.footer-details-wrapper {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: flex-start;
 		gap: 1em;
+		border-radius: var(--bdr-radius-small);
+		box-shadow: inset 0 0 0 1px rgba(var(--fg-text-primary) / 0.2);
+		padding: 16px;
 	}
 
 	.details {

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
-	// import { openAccordions, toggleAccordion } from "$lib/stores/accordianManager.svelte.";
-	// import { derived, fromStore } from "svelte/store";
+	import { onMount } from 'svelte';
+	import { shuffleText } from '$lib/animations/gsap';
 
 	import {
 		createAccordionState,
@@ -14,13 +14,38 @@
 		number: string;
 		label: string;
 		suffix: string;
+		enableShuffleAnimation?: boolean;
 	}
 
-	let { children, number = '1', label = 'Replace me', suffix = 'test' }: AccordianProps = $props();
+	let {
+		children,
+		number = '1',
+		label = 'Replace me',
+		suffix = 'test',
+		enableShuffleAnimation = true
+	}: AccordianProps = $props();
 
 	const accordionState = $state(createAccordionState());
+	let labelElement: HTMLElement | undefined;
 
 	registerAccordion(accordionState);
+
+	// Trigger animation when component mounts
+	onMount(() => {
+		if (enableShuffleAnimation) {
+			// Use setTimeout to ensure DOM is ready
+			setTimeout(() => {
+				if (labelElement) {
+					shuffleText(labelElement, label, {
+						duration: 0.8,
+						iterations: 3,
+						stagger: 0.05,
+						delay: 0.1
+					});
+				}
+			}, 50);
+		}
+	});
 
 	function handleClick() {
 		toggleAccordion(accordionState);
@@ -45,7 +70,7 @@
 			<span>0{number}. </span>
 		{/if}
 		<div class="label">
-			<span>{label}</span>
+			<span bind:this={labelElement}>{label}</span>
 			<span>{suffix}</span>
 		</div>
 	</button>
@@ -117,5 +142,15 @@
 	.details {
 		padding-bottom: 1em;
 		max-width: 64ch;
+	}
+
+	/* GSAP character animation styles */
+	:global(.gsap-char) {
+		display: inline-block;
+		position: relative;
+	}
+
+	:global(.gsap-space) {
+		display: inline-block;
 	}
 </style>
