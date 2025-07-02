@@ -4,16 +4,10 @@
 	import { gsap } from 'gsap';
 
 	// Props
-	export let texts: string[] = [
-		'LETS COOK',
-		'LETS TRY',
-		'LETS CREATE',
-		'LETS PLAY',
-		'LETS EXPLORE'
-	];
+	export let texts: string[] = ['LETS COOK'];
 	export let speed: number = 50; // pixels per second
 	export let pathWildness: number = 0.7; // 0-1 scale
-	export let verticalBounds: number = 0.2; // 0.2 = 20% margin from top/bottom
+	export let verticalBounds: number = 0.1; // 0.1 = 10% margin from top/bottom
 	export let showPath: boolean = true; // Whether to show the path stroke
 	export let fixedCanvasWidth: number = 2560; // Fixed width for stability
 	export let pathStyle = {
@@ -49,8 +43,10 @@
 		const extendedWidth = width * 1.5; // Extend past canvas
 		const startX = -width * 0.25;
 
-		// Generate 3-6 curves with irregular spacing
-		const numCurves = Math.floor(Math.random() * 4) + 3; // 3-6 curves
+		// Generate curves with irregular spacing - pathWildness affects curve count
+		const baseNumCurves = 4;
+		const wildnessRange = Math.floor(pathWildness * 4); // 0-4 additional curves based on wildness
+		const numCurves = baseNumCurves + Math.floor(Math.random() * (wildnessRange + 1));
 		const points: { x: number; y: number }[] = [];
 
 		// Create irregular spacing
@@ -77,21 +73,31 @@
 			const x = currentX + normalizedSpacings[i] * 0.5; // Place point at middle of spacing
 
 			// Create organic vertical positions with alternating tendency
+			// pathWildness affects the variation range
 			let y: number;
 			if (i === 0) {
 				// Start somewhere in the middle range
-				y = minY + yRange * (0.3 + Math.random() * 0.4);
+				const baseRange = 0.4;
+				const wildnessBonus = pathWildness * 0.2; // Up to 20% more variation
+				const totalRange = Math.min(baseRange + wildnessBonus, 0.8);
+				const startOffset = (1 - totalRange) / 2;
+				y = minY + yRange * (startOffset + Math.random() * totalRange);
 			} else {
 				// Alternate between high and low with organic variation
 				const previousY = points[i - 1].y;
 				const isHigh = previousY > (minY + maxY) / 2;
 
+				// pathWildness affects how extreme the variations can be
+				const baseVariation = 0.35;
+				const wildnessVariation = pathWildness * 0.4; // Up to 40% more variation
+				const maxVariation = Math.min(baseVariation + wildnessVariation, 0.8);
+
 				if (isHigh) {
-					// Go low, but with variation
-					y = minY + yRange * (Math.random() * 0.35);
+					// Go low, but with variation affected by wildness
+					y = minY + yRange * (Math.random() * maxVariation);
 				} else {
-					// Go high, but with variation
-					y = minY + yRange * (0.65 + Math.random() * 0.35);
+					// Go high, but with variation affected by wildness
+					y = minY + yRange * (1 - maxVariation + Math.random() * maxVariation);
 				}
 			}
 
@@ -107,7 +113,7 @@
 
 		// Convert control points to very smooth bezier path
 		pathPoints = [];
-		const resolution = 2; // Higher resolution for smoother curves
+		const resolution = 5; // Higher resolution for smoother curves
 
 		// Use Catmull-Rom spline for smoother, more organic curves
 		for (let i = 0; i < points.length - 1; i++) {
@@ -432,8 +438,8 @@
 	.animated-text-path-container {
 		position: relative;
 		width: 100%;
-		height: 400px; /* Adjust as needed */
-		overflow: hidden;
+		height: 300px; /* Adjust as needed */
+		overflow: visible;
 	}
 
 	.canvas-wrapper {
