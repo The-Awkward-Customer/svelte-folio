@@ -1,28 +1,42 @@
 <script lang="ts">
 	import FacelessPic from '$lib/assets/FacelessPic.png';
+	import { waveText } from '$lib/animations/gsap/textAnimations.js';
 
 	interface ChatTriggerProps {
-		onclick?: () => void;
+		handleClick?: () => void;
+		onMouseEnter?: () => void;
 	}
 
-	let { onclick }: ChatTriggerProps = $props();
-	let chatTriggerElement: HTMLButtonElement | undefined;
-	let speechBubbleScale = $state(1);
+	let { handleClick = consoleLogClick, onMouseEnter = handleMouseEnter }: ChatTriggerProps =
+		$props();
 
-	function handleClick() {
-		if (onclick) {
-			onclick();
+	let speechBubbleElement: HTMLElement | undefined;
+
+	function consoleLogClick() {
+		console.log('Chat trigger clicked');
+	}
+
+	function handleMouseEnter() {
+		console.log('Mouse entered chat trigger');
+		if (speechBubbleElement) {
+			const text = speechBubbleElement.textContent || '';
+			waveText(speechBubbleElement, text, {
+				duration: 0.3,
+				stagger: 0.05,
+				amplitude: 3,
+				direction: 'up'
+			});
 		}
 	}
 </script>
 
 <button
-	bind:this={chatTriggerElement}
 	class="chat-trigger"
 	onclick={handleClick}
 	aria-label="Chat with Peter Abbott"
+	onmouseenter={onMouseEnter}
 >
-	<span class="speech-bubble" style="scale: {speechBubbleScale}"> About me… </span>
+	<span class="speech-bubble" bind:this={speechBubbleElement}> About me… </span>
 	<span class="profile-image" style="background-image: url({FacelessPic})"></span>
 </button>
 
@@ -48,9 +62,14 @@
 		width: 100%;
 		height: 100%;
 		background-size: cover;
-		background-position: center;
+		background-position: top;
 		background-repeat: no-repeat;
 		border-radius: var(--bdr-radius-tiny);
+		transition: all 0.15s ease-in-out;
+	}
+
+	.chat-trigger:hover .profile-image {
+		transform: scale(0.98);
 	}
 
 	.speech-bubble {
@@ -64,9 +83,18 @@
 		background-color: rgb(var(--bg-primary));
 		border-radius: var(--bdr-radius-pill) var(--bdr-radius-pill) 0 var(--bdr-radius-pill);
 		padding: 4px 8px;
-		top: 28%;
-		left: -34%;
+		top: 42%;
+		left: 20%;
 		visibility: hidden;
+		z-index: 100;
+		transition: all 0.3s ease-in-out;
+		scale: 0;
+	}
+
+	.chat-trigger:hover .speech-bubble {
+		top: 28%;
+		left: -36%;
+		scale: 1.05;
 	}
 
 	@media (min-width: 552px) {

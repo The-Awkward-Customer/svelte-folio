@@ -44,7 +44,7 @@
 		<LinkList {list} />
 	</div>
 	{#if showChat}
-		<ChatTrigger onclick={handleChatClick} />
+		<ChatTrigger />
 	{/if}
 </nav>
 
