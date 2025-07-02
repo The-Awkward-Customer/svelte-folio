@@ -6,6 +6,18 @@
 	import { page } from '$app/stores';
 	import AnimatedTextPath from '$lib/components/AnimatedTextPath.svelte';
 
+	// Vibrant color pairs for AnimatedTextPath
+	const colorPairs = [
+		{ background: '#0066FF', foreground: '#FFFF00' }, // Electric Blue & Bright Yellow
+		{ background: '#FF1493', foreground: '#32FF32' }, // Hot Pink & Lime Green
+		{ background: '#FF4500', foreground: '#9932CC' }, // Orange & Purple
+		{ background: '#00FFFF', foreground: '#FF00FF' }, // Cyan & Magenta
+		{ background: '#50C878', foreground: '#FFD700' } // Emerald & Gold
+	];
+
+	// Randomly select a color pair on component mount
+	const selectedColorPair = colorPairs[Math.floor(Math.random() * colorPairs.length)];
+
 	//Page Content
 	let HeroIntroText: string =
 		'Currently based in sunny Madrid, and available for new projects in Q3 2025.';
@@ -22,19 +34,19 @@
 </svelte:head>
 
 <AnimatedTextPath
-	texts={['LETS COOK', 'LETS BUILD', 'LETS CREATE']}
-	speed={50}
-	pathWildness={0.7}
+	texts={['LETS COOK! ', ' WHY NOT TRY? ', 'LETS CREATE! ', 'LETS PLAY :) ', 'LETS EXPLORE…']}
+	speed={70}
+	pathWildness={0.9}
 	showPath={true}
 	pathStyle={{
-		strokeColor: '#000000',
-		strokeWidth: 60,
+		strokeColor: selectedColorPair.background,
+		strokeWidth: 65,
 		opacity: 1
 	}}
 	textStyle={{
 		font: 'bold 24px sans-serif',
 		size: 24,
-		color: '#FFFFFF'
+		color: selectedColorPair.foreground
 	}}
 />
 
