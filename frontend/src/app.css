@@ -193,7 +193,7 @@ select {
 
 
   /* Semantic font sizes */
-  --fs-tiny: clamp(14px, 4vw, 32px);
+  --fs-tiny-clamped: clamp(14px, 4vw, 28px);
   --fs-large-clamped: clamp(18px, 4vw, 40px);
   
   /* Font weights */

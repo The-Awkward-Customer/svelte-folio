@@ -1,6 +1,7 @@
 <script lang="ts">
 	import FacelessPic from '$lib/assets/FacelessPic.png';
 	import { waveText } from '$lib/animations/gsap/textAnimations.js';
+	import { goto } from '$app/navigation';
 
 	interface ChatTriggerProps {
 		handleClick?: () => void;
@@ -12,8 +13,9 @@
 
 	let speechBubbleElement: HTMLElement | undefined;
 
+	// Will trigger chat interface later
 	function consoleLogClick() {
-		console.log('Chat trigger clicked');
+		goto('/about');
 	}
 
 	function handleMouseEnter() {
