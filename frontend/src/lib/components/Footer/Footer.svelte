@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
 	import Weather from '../Snoop/Weather.svelte';
 	import FooterTitle from './FooterTitle.svelte';
 
@@ -59,7 +60,9 @@
 		flex-wrap: wrap;
 		grid-template-rows: 1fr auto;
 		gap: 2em;
-		padding-bottom: 16px;
+		padding-left: 24px;
+		padding-right: 24px;
+		padding-bottom: 24px;
 		padding-top: 16px;
 		width: 100%;
 	}

@@ -26,8 +26,6 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-text-rendering: optimizeLegibility;
   -moz-text-rendering: optimizeLegibility;
-  padding-left: 24px;
-  padding-right: 24px;
   justify-content: center;
   align-items: center;
 }
