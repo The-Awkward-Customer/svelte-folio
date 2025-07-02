@@ -217,6 +217,11 @@
 <DialogRoot />
 
 <style>
+	section {
+		padding-left: 24px;
+		padding-right: 24px;
+	}
+
 	.header-root {
 		display: flex;
 		flex-direction: column;

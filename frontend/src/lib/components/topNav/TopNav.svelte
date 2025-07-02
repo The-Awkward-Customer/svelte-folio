@@ -56,6 +56,8 @@
 		align-items: flex-start;
 		width: 100%;
 		padding-top: 24px;
+		padding-left: 24px;
+		padding-right: 24px;
 		padding-bottom: 12px;
 		gap: 1em;
 	}

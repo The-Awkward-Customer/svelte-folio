@@ -439,7 +439,7 @@
 		position: relative;
 		width: 100%;
 		height: 300px; /* Adjust as needed */
-		overflow: visible;
+		overflow: hidden;
 	}
 
 	.canvas-wrapper {
