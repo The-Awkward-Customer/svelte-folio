@@ -83,5 +83,5 @@ export const ERROR_MESSAGES = {
 	[WeatherErrorType.LOCATION_DENIED]: 'Let me in!',
 	[WeatherErrorType.API_ERROR]: 'Sh*t broke…',
 	[WeatherErrorType.NETWORK_ERROR]: 'No interwebs…',
-	[WeatherErrorType.NO_LOCATION]: 'On the moon?.'
+	[WeatherErrorType.NO_LOCATION]: 'On the moon?'
 };

@@ -105,11 +105,26 @@ export function shuffleText(
 }
 
 /**
+ * Default options for wave animation
+ */
+const DEFAULT_WAVE_OPTIONS: Required<WaveOptions> = {
+  duration: 1.5,
+  delay: 0,
+  stagger: 0.1,
+  ease: 'power2.out',
+  amplitude: 10,
+  frequency: 1,
+  direction: 'up',
+  respectReducedMotion: true,
+  onComplete: () => {},
+  onStart: () => {}
+};
+
+/**
  * Creates a wave motion animation on text characters
- * (Placeholder for future implementation)
- * 
+ *
  * @param element - The HTML element containing the text to animate
- * @param text - The text content to animate  
+ * @param text - The text content to animate
  * @param options - Animation options
  * @returns GSAP Timeline instance
  */
@@ -118,9 +133,55 @@ export function waveText(
   text: string,
   options: WaveOptions = {}
 ): gsap.core.Timeline {
-  // Placeholder implementation
-  console.log('Wave animation not yet implemented');
-  return gsap.timeline();
+  const opts = { ...DEFAULT_WAVE_OPTIONS, ...options };
+  
+  // Check for reduced motion preference
+  if (opts.respectReducedMotion && shouldRespectReducedMotion()) {
+    // Just set the text immediately without animation
+    element.textContent = text;
+    opts.onComplete();
+    return gsap.timeline();
+  }
+
+  // Create timeline
+  const tl = gsap.timeline({
+    delay: opts.delay,
+    onStart: opts.onStart,
+    onComplete: () => {
+      // Clean up spans and restore original text
+      cleanupSpans(element, text);
+      opts.onComplete();
+    }
+  });
+
+  // Split text into character spans
+  const spans = splitTextToSpans(element, text);
+  
+  // Filter out spaces for animation
+  const animatableSpans = spans.filter(span => !span.classList.contains('gsap-space'));
+
+  // Create wave animation for each character
+  animatableSpans.forEach((span, index) => {
+    const waveDirection = opts.direction === 'both'
+      ? (index % 2 === 0 ? 1 : -1)
+      : opts.direction === 'up' ? -1 : 1;
+    
+    const yOffset = opts.amplitude * waveDirection;
+    
+    // Create wave motion: up/down then back to original position
+    tl.to(span, {
+      y: yOffset,
+      duration: opts.duration / 2,
+      ease: opts.ease,
+    }, index * opts.stagger)
+    .to(span, {
+      y: 0,
+      duration: opts.duration / 2,
+      ease: opts.ease,
+    }, index * opts.stagger + opts.duration / 2);
+  });
+
+  return tl;
 }
 
 /**
