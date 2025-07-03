@@ -39,34 +39,34 @@
 </svelte:head>
 
 <AnimatedTextPath
-	texts={['LETS COOK! ', ' WHY NOT TRY? ', 'LETS CREATE! ', 'LETS PLAY :) ', 'LETS EXPLORE…']}
+	texts={['GREETINGS •', ' HEJ •', 'HOLA •', 'HELLO •', 'WELCOME •']}
 	speed={70}
 	pathWildness={0.9}
 	showPath={true}
 	pathStyle={{
 		strokeColor: selectedColorPairs[0].background,
-		strokeWidth: 65,
+		strokeWidth: 80,
 		opacity: 1
 	}}
 	textStyle={{
-		font: 'bold 24px sans-serif',
+		font: 'bold 28px sans-serif',
 		size: 24,
 		color: selectedColorPairs[0].foreground
 	}}
 />
 
 <AnimatedTextPath
-	texts={['LETS COOK! ', ' WHY NOT TRY? ', 'LETS CREATE! ', 'LETS PLAY :) ', 'LETS EXPLORE…']}
+	texts={['LETS COOK –', ' WHY NOT TRY?', 'LETS CREATE //', 'LETS MAKE //', 'LETS EXPLORE //']}
 	speed={100}
 	pathWildness={0.9}
 	showPath={true}
 	pathStyle={{
 		strokeColor: selectedColorPairs[1].background,
-		strokeWidth: 65,
+		strokeWidth: 80,
 		opacity: 1
 	}}
 	textStyle={{
-		font: 'bold 24px sans-serif',
+		font: 'bold 28px sans-serif',
 		size: 24,
 		color: selectedColorPairs[1].foreground
 	}}
