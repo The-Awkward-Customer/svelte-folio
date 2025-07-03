@@ -39,7 +39,7 @@
 </svelte:head>
 
 <AnimatedTextPath
-	texts={['GREETINGS •', ' HEJ •', 'HOLA •', 'HELLO •', 'WELCOME •']}
+	texts={['HALLO •', ' HEJ •', 'HOLA •', 'HELLO •', 'WELCOME •', 'こんにちは •']}
 	speed={70}
 	pathWildness={0.9}
 	showPath={true}
