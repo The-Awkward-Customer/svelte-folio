@@ -18,6 +18,11 @@
 	// Randomly select a color pair on component mount
 	const selectedColorPair = colorPairs[Math.floor(Math.random() * colorPairs.length)];
 
+	//arrary of pairs
+	const selectedColorPairs = Array.from({ length: 2 }, () => {
+		return colorPairs[Math.floor(Math.random() * colorPairs.length)];
+	});
+
 	//Page Content
 	let HeroIntroText: string =
 		'Currently based in sunny Madrid, and available for new projects in Q3 2025.';
@@ -34,19 +39,36 @@
 </svelte:head>
 
 <AnimatedTextPath
-	texts={['LETS COOK! ', ' WHY NOT TRY? ', 'LETS CREATE! ', 'LETS PLAY :) ', 'LETS EXPLORE…']}
+	texts={['GREETINGS •', ' HEJ •', 'HOLA •', 'HELLO •', 'WELCOME •']}
 	speed={70}
 	pathWildness={0.9}
 	showPath={true}
 	pathStyle={{
-		strokeColor: selectedColorPair.background,
-		strokeWidth: 65,
+		strokeColor: selectedColorPairs[0].background,
+		strokeWidth: 80,
 		opacity: 1
 	}}
 	textStyle={{
-		font: 'bold 24px sans-serif',
+		font: 'bold 28px sans-serif',
 		size: 24,
-		color: selectedColorPair.foreground
+		color: selectedColorPairs[0].foreground
+	}}
+/>
+
+<AnimatedTextPath
+	texts={['LETS COOK –', ' WHY NOT TRY?', 'LETS CREATE //', 'LETS MAKE //', 'LETS EXPLORE //']}
+	speed={100}
+	pathWildness={0.9}
+	showPath={true}
+	pathStyle={{
+		strokeColor: selectedColorPairs[1].background,
+		strokeWidth: 80,
+		opacity: 1
+	}}
+	textStyle={{
+		font: 'bold 28px sans-serif',
+		size: 24,
+		color: selectedColorPairs[1].foreground
 	}}
 />
 
