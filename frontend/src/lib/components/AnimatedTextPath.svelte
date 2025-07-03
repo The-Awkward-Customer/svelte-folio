@@ -436,10 +436,13 @@
 
 <style>
 	.animated-text-path-container {
-		position: relative;
+		position: absolute;
 		width: 100%;
-		height: 300px; /* Adjust as needed */
-		overflow: hidden;
+		height: 100vh; /* Adjust as needed */
+		overflow-x: hidden;
+		overflow-y: visible;
+		z-index: -999;
+		top: 0;
 	}
 
 	.canvas-wrapper {

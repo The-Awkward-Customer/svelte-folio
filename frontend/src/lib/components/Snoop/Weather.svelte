@@ -122,6 +122,7 @@
 		width: 100%;
 		overflow: hidden;
 		height: 72px;
+		background-color: rgba(var(--bg-page) / 1);
 	}
 
 	/* Unified container for all weather states */
