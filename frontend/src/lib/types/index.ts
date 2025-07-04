@@ -21,6 +21,23 @@ export type {
   WeatherErrorTypeType
 } from './weather.js';
 
+// Export chat types
+export type {
+  MessageType,
+  ChatMessage,
+  QASearchResult,
+  ChatApiResponse,
+  ChatApiError,
+  ChatState,
+  SendMessageEvent,
+  CloseEvent,
+  ChatDialogProps,
+  ChatMessagesProps,
+  ChatInputProps,
+  ChatError,
+  ChatConfig
+} from './chat.js';
+
 export {
   LoadingState,
   WeatherErrorType,
