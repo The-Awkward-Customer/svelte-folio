@@ -84,9 +84,9 @@
 	.btn {
 		border: none;
 		border-radius: var(--bdr-radius-small);
-		font-weight: var(--fw-bold);
+		font-weight: var(--fw-semibold);
 		font-size: var(--fs-300);
-		height: 44px;
+		height: 40px;
 		padding-left: 8px;
 		padding-right: 8px;
 		/* Ensure anchor elements look identical to buttons */

@@ -1,21 +1,20 @@
 <script lang="ts">
 	import FacelessPic from '$lib/assets/FacelessPic.png';
 	import { waveText } from '$lib/animations/gsap/textAnimations.js';
-	import { goto } from '$app/navigation';
 
 	interface ChatTriggerProps {
 		handleClick?: () => void;
 		onMouseEnter?: () => void;
 	}
 
-	let { handleClick = consoleLogClick, onMouseEnter = handleMouseEnter }: ChatTriggerProps =
+	let { handleClick = defaultClickHandler, onMouseEnter = handleMouseEnter }: ChatTriggerProps =
 		$props();
 
 	let speechBubbleElement: HTMLElement | undefined;
 
-	// Will trigger chat interface later
-	function consoleLogClick() {
-		goto('/about');
+	// Default handler if none provided
+	function defaultClickHandler() {
+		console.log('Chat trigger clicked - no handler provided');
 	}
 
 	function handleMouseEnter() {

@@ -4,6 +4,7 @@
 
 	import LinkList from '../navigation/LinkList.svelte';
 	import ChatTrigger from './ChatTrigger.svelte';
+	import QAChat from '../chat/QAChat.svelte';
 
 	interface LinkItem {
 		label: string;
@@ -32,9 +33,15 @@
 	// Derived value to determine if chat should be shown
 	const showChat = $derived(!hideChatOnPages.includes($page.url.pathname));
 
-	function handleChatClick() {
-		console.log('Chat button clicked');
-		// Implement chat functionality here
+	// Chat state management
+	let isChatOpen = $state(false);
+
+	function openChat() {
+		isChatOpen = true;
+	}
+
+	function closeChat() {
+		isChatOpen = false;
 	}
 </script>
 
@@ -44,9 +51,12 @@
 		<LinkList {list} />
 	</div>
 	{#if showChat}
-		<ChatTrigger />
+		<ChatTrigger handleClick={openChat} />
 	{/if}
 </nav>
+
+<!-- Chat Component -->
+<QAChat bind:isOpen={isChatOpen} on:close={closeChat} />
 
 <style>
 	nav {
