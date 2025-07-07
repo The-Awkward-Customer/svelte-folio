@@ -27,6 +27,7 @@ export type {
 	QAChatEvents,
 	// Utility Types
 	MessageType,
+	MessageDisplayType,
 	QASearchResult,
 	ChatError,
 	ChatConfig

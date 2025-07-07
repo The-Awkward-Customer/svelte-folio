@@ -119,14 +119,14 @@
 <ChatDialog bind:isOpen on:close={closeChat}>
 	<div class="chat-container">
 		<div class="chat-header">
-			<h2>Ask me anything</h2>
+			<h2>Beta</h2>
 			<div class="chat-actions">
 				{#if messages.length > 0}
-					<Button as="button" variant="primary" label="Clear" handleClick={clearMessages} />
+					<Button as="button" variant="inverse" label="Clear" handleClick={clearMessages} />
 				{/if}
 				<IconButton
 					name="close"
-					variant="primary"
+					variant="inverse"
 					alt="Close chat"
 					size={24}
 					handleClick={closeChat}
@@ -145,7 +145,6 @@
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		max-width: 600px;
 		margin: 0 auto;
 		/* Ensure container takes full height in dialog */
 		height: 100%;
@@ -157,7 +156,7 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 1rem 1.5rem;
-		background: rgba(var(--bg-primary) / 1);
+		width: 100%;
 		/* Prevent header from shrinking */
 		flex-shrink: 0;
 		/* Account for safe areas on mobile */
@@ -169,7 +168,7 @@
 		margin: 0;
 		font-size: 1.25rem;
 		font-weight: 600;
-		color: rgb(var(--fg-text-inverse));
+		color: rgb(var(--fg-text-primary));
 	}
 
 	.chat-actions {
