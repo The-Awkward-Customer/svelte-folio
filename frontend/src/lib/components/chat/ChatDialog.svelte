@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onMount, onDestroy } from 'svelte';
 	import type { ChatDialogProps, ChatDialogEvents } from '$lib/types/chat.js';
 
 	// Props with proper typing
@@ -7,6 +7,10 @@
 
 	// Event dispatcher with proper typing
 	const dispatch = createEventDispatcher<ChatDialogEvents>();
+
+	// State for mobile keyboard handling
+	let keyboardHeight = 0;
+	let savedScrollY = 0;
 
 	// Handle backdrop click
 	function handleBackdropClick(event: MouseEvent) {
@@ -22,14 +26,95 @@
 		}
 	}
 
-	// Prevent background scrolling when dialog is open
+	// Enhanced scroll prevention with position fixed
 	$: if (typeof document !== 'undefined') {
 		if (isOpen) {
+			// Save current scroll position
+			savedScrollY = window.scrollY;
+
+			// Prevent background scrolling with position fixed
 			document.body.style.overflow = 'hidden';
+			document.body.style.position = 'fixed';
+			document.body.style.width = '100%';
+			document.body.style.top = `-${savedScrollY}px`;
 		} else {
+			// Restore scrolling and position
 			document.body.style.overflow = '';
+			document.body.style.position = '';
+			document.body.style.width = '';
+			document.body.style.top = '';
+
+			// Restore scroll position
+			if (savedScrollY) {
+				window.scrollTo(0, savedScrollY);
+			}
 		}
 	}
+
+	// Enhanced Visual Viewport API for keyboard detection with iOS fallbacks
+	function handleViewportChange() {
+		if (typeof window !== 'undefined') {
+			let newKeyboardHeight = 0;
+
+			if (window.visualViewport) {
+				// Standard Visual Viewport API
+				newKeyboardHeight = window.innerHeight - window.visualViewport.height;
+			} else {
+				// Fallback for iOS Safari issues - detect significant height changes
+				const currentHeight = window.innerHeight;
+				const initialHeight = window.screen.height;
+				// Account for browser chrome (typically 44px bottom + 44px top on iOS)
+				const chromeHeight = 88;
+				newKeyboardHeight = Math.max(0, initialHeight - currentHeight - chromeHeight);
+			}
+
+			keyboardHeight = Math.max(0, newKeyboardHeight);
+
+			// Update CSS custom property for keyboard height
+			document.documentElement.style.setProperty('--keyboard-height', `${keyboardHeight}px`);
+
+			// Also set a flag for keyboard presence
+			document.documentElement.style.setProperty('--keyboard-open', keyboardHeight > 0 ? '1' : '0');
+		}
+	}
+
+	// Additional resize listener for iOS Safari
+	function handleWindowResize() {
+		// Debounce to avoid excessive calls
+		clearTimeout(resizeTimeout);
+		resizeTimeout = setTimeout(handleViewportChange, 100);
+	}
+
+	let resizeTimeout: ReturnType<typeof setTimeout>;
+
+	// Setup viewport monitoring
+	onMount(() => {
+		if (typeof window !== 'undefined') {
+			// Visual Viewport API (modern browsers)
+			if (window.visualViewport) {
+				window.visualViewport.addEventListener('resize', handleViewportChange);
+			}
+
+			// Window resize fallback for iOS Safari
+			window.addEventListener('resize', handleWindowResize);
+
+			// Initial check
+			handleViewportChange();
+		}
+	});
+
+	// Cleanup viewport monitoring
+	onDestroy(() => {
+		if (typeof window !== 'undefined') {
+			if (window.visualViewport) {
+				window.visualViewport.removeEventListener('resize', handleViewportChange);
+			}
+			window.removeEventListener('resize', handleWindowResize);
+			clearTimeout(resizeTimeout);
+			document.documentElement.style.removeProperty('--keyboard-height');
+			document.documentElement.style.removeProperty('--keyboard-open');
+		}
+	});
 </script>
 
 <!-- Custom dialog wrapper -->\
@@ -97,19 +182,63 @@
 		}
 	}
 
-	/* Mobile responsive */
+	/* Mobile responsive with keyboard handling */
 	@media (max-width: 768px) {
 		.dialog-backdrop {
-			padding: 0.5rem;
+			padding: 0;
 			align-items: flex-end;
+			/* Account for safe areas at top and bottom */
+			padding-top: env(safe-area-inset-top, 0px);
+			padding-bottom: max(
+				env(keyboard-inset-height, 0px),
+				var(--keyboard-height, 0px),
+				env(safe-area-inset-bottom, 0px),
+				0px
+			);
 		}
 
 		.dialog-content {
-			width: 95vw;
+			width: 100vw;
 			max-width: 100%;
-			max-height: 90vh;
+			/* Maximum available height minus safe areas for mobile devices */
+			max-height: min(
+				calc(100vh - env(safe-area-inset-top, 20px) - env(safe-area-inset-bottom, 20px)),
+				calc(100dvh - env(safe-area-inset-top, 20px) - env(safe-area-inset-bottom, 20px)),
+				calc(
+					100vh - env(keyboard-inset-height, 0px) - var(--keyboard-height, 0px) -
+						env(safe-area-inset-top, 20px) - env(safe-area-inset-bottom, 20px)
+				),
+				calc(100vh - env(safe-area-inset-top, 20px) - env(safe-area-inset-bottom, 20px) - 44px)
+					/* Account for iOS chrome */
+			);
+			min-height: 60vh;
 			border-radius: 12px 12px 0 0;
 			animation: slideUp 0.3s ease-out;
+
+			/* Ensure content is scrollable when keyboard appears */
+			display: flex;
+			flex-direction: column;
+
+			/* Account for notches and home indicators */
+			padding-bottom: max(1rem, env(safe-area-inset-bottom));
+			padding-left: env(safe-area-inset-left);
+			padding-right: env(safe-area-inset-right);
+		}
+	}
+
+	/* Support for older browsers without env() */
+	@supports not (padding: env(safe-area-inset-bottom)) {
+		@media (max-width: 768px) {
+			.dialog-backdrop {
+				padding-bottom: 44px; /* iOS Safari bottom toolbar */
+			}
+
+			.dialog-content {
+				padding-bottom: 1rem;
+				/* Maximum available height minus safe areas fallback */
+				max-height: calc(100vh - 40px); /* 20px top + 20px bottom safe area fallback */
+				min-height: 60vh;
+			}
 		}
 	}
 

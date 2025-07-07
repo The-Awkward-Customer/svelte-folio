@@ -144,10 +144,12 @@
 	.chat-container {
 		display: flex;
 		flex-direction: column;
-		height: 80vh;
 		width: 100%;
 		max-width: 600px;
 		margin: 0 auto;
+		/* Ensure container takes full height in dialog */
+		height: 100%;
+		min-height: 0; /* Allow flex shrinking */
 	}
 
 	.chat-header {
@@ -156,6 +158,11 @@
 		align-items: center;
 		padding: 1rem 1.5rem;
 		background: rgba(var(--bg-primary) / 1);
+		/* Prevent header from shrinking */
+		flex-shrink: 0;
+		/* Account for safe areas on mobile */
+		padding-left: max(1.5rem, env(safe-area-inset-left));
+		padding-right: max(1.5rem, env(safe-area-inset-right));
 	}
 
 	.chat-header h2 {
@@ -176,16 +183,39 @@
 	/* Responsive adjustments */
 	@media (max-width: 768px) {
 		.chat-container {
-			height: 90vh;
 			max-width: 100%;
+			/* Full height on mobile for better keyboard handling */
+			height: 100%;
 		}
 
 		.chat-header {
 			padding: 1rem;
+			/* Ensure safe area handling */
+			padding-left: max(1rem, env(safe-area-inset-left));
+			padding-right: max(1rem, env(safe-area-inset-right));
 		}
 
 		.chat-header h2 {
 			font-size: 1.125rem;
+		}
+
+		.chat-actions {
+			gap: 0.25rem;
+		}
+	}
+
+	/* Support for older browsers without env() */
+	@supports not (padding: env(safe-area-inset-left)) {
+		.chat-header {
+			padding-left: 1.5rem;
+			padding-right: 1.5rem;
+		}
+
+		@media (max-width: 768px) {
+			.chat-header {
+				padding-left: 1rem;
+				padding-right: 1rem;
+			}
 		}
 	}
 </style>
