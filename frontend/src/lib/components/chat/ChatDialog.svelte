@@ -158,7 +158,8 @@
 		width: 600px;
 		max-width: 600px;
 		max-height: 80vh;
-		overflow: hidden;
+		display: flex;
+		flex-direction: column;
 		animation: slideIn 0.3s ease-out;
 	}
 
@@ -238,6 +239,8 @@
 				/* Maximum available height minus safe areas fallback */
 				max-height: calc(100vh - 40px); /* 20px top + 20px bottom safe area fallback */
 				min-height: 60vh;
+				display: flex;
+				flex-direction: column;
 			}
 		}
 	}

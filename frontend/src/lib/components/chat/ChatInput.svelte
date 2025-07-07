@@ -125,6 +125,7 @@
 	.input-container {
 		background: rgba(var(--bg-inverse) / 1);
 		padding: 1rem 1.5rem;
+		flex-shrink: 0; /* Prevent input from shrinking */
 	}
 
 	.input-form {

@@ -31,7 +31,7 @@
 
 		scrollLockTimeout = setTimeout(() => {
 			scrollLockActive = false;
-		}, 1000); // 1 second protection
+		}, 300); // Reduced to 300ms for better responsiveness
 	}
 
 	// Enhanced scroll position checking with direction tracking
@@ -67,18 +67,25 @@
 	function smoothScrollToBottom() {
 		if (!messagesContainer) return;
 
+		// Use multiple animation frames to ensure reliable scrolling
 		requestAnimationFrame(() => {
-			if (messagesContainer) {
-				messagesContainer.scrollTop = messagesContainer.scrollHeight;
-			}
+			requestAnimationFrame(() => {
+				if (messagesContainer) {
+					messagesContainer.scrollTop = messagesContainer.scrollHeight;
+				}
+			});
 		});
 	}
 
 	// Handle new message arrival with user intent awareness
 	function handleNewMessage() {
-		if (!messagesContainer || scrollLockActive) return;
+		if (!messagesContainer) return;
 
-		// Always scroll for new messages (as per user requirement)
+		// Always scroll for new messages (ignore scroll lock for new messages)
+		// Clear any existing scroll lock to ensure new messages always scroll
+		scrollLockActive = false;
+		clearTimeout(scrollLockTimeout);
+
 		smoothScrollToBottom();
 	}
 
