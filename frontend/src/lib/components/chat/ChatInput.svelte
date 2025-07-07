@@ -11,6 +11,7 @@
 	// State
 	let inputValue: string = '';
 	let textareaElement: HTMLTextAreaElement;
+	let inputContainer: HTMLDivElement;
 
 	// Event dispatcher with proper typing
 	const dispatch = createEventDispatcher<ChatInputEvents>();
@@ -59,9 +60,29 @@
 			textareaElement.style.height = 'auto';
 		}
 	}
+
+	// Handle focus - scroll input into view on mobile
+	function handleFocus() {
+		if (inputContainer && 'scrollIntoView' in inputContainer) {
+			// Delay to allow for keyboard animation
+			setTimeout(() => {
+				inputContainer.scrollIntoView({
+					behavior: 'smooth',
+					block: 'nearest',
+					inline: 'nearest'
+				});
+			}, 300);
+		}
+	}
+
+	// Handle blur - optional cleanup
+	function handleBlur() {
+		// Optional: Reset any keyboard-specific adjustments
+		// Currently no specific actions needed on blur
+	}
 </script>
 
-<div class="input-container">
+<div class="input-container" bind:this={inputContainer}>
 	<form on:submit={handleSubmit} class="input-form">
 		<div class="input-wrapper">
 			<textarea
@@ -72,6 +93,8 @@
 				rows="1"
 				on:keydown={handleKeydown}
 				on:input={handleInput}
+				on:focus={handleFocus}
+				on:blur={handleBlur}
 				class="message-input"
 			></textarea>
 
@@ -132,7 +155,8 @@
 		outline: none;
 		background: transparent;
 		resize: none;
-		font-size: 0.9375rem;
+		/* Prevent zoom on input focus (iOS) - minimum 16px font size */
+		font-size: max(16px, 0.9375rem);
 		line-height: 1.5;
 		color: rgba(var(--fg-text-inverse) / 1);
 		min-height: 24px;
@@ -190,19 +214,37 @@
 		color: var(--text-muted, #999);
 	}
 
-	/* Responsive adjustments */
+	/* Responsive adjustments with iOS-specific fixes */
 	@media (max-width: 768px) {
 		.input-container {
 			padding: 1rem;
+			/* Account for safe areas on mobile */
+			padding-left: max(1rem, env(safe-area-inset-left));
+			padding-right: max(1rem, env(safe-area-inset-right));
+			/* Critical: Add bottom padding to lift above browser chrome */
+			padding-bottom: max(1rem, env(safe-area-inset-bottom), var(--keyboard-height, 0px));
+			/* Ensure input container is always visible */
+			position: relative;
+			z-index: 10;
 		}
 
 		.input-wrapper {
 			padding: 0.625rem 0.875rem;
+			/* Ensure minimum touch target */
+			min-height: 44px;
+		}
+
+		.message-input {
+			/* Maintain 16px minimum to prevent zoom */
+			font-size: max(16px, 0.875rem);
 		}
 
 		.loading-button {
 			width: 36px;
 			height: 36px;
+			/* Ensure minimum touch target */
+			min-width: 44px;
+			min-height: 44px;
 		}
 
 		.loading-icon {
@@ -211,6 +253,17 @@
 
 		.hint-text {
 			font-size: 0.6875rem;
+		}
+	}
+
+	/* Support for older browsers without env() */
+	@supports not (padding: env(safe-area-inset-left)) {
+		@media (max-width: 768px) {
+			.input-container {
+				padding-left: 1rem;
+				padding-right: 1rem;
+				padding-bottom: 1.5rem; /* Extra padding for iOS Safari */
+			}
 		}
 	}
 </style>

@@ -42,8 +42,8 @@
 		border: none;
 		border-radius: var(--bdr-radius-small);
 		font-weight: var(--fw-semibold);
-		height: 40px;
-		width: 40px;
+		height: 44px;
+		width: 44px;
 		transition: all 0.2s ease-in-out;
 	}
 
