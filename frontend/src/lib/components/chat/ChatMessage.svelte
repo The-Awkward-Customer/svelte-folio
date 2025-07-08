@@ -80,7 +80,7 @@
 {#snippet LoadingMessage()}
 	<div class="message loading-message">
 		<div class="message-avatar loading-avatar">
-			<Avatar size="xs" alt="Assistant avatar" content={Avatar_Image} />
+			<Avatar size="xs" alt="Assistant avatar" content={Avatar_Image} isLoading={true} />
 		</div>
 		<div class="message-content loading-content">
 			<div class="message-bubble loading-bubble">

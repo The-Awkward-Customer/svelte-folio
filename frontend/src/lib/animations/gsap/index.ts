@@ -1,12 +1,13 @@
 /**
- * GSAP Text Animations Module
- * 
- * This module provides modular text animation functions using GSAP
+ * GSAP Animations Module
+ *
+ * This module provides modular animation functions using GSAP
  * for use in Svelte 5 components.
  */
 
 // Export main animation functions
 export { shuffleText, waveText, typewriterText } from './textAnimations.js';
+export { createGlitchAnimation } from './glitchAnimations.js';
 
 // Export utility functions
 export { 
