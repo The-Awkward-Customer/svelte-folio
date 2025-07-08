@@ -47,7 +47,7 @@
 	} = props;
 
 	// Refs
-	let avatarRef: HTMLElement;
+	let avatarRef: HTMLElement | undefined = $state();
 	let glitchController: GlitchController | null = null;
 
 	// Check for reduced motion preference
@@ -91,8 +91,8 @@
 		if (currentIsLoading) {
 			// Use a small delay to ensure DOM elements are rendered
 			const timeoutId = setTimeout(() => {
-				// Create glitch controller if it doesn't exist
-				if (!glitchController) {
+				// Create glitch controller if it doesn't exist and avatarRef is available
+				if (!glitchController && avatarRef) {
 					const options: GlitchOptions = {
 						rate: currentGlitchRate,
 						intensity: currentIntensity,
@@ -103,7 +103,9 @@
 				}
 
 				// Start animation (simplified version doesn't have updateOptions)
-				glitchController.start();
+				if (glitchController) {
+					glitchController.start();
+				}
 			}, 10); // Small delay to ensure DOM is updated
 
 			// Cleanup timeout if component unmounts or isLoading changes
@@ -181,7 +183,6 @@
 		box-shadow: inset 0 0 0 1px rgba(var(--fg-text-primary) / 1);
 		container-type: inline-size;
 		transition: var(--transition-fast);
-		overflow: hidden;
 		isolation: isolate; /* Create stacking context for blend modes */
 	}
 
@@ -197,11 +198,6 @@
 		position: relative;
 		z-index: 1;
 		will-change: transform, filter;
-	}
-
-	/* Enhanced glitch base styles */
-	.glitch-active {
-		overflow: hidden;
 	}
 
 	.glitch-active .avatar-image {
