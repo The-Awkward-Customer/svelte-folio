@@ -124,8 +124,9 @@
 <style>
 	.input-container {
 		background: rgba(var(--bg-inverse) / 1);
-		padding: 1rem 1.5rem;
-		flex-shrink: 0; /* Prevent input from shrinking */
+		padding: 1rem 0;
+		width: 100%;
+		max-width: 800px; /* Limit width for better readability */
 	}
 
 	.input-form {
@@ -143,11 +144,6 @@
 		transition:
 			border-color 0.2s ease,
 			box-shadow 0.2s ease;
-	}
-
-	.input-wrapper:focus-within {
-		/* border-color: var(--primary-color, #007bff);
-		box-shadow: inset 0 0 3px var(--primary-color-alpha, rgba(0, 123, 255, 1)); */
 	}
 
 	.message-input {
@@ -206,13 +202,14 @@
 	}
 
 	.input-hint {
-		margin-top: 0.5rem;
+		padding-top: var(--spc-100);
 		text-align: center;
 	}
 
 	.hint-text {
-		font-size: 0.75rem;
-		color: var(--text-muted, #999);
+		font-family: var(--font-family-alt);
+		font-size: var(--fs-250);
+		color: rgba(var(--fg-text-primary) / 0.5);
 	}
 
 	/* Responsive adjustments with iOS-specific fixes */

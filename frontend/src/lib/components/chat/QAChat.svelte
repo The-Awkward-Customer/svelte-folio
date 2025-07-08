@@ -135,7 +135,7 @@
 			</div>
 		</div>
 
-		<ChatMessages {messages} {isLoading} {error} />
+		<ChatMessages {messages} {isLoading} {error} onPromptSelected={handleSendMessage} />
 
 		<ChatInput on:send={(e) => handleSendMessage(e.detail)} disabled={isLoading} />
 	</div>
@@ -145,6 +145,7 @@
 	.chat-container {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		width: 100%;
 		margin: 0 auto;
 		/* Ensure container takes full height in dialog */
@@ -193,10 +194,6 @@
 			/* Ensure safe area handling */
 			padding-left: max(1rem, env(safe-area-inset-left));
 			padding-right: max(1rem, env(safe-area-inset-right));
-		}
-
-		.chat-header h2 {
-			font-size: 1.125rem;
 		}
 
 		.chat-actions {

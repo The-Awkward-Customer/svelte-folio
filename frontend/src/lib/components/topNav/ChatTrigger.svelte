@@ -1,5 +1,5 @@
 <script lang="ts">
-	import FacelessPic from '$lib/assets/FacelessPic.png';
+	import Anim_me from '$lib/assets/Ani_me.png';
 	import { waveText } from '$lib/animations/gsap/textAnimations.js';
 
 	interface ChatTriggerProps {
@@ -38,7 +38,7 @@
 	onmouseenter={onMouseEnter}
 >
 	<span class="speech-bubble" bind:this={speechBubbleElement}> About me… </span>
-	<span class="profile-image" style="background-image: url({FacelessPic})"></span>
+	<span class="profile-image" style="background-image: url({Anim_me})"></span>
 </button>
 
 <style>

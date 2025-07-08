@@ -8,6 +8,7 @@
 	export let messages: ChatMessagesProps['messages'] = [];
 	export let isLoading: ChatMessagesProps['isLoading'] = false;
 	export let error: ChatMessagesProps['error'] = null;
+	export let onPromptSelected: ((prompt: string) => void) | undefined = undefined;
 
 	let messagesContainer: HTMLElement;
 	let userHasScrolledUp = false;
@@ -118,7 +119,7 @@
 <div class="messages-container" bind:this={messagesContainer} on:scroll={handleScroll}>
 	<!-- Welcome message when no messages and not loading -->
 	{#if messages.length === 0 && !isLoading}
-		<ChatMessage displayType="welcome" />
+		<ChatMessage displayType="welcome" {onPromptSelected} />
 	{/if}
 
 	<!-- Regular messages -->
@@ -139,6 +140,9 @@
 
 <style>
 	.messages-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
 		flex: 1;
 		overflow-y: auto;
 		padding: 0;
@@ -146,6 +150,8 @@
 		min-height: 0; /* Ensures flex item can shrink below content size */
 		/* Ensure stable height within fixed dialog container */
 		max-height: 100%;
+		width: 100%;
+		max-width: 800px;
 		/* Remove scroll-behavior: smooth to prevent interference with manual scrolling */
 	}
 </style>
