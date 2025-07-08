@@ -6,6 +6,7 @@
 	import ChatInput from './ChatInput.svelte';
 	import Button from '$lib/components/actions/Button.svelte';
 	import IconButton from '$lib/components/actions/IconButton.svelte';
+	import Tag from '../primatives/Tag.svelte';
 	import type {
 		ChatMessage,
 		ChatApiResponse,
@@ -119,7 +120,7 @@
 <ChatDialog bind:isOpen on:close={closeChat}>
 	<div class="chat-container">
 		<div class="chat-header">
-			<h2>Beta</h2>
+			<Tag label="Beta" />
 			<div class="chat-actions">
 				{#if messages.length > 0}
 					<Button as="button" variant="inverse" label="Clear" handleClick={clearMessages} />

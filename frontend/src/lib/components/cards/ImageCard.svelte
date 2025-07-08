@@ -15,7 +15,7 @@
 	<img class="cover-image" {src} {alt} style="background-color: {bgColor};" />
 	{#if tag}
 		<div class="tag-container">
-			<Tag label={tag} />
+			<Tag label={tag} color="inverse" />
 		</div>
 	{/if}
 </div>
