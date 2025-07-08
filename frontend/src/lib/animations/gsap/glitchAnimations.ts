@@ -1,397 +1,272 @@
 import gsap from 'gsap';
 
-export interface GlitchAnimationOptions {
-	/** Delay between glitch cycles in seconds (will be randomized 0-3s like original) */
-	glitchRate?: number;
-	/** Whether to respect reduced motion preferences */
-	respectReducedMotion?: boolean;
-	/** Time scale multiplier for the entire animation */
-	timeScale?: number;
+export interface GlitchOptions {
+	/** Delay between glitch cycles (seconds) */
+	rate?: number;
+	/** Overall intensity (0.5 = subtle, 1 = normal, 2 = intense) */
+	intensity?: number;
+	/** Respect prefers-reduced-motion */
+	respectMotion?: boolean;
 }
 
-export interface GlitchAnimationController {
-	/** Start the glitch animation */
+export interface GlitchController {
 	start: () => void;
-	/** Stop the glitch animation */
 	stop: () => void;
-	/** Update animation options */
-	updateOptions: (options: Partial<GlitchAnimationOptions>) => void;
-	/** Check if animation is currently running */
-	isRunning: () => boolean;
-	/** Cleanup all resources */
 	destroy: () => void;
 }
 
 /**
- * Creates a glitch animation controller that recreates the exact PIXI.js glitch effect
- * This implementation follows the original timing sequence and multi-channel RGB splitting
- * @param element - The container element (should contain .avatar-image)
- * @param options - Animation configuration options
- * @returns Animation controller with start/stop methods
+ * Creates a simple, effective glitch animation
  */
 export function createGlitchAnimation(
-	element: HTMLElement,
-	options: GlitchAnimationOptions = {}
-): GlitchAnimationController {
+	container: HTMLElement,
+	options: GlitchOptions = {}
+): GlitchController {
 	const {
-		glitchRate = 2,
-		respectReducedMotion = true,
-		timeScale = 1.2
+		rate = 2,
+		intensity = 1,
+		respectMotion = true
 	} = options;
 
 	let timeline: gsap.core.Timeline | null = null;
-	let currentOptions = { ...options };
-	let isActive = false;
-	let animationId: number | null = null;
 
-	// Check for reduced motion preference
-	const prefersReducedMotion = respectReducedMotion && 
-		typeof window !== 'undefined' && 
-		window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	// Check reduced motion preference
+	const prefersReducedMotion = respectMotion && 
+		window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-	// Random number helper (matches original randomIntFromInterval)
-	function randomIntFromInterval(min: number, max: number): number {
-		return Math.random() * (max - min + 1) + min;
+	// Random helper
+	function random(min: number, max: number): number {
+		return Math.random() * (max - min) + min;
 	}
 
-	// Get the avatar image element
-	function getImageElement(): HTMLElement | null {
-		return element?.querySelector('.avatar-image') as HTMLElement;
+	// Get elements
+	function getElements() {
+		const image = container.querySelector('.avatar-image') as HTMLElement;
+		const red = container.querySelector('.glitch-red') as HTMLElement;
+		const green = container.querySelector('.glitch-green') as HTMLElement;
+		const blue = container.querySelector('.glitch-blue') as HTMLElement;
+		return { image, red, green, blue };
 	}
 
-	// Reset all CSS variables to default state
-	function resetVariables(): void {
-		const imageEl = getImageElement();
-		if (imageEl) {
-			gsap.set(imageEl, {
-				'--red-x': 0,
-				'--red-y': 0,
-				'--green-x': 0,
-				'--green-y': 0,
-				'--blue-x': 0,
-				'--blue-y': 0,
-				'--slice-count': 0,
-				'--slice-direction': 0,
-				'--slice-offset': 20
+	// Reset all elements
+	function reset() {
+		const { image, red, green, blue } = getElements();
+		if (image) {
+			// Reset main image to visible
+			gsap.set(image, {
+				x: 0,
+				y: 0,
+				scaleX: 1,
+				scaleY: 1,
+				rotation: 0,
+				opacity: 1
 			});
+			
+			// Reset RGB channels to hidden
+			if (red) gsap.set(red, { x: 0, y: 0, opacity: 0 });
+			if (green) gsap.set(green, { x: 0, y: 0, opacity: 0 });
+			if (blue) gsap.set(blue, { x: 0, y: 0, opacity: 0 });
 		}
 	}
 
-	// Main animation function (recreates the original PIXI.js anim() method)
-	function anim(): void {
-		if (!isActive || prefersReducedMotion) return;
+	// Store randomization values that get updated between cycles
+	let cycleVars = {
+		intensity: intensity,
+		duration: 0.3,
+		startDelay: 0,
+		channelWeights: [1, 1, 1],
+		timeScale: 1.2
+	};
 
-		const imageEl = getImageElement();
-		if (!imageEl) return;
-
-		// Create timeline with immediate start for testing (remove delay)
-		const tl = gsap.timeline({
-			delay: 0.1, // Very short delay for immediate feedback
-			onStart: () => {
-				console.log('Glitch animation starting');
-			},
-			onComplete: () => {
-				console.log('Glitch animation completed, scheduling next cycle');
-				// Recursive call to continue the animation loop
-				if (isActive) {
-					setTimeout(() => {
-						if (isActive) anim();
-					}, 1000); // 1 second between cycles for testing
-				}
-			}
-		});
-
-		// RED CHANNEL ANIMATION (matches original red channel timing)
-		tl.to(imageEl, {
-			duration: 0.2,
-			'--red-x': randomIntFromInterval(-15, 15),
-			'--red-y': randomIntFromInterval(-15, 15),
-			ease: 'none',
-			onStart: () => {
-				console.log('Red channel animation started');
-			}
-		});
-
-		tl.to(imageEl, {
-			duration: 0.01,
-			'--red-x': 0,
-			'--red-y': 0,
-			ease: 'none'
-		});
-
-		// BLUE CHANNEL ANIMATION + SLICE EFFECT (overlaps with red, matches original timing)
-		tl.to(imageEl, {
-			duration: 0.2,
-			'--blue-x': randomIntFromInterval(-15, 15),
-			'--blue-y': 0,
-			ease: 'none',
-			onComplete: () => {
-				// Activate slices (matches original slice activation)
-				gsap.set(imageEl, {
-					'--slice-count': 20,
-					'--slice-direction': randomIntFromInterval(-75, 75)
-				});
-			}
-		}, '-=0.2'); // Start 0.2s before the previous animation ends
-
-		tl.to(imageEl, {
-			duration: 0.1,
-			'--blue-x': randomIntFromInterval(-15, 15),
-			'--blue-y': randomIntFromInterval(-5, 5),
-			ease: 'none',
-			onComplete: () => {
-				// Update slices (matches original slice update)
-				gsap.set(imageEl, {
-					'--slice-count': 12,
-					'--slice-direction': randomIntFromInterval(-75, 75)
-				});
-			}
-		});
-
-		tl.to(imageEl, {
-			duration: 0.01,
-			'--blue-x': 0,
-			'--blue-y': 0,
-			ease: 'none',
-			onComplete: () => {
-				// Reset slices (matches original slice reset)
-				gsap.set(imageEl, {
-					'--slice-count': 0,
-					'--slice-direction': 0
-				});
-			}
-		});
-
-		// GREEN CHANNEL ANIMATION (overlaps with blue, matches original timing)
-		tl.to(imageEl, {
-			duration: 0.2,
-			'--green-x': randomIntFromInterval(-15, 15),
-			'--green-y': 0,
-			ease: 'none'
-		}, '-=0.2'); // Start 0.2s before the previous animation ends
-
-		tl.to(imageEl, {
-			duration: 0.1,
-			'--green-x': randomIntFromInterval(-20, 20),
-			'--green-y': randomIntFromInterval(-15, 15),
-			ease: 'none'
-		});
-
-		tl.to(imageEl, {
-			duration: 0.01,
-			'--green-x': 0,
-			'--green-y': 0,
-			ease: 'none'
-		});
-
-		// Apply time scale (matches original timeScale(1.2))
-		tl.timeScale(currentOptions.timeScale || timeScale);
-
-		timeline = tl;
+	// Generate new random values for the next cycle
+	function generateCycleVars() {
+		cycleVars = {
+			intensity: intensity * random(0.7, 1.3),
+			duration: random(0.15, 0.35),
+			startDelay: random(0, 0.1),
+			channelWeights: [random(0.5, 1), random(0.4, 0.9), random(0.6, 1)],
+			timeScale: random(0.9, 1.4)
+		};
 	}
 
-	// Controller methods
-	const controller: GlitchAnimationController = {
-		start(): void {
-			console.log('Glitch controller start() called', { isActive, prefersReducedMotion });
-			if (isActive || prefersReducedMotion) {
-				console.log('Glitch start aborted:', { isActive, prefersReducedMotion });
-				return;
-			}
-			
-			// Kill existing timeline and animation frame
-			if (timeline) {
-				timeline.kill();
-			}
-			if (animationId) {
-				cancelAnimationFrame(animationId);
-			}
+	// Create a single glitch cycle using current randomization values
+	function createGlitchCycle() {
+		const { image, red, green, blue } = getElements();
+		if (!image) return gsap.timeline();
 
-			// Initialize CSS variables
-			resetVariables();
+		const tl = gsap.timeline();
+		const [redWeight, greenWeight, blueWeight] = cycleVars.channelWeights;
+
+		// RGB channels split apart with current cycle values
+		if (red && green && blue) {
+			// Red channel
+			tl.to(red, {
+				x: random(-20, 20) * cycleVars.intensity * redWeight,
+				y: random(-12, 12) * cycleVars.intensity * redWeight,
+				opacity: random(0.5, 0.8) * redWeight,
+				duration: cycleVars.duration * random(0.8, 1.2),
+				ease: random(0, 1) > 0.5 ? 'power2.inOut' : 'none'
+			}, cycleVars.startDelay)
 			
-			isActive = true;
-			console.log('Starting glitch animation loop');
-			anim(); // Start the animation loop
+			// Green channel
+			.to(green, {
+				x: random(-25, 25) * cycleVars.intensity * greenWeight,
+				y: random(-8, 8) * cycleVars.intensity * greenWeight,
+				opacity: random(0.4, 0.7) * greenWeight,
+				duration: cycleVars.duration * random(0.9, 1.3),
+				ease: random(0, 1) > 0.5 ? 'power2.inOut' : 'power1.out'
+			}, cycleVars.startDelay + random(0, 0.05))
+			
+			// Blue channel
+			.to(blue, {
+				x: random(-22, 22) * cycleVars.intensity * blueWeight,
+				y: random(-10, 10) * cycleVars.intensity * blueWeight,
+				opacity: random(0.6, 0.9) * blueWeight,
+				duration: cycleVars.duration * random(0.7, 1.1),
+				ease: random(0, 1) > 0.5 ? 'power2.inOut' : 'bounce.out'
+			}, cycleVars.startDelay + random(0.02, 0.08));
+		}
+
+		// Main image distortion
+		const distortionStart = cycleVars.startDelay + random(0.05, 0.15);
+		tl.to(image, {
+			scaleX: 1 + random(-0.03, 0.03) * cycleVars.intensity,
+			scaleY: 1 + random(-0.02, 0.02) * cycleVars.intensity,
+			rotation: random(-1, 1) * cycleVars.intensity,
+			x: random(-4, 4) * cycleVars.intensity,
+			y: random(-2, 2) * cycleVars.intensity,
+			duration: cycleVars.duration * 0.6,
+			ease: random(0, 1) > 0.7 ? 'none' : 'power1.inOut'
+		}, distortionStart);
+
+		// Recovery phase
+		const recoveryStart = cycleVars.duration + cycleVars.startDelay + random(0, 0.05);
+		const recoveryDuration = random(0.03, 0.08);
+		
+		// Image recovery
+		tl.to(image, {
+			x: 0,
+			y: 0,
+			scaleX: 1,
+			scaleY: 1,
+			rotation: 0,
+			duration: recoveryDuration,
+			ease: random(0, 1) > 0.5 ? 'power4.out' : 'back.out(1.7)'
+		}, recoveryStart);
+
+		// RGB channels recovery
+		if (red && green && blue) {
+			tl.to([red, green, blue], {
+				x: 0,
+				y: 0,
+				opacity: 0,
+				duration: recoveryDuration,
+				ease: 'power3.out',
+				stagger: random(0.005, 0.02)
+			}, recoveryStart + random(0, 0.02));
+		}
+
+		// Apply current cycle's time scale
+		tl.timeScale(cycleVars.timeScale);
+
+		return tl;
+	}
+
+	// Create the repeating effect with randomization between cycles
+	function createEffect() {
+		// Generate initial random values
+		generateCycleVars();
+		
+		const masterTl = gsap.timeline({
+			repeat: -1,
+			repeatDelay: 0,
+			onRepeat: () => {
+				// Generate new random values for the next cycle
+				generateCycleVars();
+				
+				// Clear and rebuild the timeline with new random values
+				masterTl.clear();
+				masterTl.add(createGlitchCycle());
+			}
+		});
+
+		// Add the initial glitch cycle
+		masterTl.add(createGlitchCycle());
+
+		return masterTl;
+	}
+
+	// Controller
+	return {
+		start() {
+			if (prefersReducedMotion || timeline) return;
+			
+			reset();
+			timeline = createEffect();
 		},
 
-		stop(): void {
-			isActive = false;
-			
+		stop() {
 			if (timeline) {
 				timeline.kill();
 				timeline = null;
 			}
-			
-			if (animationId) {
-				cancelAnimationFrame(animationId);
-				animationId = null;
-			}
-			
-			resetVariables();
+			reset();
 		},
 
-		updateOptions(newOptions: Partial<GlitchAnimationOptions>): void {
-			currentOptions = { ...currentOptions, ...newOptions };
-			
-			// Restart animation with new options if currently running
-			if (isActive) {
-				this.stop();
-				this.start();
-			}
-		},
-
-		isRunning(): boolean {
-			return isActive && (timeline !== null || animationId !== null);
-		},
-
-		destroy(): void {
+		destroy() {
 			this.stop();
-			// Clear any references
-			timeline = null;
-			animationId = null;
-			isActive = false;
 		}
 	};
-
-	return controller;
 }
 
 /**
- * Enhanced CSS for the exact PIXI.js glitch effect recreation
- * This includes multi-channel RGB splitting and slice effects
+ * Minimal CSS needed for the effect
  */
-export function createGlitchCSS(): string {
-	return `
-		/* Multi-channel RGB split effect (recreates PIXI RGBSplitFilter) */
-		.glitch-active .avatar-image {
-			transition: none !important;
-			filter: 
-				drop-shadow(calc(var(--red-x, 0) * 1px) calc(var(--red-y, 0) * 1px) 0 rgba(255, 0, 0, 0.8))
-				drop-shadow(calc(var(--green-x, 0) * 1px) calc(var(--green-y, 0) * 1px) 0 rgba(0, 255, 0, 0.8))
-				drop-shadow(calc(var(--blue-x, 0) * 1px) calc(var(--blue-y, 0) * 1px) 0 rgba(0, 0, 255, 0.8));
-		}
-
-		/* Slice effect (recreates PIXI GlitchFilter slices) */
-		.glitch-active .avatar-image::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-image: inherit;
-			background-size: inherit;
-			background-position: inherit;
-			background-repeat: inherit;
-			border-radius: inherit;
-			opacity: calc(var(--slice-count, 0) / 20);
-			transform: 
-				translateX(calc(var(--slice-direction, 0) * 0.1px))
-				skewX(calc(var(--slice-direction, 0) * 0.01deg));
-			mix-blend-mode: screen;
-			pointer-events: none;
-			z-index: 2;
-		}
-
-		/* Additional slice layers for more complex effect */
-		.glitch-active .avatar-image::after {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-image: inherit;
-			background-size: inherit;
-			background-position: inherit;
-			background-repeat: inherit;
-			border-radius: inherit;
-			opacity: calc(var(--slice-count, 0) / 40);
-			transform: 
-				translateX(calc(var(--slice-direction, 0) * -0.15px))
-				skewX(calc(var(--slice-direction, 0) * -0.005deg));
-			mix-blend-mode: multiply;
-			pointer-events: none;
-			z-index: 1;
-		}
-
-		/* Slice animation for when slices are active */
-		.glitch-active .avatar-image[style*="--slice-count: 20"]::before,
-		.glitch-active .avatar-image[style*="--slice-count: 12"]::before {
-			animation: slice-glitch 0.1s steps(1) infinite;
-		}
-
-		@keyframes slice-glitch {
-			0% { 
-				clip-path: polygon(0 0%, 100% 0%, 100% 20%, 0 20%);
-				transform: translateX(calc(var(--slice-direction, 0) * 0.1px));
-			}
-			20% { 
-				clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
-				transform: translateX(calc(var(--slice-direction, 0) * -0.1px));
-			}
-			40% { 
-				clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%);
-				transform: translateX(calc(var(--slice-direction, 0) * 0.15px));
-			}
-			60% { 
-				clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
-				transform: translateX(calc(var(--slice-direction, 0) * -0.05px));
-			}
-			80% { 
-				clip-path: polygon(0 80%, 100% 80%, 100% 100%, 0 100%);
-				transform: translateX(calc(var(--slice-direction, 0) * 0.08px));
-			}
-		}
-
-		/* Reduced motion fallback */
-		@media (prefers-reduced-motion: reduce) {
-			.glitch-active .avatar-image {
-				filter: none !important;
-				transform: none !important;
-				animation: glitch-pulse 2s ease-in-out infinite;
-			}
-
-			.glitch-active .avatar-image::before,
-			.glitch-active .avatar-image::after {
-				display: none;
-			}
-
-			@keyframes glitch-pulse {
-				0%, 100% { opacity: 1; }
-				50% { opacity: 0.7; }
-			}
-		}
-	`;
-}
-
-/**
- * Simple one-shot glitch effect for testing
- */
-export function triggerGlitchBurst(element: HTMLElement): void {
-	const imageEl = element.querySelector('.avatar-image') as HTMLElement;
-	if (!imageEl) return;
-
-	const tl = gsap.timeline();
-	
-	// Quick burst effect
-	tl.to(imageEl, {
-		duration: 0.1,
-		'--red-x': randomIntFromInterval(-10, 10),
-		'--blue-x': randomIntFromInterval(-10, 10),
-		'--slice-count': 15,
-		ease: 'none'
-	})
-	.to(imageEl, {
-		duration: 0.05,
-		'--red-x': 0,
-		'--blue-x': 0,
-		'--slice-count': 0,
-		ease: 'none'
-	});
-
-	function randomIntFromInterval(min: number, max: number): number {
-		return Math.random() * (max - min + 1) + min;
+export const glitchStyles = `
+	.glitch-active {
+		position: relative;
+		overflow: hidden;
 	}
-}
+
+	.glitch-red,
+	.glitch-green,
+	.glitch-blue {
+		position: absolute;
+		inset: 4px; /* Matches avatar padding */
+		background: inherit;
+		background-size: cover;
+		background-position: top;
+		border-radius: inherit;
+		pointer-events: none;
+		opacity: 0;
+		will-change: transform, opacity;
+	}
+
+	.glitch-red {
+		filter: sepia(1) saturate(10) hue-rotate(-60deg) brightness(1.5);
+		mix-blend-mode: screen;
+		z-index: 3;
+	}
+
+	.glitch-green {
+		filter: sepia(1) saturate(10) hue-rotate(60deg) brightness(1.5);
+		mix-blend-mode: screen;
+		z-index: 2;
+	}
+
+	.glitch-blue {
+		filter: sepia(1) saturate(10) hue-rotate(180deg) brightness(1.5);
+		mix-blend-mode: screen;
+		z-index: 4;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.glitch-active .avatar-image {
+			animation: pulse 2s ease-in-out infinite;
+		}
+		
+		@keyframes pulse {
+			50% { opacity: 0.8; }
+		}
+	}
+`;

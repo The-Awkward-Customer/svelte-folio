@@ -3,10 +3,11 @@
 	import { onMount } from 'svelte';
 	import {
 		createGlitchAnimation,
-		type GlitchAnimationController
+		type GlitchController,
+		type GlitchOptions
 	} from '$lib/animations/gsap/glitchAnimations.js';
 
-	// TypeScript interface for Avatar props
+	// Enhanced TypeScript interface for Avatar props
 	type BaseAvatarProps = {
 		size?: 'xs' | 'sm' | 'md' | 'lg';
 		content?: string;
@@ -14,6 +15,7 @@
 		class?: string;
 		isLoading?: boolean;
 		glitchRate?: number; // Delay between glitch cycles in seconds
+		glitchIntensity?: number; // Intensity of the glitch effect (0.5-2)
 	};
 
 	type AvatarProps = BaseAvatarProps &
@@ -40,12 +42,13 @@
 		class: className = '',
 		isButton = false,
 		isLoading = false,
-		glitchRate = 2 // Default 2 seconds between glitch cycles
+		glitchRate = 2,
+		glitchIntensity = 1
 	} = props;
 
 	// Refs
 	let avatarRef: HTMLElement;
-	let glitchController: GlitchAnimationController | null = null;
+	let glitchController: GlitchController | null = null;
 
 	// Check for reduced motion preference
 	const prefersReducedMotion = $derived(
@@ -70,47 +73,44 @@
 		if (isButton && props.handleClick && !props.disabled) {
 			props.handleClick();
 		}
+
+		// Note: Interactive glitch burst removed in simplified version
 	}
 
-	// Lifecycle - handle loading state changes
+	// Enhanced lifecycle management
 	$effect(() => {
 		// Access props directly to ensure reactivity tracking
 		const currentIsLoading = props.isLoading;
-		const currentGlitchRate = props.glitchRate || 2;
-
-		console.log('🎭 Avatar $effect triggered:', {
-			avatarRef: !!avatarRef,
-			currentIsLoading,
-			prefersReducedMotion,
-			glitchController: !!glitchController,
-			currentGlitchRate
-		});
+		const currentGlitchRate = props.glitchRate || glitchRate;
+		const currentIntensity = props.glitchIntensity || glitchIntensity;
 
 		if (!avatarRef) {
-			console.log('🎭 No avatarRef, returning early');
 			return;
 		}
 
 		if (currentIsLoading) {
-			console.log('🎭 isLoading is true, setting up animation');
-			// Create glitch controller if it doesn't exist
-			if (!glitchController) {
-				console.log('🎭 Creating new glitch controller');
-				glitchController = createGlitchAnimation(avatarRef, {
-					glitchRate: currentGlitchRate,
-					respectReducedMotion: true
-				});
-			}
+			// Use a small delay to ensure DOM elements are rendered
+			const timeoutId = setTimeout(() => {
+				// Create glitch controller if it doesn't exist
+				if (!glitchController) {
+					const options: GlitchOptions = {
+						rate: currentGlitchRate,
+						intensity: currentIntensity,
+						respectMotion: true
+					};
 
-			// Update options and start animation
-			console.log('🎭 Starting glitch animation with rate:', currentGlitchRate);
-			glitchController.updateOptions({ glitchRate: currentGlitchRate });
-			glitchController.start();
+					glitchController = createGlitchAnimation(avatarRef, options);
+				}
+
+				// Start animation (simplified version doesn't have updateOptions)
+				glitchController.start();
+			}, 10); // Small delay to ensure DOM is updated
+
+			// Cleanup timeout if component unmounts or isLoading changes
+			return () => clearTimeout(timeoutId);
 		} else {
-			console.log('🎭 isLoading is false');
 			if (glitchController) {
 				// Stop animation when not loading
-				console.log('🎭 Stopping glitch animation');
 				glitchController.stop();
 			}
 		}
@@ -136,43 +136,35 @@
 		aria-label={alt}
 		aria-busy={isLoading}
 	>
-		<span
-			class="avatar-image"
-			style="
-				background-image: url({content});
-				--red-x: 0;
-				--red-y: 0;
-				--green-x: 0;
-				--green-y: 0;
-				--blue-x: 0;
-				--blue-y: 0;
-				--slice-count: 0;
-				--slice-direction: 0;
-				--slice-offset: 20;
-			"
-			role="img"
-			aria-label={alt}
+		<span class="avatar-image" style="background-image: url({content});" role="img" aria-label={alt}
 		></span>
+
+		{#if isLoading}
+			<!-- True RGB Channel Layers for Enhanced Glitch Effect -->
+			<span class="glitch-red" style="background-image: url({content});" aria-hidden="true"></span>
+			<span class="glitch-green" style="background-image: url({content});" aria-hidden="true"
+			></span>
+			<span class="glitch-blue" style="background-image: url({content});" aria-hidden="true"></span>
+
+			<!-- Scanline Overlay -->
+			<span class="glitch-scanlines" aria-hidden="true"></span>
+		{/if}
 	</button>
 {:else}
 	<div bind:this={avatarRef} class={classes} aria-busy={isLoading}>
-		<span
-			class="avatar-image"
-			style="
-				background-image: url({content});
-				--red-x: 0;
-				--red-y: 0;
-				--green-x: 0;
-				--green-y: 0;
-				--blue-x: 0;
-				--blue-y: 0;
-				--slice-count: 0;
-				--slice-direction: 0;
-				--slice-offset: 20;
-			"
-			role="img"
-			aria-label={alt}
+		<span class="avatar-image" style="background-image: url({content});" role="img" aria-label={alt}
 		></span>
+
+		{#if isLoading}
+			<!-- True RGB Channel Layers for Enhanced Glitch Effect -->
+			<span class="glitch-red" style="background-image: url({content});" aria-hidden="true"></span>
+			<span class="glitch-green" style="background-image: url({content});" aria-hidden="true"
+			></span>
+			<span class="glitch-blue" style="background-image: url({content});" aria-hidden="true"></span>
+
+			<!-- Scanline Overlay -->
+			<span class="glitch-scanlines" aria-hidden="true"></span>
+		{/if}
 	</div>
 {/if}
 
@@ -189,7 +181,8 @@
 		box-shadow: inset 0 0 0 1px rgba(var(--fg-text-primary) / 1);
 		container-type: inline-size;
 		transition: var(--transition-fast);
-		overflow: hidden; /* Important for glitch effect */
+		overflow: hidden;
+		isolation: isolate; /* Create stacking context for blend modes */
 	}
 
 	.avatar-image {
@@ -203,100 +196,90 @@
 		transition: var(--transition-fast);
 		position: relative;
 		z-index: 1;
+		will-change: transform, filter;
 	}
 
-	/* Multi-channel RGB split effect (recreates PIXI RGBSplitFilter) */
+	/* Enhanced glitch base styles */
+	.glitch-active {
+		overflow: hidden;
+	}
+
 	.glitch-active .avatar-image {
-		transition: none !important;
-		filter: drop-shadow(
-				calc(var(--red-x, 0) * 1px) calc(var(--red-y, 0) * 1px) 0 rgba(255, 0, 0, 1)
-			)
-			drop-shadow(calc(var(--green-x, 0) * 1px) calc(var(--green-y, 0) * 1px) 0 rgba(0, 255, 0, 1))
-			drop-shadow(calc(var(--blue-x, 0) * 1px) calc(var(--blue-y, 0) * 1px) 0 rgba(0, 0, 255, 1));
+		will-change: transform, filter;
 	}
 
-	/* Slice effect (recreates PIXI GlitchFilter slices) */
-	.glitch-active .avatar-image::before {
-		content: '';
+	/* True RGB Channel Layers */
+	.glitch-red,
+	.glitch-green,
+	.glitch-blue {
 		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-image: inherit;
-		background-size: inherit;
-		background-position: inherit;
-		background-repeat: inherit;
-		border-radius: inherit;
-		opacity: calc(var(--slice-count, 0) / 20);
-		transform: translateX(calc(var(--slice-direction, 0) * 0.1px))
-			skewX(calc(var(--slice-direction, 0) * 0.01deg));
-		mix-blend-mode: screen;
+		top: 4px; /* Account for avatar padding */
+		left: 4px;
+		right: 4px;
+		bottom: 4px;
+		background-size: cover;
+		background-position: top;
+		background-repeat: no-repeat;
+		border-radius: var(--bdr-radius-tiny);
 		pointer-events: none;
+		opacity: 0;
+		will-change: transform, opacity;
+		transform: translateZ(0); /* Hardware acceleration */
+		backface-visibility: hidden;
+	}
+
+	/* RGB Channel color filtering for authentic separation */
+	.glitch-red {
+		filter: sepia(1) saturate(10) hue-rotate(-60deg) brightness(1.2) contrast(1.5);
+		mix-blend-mode: screen;
+		z-index: 3;
+	}
+
+	.glitch-green {
+		filter: sepia(1) saturate(10) hue-rotate(60deg) brightness(1.1) contrast(1.3);
+		mix-blend-mode: screen;
 		z-index: 2;
 	}
 
-	/* Additional slice layers for more complex effect */
-	.glitch-active .avatar-image::after {
-		content: '';
+	.glitch-blue {
+		filter: sepia(1) saturate(10) hue-rotate(180deg) brightness(1.3) contrast(1.4);
+		mix-blend-mode: screen;
+		z-index: 4;
+	}
+
+	/* Enhanced Scanline Overlay */
+	.glitch-scanlines {
 		position: absolute;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-image: inherit;
-		background-size: inherit;
-		background-position: inherit;
-		background-repeat: inherit;
-		border-radius: inherit;
-		opacity: calc(var(--slice-count, 0) / 40);
-		transform: translateX(calc(var(--slice-direction, 0) * -0.15px))
-			skewX(calc(var(--slice-direction, 0) * -0.005deg));
-		mix-blend-mode: multiply;
+		background: repeating-linear-gradient(
+			0deg,
+			transparent,
+			transparent 2px,
+			rgba(255, 255, 255, 0.05) 2px,
+			rgba(255, 255, 255, 0.05) 4px
+		);
+		border-radius: var(--bdr-radius-small);
 		pointer-events: none;
-		z-index: 1;
-	}
-
-	/* Slice animation for when slices are active */
-	.glitch-active .avatar-image[style*='--slice-count: 20']::before,
-	.glitch-active .avatar-image[style*='--slice-count: 12']::before {
-		animation: slice-glitch 0.1s steps(1) infinite;
-	}
-
-	@keyframes slice-glitch {
-		0% {
-			clip-path: polygon(0 0%, 100% 0%, 100% 20%, 0 20%);
-			transform: translateX(calc(var(--slice-direction, 0) * 0.1px));
-		}
-		20% {
-			clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
-			transform: translateX(calc(var(--slice-direction, 0) * -0.1px));
-		}
-		40% {
-			clip-path: polygon(0 40%, 100% 40%, 100% 60%, 0 60%);
-			transform: translateX(calc(var(--slice-direction, 0) * 0.15px));
-		}
-		60% {
-			clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
-			transform: translateX(calc(var(--slice-direction, 0) * -0.05px));
-		}
-		80% {
-			clip-path: polygon(0 80%, 100% 80%, 100% 100%, 0 100%);
-			transform: translateX(calc(var(--slice-direction, 0) * 0.08px));
-		}
+		opacity: 0;
+		z-index: 10;
+		will-change: opacity;
+		transform: translateZ(0);
 	}
 
 	/* Reduced motion fallback */
 	@media (prefers-reduced-motion: reduce) {
-		.glitch-active .avatar-image {
-			filter: none !important;
-			transform: none !important;
-			animation: glitch-pulse 2s ease-in-out infinite;
+		.glitch-red,
+		.glitch-green,
+		.glitch-blue,
+		.glitch-scanlines {
+			display: none !important;
 		}
 
-		.glitch-active .avatar-image::before,
-		.glitch-active .avatar-image::after {
-			display: none;
+		.glitch-active .avatar-image {
+			animation: glitch-pulse 2s ease-in-out infinite;
 		}
 
 		@keyframes glitch-pulse {
@@ -305,7 +288,7 @@
 				opacity: 1;
 			}
 			50% {
-				opacity: 0.7;
+				opacity: 0.8;
 			}
 		}
 	}
@@ -336,7 +319,7 @@
 		cursor: pointer;
 	}
 
-	.avatar-button:hover .avatar-image {
+	.avatar-button:hover:not(.glitch-active) .avatar-image {
 		transform: scale(0.98);
 	}
 
@@ -353,5 +336,16 @@
 	.avatar-button:focus-visible {
 		outline: var(--focus-ring-width) solid var(--focus-ring-color);
 		outline-offset: var(--focus-ring-offset);
+	}
+
+	/* Hardware acceleration for all glitch elements */
+	.glitch-active,
+	.glitch-active .avatar-image,
+	.glitch-red,
+	.glitch-green,
+	.glitch-blue,
+	.glitch-scanlines {
+		transform: translateZ(0);
+		backface-visibility: hidden;
 	}
 </style>
