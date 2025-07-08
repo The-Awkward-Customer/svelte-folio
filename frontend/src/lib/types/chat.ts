@@ -120,6 +120,8 @@ export interface ChatMessageProps {
 	error?: string;
 	/** Loading state indicator */
 	isLoading?: boolean;
+	/** Callback for when a prompt is selected */
+	onPromptSelected?: (prompt: string) => void;
 }
 
 /**
@@ -132,6 +134,8 @@ export interface ChatMessagesProps {
   isLoading?: boolean;
   /** Current error message, if any */
   error?: string | null;
+  /** Callback for when a prompt is selected */
+  onPromptSelected?: (prompt: string) => void;
 }
 
 /**
@@ -172,6 +176,13 @@ export interface ChatDialogEvents {
  */
 export interface QAChatEvents {
   close: void;
+}
+
+/**
+ * Events dispatched by ChatMessage component
+ */
+export interface ChatMessageEvents {
+  promptSelected: string;
 }
 
 // Utility types

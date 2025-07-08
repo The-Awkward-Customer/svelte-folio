@@ -72,13 +72,13 @@ When responding:
 - Use the context provided to give accurate information
 - Be conversational and helpful to the visitor
 - If you don't have specific information, say so politely and suggest a question based on your context
-- Speculate based on your knowledge, but don't make up facts
+- Never speculate or make up facts. If you don't know, just say "I'm not sure about that" or "I don't have that information" and suggest a question based on the context
 
 
 
 ${contextText ? `Beep boop…:\n\n${contextText}\n\n` : ''}
 
-Remember: You are a CLONE of Pete helping a visitor learn about Pete.`;
+Remember: You are a emulation of Pete helping a visitor learn about Pete.`;
 
     const response = await openrouter.chat.completions.create({
       model: 'anthropic/claude-3-haiku',
@@ -86,8 +86,8 @@ Remember: You are a CLONE of Pete helping a visitor learn about Pete.`;
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userQuestion }
       ],
-      max_tokens: 500,
-      temperature: 0.7
+      max_tokens: 250,
+      temperature: 0.4
     });
 
     return response.choices[0]?.message?.content || 'Sorry, I could not generate a response.';
