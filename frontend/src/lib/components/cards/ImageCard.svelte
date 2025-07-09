@@ -15,7 +15,7 @@
 	<img class="cover-image" {src} {alt} style="background-color: {bgColor};" />
 	{#if tag}
 		<div class="tag-container">
-			<Tag label={tag} />
+			<Tag label={tag} color="inverse" />
 		</div>
 	{/if}
 </div>
@@ -30,7 +30,7 @@
 		padding-bottom: var(--spc-300);
 		width: 100%;
 		height: 100%;
-		flex-direction: column;
+		flex-direction: column-reverse;
 		justify-content: flex-end;
 		align-items: flex-end;
 		overflow: hidden;

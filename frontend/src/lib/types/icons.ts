@@ -1,10 +1,10 @@
 // icon types
 
 // Weather icon codes
-export type IconName = 
+export type IconName =
 // Weather Icons
     | '01d' | '01n' // Clear Sky
-    | '02d' | '02n' // Fewd Clouds
+    | '02d' | '02n' // Few Clouds
     | '03d' | '03n' // Scattered Clouds
     | '04d' | '04n' // Broken Clouds
     | '09d' | '09n' // Shower Rain
@@ -16,7 +16,14 @@ export type IconName =
 // Generic Icons
     | 'placeholder'
     | 'plus'
-    | 'close';
+    | 'close'
+    | 'checks_filled'
+    | 'diamond_filled'
+    | 'emoji_dead'
+    | 'location_geo'
+    | 'gps_fix'
+    | 'emoji_cross_eyed'
+    | 'refresh'
 
 
 

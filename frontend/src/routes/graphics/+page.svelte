@@ -4,14 +4,13 @@
 	import { TextCard, ImageCard, VideoCard } from '$lib/components/cards';
 	import FilterGroup from '$lib/components/filters/FilterGroup.svelte';
 	import { shuffleArray } from '$lib/utils/shuffle.js';
-	import { dialogManager } from '$lib/stores/dialogManager';
+	import { dialogManager } from '$lib/stores/dialogManager.svelte.js';
 	import DialogRoot from '$lib/components/Dialog/DialogRoot.svelte';
 
 	let P: string = 'GRAPHICS';
 	console.log(`${P} rendered!`);
 
 	import exampleImageOne from '$lib/assets/exampleImage1.png';
-	import IconRefresh from '$lib/components/primatives/IconRefresh.svelte';
 	const ExampleVid = '/videos/ExampleVid.webm';
 
 	const allGridItems = [
@@ -60,9 +59,9 @@
 			component: TextCard,
 			size: '4-2',
 			props: {
-				title: 'Featured Two',
+				title: 'Fresha Case Study',
 				content: 'This is a demo of our grid layout system!',
-				bgColor: '--bg-primary',
+				bgColor: '--brand-fresha-accent',
 				tag: 'Case Study',
 				button: 'primary',
 				handleClick: openFreshaDialog
@@ -123,11 +122,12 @@
 			component: TextCard,
 			size: '4-2',
 			props: {
-				title: 'Featured One',
+				title: 'Test Dialog',
 				content: 'This is a demo of our grid layout system!',
 				bgColor: '--bg-primary',
 				tag: 'Case Study',
-				button: 'primary'
+				button: 'primary',
+				handleClick: openThirdDialog
 			}
 		},
 		{
@@ -183,12 +183,20 @@
 
 	// Dialog functions
 	function openFreshaDialog() {
-		dialogManager.showDialog('freshaDialog');
+		dialogManager.showDialog('fresha');
 	}
-	function openShellDialog() {
-		dialogManager.showDialog('shellDialog');
+	function openThirdDialog() {
+		dialogManager.showDialog('testThree');
 	}
 </script>
+
+<svelte:head>
+	<title>Graphics & Portfolio - Peter Abbott</title>
+	<meta
+		name="description"
+		content="An assorted collection of graphical artefacts from various design and development projects spanning 2016-2025. UI/UX design, motion graphics, and case studies."
+	/>
+</svelte:head>
 
 <section>
 	<div class="header-root">
@@ -209,6 +217,11 @@
 <DialogRoot />
 
 <style>
+	section {
+		padding-left: 24px;
+		padding-right: 24px;
+	}
+
 	.header-root {
 		display: flex;
 		flex-direction: column;

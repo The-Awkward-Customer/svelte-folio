@@ -1,20 +1,20 @@
 <script lang="ts">
-	type TagColor = 'currentColor' | string;
+	type ColorType = 'primary' | 'inverse';
 
 	interface Props {
 		label: string;
-		beforeColor?: TagColor;
+		color?: ColorType;
 	}
 
-	let { label, beforeColor = 'currentColor' }: Props = $props();
+	let { label, color = 'primary' }: Props = $props();
 </script>
 
-<span class="tag" style="--before-color: {beforeColor}">
+<span class="tag-root tag-{color}">
 	{label}
 </span>
 
 <style>
-	.tag {
+	.tag-root {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
@@ -25,19 +25,29 @@
 		font-weight: var(--fw-semibold);
 		text-transform: uppercase;
 		background-color: rgba(0, 0, 0, 0);
-		color: rgb(var(--fg-text-inverse));
-		border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 		white-space: nowrap;
 	}
 
-	.tag::before {
+	.tag-root::before {
 		content: '';
 		display: inline-block;
 		width: 0.6em;
 		height: 0.6em;
-		background: var(--before-color, currentColor);
+		background: currentColor;
 		border-radius: 2px;
 		margin-right: 3px;
 		vertical-align: middle;
+	}
+
+	/* Primary variant (default) */
+	.tag-primary {
+		color: rgb(var(--fg-text-primary));
+		border-bottom: 1px solid rgb(var(--fg-text-primary));
+	}
+
+	/* Inverse variant */
+	.tag-inverse {
+		color: rgb(var(--fg-text-inverse));
+		border-bottom: 1px solid rgb(var(--fg-text-inverse));
 	}
 </style>

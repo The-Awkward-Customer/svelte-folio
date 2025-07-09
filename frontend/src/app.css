@@ -12,7 +12,10 @@
 html {
   font-size: 100%;
   line-height: 1.15;
+  text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 body {
@@ -20,9 +23,9 @@ body {
   flex-direction: column;
   min-height: 100vh;
   scroll-behavior: smooth;
-  text-rendering: optimizeSpeed;
-  padding-left: 24px;
-  padding-right: 24px;
+  text-rendering: optimizeLegibility;
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
   justify-content: center;
   align-items: center;
 }
@@ -167,9 +170,10 @@ select {
 
   /* Typography */
   --font-family-main: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-alt: 'Geist-Mono', monospace;
+  --font-family-alt: 'Geist-Mono', monospace ;
 
   /* Font sizes */
+  --fs-200: 0.5rem; /* 8px */
   --fs-250: 0.75rem; /* 12px */
   --fs-275: 0.875rem; /* 14px */
   --fs-300: 1rem; /* 16px */
@@ -187,8 +191,11 @@ select {
   --fs-1400: 9rem; /* 144px */
   --fs-1500: 10rem; /* 160px */
 
+
+
   /* Semantic font sizes */
-  --fs-tiny: var(--fs-275);
+  --fs-tiny-clamped: clamp(14px, 4vw, 28px);
+  --fs-large-clamped: clamp(18px, 4vw, 40px);
   
   /* Font weights */
   --fw-thin: 300;
@@ -258,6 +265,8 @@ select {
   --bp-mobile-min: 768px;
   --bp-tablet: 1024px;
   --bp-desktop: 1440px;
+
+  --brand-fresha-accent: 105, 80, 243; /* #694CF3 */
 }
 
 /* Light theme (default) */
@@ -273,15 +282,24 @@ select {
   /* Border colors */
   --bdr-primary: 38 39 45; /* #26272D */
   --bdr-secondary: 192 192 192; /* #C0C0C0 */
+  --bdr-inverse: 255 255 255; /* #FFFFFF */
 
   /* Background colors */
   --bg-page: 255 255 255; /* #FFFFFF */
   --bg-component: 180 180 180; /* #B4B4B4 */
   --bg-primary: 38 39 45; /* #26272D */
+  --bg-inverse: 255 255 255; /* #FFFFFF */
+
+  /* Overlay */
+  --bg-overlay: rgb(255 255 255); /* opaque white overlay */
 
   /* Status colors */
   --fg-positive: 42 83 20; /* #2A5314 */
   --bg-positive: 140 255 0; /* #8CFF00 */
+
+  /* Noise texture mask */
+  --noise-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.67' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' fill='white'/%3E%3C/svg%3E");
+  --noise-color: rgba(var(--bdr-inverse), 0.2);
 
   /* Legacy variable mappings for backward compatibility */
   --color-fg-primary: var(--fg-text-primary);
@@ -299,6 +317,10 @@ select {
 
 /* Dark theme */
 [data-theme="dark"] {
+  /* Noise texture - using fg-text for dark theme */
+  --noise-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.67' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' fill='white'/%3E%3C/svg%3E");
+  --noise-color: rgba(var(--fg-text-primary), 0.2);
+
   /* Foreground/Text colors */
   --fg-text-primary: 255 255 255; /* #FFFFFF */
   --fg-text-secondary: 196 197 215; /* #C4C5D7 */
@@ -309,32 +331,29 @@ select {
   /* Border colors */
   --bdr-primary: 240 240 247; /* #F0F0F7 */
   --bdr-secondary: 76 75 179; /* #4C4BB3 */
+  --bdr-inverse: 255 255 255; /* #FFFFFF */
 
   /* Background colors */
   --bg-page: 45 45 51; /* #2D2D33 */
   --bg-component: 180 180 180; /* #B4B4B4 */
   --bg-primary: 255 255 255; /* #FFFFFF */
+  --bg-inverse: 38 39 45; /* #26272D */
+
+  /* Overlay */
+  --bg-overlay: rgb(255 255 255); /* semi-transparent dark overlay */
 
   /* Status colors */
   --fg-positive: 140 255 0; /* #8CFF00 */
   --bg-positive: 42 83 20; /* #2A5314 */
 
-  /* Legacy variable mappings for backward compatibility */
-  --color-fg-primary: var(--fg-text-primary);
-  --color-fg-secondary: var(--fg-text-secondary);
-  --color-fg-accent: var(--fg-text-danger);
-  --color-bg-primary: var(--bg-page);
-  --color-bg-secondary: var(--bg-component);
-  --color-bg-inverse: var(--fg-text-primary);
-  --color-txt-primary: var(--fg-text-primary);
-  --color-txt-secondary: var(--fg-text-secondary);
-  --color-txt-muted: var(--fg-text-muted);
-  --color-txt-inverse: var(--bg-page);
-  --color-bdr-muted: var(--fg-text-muted);
 }
 
 /* High contrast theme */
 [data-theme="high-contrast"] {
+  /* No noise for accessibility */
+  --noise-mask: none;
+  --noise-color: transparent;
+
   /* Foreground/Text colors */
   --fg-text-primary: 0 0 0; /* #000000 */
   --fg-text-secondary: 0 0 0; /* #000000 */
@@ -345,11 +364,17 @@ select {
   /* Border colors */
   --bdr-primary: 0 0 0; /* #000000 */
   --bdr-secondary: 0 0 0; /* #000000 */
+  --bdr-inverse: 0 0 0; /* #FFFFFF */
+
 
   /* Background colors */
   --bg-page: 255 255 255; /* #FFFFFF */
   --bg-component: 180 180 180; /* #B4B4B4 */
   --bg-primary: 38 39 45; /* #26272D */
+  --bg-inverse: 38 39 45; /* #26272D */
+
+  /* Overlay */
+  --bg-overlay: rgb(0, 0, 0); /* opaque black overlay */
 
   /* Status colors */
   --fg-positive: 63 115 0; /* #3F7300 */

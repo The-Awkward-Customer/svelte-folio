@@ -83,7 +83,7 @@
 
 	{#if tag}
 		<div class="tag-container">
-			<Tag label={tag} />
+			<Tag label={tag} color="inverse" />
 		</div>
 	{/if}
 
@@ -104,11 +104,10 @@
 		padding-bottom: var(--spc-300);
 		width: 100%;
 		height: 100%;
-		flex-direction: column;
+		flex-direction: column-reverse;
 		justify-content: flex-end;
 		align-items: flex-end;
 		overflow: hidden;
-		background-color: rgba(240, 248, 255, 0.041);
 		border: none;
 		cursor: pointer;
 	}
