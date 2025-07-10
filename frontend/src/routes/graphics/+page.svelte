@@ -27,7 +27,7 @@
 		{
 			id: '2',
 			component: VideoCard,
-			size: '1-1',
+			size: '2-2',
 			props: {
 				src: ExampleVid,
 				bgColor: '#e3f2fd',
@@ -37,7 +37,7 @@
 		{
 			id: '3',
 			component: VideoCard,
-			size: '1-1',
+			size: '2-2',
 			props: {
 				src: ExampleVid,
 				bgColor: '#e3f2fd',
@@ -70,7 +70,7 @@
 		{
 			id: '6',
 			component: ImageCard,
-			size: '1-1',
+			size: '2-2',
 			props: {
 				src: exampleImageOne,
 				bgColor: '#FFFFFF',
@@ -80,7 +80,7 @@
 		{
 			id: '7',
 			component: ImageCard,
-			size: '1-1',
+			size: '2-2',
 			props: {
 				src: exampleImageOne,
 				bgColor: '#FFFFFF',
@@ -90,7 +90,7 @@
 		{
 			id: '8',
 			component: ImageCard,
-			size: '1-1',
+			size: '2-2',
 			props: {
 				src: exampleImageOne,
 				bgColor: '#FFFFFF',
@@ -100,7 +100,7 @@
 		{
 			id: '9',
 			component: ImageCard,
-			size: '1-1',
+			size: '2-2',
 			props: {
 				src: exampleImageOne,
 				bgColor: '#FFFFFF',
@@ -110,7 +110,7 @@
 		{
 			id: '10',
 			component: ImageCard,
-			size: '1-1',
+			size: '2-2',
 			props: {
 				src: exampleImageOne,
 				bgColor: '#FFFFFF',
@@ -133,7 +133,7 @@
 		{
 			id: '12',
 			component: ImageCard,
-			size: '1-1',
+			size: '2-2',
 			props: {
 				src: exampleImageOne,
 				bgColor: '#FFFFFF',
@@ -143,7 +143,7 @@
 		{
 			id: '13',
 			component: ImageCard,
-			size: '1-1',
+			size: '2-2',
 			props: {
 				src: exampleImageOne,
 				bgColor: '#FFFFFF',
