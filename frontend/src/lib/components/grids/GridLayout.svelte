@@ -46,7 +46,7 @@
 	.grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		grid-auto-rows: 45vw;
+		grid-auto-rows: 1fr;
 		gap: 0.5rem;
 		grid-auto-flow: row dense;
 		padding-top: var(--spc-700);
@@ -64,11 +64,15 @@
 		grid-row: span var(--grid-rows);
 	}
 
+	/* Force square aspect ratio for 2-2 items */
+	.grid-item[data-grid-size="2-2"] {
+		aspect-ratio: 1 / 1;
+	}
+
 	/* Desktop breakpoint - 4+ columns */
 	@media (min-width: 896px) {
 		.grid {
 			grid-template-columns: repeat(var(--columns), 1fr);
-			grid-auto-rows: clamp(200px, 22vw, 240px);
 		}
 
 		.grid-item.desktop-spans {
