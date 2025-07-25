@@ -1,7 +1,7 @@
 <!-- Graphics +page -->
 <script lang="ts">
 	import GridLayout from '$lib/components/grids/GridLayout.svelte';
-	import { TextCard, ImageCard, VideoCard } from '$lib/components/cards';
+	import { TextCard, ImageCard } from '$lib/components/cards';
 	import FilterGroup from '$lib/components/filters/FilterGroup.svelte';
 	import { shuffleArray } from '$lib/utils/shuffle.js';
 	import { dialogManager } from '$lib/stores/dialogManager.svelte.js';
@@ -27,41 +27,10 @@
 	import illustration14 from '$lib/assets/Illustrations/g_014.png';
 	import illustration15 from '$lib/assets/Illustrations/g_015.png';
 	import illustration16 from '$lib/assets/Illustrations/g_016.png';
-	const ExampleVid = '/videos/ExampleVid.webm';
 
 	const allGridItems = [
 		{
 			id: '1',
-			component: VideoCard,
-			size: '2-2',
-			props: {
-				src: ExampleVid,
-				bgColor: '#e3f2fd',
-				tag: 'Motion'
-			}
-		},
-		{
-			id: '2',
-			component: VideoCard,
-			size: '2-2',
-			props: {
-				src: ExampleVid,
-				bgColor: '#e3f2fd',
-				tag: 'Motion'
-			}
-		},
-		{
-			id: '3',
-			component: VideoCard,
-			size: '2-2',
-			props: {
-				src: ExampleVid,
-				bgColor: '#e3f2fd',
-				tag: 'Motion'
-			}
-		},
-		{
-			id: '4',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -70,7 +39,7 @@
 			}
 		},
 		{
-			id: '5',
+			id: '2',
 			component: TextCard,
 			size: '4-2',
 			props: {
@@ -83,7 +52,7 @@
 			}
 		},
 		{
-			id: '6',
+			id: '3',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -92,7 +61,7 @@
 			}
 		},
 		{
-			id: '7',
+			id: '4',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -101,7 +70,7 @@
 			}
 		},
 		{
-			id: '8',
+			id: '5',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -110,7 +79,7 @@
 			}
 		},
 		{
-			id: '9',
+			id: '6',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -119,7 +88,7 @@
 			}
 		},
 		{
-			id: '10',
+			id: '7',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -128,7 +97,7 @@
 			}
 		},
 		{
-			id: '11',
+			id: '8',
 			component: TextCard,
 			size: '4-2',
 			props: {
@@ -141,7 +110,7 @@
 			}
 		},
 		{
-			id: '12',
+			id: '9',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -150,7 +119,7 @@
 			}
 		},
 		{
-			id: '13',
+			id: '10',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -159,7 +128,7 @@
 			}
 		},
 		{
-			id: '14',
+			id: '11',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -168,7 +137,7 @@
 			}
 		},
 		{
-			id: '15',
+			id: '12',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -177,7 +146,7 @@
 			}
 		},
 		{
-			id: '16',
+			id: '13',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -186,7 +155,7 @@
 			}
 		},
 		{
-			id: '17',
+			id: '14',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -195,7 +164,7 @@
 			}
 		},
 		{
-			id: '18',
+			id: '15',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -204,7 +173,7 @@
 			}
 		},
 		{
-			id: '19',
+			id: '16',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -213,7 +182,7 @@
 			}
 		},
 		{
-			id: '20',
+			id: '17',
 			component: ImageCard,
 			size: '2-2',
 			props: {
@@ -222,7 +191,7 @@
 			}
 		},
 		{
-			id: '21',
+			id: '18',
 			component: ImageCard,
 			size: '2-2',
 			props: {
