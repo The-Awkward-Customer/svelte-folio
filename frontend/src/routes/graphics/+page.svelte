@@ -310,12 +310,12 @@
 	}
 
 	p {
-		color: rgb(var(--fg-text-primary));
+		color: var(--fg-text-primary);
 		font-size: clamp(18px, 4vw, 24px);
 	}
 
 	p:nth-child(2) {
-		color: rgb(var(--fg-text-secondary));
+		color: var(--fg-text-secondary);
 	}
 
 	@media (min-width: 896px) {

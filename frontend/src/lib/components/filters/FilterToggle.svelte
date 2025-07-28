@@ -20,9 +20,9 @@
 		font-weight: var(--fw-semibold);
 		border-radius: var(--bdr-radius-small);
 		border: none;
-		box-shadow: inset 0 0px 0px 1px rgba(var(--bg-primary) / 0.3);
-		background-color: rgba(var(--bg-primary) / 0);
-		color: rgb(var(--fg-text-primary));
+		box-shadow: inset 0 0px 0px 1px var(--bg-primary);
+		background-color: var(--bg-pae);
+		color: var(--fg-text-primary);
 		cursor: pointer;
 		white-space: nowrap;
 		user-select: none;
@@ -33,16 +33,16 @@
 	}
 
 	.filter-toggle:hover {
-		box-shadow: inset 0 0px 0px 2px rgba(var(--bg-primary) / 0.3);
+		box-shadow: inset 0 0px 0px 2px var(--bg-primary);
 	}
 
 	.filter-toggle.active {
-		box-shadow: inset 0 0px 0px 4px rgba(var(--bg-primary) / 0.1);
-		background-color: rgba(var(--bg-primary) / 1);
-		color: rgb(var(--fg-text-inverse));
+		box-shadow: inset 0 0px 0px 4px var(--bg-primary);
+		background-color: var(--bg-primary);
+		color: var(--fg-text-inverse);
 	}
 
 	.filter-toggle.active:hover {
-		box-shadow: inset 0 0px 0px 2px rgba(var(--bg-primary) / 0.3);
+		box-shadow: inset 0 0px 0px 2px var(--bg-primary);
 	}
 </style>

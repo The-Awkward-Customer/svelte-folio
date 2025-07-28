@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Anim_me from '$lib/assets/Ani_me.png';
-	import { waveText } from '$lib/animations/gsap/textAnimations.js';
 
 	interface ChatTriggerProps {
 		handleClick?: () => void;
@@ -10,8 +9,6 @@
 	let { handleClick = defaultClickHandler, onMouseEnter = handleMouseEnter }: ChatTriggerProps =
 		$props();
 
-	let speechBubbleElement: HTMLElement | undefined;
-
 	// Default handler if none provided
 	function defaultClickHandler() {
 		console.log('Chat trigger clicked - no handler provided');
@@ -19,15 +16,6 @@
 
 	function handleMouseEnter() {
 		console.log('Mouse entered chat trigger');
-		if (speechBubbleElement) {
-			const text = speechBubbleElement.textContent || '';
-			waveText(speechBubbleElement, text, {
-				duration: 0.3,
-				stagger: 0.05,
-				amplitude: 3,
-				direction: 'up'
-			});
-		}
 	}
 </script>
 
@@ -37,7 +25,6 @@
 	aria-label="Chat with Peter Abbott"
 	onmouseenter={onMouseEnter}
 >
-	<span class="speech-bubble" bind:this={speechBubbleElement}> About me… </span>
 	<span class="profile-image" style="background-image: url({Anim_me})"></span>
 </button>
 
@@ -47,7 +34,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: clamp(60px, 20vw, 180px);
+		width: var(--width-4xl);
 		aspect-ratio: 4 / 5;
 		background-color: rgba(var(--bg-page) / 0);
 		border: none;
@@ -71,36 +58,5 @@
 
 	.chat-trigger:hover .profile-image {
 		transform: scale(0.98);
-	}
-
-	.speech-bubble {
-		position: absolute;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: var(--fs-250);
-		font-weight: var(--fw-semibold);
-		color: rgb(var(--fg-text-inverse));
-		background-color: rgb(var(--bg-primary));
-		border-radius: var(--bdr-radius-pill) var(--bdr-radius-pill) 0 var(--bdr-radius-pill);
-		padding: 4px 8px;
-		top: 42%;
-		left: 20%;
-		visibility: hidden;
-		z-index: 100;
-		transition: all 0.3s ease-in-out;
-		scale: 0;
-	}
-
-	.chat-trigger:hover .speech-bubble {
-		top: 28%;
-		left: -36%;
-		scale: 1.05;
-	}
-
-	@media (min-width: 552px) {
-		.speech-bubble {
-			visibility: visible;
-		}
 	}
 </style>

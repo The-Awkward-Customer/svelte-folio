@@ -63,7 +63,7 @@
 		align-items: flex-start;
 		font-size: var(--fs-large-clamped);
 		font-weight: var(--fw-semibold);
-		color: rgb(var(--fg-text-primary));
+		color: var(--fg-text-primary);
 		text-transform: capitalize;
 		text-align: start;
 	}

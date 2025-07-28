@@ -83,7 +83,7 @@
 		align-items: flex-start;
 		gap: 1em;
 		border-radius: var(--bdr-radius-small);
-		box-shadow: inset 0 0 0 1px rgba(var(--fg-text-primary) / 0.2);
+		box-shadow: inset 0 0 0 1px var(--fg-text-primary-40);
 		padding: 16px;
 	}
 
@@ -92,7 +92,7 @@
 		flex-direction: column;
 		gap: 0.5em;
 		font-size: var(--fs-250);
-		color: rgb(var(--fg-text-secondary));
+		color: var(--fg-text-secondary);
 		max-width: 64ch;
 	}
 
