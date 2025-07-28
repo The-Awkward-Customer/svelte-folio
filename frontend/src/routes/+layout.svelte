@@ -31,6 +31,5 @@
 		flex-grow: 1;
 		justify-content: flex-start;
 		width: 100%;
-		background-color: rgba(255, 192, 203, 0);
 	}
 </style>

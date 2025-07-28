@@ -18,7 +18,7 @@
 	let listData: LinkItem[] = [
 		{ label: 'Index', href: '/' },
 		{ label: 'Graphics', href: '/graphics' },
-		{ label: 'Services', href: '/services' }
+		{ label: 'Experience', href: '/experience' }
 	];
 
 	interface TopNavProps {
@@ -46,13 +46,13 @@
 </script>
 
 <nav>
+	{#if showChat}
+		<ChatTrigger handleClick={openChat} />
+	{/if}
 	<div>
 		<p>Peter Abbott</p>
 		<LinkList {list} />
 	</div>
-	{#if showChat}
-		<ChatTrigger handleClick={openChat} />
-	{/if}
 </nav>
 
 <!-- Chat Component -->
@@ -62,14 +62,14 @@
 	nav {
 		display: inline-flex;
 		flex-direction: row;
-		justify-content: space-between;
-		align-items: flex-start;
+		justify-content: flex-start;
+		align-items: center;
 		width: 100%;
-		padding-top: 24px;
-		padding-left: 24px;
-		padding-right: 24px;
-		padding-bottom: 12px;
-		gap: 1em;
+		padding-top: var(--padding-page-default);
+		padding-left: var(--padding-page-default);
+		padding-right: var(--padding-page-default);
+		padding-bottom: var(--space-5xl);
+		gap: var(--space-xl);
 	}
 
 	div {
@@ -83,7 +83,7 @@
 	p {
 		font-size: var(--fs-300);
 		font-weight: var(--fw-semibold);
-		color: rgb(var(--fg-text-primary));
+		color: var(--fg-text-primary);
 	}
 
 	@media (min-width: 896px) {

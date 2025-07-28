@@ -41,15 +41,15 @@
 	}
 
 	.nav-link {
-		color: rgba(var(--color-fg-primary) / 0.6);
+		color: var(--fg-text-primary-60);
 		text-decoration: none;
 	}
 
 	.nav-link:hover {
-		color: rgba(var(--color-fg-primary) / 1);
+		color: var(--fg-text-primary);
 	}
 
 	.nav-link.active {
-		color: rgba(var(--color-fg-primary) / 1);
+		color: var(--fg-text-primary);
 	}
 </style>

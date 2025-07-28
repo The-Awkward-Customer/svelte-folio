@@ -40,6 +40,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 6px;
+		padding-bottom: var(--space-xl);
 	}
 
 	@media (max-width: 640px) {

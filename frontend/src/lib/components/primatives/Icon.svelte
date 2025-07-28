@@ -226,7 +226,7 @@
 	const iconContent = $derived(iconRegistry[name] || '');
 
 	// Handle CSS custom properties for fill/stroke
-	const normalizedFill = $derived(fill?.startsWith('--') ? `rgb(var(${fill}))` : fill);
+	const normalizedFill = $derived(fill?.startsWith('--') ? `var(${fill})` : fill);
 </script>
 
 {#if iconContent}

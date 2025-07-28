@@ -118,11 +118,11 @@
 		align-items: flex-start;
 		font-family: var(--font-family-main);
 		border-radius: var(--bdr-radius-small);
-		box-shadow: inset 0 0 0 1px rgba(var(--fg-text-primary) / 1);
 		width: 100%;
 		overflow: hidden;
 		height: 72px;
-		background-color: rgba(var(--bg-page) / 1);
+		background-color: var(--bg-page);
+		box-shadow: inset 0 0 0 1px var(--fg-text-primary);
 	}
 
 	/* Unified container for all weather states */
@@ -167,13 +167,13 @@
 	.weather-text-primary {
 		font-size: var(--fs-275);
 		font-weight: var(--fw-semibold);
-		color: rgb(var(--fg-text-primary));
+		color: var(--fg-text-primary);
 		font-family: var(--font-family-main);
 	}
 
 	.weather-text-secondary {
 		font-size: var(--fs-200);
-		color: rgb(var(--fg-text-secondary));
+		color: var(--fg-text-secondary);
 		font-family: var(--font-family-main);
 		margin: 0;
 		line-height: 1.3;
@@ -181,20 +181,12 @@
 
 	/* State-specific styling */
 	.loading-state {
-		background-color: rgba(var(--bg-page) / 0);
+		background-color: var(--bg-page);
 	}
 
 	.loading-text {
-		color: rgba(var(--fg-text-secondary));
+		color: var(--fg-text-secondary);
 		font-family: var(--font-family-alt);
-	}
-
-	.success-state {
-		background-color: rgba(var(--bg-page) / 0);
-	}
-
-	.error-state {
-		background-color: rgba(var(--bg-page) / 0);
 	}
 
 	/* Loading animation for the placeholder icon */
@@ -216,24 +208,4 @@
 			transform: scale(1) rotate(360deg);
 		}
 	}
-
-	/* Responsive behavior */
-	/* @media (max-width: 480px) {
-		.weather-state-container {
-			flex-direction: column;
-			align-items: flex-start;
-			text-align: left;
-			gap: 8px;
-		}
-
-		.weather-icon-slot {
-			align-self: flex-start;
-		}
-
-		.weather-action-slot {
-			align-self: flex-end;
-			width: 100%;
-			justify-content: flex-end;
-		}
-	} */
 </style>
