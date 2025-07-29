@@ -18,6 +18,7 @@
 		font-weight: var(--fw-semibold);
 		line-height: 1.4;
 		letter-spacing: 0.02em;
+		padding-bottom: var(--space-sm);
 	}
 
 	.subheader.primary {

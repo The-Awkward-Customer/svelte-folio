@@ -1,175 +1,126 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-	import placeholderImage from '$lib/assets/placeholder-image.jpg';
-	import Subheader from '../../primatives/Subheader.svelte';
+	import List from '../../primatives/List.svelte';
+	import { Subheader } from '$lib/components/primatives';
 
-	// Interface for props following ComponentRules.md patterns
-	interface ProjectBodyProps {
-		leadingContent?: Snippet;
-		trailingContent?: Snippet;
-		content?: string;
-		imageSrc?: string;
-		imageAlt?: string;
+	// Interface for props
+	interface ProjectHeaderProps {
+		impact?: {
+			title: string;
+			content: string;
+		};
+		teamMembers?: {
+			title: string;
+			members: { name: string; role: string }[];
+		};
 	}
 
-	let { leadingContent, trailingContent, content, imageSrc, imageAlt }: ProjectBodyProps = $props();
+	let { impact, teamMembers }: ProjectHeaderProps = $props();
 
 	// Dummy placeholder data for debugging
-	const defaultContent =
-		'This project involved extensive user research, iterative design processes, and close collaboration with development teams to deliver a solution that met both user needs and business objectives. The approach focused on understanding user pain points through interviews and usability testing, followed by rapid prototyping and validation cycles.';
+	const defaultImpact = {
+		title: 'Impact',
+		content: '10X revenue growth to $300+ MRR'
+	};
 
-	// Use provided props or fallback to defaults
-	const displayContent = content || defaultContent;
-	const displayImageSrc = imageSrc || placeholderImage;
-	const displayImageAlt = imageAlt || 'Project placeholder image';
+	const defaultTeamMembers = {
+		title: 'Team Members',
+		members: [
+			{ name: 'Sarah Chen', role: 'Lead Designer' },
+			{ name: 'Marcus Rodriguez', role: 'Frontend Developer' }
+		]
+	};
+
+	// Use provided props or fallback to defaults for debugging
+	const impactData = impact || defaultImpact;
+	const teamMembersData = teamMembers || defaultTeamMembers;
 </script>
 
-<!-- leadingContent snippet -->
-{#snippet defaultLeadingContent()}
-	<div class="project-body__leading">
-		<img src={displayImageSrc} alt={displayImageAlt} class="project-body__image" />
+<!-- header Impact snippet -->
+{#snippet headerImpact()}
+	<div class="header-card-root impact">
+		<!-- <Subheader text={impactData.title} color="inverse" /> -->
+		<p class="impact-text">{impactData.content}</p>
 	</div>
 {/snippet}
 
-<!-- trailingContent snippet -->
-{#snippet defaultTrailingContent()}
-	<div class="project-body__trailing">
-		<p class="project-date">date</p>
-		<p class="project-standfirst">Standfirst</p>
-		<div class="project-body__content">
-			<Subheader text="Project Overview" />
-			<p>{displayContent}</p>
-		</div>
+<!-- header Team Members snippet -->
+{#snippet headerTeamMembers()}
+	<div class="header-card-root team">
+		<Subheader text="Team" />
+		<List items={teamMembersData.members} itemFormat="structured" />
 	</div>
 {/snippet}
 
-<section class="project-body">
-	<!-- Leading Content -->
-	{#if leadingContent}
-		{@render leadingContent()}
-	{:else}
-		{@render defaultLeadingContent()}
-	{/if}
-
-	<!-- Trailing Content -->
-	{#if trailingContent}
-		{@render trailingContent()}
-	{:else}
-		{@render defaultTrailingContent()}
-	{/if}
+<section class="project-header">
+	{@render headerImpact()}
+	{@render headerTeamMembers()}
 </section>
 
 <style>
-	.project-body {
+	/* Mobile First - Default styles */
+	.project-header {
 		display: grid;
 		grid-template-columns: 1fr;
+		gap: var(--space-xl);
 	}
 
-	/* Tablet: 767px - 1024px */
-	@media (min-width: 767px) {
-		.project-body {
-			grid-template-columns: 1fr 1fr;
-		}
-
-		.project-body__leading {
-			grid-column: 1;
-		}
-
-		.project-body__trailing {
-			grid-column: 2;
-		}
+	.header-card-root {
+		background: rgb(var(--bg-surface));
+		border: 1px solid rgb(var(--border-primary));
+		border-radius: var(--radius-md);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		transition: box-shadow 0.2s ease;
+		color: var(--fg-text-primary);
+		padding: var(--space-0) var(--space-xl);
+		border-left: 1px solid var(--fg-text-primary);
 	}
 
-	/* Desktop: 1025px+ */
-	@media (min-width: 1025px) {
-		.project-body {
+	.header-card-root.impact {
+		color: var(--fg-text-primary);
+	}
+
+	.impact-text {
+		font-size: var(--fs-small-clamped);
+		font-weight: var(--fw-bold);
+		line-height: var(--lh-snug);
+		max-width: var(--width-prose-sm);
+	}
+
+	/* Desktop: 1024px+ */
+	@media (min-width: 1024px) {
+		.project-header {
 			grid-template-columns: 1fr 1fr 2fr;
 		}
 
-		.project-body__leading {
+		.header-card-root.impact {
 			grid-column: 1 / 3;
 		}
 
-		.project-body__trailing {
+		.header-card-root.team {
 			grid-column: 3;
 		}
 	}
 
-	.project-body__leading {
-		display: flex;
-		justify-content: center;
-	}
-
-	.project-body__image {
-		width: 100%;
-		height: auto;
-		border-radius: var(--radius-md);
-		box-shadow: var(--shadow-sm);
-		object-fit: cover;
-	}
-
-	.project-body__trailing {
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-lg);
-		padding: var(--space-xl);
-	}
-
-	.project-body__content {
-		max-width: 70ch;
-	}
-
-	.project-body__content p {
-		margin: 0 0 var(--space-md) 0;
-		font-size: var(--fs-300);
-		color: var(--fg-text-primary);
-		font-weight: var(--fw-regular);
-		line-height: var(--lh-body-text);
-	}
-
-	.project-body__content p:last-child {
-		margin-bottom: 0;
-	}
-
-	.project-date {
-		font-size: var(--fs-250);
-		color: var(--fg-text-secondary);
-		margin: 0;
-		font-weight: var(--fw-medium);
-		line-height: var(--lh-interface);
-	}
-
-	.project-standfirst {
-		font-size: var(--fs-500);
-		color: var(--fg-text-primary);
-		margin: 0;
-		font-weight: var(--fw-semibold);
-		font-family: var(--font-family-main);
-		line-height: var(--lh-heading-secondary);
-	}
-
 	/* Debug styles - remove when done */
-	/* .project-body {
+	/* .project-header {
 		box-shadow: 0 0 0 4px solid red !important;
 		outline: 2px solid red !important;
 	}
 
-	.project-body__leading {
+	.header-card-root {
 		box-shadow: 0 0 0 4px solid blue !important;
 		outline: 2px solid blue !important;
 	}
 
-	.project-body__image {
-		box-shadow: 0 0 0 4px solid cyan !important;
-		outline: 2px solid cyan !important;
+	.header-card-root.impact {
+		box-shadow: 0 0 0 4px solid green !important;
+		outline: 2px solid green !important;
 	}
 
-	.project-body__trailing {
-		box-shadow: 0 0 0 4px solid orange !important;
-		outline: 2px solid orange !important;
-	}
 
-	.project-body__content {
+	.header-card-root.team {
 		box-shadow: 0 0 0 4px solid purple !important;
 		outline: 2px solid purple !important;
 	} */
