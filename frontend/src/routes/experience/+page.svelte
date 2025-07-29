@@ -1,7 +1,12 @@
 <script lang="ts">
 	import Accordian from '$lib/components/accordian/Accordian.svelte';
 	import AccordionList from '$lib/components/accordian/AccordionList.svelte';
-	import { ProjectCard, ProjectHeader, ProjectBody, ProjectFooter } from '$lib/components/content/projects';
+	import {
+		ProjectCard,
+		ProjectHeader,
+		ProjectBody,
+		ProjectFooter
+	} from '$lib/components/content/projects';
 </script>
 
 <AccordionList>

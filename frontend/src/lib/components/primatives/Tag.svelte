@@ -20,7 +20,7 @@
 		font-weight: var(--fw-semibold);
 		background-color: var(--bg-primary);
 		color: var(--fg-text-inverse);
-		border-radius: var(--bdr-radius-pill);
+		border-radius: var(--bdr-radius-tiny);
 		white-space: nowrap;
 	}
 </style>

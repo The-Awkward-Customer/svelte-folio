@@ -36,12 +36,12 @@
 		justify-content: center;
 		width: var(--width-4xl);
 		aspect-ratio: 4 / 5;
-		background-color: rgba(var(--bg-page) / 0);
+		background-color: var(--bg-page);
 		border: none;
 		border-radius: var(--bdr-radius-small);
 		cursor: pointer;
 		padding: 4px;
-		box-shadow: inset 0 0 0 1px rgba(var(--fg-text-primary) / 1);
+		box-shadow: inset 0 0 0 1px var(--fg-text-primary);
 		container-type: inline-size;
 	}
 
