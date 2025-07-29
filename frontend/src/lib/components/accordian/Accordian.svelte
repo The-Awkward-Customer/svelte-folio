@@ -30,6 +30,7 @@
 
 	const accordionState = $state(createAccordionState());
 	let labelElement: HTMLElement | undefined;
+	let detailsElement: HTMLElement | undefined;
 
 	registerAccordion(accordionState);
 
@@ -52,14 +53,27 @@
 		const isOpen = accordionState.isOpen;
 		const currentBrand = brand;
 		
+		console.log('🪗 Accordion effect:', { 
+			brand: currentBrand, 
+			isOpen, 
+			previousIsOpen,
+			stateChanged: isOpen !== previousIsOpen 
+		});
+		
 		// Only act if state actually changed
 		if (isOpen !== previousIsOpen) {
 			if (currentBrand) {
 				if (isOpen) {
+					console.log('🪗 Opening - setting brand:', currentBrand);
 					themeManager.setActiveBrand(currentBrand);
 				} else {
-					// Only clear if this accordion was the one that set the brand
-					themeManager.clearBrand();
+					// Only clear brand if this accordion was the one that set it
+					if (themeManager.activeBrand === currentBrand) {
+						console.log('🪗 Closing - clearing brand (was active)');
+						themeManager.clearBrand();
+					} else {
+						console.log('🪗 Closing - NOT clearing brand (not active)');
+					}
 				}
 			}
 			previousIsOpen = isOpen;
@@ -84,7 +98,18 @@
 	});
 
 	function handleClick() {
+		const wasOpen = accordionState.isOpen;
 		toggleAccordion(accordionState);
+		
+		// If accordion is opening, scroll to top of content after transition
+		if (!wasOpen && detailsElement) {
+			setTimeout(() => {
+				detailsElement?.scrollIntoView({ 
+					behavior: 'smooth', 
+					block: 'start' 
+				});
+			}, 100);
+		}
 	}
 </script>
 
@@ -98,7 +123,7 @@
 	</button>
 
 	{#if accordionState.isOpen}
-		<div class="details" transition:slide>
+		<div class="details" bind:this={detailsElement} transition:slide>
 			{#if children}
 				{@render children?.()}
 			{:else}

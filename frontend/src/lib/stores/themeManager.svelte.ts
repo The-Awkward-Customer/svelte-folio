@@ -72,7 +72,14 @@ class ThemeManager {
   }
 
   setActiveBrand(brand: BrandKey | null) {
+    console.log('🎨 setActiveBrand called:', { 
+      requestedBrand: brand, 
+      currentBrand: this.state.activeBrand,
+      willSkip: this.state.activeBrand === brand 
+    });
+    
     if (this.state.activeBrand === brand) {
+      console.log('🎨 SKIPPING - brand already active');
       return;
     }
     
@@ -164,6 +171,7 @@ class ThemeManager {
   }
 
   clearBrand() {
+    console.log('🎨 clearBrand called');
     this.setActiveBrand(null);
   }
 
