@@ -27,11 +27,6 @@
 
 	let { list = listData, children }: LinkListArray & TopNavProps = $props();
 
-	// Pages where chat trigger should be hidden
-	const hideChatOnPages = ['/graphics', '/services', '/about'];
-
-	// Derived value to determine if chat should be shown
-	const showChat = $derived(!hideChatOnPages.includes($page.url.pathname));
 
 	// Chat state management
 	let isChatOpen = $state(false);
@@ -46,9 +41,7 @@
 </script>
 
 <nav>
-	{#if showChat}
-		<ChatTrigger handleClick={openChat} />
-	{/if}
+	<ChatTrigger handleClick={openChat} />
 	<div>
 		<p>Peter Abbott</p>
 		<LinkList {list} />
