@@ -1,4 +1,3 @@
-
 interface AccordionState{
     id:string;
     isOpen:boolean;
@@ -8,10 +7,11 @@ interface AccordionState{
 const accordionRegistry = new Map<string, AccordionState>();
 
 
-export function createAccordionState() {
+export function createAccordionState(): AccordionState {
 
     const id = crypto.randomUUID();
 
+    // Return a plain object - the component will wrap it with $state
     const state = {
         id,
         isOpen: false,
@@ -31,7 +31,7 @@ export function toggleAccordion(state: AccordionState) {
     if (!state.isOpen) {
         accordionRegistry.forEach((otherState, otherId) => {
             if (otherId !== state.id) {
-                otherState.isOpen = false; // This will now update the actual proxy
+                otherState.isOpen = false;
             }
         });
     }
