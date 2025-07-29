@@ -30,7 +30,7 @@
 
 	const accordionState = $state(createAccordionState());
 	let labelElement: HTMLElement | undefined;
-	let detailsElement: HTMLElement | undefined;
+	let buttonElement: HTMLButtonElement | undefined;
 
 	registerAccordion(accordionState);
 
@@ -101,20 +101,17 @@
 		const wasOpen = accordionState.isOpen;
 		toggleAccordion(accordionState);
 		
-		// If accordion is opening, scroll to top of content after transition
-		if (!wasOpen && detailsElement) {
+		// If was closed and now opening, scroll to top
+		if (!wasOpen) {
 			setTimeout(() => {
-				detailsElement?.scrollIntoView({ 
-					behavior: 'smooth', 
-					block: 'start' 
-				});
-			}, 100);
+				buttonElement?.scrollIntoView({ block: 'start' });
+			}, 0);
 		}
 	}
 </script>
 
 <li class="wrapper">
-	<button onclick={handleClick} aria-label={label}>
+	<button bind:this={buttonElement} onclick={handleClick} aria-label={label}>
 		<span>{formattedNumber}. </span>
 		<div class="label">
 			<span bind:this={labelElement}>{label}</span>
@@ -123,7 +120,7 @@
 	</button>
 
 	{#if accordionState.isOpen}
-		<div class="details" bind:this={detailsElement} transition:slide>
+		<div class="details" transition:slide>
 			{#if children}
 				{@render children?.()}
 			{:else}
