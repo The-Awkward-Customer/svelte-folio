@@ -421,18 +421,20 @@ select {
   --bg-positive-40: rgba(140, 255, 0, 0.4);
   --bg-positive-20: rgba(140, 255, 0, 0.2);
 
-  /* Brand colors with opacity variants */
-  --color-dev-pink: rgba(241, 114, 255, 1);
-  --color-dev-pink-80: rgba(241, 114, 255, 0.8);
-  --color-dev-pink-60: rgba(241, 114, 255, 0.6);
-  --color-dev-pink-40: rgba(241, 114, 255, 0.4);
-  --color-dev-pink-20: rgba(241, 114, 255, 0.2);
 
-  --brand-fresha-accent: rgba(105, 80, 243, 1);
-  --brand-fresha-accent-80: rgba(105, 80, 243, 0.8);
-  --brand-fresha-accent-60: rgba(105, 80, 243, 0.6);
-  --brand-fresha-accent-40: rgba(105, 80, 243, 0.4);
-  --brand-fresha-accent-20: rgba(105, 80, 243, 0.2);
+  /* Brand Colors */
+  --color-brand-jio: rgba(2, 35, 134, 1);
+  --color-brand-fresha: rgba(105, 80, 243, 1);
+  --color-brand-godesk: rgba(221, 255, 0, 1);
+  --color-brand-suzuki: rgba(1, 48, 68, 1);
+  --color-brand-warhammer: rgba(0, 0, 0, 1);
+  --color-brand-shell: rgba(251, 206, 7, 1);
+  --color-brand-ikea: rgba(0, 87, 173, 1);
+  --color-brand-postoffice: rgba(238, 39, 34, 1);
+  --color-brand-hsbc: rgba(255, 255, 255, 1);
+  --color-brand-unilever: rgba(15, 14, 154, 1);
+  --color-brand-axa: rgba(52, 60, 61, 1);
+  --color-brand-tsb: rgba(0, 168, 225, 1);
 
   /* Legacy variable mappings for backward compatibility */
   --color-fg-primary: var(--fg-text-primary);
@@ -530,6 +532,20 @@ select {
   --bg-positive-80: rgba(42, 83, 20, 0.8);
   --bg-positive-60: rgba(42, 83, 20, 0.6);
 
+  /* Brand Colors */
+  --color-brand-jio: rgba(2, 35, 134, 1);
+  --color-brand-fresha: rgba(105, 80, 243, 1);
+  --color-brand-godesk: rgba(221, 255, 0, 1);
+  --color-brand-suzuki: rgba(1, 48, 68, 1);
+  --color-brand-warhammer: rgba(0, 0, 0, 1);
+  --color-brand-shell: rgba(251, 206, 7, 1);
+  --color-brand-ikea: rgba(0, 87, 173, 1);
+  --color-brand-postoffice: rgba(238, 39, 34, 1);
+  --color-brand-hsbc: rgba(255, 255, 255, 1);
+  --color-brand-unilever: rgba(15, 14, 154, 1);
+  --color-brand-axa: rgba(52, 60, 61, 1);
+  --color-brand-tsb: rgba(0, 168, 225, 1);
+
 }
 
 /* High contrast theme */
@@ -614,6 +630,21 @@ select {
   --bg-positive-80: rgba(255, 255, 255, 0.8);
   --bg-positive-60: rgba(255, 255, 255, 0.6);
 
+
+   /* Brand Colors */
+  --color-brand-jio: rgba(2, 35, 134, 1);
+  --color-brand-fresha: rgba(105, 80, 243, 1);
+  --color-brand-godesk: rgba(221, 255, 0, 1);
+  --color-brand-suzuki: rgba(1, 48, 68, 1);
+  --color-brand-warhammer: rgba(0, 0, 0, 1);
+  --color-brand-shell: rgba(251, 206, 7, 1);
+  --color-brand-ikea: rgba(0, 87, 173, 1);
+  --color-brand-postoffice: rgba(238, 39, 34, 1);
+  --color-brand-hsbc: rgba(255, 255, 255, 1);
+  --color-brand-unilever: rgba(15, 14, 154, 1);
+  --color-brand-axa: rgba(52, 60, 61, 1);
+  --color-brand-tsb: rgba(0, 168, 225, 1);
+
   /* Legacy variable mappings for backward compatibility */
   --color-fg-primary: var(--fg-text-primary);
   --color-fg-secondary: var(--fg-text-secondary);
@@ -645,4 +676,35 @@ p, span, a, li, ol, ul {
 
 body{
   background-color: var(--bg-page);
+}
+
+/* Brand color transitions */
+:root.transitioning,
+:root.transitioning body,
+:root.transitioning main {
+  transition: 
+    background-color 300ms ease-out,
+    color 300ms ease-out;
+}
+
+:root.transitioning * {
+  transition: 
+    background-color 300ms ease-out,
+    color 300ms ease-out,
+    border-color 300ms ease-out;
+}
+
+/* Prevent layout shifts during transitions */
+:root.transitioning {
+  overflow-x: hidden;
+}
+
+/* Optional: Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  :root.transitioning,
+  :root.transitioning *,
+  :root.transitioning body,
+  :root.transitioning main {
+    transition-duration: 0.01ms !important;
+  }
 }

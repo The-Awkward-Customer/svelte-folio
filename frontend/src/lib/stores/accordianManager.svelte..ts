@@ -1,4 +1,3 @@
-
 interface AccordionState{
     id:string;
     isOpen:boolean;
@@ -8,10 +7,11 @@ interface AccordionState{
 const accordionRegistry = new Map<string, AccordionState>();
 
 
-export function createAccordionState() {
+export function createAccordionState(): AccordionState {
 
     const id = crypto.randomUUID();
 
+    // Return a plain object - the component will wrap it with $state
     const state = {
         id,
         isOpen: false,
@@ -23,15 +23,20 @@ export function createAccordionState() {
 }
 
 export function registerAccordion(state: AccordionState){
+    console.log('📋 Registering accordion:', state.id);
     accordionRegistry.set(state.id, state);
 }
 
 export function toggleAccordion(state: AccordionState) {
+    console.log('🔄 toggleAccordion called:', { id: state.id, currentState: state.isOpen });
+    
     // If opening this accordion, close all others first
     if (!state.isOpen) {
+        console.log('🔄 Closing all other accordions...');
         accordionRegistry.forEach((otherState, otherId) => {
             if (otherId !== state.id) {
-                otherState.isOpen = false; // This will now update the actual proxy
+                console.log(`🔄 Closing accordion: ${otherId}`);
+                otherState.isOpen = false;
             }
         });
     }
@@ -41,7 +46,7 @@ export function toggleAccordion(state: AccordionState) {
         state.hasBeenOpened = true;
     }
 
-    console.log(`${state.id}: ${state.isOpen}`);
+    console.log(`🔄 Final state - ${state.id}: ${state.isOpen}`);
 }
 
 // Cleanup function (optional, for when component unmounts)

@@ -3,6 +3,8 @@
 	import { onMount, getContext } from 'svelte';
 	import { shuffleText } from '$lib/animations/gsap';
 	import type { Readable } from 'svelte/store';
+	import { themeManager } from '$lib/stores/themeManager.svelte';
+	import type { BrandKey } from '$lib/config/brands';
 
 	import {
 		createAccordionState,
@@ -15,17 +17,20 @@
 		label: string;
 		suffix: string;
 		enableShuffleAnimation?: boolean;
+		brand?: BrandKey;
 	}
 
 	let {
 		children,
 		label = 'Replace me',
 		suffix = 'test',
-		enableShuffleAnimation = true
+		enableShuffleAnimation = true,
+		brand
 	}: AccordianProps = $props();
 
 	const accordionState = $state(createAccordionState());
 	let labelElement: HTMLElement | undefined;
+	let detailsElement: HTMLElement | undefined;
 
 	registerAccordion(accordionState);
 
@@ -39,6 +44,41 @@
 	let contextValue = $derived(accordionListContext ? $accordionListContext : null);
 	let index = $derived(contextValue ? contextValue.getIndex(accordionId) : 1);
 	let formattedNumber = $derived(index.toString().padStart(2, '0'));
+
+	// Track previous state to avoid unnecessary calls
+	let previousIsOpen = false;
+	
+	// Apply brand color when accordion state changes
+	$effect(() => {
+		const isOpen = accordionState.isOpen;
+		const currentBrand = brand;
+		
+		console.log('🪗 Accordion effect:', { 
+			brand: currentBrand, 
+			isOpen, 
+			previousIsOpen,
+			stateChanged: isOpen !== previousIsOpen 
+		});
+		
+		// Only act if state actually changed
+		if (isOpen !== previousIsOpen) {
+			if (currentBrand) {
+				if (isOpen) {
+					console.log('🪗 Opening - setting brand:', currentBrand);
+					themeManager.setActiveBrand(currentBrand);
+				} else {
+					// Only clear brand if this accordion was the one that set it
+					if (themeManager.activeBrand === currentBrand) {
+						console.log('🪗 Closing - clearing brand (was active)');
+						themeManager.clearBrand();
+					} else {
+						console.log('🪗 Closing - NOT clearing brand (not active)');
+					}
+				}
+			}
+			previousIsOpen = isOpen;
+		}
+	});
 
 	// Trigger animation when component mounts
 	onMount(() => {
@@ -58,7 +98,18 @@
 	});
 
 	function handleClick() {
+		const wasOpen = accordionState.isOpen;
 		toggleAccordion(accordionState);
+		
+		// If accordion is opening, scroll to top of content after transition
+		if (!wasOpen && detailsElement) {
+			setTimeout(() => {
+				detailsElement?.scrollIntoView({ 
+					behavior: 'smooth', 
+					block: 'start' 
+				});
+			}, 100);
+		}
 	}
 </script>
 
@@ -72,7 +123,7 @@
 	</button>
 
 	{#if accordionState.isOpen}
-		<div class="details" transition:slide>
+		<div class="details" bind:this={detailsElement} transition:slide>
 			{#if children}
 				{@render children?.()}
 			{:else}
