@@ -117,7 +117,7 @@
 					{#each suggestedPrompts as prompt}
 						<Button
 							as="button"
-							variant="inverse"
+							variant="primary"
 							fullWidth={true}
 							label={prompt}
 							handleClick={() => handlePromptClick(prompt)}
@@ -179,7 +179,7 @@
 
 	/* Message bubble styles */
 	.message-bubble {
-		background: rgb(var(--bg-primary));
+		background: var(--bg-primary);
 		border-radius: 18px;
 		padding: 0.75rem 1rem;
 		max-width: 100%;
@@ -188,15 +188,15 @@
 	}
 
 	.user-bubble {
-		background: rgb(var(--bg-primary));
-		color: rgb(var(--fg-text-inverse));
+		background: var(--bg-primary);
+		color: var(--fg-text-inverse);
 		border-radius: var(--bdr-radius-small) var(--bdr-radius-small) 0px var(--bdr-radius-small);
 	}
 
 	.assistant-bubble {
-		background: rgb(var(--bg-inverse));
-		color: rgb(var(--fg-text-primary));
-		border-color: rgb(var(--fg-text-primary));
+		background: var(--bg-inverse);
+		color: var(--fg-text-primary);
+		border-color: var(--fg-text-primary);
 		border-style: solid;
 		border-width: 1px;
 		border-radius: var(--bdr-radius-small) var(--bdr-radius-small) 0px var(--bdr-radius-small);
@@ -216,12 +216,12 @@
 
 	.message-time {
 		font-size: 0.75rem;
-		color: rgba(var(--fg-text-primary) / 1);
+		color: var(--fg-text-primary);
 		opacity: 0.7;
 	}
 
 	.user-meta .message-time {
-		color: rgba(var(--fg-text-primary) / 1);
+		color: var(--fg-text-primary);
 	}
 
 	/* Loading message styles */
@@ -230,8 +230,8 @@
 	}
 
 	.loading-bubble {
-		background: rgb(var(--bg-page) / 0);
-		color: rgb(var(--fg-text-primary));
+		background: var(--bg-page);
+		color: var(--fg-text-primary);
 		border-radius: 18px;
 		padding: 0.75rem 1rem;
 		width: 100%;
@@ -283,7 +283,7 @@
 	/* Welcome message styles */
 	.welcome-message {
 		padding: 2rem 1.5rem;
-		color: rgb(var(--fg-text-primary));
+		color: var(--fg-text-inverse);
 		display: block;
 		text-align: center;
 	}
@@ -299,7 +299,7 @@
 	}
 
 	.suggested-questions {
-		background: rgba(var(--bg-primary) / 0);
+		background: var(--bg-primary);
 		border-radius: 8px;
 		padding: 1rem;
 		max-width: 400px;
