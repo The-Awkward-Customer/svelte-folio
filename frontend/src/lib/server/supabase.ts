@@ -66,7 +66,7 @@ export async function searchSimilarQAs(
   try {
     const { data, error } = await supabase.rpc('match_qa', {
       query_embedding: embedding,
-      match_threshold: threshold,
+      similarity_threshold: threshold,
       match_count: limit
     });
 
