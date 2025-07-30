@@ -51,6 +51,7 @@
 		"@oslojs/crypto": "^1.0.1",
 		"@oslojs/encoding": "^1.1.0",
 		"@supabase/supabase-js": "^2.50.3",
+		"chalk": "^5.4.1",
 		"dotenv": "^17.0.1",
 		"drizzle-orm": "^0.38.4",
 		"gsap": "^3.13.0",
