@@ -54,8 +54,8 @@
 	}
 
 	.inverse {
-		background-color: rgba(var(--bg-primary) / 1);
-		box-shadow: inset 0 0px 0px 1px rgba(var(--bg-primary) / 1);
+		background-color: var(--bg-primary);
+		box-shadow: inset 0 0px 0px 1px var(--bg-primary);
 	}
 
 	.inverse:hover {
@@ -71,8 +71,8 @@
 	}
 
 	.primary {
-		background-color: rgba(var(--bg-page) / 1);
-		box-shadow: inset 0 0px 0px 1px rgba(var(--bg-inverse) / 1);
+		background-color: var(--bg-page);
+		box-shadow: inset 0 0px 0px 1px var(--bg-inverse);
 	}
 
 	.primary:hover {

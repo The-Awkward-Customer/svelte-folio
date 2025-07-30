@@ -99,7 +99,7 @@
 	}
 
 	.chat-dialog::backdrop {
-		background: rgba(0, 0, 0, 0.8);
+		background: var(--bg-page-40);
 		backdrop-filter: blur(4px);
 		animation: fadeIn 0.3s ease-out;
 	}
@@ -112,7 +112,7 @@
 
 	/* Unified dialog content - consistent across all screen sizes */
 	.dialog-content {
-		background: rgb(var(--bg-inverse));
+		background: var(--bg-page);
 		border-radius: 12px 12px 0 0;
 		width: 100vw;
 		max-width: 100%;

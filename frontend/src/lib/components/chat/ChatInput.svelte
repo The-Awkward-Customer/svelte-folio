@@ -137,8 +137,8 @@
 		display: flex;
 		gap: 0.75rem;
 		align-items: center;
-		background: rgb(var(--bg-primary));
-		border: 1px solid var(--input-border, #e9ecef);
+		background: var(--bg-primary);
+		border: 1px solid #e9ecef;
 		border-radius: var(--bdr-radius-small);
 		padding: 0.75rem 1rem;
 		transition:
@@ -155,7 +155,7 @@
 		/* Prevent zoom on input focus (iOS) - minimum 16px font size */
 		font-size: max(16px, 0.9375rem);
 		line-height: 1.5;
-		color: rgba(var(--fg-text-inverse) / 1);
+		color: var(--fg-text-inverse);
 		min-height: 24px;
 		max-height: 120px;
 		overflow-y: auto;
@@ -163,7 +163,7 @@
 	}
 
 	.message-input::placeholder {
-		color: rgba(var(--fg-text-inverse) / 0.6);
+		color: var(--fg-text-inverse);
 	}
 
 	.message-input:disabled {
@@ -209,7 +209,7 @@
 	.hint-text {
 		font-family: var(--font-family-alt);
 		font-size: var(--fs-250);
-		color: rgba(var(--fg-text-primary) / 0.5);
+		color: var(--fg-text-primary-60);
 	}
 
 	/* Responsive adjustments with iOS-specific fixes */
