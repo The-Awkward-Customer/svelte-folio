@@ -27,6 +27,8 @@
 	import illustration14 from '$lib/assets/Illustrations/g_014.png';
 	import illustration15 from '$lib/assets/Illustrations/g_015.png';
 	import illustration16 from '$lib/assets/Illustrations/g_016.png';
+	import illustration17 from '$lib/assets/Illustrations/g_017.png';
+
 	const ExampleVid = '/videos/ExampleVid.webm';
 
 	const allGridItems = [
@@ -227,6 +229,15 @@
 			size: '2-2',
 			props: {
 				src: illustration16,
+				tag: 'Design'
+			}
+		},
+		{
+			id: '22',
+			component: ImageCard,
+			size: '2-2',
+			props: {
+				src: illustration17,
 				tag: 'Design'
 			}
 		}
