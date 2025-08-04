@@ -96,13 +96,13 @@ Help visitors understand:
         'X-Title': 'Portfolio Q&A Chat'
       },
       body: JSON.stringify({
-        model: 'anthropic/claude-3-sonnet',
+        model: 'anthropic/claude-3.5-sonnet',
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: userQuestion }
         ],
-        max_tokens: 150,
-        temperature: 0.7
+        max_tokens: 300,
+        temperature: 0.3
       })
     });
 

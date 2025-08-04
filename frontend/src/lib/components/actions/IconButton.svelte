@@ -11,6 +11,7 @@
 		variant?: buttonVariants;
 		type?: buttonRole;
 		disabled?: boolean;
+		isLoading?: boolean;
 		alt?: string;
 		size?: number;
 		fill?: string;
@@ -22,6 +23,7 @@
 		variant = 'inverse',
 		type = 'button',
 		disabled = false,
+		isLoading = false,
 		alt = '',
 		size = 32,
 		handleClick
@@ -32,8 +34,12 @@
 </script>
 
 <span class="btn-root">
-	<button class={`btn ${variant}`} aria-label={alt || name} {type} {disabled} onclick={handleClick}>
-		<Icon {name} {alt} {size} fill={computedFill} />
+	<button class={`btn ${variant}`} aria-label={alt || name} {type} disabled={disabled || isLoading} onclick={handleClick}>
+		{#if isLoading}
+			<Icon name="refresh" alt="Loading" {size} fill={computedFill} class="loading-icon" />
+		{:else}
+			<Icon {name} {alt} {size} fill={computedFill} />
+		{/if}
 	</button>
 </span>
 
@@ -85,5 +91,33 @@
 
 	.primary:active {
 		transform: scale(0.95);
+	}
+
+	/* Loading icon styles */
+	.btn :global(.loading-icon) {
+		animation: spin 1s linear infinite;
+	}
+
+	@keyframes spin {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	/* Disabled state */
+	.btn:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+
+	.btn:disabled:hover {
+		transform: none;
+	}
+
+	.btn:disabled:hover :global(.icon) {
+		transform: none;
 	}
 </style>

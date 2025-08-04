@@ -4,8 +4,6 @@
 	import { TextCard, ImageCard, VideoCard } from '$lib/components/cards';
 	import FilterGroup from '$lib/components/filters/FilterGroup.svelte';
 	import { shuffleArray } from '$lib/utils/shuffle.js';
-	import { dialogManager } from '$lib/stores/dialogManager.svelte.js';
-	import DialogRoot from '$lib/components/Dialog/DialogRoot.svelte';
 
 	let P: string = 'GRAPHICS';
 	console.log(`${P} rendered!`);
@@ -33,55 +31,12 @@
 
 	const allGridItems = [
 		{
-			id: '1',
-			component: VideoCard,
-			size: '2-2',
-			props: {
-				src: ExampleVid,
-				bgColor: '#e3f2fd',
-				tag: 'Motion'
-			}
-		},
-		{
-			id: '2',
-			component: VideoCard,
-			size: '2-2',
-			props: {
-				src: ExampleVid,
-				bgColor: '#e3f2fd',
-				tag: 'Motion'
-			}
-		},
-		{
-			id: '3',
-			component: VideoCard,
-			size: '2-2',
-			props: {
-				src: ExampleVid,
-				bgColor: '#e3f2fd',
-				tag: 'Motion'
-			}
-		},
-		{
 			id: '4',
 			component: ImageCard,
 			size: '2-2',
 			props: {
 				src: illustration1,
-				tag: 'Design'
-			}
-		},
-		{
-			id: '5',
-			component: TextCard,
-			size: '4-2',
-			props: {
-				title: 'Fresha Case Study',
-				content: 'This is a demo of our grid layout system!',
-				bgColor: '--brand-fresha-accent',
-				tag: 'Case Study',
-				button: 'primary',
-				handleClick: openFreshaDialog
+				tag: 'Illustration'
 			}
 		},
 		{
@@ -90,7 +45,7 @@
 			size: '2-2',
 			props: {
 				src: illustration2,
-				tag: 'Design'
+				tag: 'Illustration'
 			}
 		},
 		{
@@ -99,7 +54,7 @@
 			size: '2-2',
 			props: {
 				src: illustration3,
-				tag: 'Design'
+				tag: 'Illustration'
 			}
 		},
 		{
@@ -108,7 +63,7 @@
 			size: '2-2',
 			props: {
 				src: illustration4,
-				tag: 'Design'
+				tag: 'Illustration'
 			}
 		},
 		{
@@ -117,7 +72,7 @@
 			size: '2-2',
 			props: {
 				src: illustration5,
-				tag: 'Design'
+				tag: 'Illustration'
 			}
 		},
 		{
@@ -126,20 +81,7 @@
 			size: '2-2',
 			props: {
 				src: illustration6,
-				tag: 'Design'
-			}
-		},
-		{
-			id: '11',
-			component: TextCard,
-			size: '4-2',
-			props: {
-				title: 'Test Dialog',
-				content: 'This is a demo of our grid layout system!',
-				bgColor: '--bg-primary',
-				tag: 'Case Study',
-				button: 'primary',
-				handleClick: openThirdDialog
+				tag: 'UI'
 			}
 		},
 		{
@@ -148,7 +90,7 @@
 			size: '2-2',
 			props: {
 				src: illustration7,
-				tag: 'Design'
+				tag: 'UI'
 			}
 		},
 		{
@@ -157,7 +99,7 @@
 			size: '2-2',
 			props: {
 				src: illustration8,
-				tag: 'Design'
+				tag: 'Illustration'
 			}
 		},
 		{
@@ -166,7 +108,7 @@
 			size: '2-2',
 			props: {
 				src: illustration9,
-				tag: 'Design'
+				tag: 'Illustration'
 			}
 		},
 		{
@@ -175,7 +117,7 @@
 			size: '2-2',
 			props: {
 				src: illustration10,
-				tag: 'Design'
+				tag: 'Illustration'
 			}
 		},
 		{
@@ -184,7 +126,7 @@
 			size: '2-2',
 			props: {
 				src: illustration11,
-				tag: 'Design'
+				tag: 'Illustration'
 			}
 		},
 		{
@@ -193,7 +135,7 @@
 			size: '2-2',
 			props: {
 				src: illustration12,
-				tag: 'Design'
+				tag: 'Illustration'
 			}
 		},
 		{
@@ -202,7 +144,7 @@
 			size: '2-2',
 			props: {
 				src: illustration13,
-				tag: 'Design'
+				tag: 'Ceramics'
 			}
 		},
 		{
@@ -211,7 +153,7 @@
 			size: '2-2',
 			props: {
 				src: illustration14,
-				tag: 'Design'
+				tag: 'Branding'
 			}
 		},
 		{
@@ -220,7 +162,7 @@
 			size: '2-2',
 			props: {
 				src: illustration15,
-				tag: 'Design'
+				tag: 'Branding'
 			}
 		},
 		{
@@ -229,7 +171,7 @@
 			size: '2-2',
 			props: {
 				src: illustration16,
-				tag: 'Design'
+				tag: 'Illustration'
 			}
 		},
 		{
@@ -238,7 +180,7 @@
 			size: '2-2',
 			props: {
 				src: illustration17,
-				tag: 'Design'
+				tag: 'Ceramics'
 			}
 		}
 	] as const;
@@ -261,14 +203,6 @@
 	const filteredGridItems = $derived(
 		shuffledGridItems.filter((item) => activeFilters[item.props.tag] ?? true)
 	);
-
-	// Dialog functions
-	function openFreshaDialog() {
-		dialogManager.showDialog('fresha');
-	}
-	function openThirdDialog() {
-		dialogManager.showDialog('testThree');
-	}
 </script>
 
 <svelte:head>
@@ -294,8 +228,6 @@
 	<GridLayout items={filteredGridItems} columns={4} />
 </section>
 
-<!-- Dialog Root - handles all dialog rendering -->
-<DialogRoot />
 
 <style>
 	section {

@@ -114,7 +114,7 @@
 		</ProjectCard>
 	</Accordian>
 
-	<Accordian label="shell" suffix="Digital Innovation Designer" brand="shell">
+	<!-- <Accordian label="shell" suffix="Digital Innovation Designer" brand="shell">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
@@ -130,9 +130,9 @@
 				<ProjectFooter FooterString={experienceData.shell.footer.footerString} />
 			{/snippet}
 		</ProjectCard>
-	</Accordian>
+	</Accordian> -->
 
-	<Accordian label="suzuki" suffix="Lead Digital Designer" brand="suzuki">
+	<!-- <Accordian label="suzuki" suffix="Lead Digital Designer" brand="suzuki">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
@@ -148,9 +148,9 @@
 				<ProjectFooter FooterString={experienceData.suzuki.footer.footerString} />
 			{/snippet}
 		</ProjectCard>
-	</Accordian>
+	</Accordian> -->
 
-	<Accordian label="tsb" suffix="Head of Digital Banking UX" brand="tsb">
+	<!-- <Accordian label="tsb" suffix="Head of Digital Banking UX" brand="tsb">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
@@ -166,8 +166,7 @@
 				<ProjectFooter FooterString={experienceData.tsb.footer.footerString} />
 			{/snippet}
 		</ProjectCard>
-	</Accordian>
-
+	</Accordian> -->
 </AccordionList>
 
 <style>

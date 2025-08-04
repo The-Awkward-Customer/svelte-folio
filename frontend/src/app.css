@@ -344,6 +344,13 @@ select {
   /* Legacy rgb values for backwards compatibility */
   --bdr-inverse: 255 255 255; /* #FFFFFF */
   --bg-inverse: 255 255 255; /* #FFFFFF */
+  
+  /* Border inverse with opacity variants */
+  --bdr-inverse-full: rgba(255, 255, 255, 1);
+  --bdr-inverse-80: rgba(255, 255, 255, 0.8);
+  --bdr-inverse-60: rgba(255, 255, 255, 0.6);
+  --bdr-inverse-40: rgba(255, 255, 255, 0.4);
+  --bdr-inverse-20: rgba(255, 255, 255, 0.2);
 
   /* Noise texture mask */
   --noise-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.67' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' fill='white'/%3E%3C/svg%3E");
@@ -466,6 +473,13 @@ select {
   --bdr-inverse: 255 255 255; /* #FFFFFF */
   --bg-component: 180 180 180; /* #B4B4B4 */
   --bg-inverse: 38 39 45; /* #26272D */
+  
+  /* Border inverse with opacity variants */
+  --bdr-inverse-full: rgba(255, 255, 255, 1);
+  --bdr-inverse-80: rgba(255, 255, 255, 0.8);
+  --bdr-inverse-60: rgba(255, 255, 255, 0.6);
+  --bdr-inverse-40: rgba(255, 255, 255, 0.4);
+  --bdr-inverse-20: rgba(255, 255, 255, 0.2);
 
   /* RGBA Color Variants with Opacity - Dark Theme */
   /* Text colors with opacity variants */
@@ -564,6 +578,13 @@ select {
   --bdr-inverse: 0 0 0; /* #000000 */
   --bg-component: 180 180 180; /* #B4B4B4 */
   --bg-inverse: 38 39 45; /* #26272D */
+  
+  /* Border inverse with opacity variants */
+  --bdr-inverse-full: rgba(0, 0, 0, 1);
+  --bdr-inverse-80: rgba(0, 0, 0, 0.8);
+  --bdr-inverse-60: rgba(0, 0, 0, 0.6);
+  --bdr-inverse-40: rgba(0, 0, 0, 0.4);
+  --bdr-inverse-20: rgba(0, 0, 0, 0.2);
 
   /* RGBA Color Variants with Opacity - High Contrast Theme */
   /* Text colors with opacity variants */

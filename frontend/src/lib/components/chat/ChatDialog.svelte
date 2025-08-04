@@ -113,7 +113,6 @@
 	/* Unified dialog content - consistent across all screen sizes */
 	.dialog-content {
 		background: var(--bg-page);
-		border-radius: 12px 12px 0 0;
 		width: 100vw;
 		max-width: 100%;
 		/* Fixed height for consistency - prevents shrinking during loading */
@@ -124,6 +123,8 @@
 		overflow: hidden;
 		padding-bottom: max(1rem, env(safe-area-inset-bottom));
 		padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+		/* Top inline shadow */
+		box-shadow: inset 0 1px 0 0 var(--bdr-inverse-full);
 
 		/* Simple initial position - start below viewport */
 		transform: translateY(100%);
@@ -153,7 +154,6 @@
 	/* Desktop and larger screens - maintain consistent behavior */
 	@media (min-width: 769px) {
 		.dialog-content {
-			border-radius: var(--bdr-radius-small);
 			/* Keep consistent height and transition behavior */
 			height: 80vh;
 			padding-bottom: 0;
