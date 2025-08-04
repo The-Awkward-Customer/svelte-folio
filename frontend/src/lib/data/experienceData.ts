@@ -42,7 +42,7 @@ export const experienceData: Record<string, ProjectData> = {
     body: {
       impact: {
         title: 'Impact',
-        content: ['10X revenue growth to $300+ MRR']
+        content: ['10X revenue growth to $3000+ MRR']
       },
       teamMembers: {
         title: 'Team Members',

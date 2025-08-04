@@ -1,6 +1,6 @@
 // scripts/ingest-qa.ts
 import 'dotenv/config';
-import { readFileSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { generateEmbedding } from '../lib/server/embeddings-script.js';
 import { 
@@ -13,10 +13,30 @@ async function ingestQAContent() {
   console.log('🚀 Starting Q&A content ingestion...\n');
   
   try {
-    // Read Q&A content
-    const content = JSON.parse(
-      readFileSync(join(process.cwd(), 'src/data/qa-content-00.00.01.json'), 'utf-8')
-    );
+    // Read all JSON files from modelData/dataSets directory
+    const dataSetsPath = join(process.cwd(), 'src/modelData/dataSets');
+    const files = readdirSync(dataSetsPath).filter(file => file.endsWith('.json'));
+    
+    console.log(`📂 Found ${files.length} JSON files to process: ${files.join(', ')}\n`);
+    
+    let allContent: Record<string, any[]> = {};
+    
+    // Read and combine all JSON files
+    for (const file of files) {
+      const filePath = join(dataSetsPath, file);
+      const fileContent = JSON.parse(readFileSync(filePath, 'utf-8'));
+      const fileName = file.replace('.json', '');
+      
+      console.log(`📄 Processing file: ${file}`);
+      
+      // Merge content with filename as prefix for categories
+      Object.entries(fileContent).forEach(([category, questions]) => {
+        const prefixedCategory = `${fileName}_${category}`;
+        allContent[prefixedCategory] = questions as any[];
+      });
+    }
+    
+    const content = allContent;
     
     let totalIngested = 0;
     let totalErrors = 0;

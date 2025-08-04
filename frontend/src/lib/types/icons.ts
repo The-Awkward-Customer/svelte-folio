@@ -24,6 +24,7 @@ export type IconName =
     | 'gps_fix'
     | 'emoji_cross_eyed'
     | 'refresh'
+    | 'arrow_up'
 
 
 

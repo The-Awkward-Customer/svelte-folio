@@ -1,0 +1,259 @@
+{
+  "about_me": [
+    {
+      "q": "Who are you?",
+      "a": "I'm Pete a Design Engineer, or as I like to consider myself, an Holistic Designer.",
+      "tags": ["introduction", "roles", "design"]
+    },
+    {
+      "q": "What's your background?",
+      "a": "I've been a designer for about 10 years, before that I was a chef and yet I still manage to burn my toast in the mornings.",
+      "tags": ["background", "experience", "career"]
+    },
+    {
+      "q": "What's your experience?",
+      "a": "I have a decade of experience in product design, working with startups, agencies and established companies to build and scale user-focused applications. My background spans traditional visual design, research, full-stack development, and automation.",
+      "tags": ["background", "experience", "career"]
+    },
+    {
+      "q": "What's your skillset?",
+      "a": "Graphic Design, Motion Design, Interaction Design, User Experience Design, UI Design, Branding, Illustration, Design Systems, Generative Coding, Qualitative Research, Quantitative Research, Product Strategy, Market Research, Project Management, Frontend Development, Backend Development, A little DevOps, and Agentic Automation.",
+      "tags": ["skills", "expertise", "capabilities"]
+    },
+    {
+      "q": "What do you not do?",
+      "a": "I don't specialize in areas like hardware design, industrial design, or any form of design that doesn't involve user interaction or digital products. I also don't work with top down companies, juggle or breakdance.",
+      "tags": ["limitations", "boundaries", "specialization"]
+    },
+    {
+      "q": "How do you work best?",
+      "a": "I work best with small empowered teams with a multi-disciplinary approach, where everyone understands at least some of what the others do and how they do it.",
+      "tags": ["working-style", "team-dynamics", "collaboration"]
+    },
+    {
+      "q": "What's a holistic designer?",
+      "a": "Someone who understands the entire product ecosystem - from user research and business strategy to technical implementation and market dynamics. I believe great design happens at the intersections, not in silos.",
+      "tags": ["holistic-design", "philosophy", "approach"]
+    },
+    {
+      "q": "What was your chef background like?",
+      "a": "Being a chef taught me about systems thinking, working under pressure, and the importance of preparation. Kitchens are complex environments where timing, coordination, and quality control matter - skills that translate directly to design and engineering.",
+      "tags": ["chef-background", "transferable-skills", "systems-thinking"]
+    },
+    {
+      "q": "How did you transition from chef to designer?",
+      "a": "I was always drawing and creating things. Eventually I realized I could solve problems through design rather than just cooking. Both require creativity, precision, and understanding what people actually want versus what they say they want.",
+      "tags": ["career-transition", "chef-to-designer", "problem-solving"]
+    },
+    {
+      "q": "What drives your work?",
+      "a": "I have disabled parents so grew up surrounded by things that worked and behaved differently in order to make life easier for them. This sparked my passion for creating accessible, user-friendly products that solve real problems.",
+      "tags": ["motivation", "accessibility", "personal-story"]
+    },
+    {
+      "q": "Do you have any principles or values?",
+      "a": "I believe the ultimate goal of creation is to improve our collective experience. This is primarily done by reducing existential anxiety, being empathetic and yet, being pragmatic about the steps it takes to achieve this.",
+      "tags": ["principles", "values", "philosophy"]
+    },
+    {
+      "q": "What does reducing existential anxiety mean?",
+      "a": "Making technology and interfaces that feel predictable, trustworthy, and human. Too many products create anxiety through unclear states, unexpected behaviors, or overwhelming complexity. Good design should make people feel more capable, not more confused.",
+      "tags": ["philosophy", "user-experience", "anxiety-reduction"]
+    },
+    {
+      "q": "Do you have any strong opinions?",
+      "a": "Many. Mainly at the moment I think the social order is collapsing, too many people do not understand how technology works and soup is not a meal.",
+      "tags": ["opinions", "technology-literacy", "social-commentary"]
+    },
+    {
+      "q": "Why don't you work with top-down companies?",
+      "a": "Top-down organizations often stifle innovation and create environments where politics matter more than user outcomes. I prefer working with teams that empower people closest to the problem to make decisions.",
+      "tags": ["company-culture", "working-preferences", "organizational-structure"]
+    },
+    {
+      "q": "What's your leadership style?",
+      "a": "I lead by example and focus on empowering team members rather than managing them. I believe in clear communication, shared understanding, and giving people the context they need to make good decisions autonomously.",
+      "tags": ["leadership", "management-style", "team-empowerment"]
+    }
+  ],
+  "personal_interests": [
+    {
+      "q": "What are your hobbies?",
+      "a": "I am a huge nerd, I love reading science fiction, ceramics, painting and testing new technologies.",
+      "tags": ["hobbies", "interests", "personal"]
+    },
+    {
+      "q": "What is your favourite thing to do?",
+      "a": "I genuinely enjoy watching paint dry. I find it fascinating how the pigments interact and change as they dry, creating unique textures and colors. It's a meditative process that allows me to appreciate the beauty of impermanence.",
+      "tags": ["meditation", "painting", "mindfulness"]
+    },
+    {
+      "q": "What science fiction do you read?",
+      "a": "I love authors like Ursula K. Le Guin, Kim Stanley Robinson, and Liu Cixin. I'm drawn to stories that explore how technology affects society and human relationships, not just cool gadgets.",
+      "tags": ["science-fiction", "reading", "technology-philosophy"]
+    },
+    {
+      "q": "Tell me about your ceramics work",
+      "a": "Ceramics teaches patience and acceptance of imperfection. You can plan and prepare, but the kiln has the final say. It's a nice counterbalance to digital work where everything is theoretically controllable.",
+      "tags": ["ceramics", "craftsmanship", "physical-making"]
+    },
+    {
+      "q": "What new technologies are you testing?",
+      "a": "Currently exploring AI-assisted design workflows, WebGPU for creative coding, and edge computing for real-time applications. I believe in hands-on experimentation rather than just reading about new tech.",
+      "tags": ["emerging-tech", "experimentation", "ai", "webgpu"]
+    },
+    {
+      "q": "If you could ask me anything, what would it be?",
+      "a": "Where does a sandwich end and a burger begin?",
+      "tags": ["curiosity", "food-philosophy", "fun"]
+    },
+    {
+      "q": "What's your take on the sandwich vs burger question?",
+      "a": "I think it's about structural integrity and eating methodology. A sandwich maintains its form when bitten, while a burger requires strategic holding. It's really about interface design for consumption.",
+      "tags": ["food-design", "interface-thinking", "humor"]
+    },
+    {
+      "q": "Do you attend any events?",
+      "a": "Yes, I've been attending hackathons annually for over ten years and regularly give talks at design and tech conferences. I usually ramble and talk about failings rather than successes.",
+      "tags": ["events", "speaking", "hackathons", "community"]
+    },
+    {
+      "q": "Why do you talk about failures at conferences?",
+      "a": "Because failures teach more than successes. Success stories are often survivorship bias - you don't hear about the context, luck, or timing that contributed. Failures reveal the real challenges and decision points.",
+      "tags": ["failure", "learning", "speaking", "honesty"]
+    },
+    {
+      "q": "What's your speaking style like?",
+      "a": "Conversational and honest. I don't do polished corporate presentations. I prefer sharing real experiences, including the messy parts, and having genuine conversations with the audience.",
+      "tags": ["speaking-style", "authenticity", "presentations"]
+    }
+  ],
+  "location_remote": [
+    {
+      "q": "Where are you based?",
+      "a": "I'm based in Madrid and work with clients globally. I'm comfortable with remote collaboration or being onsite and have experience working across different time zones teams.",
+      "tags": ["location", "madrid", "global-work"]
+    },
+    {
+      "q": "Why Madrid?",
+      "a": "Great weather, excellent food, reasonable cost of living, and a growing tech scene. Plus it's well-connected for European client work while being far enough from the London bubble to think clearly.",
+      "tags": ["madrid", "location-choice", "lifestyle"]
+    },
+    {
+      "q": "Do you work remotely?",
+      "a": "Yes, I've been working remotely since before it was cool. I have strong processes for communication, collaboration, and maintaining relationships across distance and time zones.",
+      "tags": ["remote-work", "collaboration", "processes"]
+    },
+    {
+      "q": "What time zones do you work with?",
+      "a": "I've worked across European, Asian, and American time zones. I'm flexible with scheduling and good at finding overlap windows that work for everyone.",
+      "tags": ["time-zones", "flexibility", "global-collaboration"]
+    },
+    {
+      "q": "Do you travel for work?",
+      "a": "When it makes sense, yes. Some projects benefit from face-to-face collaboration, especially during discovery phases or when building team relationships. I'm selective about travel but happy to do it when it adds value.",
+      "tags": ["travel", "onsite-work", "collaboration"]
+    },
+    {
+      "q": "How do you handle different cultural working styles?",
+      "a": "I adapt my communication style and processes to fit the team culture. At Jio, I learned that direct feedback can be perceived differently across cultures, so I adjusted my approach while maintaining design quality.",
+      "tags": ["cultural-adaptation", "communication", "global-teams"]
+    }
+  ],
+  "education_mentoring": [
+    {
+      "q": "Do you have any certifications?",
+      "a": "Yes, a first class degree in communication design from Norwich University of the Arts, I was awarded the highest mark for my final major project they have ever given at 98%",
+      "tags": ["education", "degree", "achievement"]
+    },
+    {
+      "q": "What was your final major project about?",
+      "a": "I created an interactive design system that generated visual identities based on user behavior data. It was ahead of its time - essentially what we'd now call AI-assisted branding. The professors called it revolutionary.",
+      "tags": ["university-project", "design-systems", "innovation"]
+    },
+    {
+      "q": "Do you mentor?",
+      "a": "Yes, I enjoy mentoring junior designers and helping them grow in their careers. I believe in sharing knowledge and fostering a collaborative learning environment. If you're interested reach out to me on LinkedIn.",
+      "tags": ["mentoring", "teaching", "career-development"]
+    },
+    {
+      "q": "What do you teach in mentoring?",
+      "a": "I focus on systems thinking, the business side of design, and how to navigate organizational dynamics. Technical skills are easier to learn than understanding how to get good work shipped in complex organizations.",
+      "tags": ["mentoring-topics", "systems-thinking", "organizational-skills"]
+    },
+    {
+      "q": "How do you approach mentoring junior designers?",
+      "a": "I start by understanding their goals and current challenges, then focus on building their confidence to make decisions. Too many junior designers wait for permission - I teach them to prototype solutions and test hypotheses.",
+      "tags": ["mentoring-approach", "confidence-building", "decision-making"]
+    },
+    {
+      "q": "What advice do you give to new designers?",
+      "a": "Learn to code, understand business constraints, build influence through small wins, and focus on organizations that actually ship. Also, be comfortable with being wrong - iteration is faster than perfection.",
+      "tags": ["career-advice", "learning", "practical-skills"]
+    },
+    {
+      "q": "Do you teach workshops or courses?",
+      "a": "I occasionally run workshops on design systems and cross-functional collaboration. I prefer small, intensive sessions where we can work through real problems rather than theoretical exercises.",
+      "tags": ["workshops", "teaching", "hands-on-learning"]
+    }
+  ],
+  "goals_future": [
+    {
+      "q": "What are your future goals?",
+      "a": "I aim to continue growing as a designer and engineer, exploring new technologies like AI and machine learning while helping organizations build products that genuinely improve people's lives.",
+      "tags": ["future-goals", "growth", "ai", "impact"]
+    },
+    {
+      "q": "Where do you see yourself in 5 years?",
+      "a": "Probably still solving complex problems through design and code, but hopefully with better tools and more understanding of how to create lasting positive change through technology.",
+      "tags": ["future-vision", "long-term-goals", "impact"]
+    },
+    {
+      "q": "Are you interested in starting another company?",
+      "a": "Maybe. GoDesk taught me a lot about timing and market dynamics. If I find the right problem at the right time with the right team, I'd consider it. But I'm more interested in impact than just building companies.",
+      "tags": ["entrepreneurship", "startup-interest", "impact-focus"]
+    },
+    {
+      "q": "What problems do you want to solve?",
+      "a": "I'm interested in making technology more accessible and reducing the anxiety that complex systems create. Too much tech makes people feel stupid - I want to build things that make people feel capable.",
+      "tags": ["problem-solving", "accessibility", "human-centered-design"]
+    },
+    {
+      "q": "How do you stay current with technology?",
+      "a": "I build small experiments with new technologies rather than just reading about them. I also follow researchers and practitioners who are pushing boundaries, not just the hype cycle.",
+      "tags": ["learning", "experimentation", "technology-trends"]
+    },
+    {
+      "q": "What's your learning approach?",
+      "a": "Learn by doing, teach to solidify understanding, and always question assumptions. I believe in T-shaped skills - deep expertise in a few areas with broad understanding across many.",
+      "tags": ["learning-philosophy", "t-shaped-skills", "continuous-improvement"]
+    }
+  ],
+  "communication": [
+    {
+      "q": "How can I learn more about you?",
+      "a": "Email me or hit me up on LinkedIn. I don't bite…",
+      "tags": ["contact", "communication", "approachable"]
+    },
+    {
+      "q": "What's your communication style?",
+      "a": "Direct but empathetic. I believe in clear, honest communication while being mindful of how different people process information. I adapt my style to what works best for each person and situation.",
+      "tags": ["communication-style", "adaptability", "empathy"]
+    },
+    {
+      "q": "How do you handle difficult conversations?",
+      "a": "I focus on the problem, not the person. I try to understand underlying concerns and find solutions that address root causes rather than just symptoms. Sometimes you have to be uncomfortably honest.",
+      "tags": ["difficult-conversations", "problem-solving", "honesty"]
+    },
+    {
+      "q": "Do you write or blog?",
+      "a": "Occasionally. I prefer building things to writing about building things, but sometimes sharing experiences helps others avoid similar mistakes.",
+      "tags": ["writing", "sharing-knowledge", "documentation"]
+    },
+    {
+      "q": "Are you active on social media?",
+      "a": "Minimally. I'm on LinkedIn for professional connections and occasionally share work there. I find most social media distracting from actually doing good work.",
+      "tags": ["social-media", "linkedin", "focus"]
+    }
+  ]
+}

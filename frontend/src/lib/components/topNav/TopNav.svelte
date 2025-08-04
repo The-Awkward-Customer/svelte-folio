@@ -5,6 +5,7 @@
 	import LinkList from '../navigation/LinkList.svelte';
 	import ChatTrigger from './ChatTrigger.svelte';
 	import QAChat from '../chat/QAChat.svelte';
+	import Button from '../actions/Button.svelte';
 
 	interface LinkItem {
 		label: string;
@@ -27,7 +28,6 @@
 
 	let { list = listData, children }: LinkListArray & TopNavProps = $props();
 
-
 	// Chat state management
 	let isChatOpen = $state(false);
 
@@ -41,10 +41,24 @@
 </script>
 
 <nav>
-	<ChatTrigger handleClick={openChat} />
-	<div>
-		<p>Peter Abbott</p>
-		<LinkList {list} />
+	<div class="left-wrapper">
+		<div class="left">
+			<ChatTrigger handleClick={openChat} />
+			<div class="name-and-links">
+				<p>Peter Abbott</p>
+				<LinkList {list} />
+			</div>
+		</div>
+	</div>
+	<div class="right">
+		<Button
+			as="link"
+			href="/documents/Peter_Abbott_CV_04:08:25.pdf"
+			target="_blank"
+			rel="noopener noreferrer"
+			label="Download CV"
+			variant="inverse"
+		/>
 	</div>
 </nav>
 
@@ -54,9 +68,9 @@
 <style>
 	nav {
 		display: inline-flex;
-		flex-direction: row;
-		justify-content: flex-start;
-		align-items: center;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
 		width: 100%;
 		padding-top: var(--padding-page-default);
 		padding-left: var(--padding-page-default);
@@ -65,12 +79,28 @@
 		gap: var(--space-xl);
 	}
 
-	div {
+	.left-wrapper {
+		display: flex;
+		justify-content: flex-start;
+	}
+
+	.left {
+		display: flex;
+		align-items: center;
+		gap: var(--space-xl);
+	}
+
+	.name-and-links {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: flex-start;
 		gap: 0.5em;
+	}
+
+	.right {
+		display: flex;
+		align-items: center;
 	}
 
 	p {
@@ -82,6 +112,8 @@
 	@media (min-width: 896px) {
 		nav {
 			flex-direction: row;
+
+			align-items: center;
 		}
 	}
 </style>

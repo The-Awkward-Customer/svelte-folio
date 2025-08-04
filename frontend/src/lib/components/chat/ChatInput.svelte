@@ -98,21 +98,16 @@
 				class="message-input"
 			></textarea>
 
-			{#if disabled}
-				<div class="loading-button" title="Sending...">
-					<span class="loading-icon">⏳</span>
-				</div>
-			{:else}
-				<IconButton
-					name="plus"
-					variant="primary"
-					type="submit"
-					disabled={disabled || !inputValue.trim()}
-					alt="Send message (Enter)"
-					size={24}
-					handleClick={sendMessage}
-				/>
-			{/if}
+			<IconButton
+				name="arrow_up"
+				variant="inverse"
+				type="submit"
+				disabled={!inputValue.trim()}
+				isLoading={disabled}
+				alt="Send message (Enter)"
+				size={24}
+				handleClick={sendMessage}
+			/>
 		</div>
 
 		<div class="input-hint">
@@ -123,7 +118,6 @@
 
 <style>
 	.input-container {
-		background: rgba(var(--bg-inverse) / 1);
 		padding: 1rem 0;
 		width: 100%;
 		max-width: 800px; /* Limit width for better readability */
@@ -139,7 +133,7 @@
 		align-items: center;
 		background: var(--bg-primary);
 		border: 1px solid #e9ecef;
-		border-radius: var(--bdr-radius-small);
+		border-radius: var(--bdr-radius-pill);
 		padding: 0.75rem 1rem;
 		transition:
 			border-color 0.2s ease,
@@ -171,38 +165,8 @@
 		cursor: not-allowed;
 	}
 
-	.loading-button {
-		background: var(--primary-color, #007bff);
-		color: white;
-		border: none;
-		border-radius: var(--bdr-radius-small);
-		width: 40px;
-		height: 40px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: not-allowed;
-		flex-shrink: 0;
-		opacity: 0.6;
-	}
-
-	.loading-icon {
-		font-size: 1rem;
-		line-height: 1;
-		animation: spin 1s linear infinite;
-	}
-
-	@keyframes spin {
-		from {
-			transform: rotate(0deg);
-		}
-		to {
-			transform: rotate(360deg);
-		}
-	}
-
 	.input-hint {
-		padding-top: var(--spc-100);
+		padding-top: var(--space-md);
 		text-align: center;
 	}
 
@@ -235,18 +199,6 @@
 		.message-input {
 			/* Maintain 16px minimum to prevent zoom */
 			font-size: max(16px, 0.875rem);
-		}
-
-		.loading-button {
-			width: 36px;
-			height: 36px;
-			/* Ensure minimum touch target */
-			min-width: 44px;
-			min-height: 44px;
-		}
-
-		.loading-icon {
-			font-size: 0.875rem;
 		}
 
 		.hint-text {
