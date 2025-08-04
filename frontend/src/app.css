@@ -276,7 +276,8 @@ select {
 
   /* Width tokens - Content widths */
   --width-prose: 65ch;      /* Optimal reading width */
-  --width-prose-sm: 45ch;   /* Compact prose width */
+  --width-prose-sm: 27ch;   /* Compact prose width */
+  --width-prose-md: 45ch;   /* Medium prose width */
   --width-prose-lg: 75ch;   /* Extended prose width */
   --width-content-sm: 640px;
   --width-content-base: 768px;
