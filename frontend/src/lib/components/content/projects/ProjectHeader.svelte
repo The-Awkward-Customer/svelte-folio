@@ -10,9 +10,24 @@
 		content?: string;
 		imageSrc?: string;
 		imageAlt?: string;
+		standfirst?: string;
+		// Video support props
+		mediaType?: 'image' | 'video';
+		videoSrc?: string;
+		videoPoster?: string;
 	}
 
-	let { leadingContent, trailingContent, content, imageSrc, imageAlt }: ProjectBodyProps = $props();
+	let {
+		leadingContent,
+		trailingContent,
+		content,
+		imageSrc,
+		imageAlt,
+		standfirst,
+		mediaType = 'image',
+		videoSrc,
+		videoPoster
+	}: ProjectBodyProps = $props();
 
 	// Dummy placeholder data for debugging
 	const defaultContent =
@@ -23,21 +38,34 @@
 	const displayContent = content || defaultContent;
 	const displayImageSrc = imageSrc || placeholderImage;
 	const displayImageAlt = imageAlt || 'Project placeholder image';
+	const displayStandfirst = standfirst || defaultStandfirst;
 </script>
 
 <!-- leadingContent snippet -->
 {#snippet defaultLeadingContent()}
 	<div class="project-body__leading">
-		<img src={displayImageSrc} alt={displayImageAlt} class="project-body__image" />
+		{#if mediaType === 'video' && videoSrc}
+			<video
+				src={videoSrc}
+				poster={videoPoster || displayImageSrc}
+				controls
+				class="project-body__media"
+			>
+				<track kind="captions" />
+				<img src={displayImageSrc} alt={displayImageAlt} class="project-body__media" />
+			</video>
+		{:else}
+			<img src={displayImageSrc} alt={displayImageAlt} class="project-body__media" />
+		{/if}
 	</div>
 {/snippet}
 
 <!-- trailingContent snippet -->
 {#snippet defaultTrailingContent()}
 	<div class="project-body__trailing">
-		<p class="project-standfirst">{defaultStandfirst}</p>
+		<p class="project-standfirst">{displayStandfirst}</p>
 		<div class="project-body__content">
-			<Subheader text="Project Overview" />
+			<Subheader text="Overview" />
 			<p>{displayContent}</p>
 		</div>
 	</div>
@@ -71,10 +99,9 @@
 		aspect-ratio: 16 / 9;
 	}
 
-	.project-body__image {
+	.project-body__media {
 		width: 100%;
-		border-radius: var(--radius-md);
-		box-shadow: var(--shadow-sm);
+		height: 100%;
 		object-fit: cover;
 	}
 
@@ -91,10 +118,11 @@
 	}
 
 	.project-body__content p {
-		font-size: var(--fs-300);
+		font-size: var(--fs-350);
 		color: var(--fg-text-primary);
 		font-weight: var(--fw-regular);
-		line-height: var(--lh-body-text);
+		line-height: var(--lh-body-comfortable);
+		max-width: var(--width-prose-lg);
 	}
 
 	.project-standfirst {
@@ -103,6 +131,7 @@
 		font-weight: var(--fw-regular);
 		font-family: var(--font-family-main);
 		line-height: var(--lh-snug);
+		max-width: var(--width-prose-sm);
 	}
 
 	/* Desktop: 1024px+ */

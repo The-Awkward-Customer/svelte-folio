@@ -1,0 +1,204 @@
+{
+  "industry_experience": [
+    {
+      "q": "What industries have you worked in?",
+      "a": "I've worked across telecom (Jio), banking (TSB), gaming (Games Workshop), energy (Shell), automotive (Suzuki), beauty/wellness (Fresha), and various startups. Each industry taught me different user behaviors and business constraints.",
+      "tags": ["industries", "diversity", "cross-sector-experience"]
+    },
+    {
+      "q": "What's unique about fintech design?",
+      "a": "Trust and security are paramount. Users need to feel confident about their money. Clarity, predictability, and transparent communication are more important than flashy interactions.",
+      "tags": ["fintech", "trust", "security", "transparency"]
+    },
+    {
+      "q": "How is telecom UX different?",
+      "a": "Complex technical systems behind simple user interfaces. At Jio, the challenge was making network diagnostics accessible to field staff while handling massive scale and reliability requirements.",
+      "tags": ["telecom", "technical-complexity", "scale", "field-staff"]
+    },
+    {
+      "q": "What did you learn about gaming industry UX?",
+      "a": "Passionate user communities who know every detail. At Games Workshop, any organizational mistake would be immediately noticed. The information architecture had to respect decades of interconnected systems.",
+      "tags": ["gaming", "passionate-users", "community", "legacy-systems"]
+    },
+    {
+      "q": "How is energy sector UX unique?",
+      "a": "At Shell, I learned about massive enterprise scale - 39 markets, regulatory complexity, and the challenge of transforming century-old business models. Every change affects millions of customers.",
+      "tags": ["energy", "enterprise-scale", "regulatory", "transformation"]
+    },
+    {
+      "q": "What's different about automotive UX?",
+      "a": "At Suzuki, I discovered that bike buyers and car buyers think completely differently. Bike buyers want rich visuals and emotional connection, while car buyers need practical comparisons and specifications.",
+      "tags": ["automotive", "user-psychology", "buyer-behavior", "product-differentiation"]
+    },
+    {
+      "q": "How does beauty/wellness UX differ?",
+      "a": "At Fresha, it's about trust between service providers and clients. The platform needs to work for both salon owners managing their business and customers booking appointments.",
+      "tags": ["beauty-wellness", "marketplace", "trust", "dual-sided-platform"]
+    },
+    {
+      "q": "What patterns do you see across industries?",
+      "a": "Trust is fundamental everywhere, but manifests differently. Complex systems need simple interfaces. User behavior varies more by context than by industry.",
+      "tags": ["cross-industry-patterns", "trust", "complexity", "context"]
+    }
+  ],
+  "business_understanding": [
+    {
+      "q": "How do you approach business strategy?",
+      "a": "Understand the business model, revenue drivers, and competitive landscape. Design decisions should support business objectives while serving user needs. Sometimes these conflict, requiring honest trade-off discussions.",
+      "tags": ["business-strategy", "revenue-drivers", "trade-offs"]
+    },
+    {
+      "q": "What's your approach to stakeholder management?",
+      "a": "Build influence through small wins, clear communication, and understanding organizational politics. Design success isn't just about the artifact - it's about getting it shipped.",
+      "tags": ["stakeholder-management", "organizational-politics", "influence"]
+    },
+    {
+      "q": "How do you handle budget constraints?",
+      "a": "Prioritize ruthlessly based on user impact and business value. Sometimes the best design is the simplest one that actually gets built and shipped.",
+      "tags": ["budget-constraints", "prioritization", "simple-solutions"]
+    },
+    {
+      "q": "What's your approach to ROI for design?",
+      "a": "Track metrics that matter - conversion rates, task completion, error reduction, support ticket volume. At Fresha, 95% bug reduction and halved delivery time had clear business value.",
+      "tags": ["design-roi", "metrics", "business-value"]
+    },
+    {
+      "q": "How do you navigate organizational politics?",
+      "a": "Build relationships, understand incentives, communicate in terms people care about. At TSB, I learned that great design without political support is just expensive decoration.",
+      "tags": ["organizational-politics", "relationship-building", "communication"]
+    },
+    {
+      "q": "What's your approach to product strategy?",
+      "a": "Start with user needs, understand market dynamics, align with business capabilities. Strategy is about making choices - what not to build is as important as what to build.",
+      "tags": ["product-strategy", "market-dynamics", "strategic-choices"]
+    }
+  ],
+  "startup_enterprise": [
+    {
+      "q": "Have you worked with startups?",
+      "a": "Yes, I co-founded GoDesk where we achieved 900% revenue growth but learned that timing beats execution. I've also worked with various early-stage companies, helping them build MVPs and scale their products.",
+      "tags": ["startups", "mvp", "growth", "co-founder"]
+    },
+    {
+      "q": "What's your experience with enterprise clients?",
+      "a": "I've worked with Fortune 500 companies like Shell, Games Workshop, and TSB. Enterprise work taught me to navigate complex stakeholder landscapes while maintaining design integrity - influence matters as much as craft.",
+      "tags": ["enterprise", "fortune-500", "stakeholder-management"]
+    },
+    {
+      "q": "How do startup and enterprise projects differ?",
+      "a": "Startups need speed and validation; enterprises need scale and governance. Startups can pivot quickly; enterprises need careful change management. Both require understanding the organizational context.",
+      "tags": ["startup-vs-enterprise", "speed-vs-scale", "change-management"]
+    },
+    {
+      "q": "What do you prefer - startup or enterprise work?",
+      "a": "Both have advantages. Startups offer speed and direct impact; enterprises offer scale and resources. I prefer working with teams that empower decision-making regardless of size.",
+      "tags": ["work-preferences", "empowered-teams", "decision-making"]
+    },
+    {
+      "q": "How do you adapt to different organizational cultures?",
+      "a": "Listen first, understand the existing culture, then adapt my approach while maintaining design quality. What works in a fast-moving startup won't work in a regulated enterprise.",
+      "tags": ["cultural-adaptation", "organizational-understanding"]
+    },
+    {
+      "q": "What's your approach to scaling design in organizations?",
+      "a": "Build systems and processes that work without you. At Fresha, the design system I created still enables their growth 4+ years later. Good systems outlast their creators.",
+      "tags": ["scaling-design", "systems-thinking", "sustainability"]
+    }
+  ],
+  "market_insights": [
+    {
+      "q": "What market trends do you pay attention to?",
+      "a": "AI integration, accessibility requirements, privacy regulations, and the shift toward sustainable technology. I focus on trends that affect user behavior and business models.",
+      "tags": ["market-trends", "ai", "accessibility", "privacy", "sustainability"]
+    },
+    {
+      "q": "How do you approach competitive analysis?",
+      "a": "Understand what competitors do well and why, but don't copy blindly. Different contexts require different solutions. I look for patterns and principles, not features to copy.",
+      "tags": ["competitive-analysis", "pattern-recognition", "contextual-solutions"]
+    },
+    {
+      "q": "What's your view on design trends?",
+      "a": "Trends are tools, not rules. Use them when they serve user needs and business objectives. Good design principles are timeless; visual trends come and go.",
+      "tags": ["design-trends", "timeless-principles", "tool-vs-rule"]
+    },
+    {
+      "q": "How do you stay ahead of technology changes?",
+      "a": "Build small experiments with new technologies rather than just reading about them. I follow researchers and practitioners who are pushing boundaries, not just the hype cycle.",
+      "tags": ["technology-trends", "experimentation", "research-focus"]
+    },
+    {
+      "q": "What's your take on AI's impact on design?",
+      "a": "AI will handle more routine tasks, letting designers focus on strategy and human understanding. But it won't replace the need for empathy, context, and systems thinking.",
+      "tags": ["ai-impact", "design-evolution", "human-skills"]
+    },
+    {
+      "q": "How do you approach emerging technologies?",
+      "a": "Focus on user problems first, then evaluate if new technology actually solves them better. Too often we get excited about technology without understanding the problem it solves.",
+      "tags": ["emerging-tech", "problem-first", "technology-evaluation"]
+    }
+  ],
+  "lessons_learned": [
+    {
+      "q": "What's the biggest lesson you've learned?",
+      "a": "That timing beats execution. At GoDesk, we executed well but couldn't overcome macroeconomic inflection points. Sometimes you can do everything right, but if the timing isn't right, it simply isn't right.",
+      "tags": ["timing", "execution", "market-dynamics", "startup-lessons"]
+    },
+    {
+      "q": "What mistakes have you made?",
+      "a": "At Jio, I implemented gamification features that increased employee pressure rather than engagement. User feedback and user impact aren't always aligned - I learned to watch behavior, not just listen to words.",
+      "tags": ["mistakes", "gamification", "user-behavior", "unintended-consequences"]
+    },
+    {
+      "q": "What would you do differently?",
+      "a": "I'd focus more on organizational readiness earlier in projects. At Games Workshop and TSB, we created great designs that couldn't be properly implemented due to internal constraints. Now I assess execution capability upfront.",
+      "tags": ["organizational-readiness", "implementation-capability", "upfront-assessment"]
+    },
+    {
+      "q": "How do you handle failure?",
+      "a": "I talk about failures more than successes. Each failure taught me something valuable - TSB taught me about politics, GoDesk about timing, Jio about cultural research. Failure is expensive education.",
+      "tags": ["failure", "learning", "growth", "resilience"]
+    },
+    {
+      "q": "What advice would you give to other designers?",
+      "a": "Learn to code. Understand business constraints. Build influence through small wins. And remember - great design without execution strategy is just expensive decoration. Focus on organizations that actually ship.",
+      "tags": ["advice", "career-development", "execution", "business-understanding"]
+    },
+    {
+      "q": "What's your biggest professional regret?",
+      "a": "Not learning about organizational dynamics earlier. I wasted years creating beautiful work that never shipped because I didn't understand how decisions really get made in companies.",
+      "tags": ["regret", "organizational-dynamics", "decision-making"]
+    }
+  ],
+  "international_global": [
+    {
+      "q": "Do you have international experience?",
+      "a": "Yes, I've worked on projects spanning 39 markets (Shell), across Europe and Asia (Jio, Suzuki), and with global teams. I understand cultural nuances in design and the challenges of scaling products internationally.",
+      "tags": ["international", "global", "cultural-awareness"]
+    },
+    {
+      "q": "How do you handle cultural differences in design?",
+      "a": "Research local context, adapt interfaces to cultural expectations, and test with local users. What works in one culture may completely fail in another.",
+      "tags": ["cultural-differences", "localization", "cultural-testing"]
+    },
+    {
+      "q": "What's challenging about global product design?",
+      "a": "Different languages, writing directions, cultural norms, regulatory requirements, and technical constraints. At Shell, every change had to work across 39 different markets and regulatory environments.",
+      "tags": ["global-challenges", "localization", "regulatory", "technical-constraints"]
+    },
+    {
+      "q": "How do you approach multi-language design?",
+      "a": "Design flexible layouts that accommodate text expansion, consider reading patterns, and test with real content in target languages. Lorem ipsum lies about layout needs.",
+      "tags": ["multi-language", "text-expansion", "layout-flexibility"]
+    },
+    {
+      "q": "What did you learn about working across time zones?",
+      "a": "Clear communication, asynchronous workflows, and documented decisions become critical. I've learned to structure work so teams can be productive without constant real-time collaboration.",
+      "tags": ["time-zones", "async-work", "documentation", "workflow-design"]
+    },
+    {
+      "q": "How do you handle regulatory differences globally?",
+      "a": "Work with local experts, build flexible systems that can accommodate different requirements, and design for the most restrictive requirements when possible.",
+      "tags": ["regulatory-differences", "compliance", "flexible-systems"]
+    }
+  ]
+}

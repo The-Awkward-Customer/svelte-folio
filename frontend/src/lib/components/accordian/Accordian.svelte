@@ -47,19 +47,19 @@
 
 	// Track previous state to avoid unnecessary calls
 	let previousIsOpen = false;
-	
+
 	// Apply brand color when accordion state changes
 	$effect(() => {
 		const isOpen = accordionState.isOpen;
 		const currentBrand = brand;
-		
-		console.log('🪗 Accordion effect:', { 
-			brand: currentBrand, 
-			isOpen, 
+
+		console.log('🪗 Accordion effect:', {
+			brand: currentBrand,
+			isOpen,
 			previousIsOpen,
-			stateChanged: isOpen !== previousIsOpen 
+			stateChanged: isOpen !== previousIsOpen
 		});
-		
+
 		// Only act if state actually changed
 		if (isOpen !== previousIsOpen) {
 			if (currentBrand) {
@@ -100,13 +100,13 @@
 	function handleClick() {
 		const wasOpen = accordionState.isOpen;
 		toggleAccordion(accordionState);
-		
+
 		// If accordion is opening, scroll to top of content after transition
 		if (!wasOpen && detailsElement) {
 			setTimeout(() => {
-				detailsElement?.scrollIntoView({ 
-					behavior: 'smooth', 
-					block: 'start' 
+				detailsElement?.scrollIntoView({
+					behavior: 'smooth',
+					block: 'start'
 				});
 			}, 100);
 		}
@@ -158,7 +158,7 @@
 		font-weight: var(--fw-semibold);
 		color: var(--fg-text-primary);
 		background-color: var(--bg-page);
-		border-bottom: 1px solid var(--bdr-primary);
+		border-bottom: 1px solid var(--fg-text-primary);
 	}
 
 	.label {
@@ -175,7 +175,7 @@
 	}
 
 	button:hover {
-		color: var(--fg-text-primary-60);
+		color: var(--fg-text-primary-80);
 	}
 	button:active {
 		color: var(--fg-text-primary);

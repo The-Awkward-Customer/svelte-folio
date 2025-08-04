@@ -3,10 +3,10 @@
 	import { Subheader } from '$lib/components/primatives';
 
 	// Interface for props
-	interface ProjectHeaderProps {
+	interface ProjectBodyProps {
 		impact?: {
 			title: string;
-			content: string;
+			content: string[];
 		};
 		teamMembers?: {
 			title: string;
@@ -14,12 +14,16 @@
 		};
 	}
 
-	let { impact, teamMembers }: ProjectHeaderProps = $props();
+	let { impact, teamMembers }: ProjectBodyProps = $props();
 
 	// Dummy placeholder data for debugging
 	const defaultImpact = {
 		title: 'Impact',
-		content: '10X revenue growth to $300+ MRR'
+		content: [
+			'10X revenue growth to $300+ MRR',
+			'Launched 3 new product features',
+			'Expanded to 5 new markets'
+		]
 	};
 
 	const defaultTeamMembers = {
@@ -35,54 +39,67 @@
 	const teamMembersData = teamMembers || defaultTeamMembers;
 </script>
 
-<!-- header Impact snippet -->
-{#snippet headerImpact()}
-	<div class="header-card-root impact">
-		<!-- <Subheader text={impactData.title} color="inverse" /> -->
-		<p class="impact-text">{impactData.content}</p>
+<!-- body Impact snippet -->
+{#snippet bodyImpact()}
+	<div class="body-card-root impact">
+		<Subheader text={impactData.title} />
+		<ul class="impact-list">
+			{#each impactData.content as item}
+				<li class="impact-text">{item}</li>
+			{/each}
+		</ul>
 	</div>
 {/snippet}
 
-<!-- header Team Members snippet -->
-{#snippet headerTeamMembers()}
-	<div class="header-card-root team">
+<!-- body Team Members snippet -->
+{#snippet bodyTeamMembers()}
+	<div class="body-card-root team">
 		<Subheader text="Team" />
 		<List items={teamMembersData.members} itemFormat="structured" />
 	</div>
 {/snippet}
 
-<section class="project-header">
-	{@render headerImpact()}
-	{@render headerTeamMembers()}
+<section class="project-body">
+	{@render bodyImpact()}
+	{@render bodyTeamMembers()}
 </section>
 
 <style>
 	/* Mobile First - Default styles */
-	.project-header {
+	.project-body {
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: var(--space-xl);
 	}
 
-	.header-card-root {
+	.body-card-root {
 		background: rgb(var(--bg-surface));
 		border: 1px solid rgb(var(--border-primary));
 		border-radius: var(--radius-md);
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: flex-start;
 		transition: box-shadow 0.2s ease;
 		color: var(--fg-text-primary);
 		padding: var(--space-0) var(--space-xl);
 		border-left: 1px solid var(--fg-text-primary);
 	}
 
-	.header-card-root.impact {
+	.body-card-root.impact {
 		color: var(--fg-text-primary);
 	}
 
+	.impact-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+	}
+
 	.impact-text {
-		font-size: var(--fs-small-clamped);
+		font-size: var(--fs-tiny-clamped);
 		font-weight: var(--fw-bold);
 		line-height: var(--lh-snug);
 		max-width: var(--width-prose-sm);
@@ -90,37 +107,37 @@
 
 	/* Desktop: 1024px+ */
 	@media (min-width: 1024px) {
-		.project-header {
+		.project-body {
 			grid-template-columns: 1fr 1fr 2fr;
 		}
 
-		.header-card-root.impact {
+		.body-card-root.impact {
 			grid-column: 1 / 3;
 		}
 
-		.header-card-root.team {
+		.body-card-root.team {
 			grid-column: 3;
 		}
 	}
 
 	/* Debug styles - remove when done */
-	/* .project-header {
+	/* .project-body {
 		box-shadow: 0 0 0 4px solid red !important;
 		outline: 2px solid red !important;
 	}
 
-	.header-card-root {
+	.body-card-root {
 		box-shadow: 0 0 0 4px solid blue !important;
 		outline: 2px solid blue !important;
 	}
 
-	.header-card-root.impact {
+	.body-card-root.impact {
 		box-shadow: 0 0 0 4px solid green !important;
 		outline: 2px solid green !important;
 	}
 
 
-	.header-card-root.team {
+	.body-card-root.team {
 		box-shadow: 0 0 0 4px solid purple !important;
 		outline: 2px solid purple !important;
 	} */
