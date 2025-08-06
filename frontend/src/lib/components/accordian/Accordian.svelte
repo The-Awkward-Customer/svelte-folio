@@ -159,7 +159,7 @@
 	}
 
 	async function handleClick() {
-// Prevent rapid clicks
+		// Prevent rapid clicks
 		if (isAnimating) return;
 
 		const wasOpen = accordionState.isOpen;
@@ -168,13 +168,6 @@
 		if (wasOpen) {
 			toggleAccordion(accordionState);
 			return;
-		}
-
-		// CRITICAL: Calculate positions BEFORE any state changes
-		if (!buttonElement) {
-			toggleAccordion(accordionState);
-			return;
-		}dev
 		}
 
 		// CRITICAL: Calculate positions BEFORE any state changes
@@ -239,7 +232,7 @@
 	</button>
 
 	{#if accordionState.isOpen}
-		<div class="details" transition:slide>
+		<div class="details" bind:this={detailsElement} transition:slide>
 			{#if children}
 				{@render children?.()}
 			{:else}
