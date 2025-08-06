@@ -1,22 +1,23 @@
 // src/routes/api/test-setup/+server.ts
 import { json } from '@sveltejs/kit';
-import { generateEmbedding, generateChatResponse, testOpenRouterConnection } from '$lib/server/openrouter.js';
+import { generateChatResponse } from '$lib/server/openrouter.js';
+import { generateEmbedding, testHuggingFaceConnection } from '$lib/server/embeddings.js';
 import { testSupabaseConnection, searchSimilarQAs } from '$lib/server/supabase.js';
 import type { RequestHandler } from './$types.js';
 
 export const GET: RequestHandler = async () => {
   const results: Array<{ test: string; status: string; details?: string }> = [];
 
-  // Test 1: OpenRouter Connection
+  // Test 1: HuggingFace Connection
   try {
-    const isConnected = await testOpenRouterConnection();
+    const isConnected = await testHuggingFaceConnection();
     results.push({
-      test: 'OpenRouter Connection',
+      test: 'HuggingFace Connection',
       status: isConnected ? 'PASS' : 'FAIL'
     });
   } catch (error) {
     results.push({
-      test: 'OpenRouter Connection',
+      test: 'HuggingFace Connection',
       status: 'ERROR',
       details: error instanceof Error ? error.message : 'Unknown error'
     });

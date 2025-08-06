@@ -105,25 +105,27 @@
 
 <!-- Welcome Message Snippet -->
 {#snippet WelcomeMessage()}
-	<div class="message welcome-message">
-		<div class="welcome-content">
-			<div class="suggested-questions">
-				<h3>Hello</h3>
+	<div class="message assistant-message">
+		<div class="message-avatar assistant-avatar">
+			<Avatar size="xs" alt="Assistant avatar" />
+		</div>
+		<div class="message-content assistant-content">
+			<div class="message-bubble assistant-bubble">
 				<p>
-					I'm here to help answer questions about my background, skills, and experience. Feel free
-					to ask me anything!
+					Hello! I'm here to help answer questions about my background, skills, and experience. Feel
+					free to ask me anything!
 				</p>
-				<div class="prompt-buttons">
-					{#each suggestedPrompts as prompt}
-						<Button
-							as="button"
-							variant="inverse"
-							fullWidth={true}
-							label={prompt}
-							handleClick={() => handlePromptClick(prompt)}
-						/>
-					{/each}
-				</div>
+			</div>
+			<div class="prompt-buttons">
+				{#each suggestedPrompts as prompt}
+					<Button
+						as="button"
+						variant="inverse"
+						fullWidth={false}
+						label={prompt}
+						handleClick={() => handlePromptClick(prompt)}
+					/>
+				{/each}
 			</div>
 		</div>
 	</div>
@@ -179,7 +181,7 @@
 
 	/* Message bubble styles */
 	.message-bubble {
-		background: rgb(var(--bg-primary));
+		background: var(--bg-primary);
 		border-radius: 18px;
 		padding: 0.75rem 1rem;
 		max-width: 100%;
@@ -188,15 +190,15 @@
 	}
 
 	.user-bubble {
-		background: rgb(var(--bg-primary));
-		color: rgb(var(--fg-text-inverse));
+		background: var(--bg-primary);
+		color: var(--fg-text-inverse);
 		border-radius: var(--bdr-radius-small) var(--bdr-radius-small) 0px var(--bdr-radius-small);
 	}
 
 	.assistant-bubble {
-		background: rgb(var(--bg-inverse));
-		color: rgb(var(--fg-text-primary));
-		border-color: rgb(var(--fg-text-primary));
+		background: var(--bg-inverse);
+		color: var(--fg-text-primary);
+		border-color: var(--fg-text-primary);
 		border-style: solid;
 		border-width: 1px;
 		border-radius: var(--bdr-radius-small) var(--bdr-radius-small) 0px var(--bdr-radius-small);
@@ -216,12 +218,12 @@
 
 	.message-time {
 		font-size: 0.75rem;
-		color: rgba(var(--fg-text-primary) / 1);
+		color: var(--fg-text-primary);
 		opacity: 0.7;
 	}
 
 	.user-meta .message-time {
-		color: rgba(var(--fg-text-primary) / 1);
+		color: var(--fg-text-primary);
 	}
 
 	/* Loading message styles */
@@ -230,8 +232,8 @@
 	}
 
 	.loading-bubble {
-		background: rgb(var(--bg-page) / 0);
-		color: rgb(var(--fg-text-primary));
+		background: var(--bg-page);
+		color: var(--fg-text-primary);
 		border-radius: 18px;
 		padding: 0.75rem 1rem;
 		width: 100%;
@@ -281,44 +283,19 @@
 	}
 
 	/* Welcome message styles */
-	.welcome-message {
-		padding: 2rem 1.5rem;
-		color: rgb(var(--fg-text-primary));
-		display: block;
-		text-align: center;
-	}
-
-	.welcome-content h3 {
-		margin: 0 0 0.5rem 0;
-		font-size: 1.25rem;
-	}
-
-	.welcome-content p {
-		margin: 0 0 1.5rem 0;
-		line-height: 1.5;
-	}
-
-	.suggested-questions {
-		background: rgba(var(--bg-primary) / 0);
-		border-radius: 8px;
-		padding: 1rem;
-		max-width: 400px;
-		margin: 0 auto;
-	}
-
 	.prompt-buttons {
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
+		flex-wrap: wrap;
 		gap: 0.5rem;
+		margin-top: 1rem;
+		max-width: 100%;
 	}
 
 	/* Responsive button layout */
 	@media (min-width: 480px) {
 		.prompt-buttons {
-			flex-direction: row;
-			flex-wrap: wrap;
-			align-items: center;
-			justify-content: center;
+			gap: 0.75rem;
 		}
 	}
 </style>

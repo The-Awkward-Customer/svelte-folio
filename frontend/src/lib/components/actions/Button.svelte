@@ -102,31 +102,31 @@
 	}
 
 	.inverse {
-		background-color: rgba(var(--bg-primary) / 1);
-		box-shadow: inset 0 0px 0px 1px rgba(var(--bg-primary) / 1);
-		color: rgb(var(--fg-text-inverse));
+		background-color: var(--bg-primary);
+		box-shadow: inset 0 0px 0px 1px var(--bg-primary);
+		color: var(--fg-text-inverse);
 	}
 
 	.inverse:hover {
-		background-color: rgba(var(--bg-primary) / 0.9);
+		background-color: var(--bg-primary);
 	}
 
 	.inverse:active {
-		background-color: rgba(var(--bg-primary) / 0.8);
+		background-color: var(--bg-primary);
 	}
 
 	.primary {
-		background-color: rgba(var(--bg-page) / 1);
-		box-shadow: inset 0 0px 0px 1px rgba(var(--bg-inverse) / 1);
-		color: rgb(var(--fg-text-primary));
+		background-color: var(--bg-page);
+		box-shadow: inset 0 0px 0px 1px var(--bg-inverse);
+		color: var(--fg-text-primary);
 	}
 
 	.primary:hover {
-		background-color: rgba(var(--bg-page) / 0.9);
+		background-color: var(--bg-page);
 	}
 
 	.primary:active {
-		background-color: rgba(var(--bg-page) / 0.8);
+		background-color: var(--bg-page);
 	}
 
 	.full-width {

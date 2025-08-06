@@ -1,6 +1,7 @@
 // src/routes/api/chat-test/+server.ts
 import { json } from '@sveltejs/kit';
-import { generateEmbedding, generateChatResponse } from '$lib/server/openrouter.js';
+import { generateEmbedding } from '$lib/server/embeddings.js';
+import { generateChatResponse } from '$lib/server/openrouter.js';
 import { searchSimilarQAs } from '$lib/server/supabase.js';
 import type { RequestHandler } from './$types.js';
 
