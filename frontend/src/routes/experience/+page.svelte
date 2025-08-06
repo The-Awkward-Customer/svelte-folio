@@ -11,14 +11,15 @@
 	} from '$lib/components/content/projects';
 	import { experienceData } from '$lib/data/experienceData';
 
-	// Clear any active brand when leaving the page
+	// Clear any active theme overrides when leaving the page
 	onDestroy(() => {
+		themeManager.clearBrandThemeOverride();
 		themeManager.clearBrand();
 	});
 </script>
 
 <AccordionList>
-	<Accordian label="godesk" suffix="Co-Founding Designer" brand="godesk">
+	<Accordian label="godesk" suffix="Co-Founding Designer" brand="godesk" themeOverride="light">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
@@ -35,7 +36,7 @@
 		</ProjectCard>
 	</Accordian>
 
-	<Accordian label="fresha" suffix="Design System Lead" brand="fresha">
+	<Accordian label="fresha" suffix="Design System Lead" brand="fresha" themeOverride="light">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader

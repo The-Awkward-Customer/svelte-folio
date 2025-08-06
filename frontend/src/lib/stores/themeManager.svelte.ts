@@ -6,6 +6,7 @@ type ThemePreference = 'light' | 'dark' | 'high-contrast';
 interface ThemeState {
   userPreference: ThemePreference;
   activeBrand: BrandKey | null;
+  brandThemeOverride: { brand: BrandKey; theme: ThemePreference } | null;
   isTransitioning: boolean;
 }
 
@@ -13,6 +14,7 @@ class ThemeManager {
   private state = $state<ThemeState>({
     userPreference: 'light',
     activeBrand: null,
+    brandThemeOverride: null,
     isTransitioning: false
   });
 
@@ -21,6 +23,7 @@ class ThemeManager {
   constructor() {
     if (browser) {
       this.init();
+      this.setupNavigationCleanup();
     }
   }
 
@@ -38,6 +41,14 @@ class ThemeManager {
 
   get isTransitioning() {
     return this.state.isTransitioning;
+  }
+
+  get brandThemeOverride() {
+    return this.state.brandThemeOverride;
+  }
+
+  get appliedTheme() {
+    return this.state.brandThemeOverride?.theme || this.state.userPreference;
   }
 
   private init() {
@@ -63,6 +74,25 @@ class ThemeManager {
         this.applyTheme();
       }
     });
+  }
+
+  private setupNavigationCleanup() {
+    // This will be called from a component that has access to SvelteKit navigation
+    // We'll export a method that components can call
+    if (typeof window !== 'undefined') {
+      // Fallback: clear on page unload
+      window.addEventListener('beforeunload', () => {
+        this.clearAllOverrides();
+      });
+    }
+  }
+
+  // Method for components to call when navigation occurs
+  clearAllOverrides() {
+    console.log('🎨 Clearing all theme overrides due to navigation');
+    this.state.brandThemeOverride = null;
+    this.state.activeBrand = null;
+    this.applyTheme();
   }
 
   setUserPreference(theme: ThemePreference) {
@@ -107,15 +137,32 @@ class ThemeManager {
     
     const root = document.documentElement;
     
-    // Set base theme
-    root.setAttribute('data-theme', this.state.userPreference);
+    // Determine which theme to apply (brand override takes priority)
+    const themeToApply = this.appliedTheme;
+    root.setAttribute('data-theme', themeToApply);
     
-    // Apply brand override if active
-    if (this.state.activeBrand) {
+    // Handle brand-theme override (new system)
+    if (this.state.brandThemeOverride) {
+      const { brand } = this.state.brandThemeOverride;
+      
+      // Use CSS variable for brand color to override --bg-page
+      root.style.setProperty('--bg-page', `var(--color-brand-${brand})`);
+      
+      // Set data attribute for additional styling hooks
+      root.setAttribute('data-brand-override', brand);
+      
+      console.log('🎨 Applied brand-theme override:', {
+        brand,
+        theme: themeToApply,
+        backgroundOverride: `var(--color-brand-${brand})`
+      });
+    } 
+    // Handle legacy brand override (old system) 
+    else if (this.state.activeBrand) {
       const brandColor = BRANDS[this.state.activeBrand];
       const textColor = this.getContrastColor(brandColor);
       
-      // Override CSS variables
+      // Override CSS variables (legacy approach)
       root.style.setProperty('--color-bg-page', brandColor);
       root.style.setProperty('--bg-page', brandColor);
       root.style.setProperty('--color-text-primary', textColor);
@@ -127,10 +174,15 @@ class ThemeManager {
       
       // Set brand data attribute for additional styling hooks
       root.setAttribute('data-brand', this.state.activeBrand);
-    } else {
-      // Clear brand overrides
-      root.style.removeProperty('--color-bg-page');
+    } 
+    // Clear all overrides
+    else {
+      // Clear new system overrides
       root.style.removeProperty('--bg-page');
+      root.removeAttribute('data-brand-override');
+      
+      // Clear legacy system overrides
+      root.style.removeProperty('--color-bg-page');
       root.style.removeProperty('--color-text-primary');
       root.style.removeProperty('--fg-text-primary');
       root.style.removeProperty('--color-text-secondary');
@@ -170,6 +222,66 @@ class ThemeManager {
     }
   }
 
+  setBrandThemeOverride(brand: BrandKey, theme: ThemePreference) {
+    console.log('🎨 setBrandThemeOverride called:', { 
+      brand, 
+      theme,
+      current: this.state.brandThemeOverride 
+    });
+    
+    // Check if this is the same combination already active
+    if (this.state.brandThemeOverride?.brand === brand && 
+        this.state.brandThemeOverride?.theme === theme) {
+      console.log('🎨 SKIPPING - same brand-theme combination already active');
+      return;
+    }
+    
+    // Start transition
+    this.state.isTransitioning = true;
+    this.state.brandThemeOverride = { brand, theme };
+    
+    // Clear any existing timeout
+    if (this.transitionTimeout) {
+      clearTimeout(this.transitionTimeout);
+    }
+    
+    // Apply theme immediately
+    this.applyTheme();
+    
+    // End transition after animation completes
+    this.transitionTimeout = window.setTimeout(() => {
+      this.state.isTransitioning = false;
+      this.transitionTimeout = null;
+    }, 300);
+  }
+
+  clearBrandThemeOverride() {
+    console.log('🎨 clearBrandThemeOverride called');
+    
+    if (!this.state.brandThemeOverride) {
+      console.log('🎨 SKIPPING - no brand theme override active');
+      return;
+    }
+    
+    // Start transition
+    this.state.isTransitioning = true;
+    this.state.brandThemeOverride = null;
+    
+    // Clear any existing timeout
+    if (this.transitionTimeout) {
+      clearTimeout(this.transitionTimeout);
+    }
+    
+    // Apply theme immediately
+    this.applyTheme();
+    
+    // End transition after animation completes
+    this.transitionTimeout = window.setTimeout(() => {
+      this.state.isTransitioning = false;
+      this.transitionTimeout = null;
+    }, 300);
+  }
+
   clearBrand() {
     console.log('🎨 clearBrand called');
     this.setActiveBrand(null);
@@ -180,6 +292,7 @@ class ThemeManager {
     const systemPrefers: ThemePreference = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     this.state.userPreference = systemPrefers;
     this.state.activeBrand = null;
+    this.state.brandThemeOverride = null;
     this.applyTheme();
   }
 }
