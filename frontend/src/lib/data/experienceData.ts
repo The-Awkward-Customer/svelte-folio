@@ -10,13 +10,15 @@ export interface ProjectData {
   header: {
     imageSrc: string;
     imageAlt: string;
-    standfirst: string;
-    content: string;
     mediaType?: 'image' | 'video';
     videoSrc?: string;
     videoPoster?: string;
   };
   body: {
+    problemStatement: {
+      title: string;
+      content: string;
+    };
     impact: {
       title: string;
       content: string[];
@@ -35,14 +37,16 @@ export const experienceData: Record<string, ProjectData> = {
   godesk: {
     header: {
       imageSrc: godeskHero,
-      imageAlt: 'Godesk platform interface showcasing the support dashboard',
-      standfirst: '900% growth, valuable lessons, and the wisdom to know when timing beats execution.',
-      content: 'As co-founding designer at GoDesk, I was responsible for defining the business\'s strategic playbook, market fit, and brand positioning. I oversaw customer research implementation, a complete rebrand, and delivery of the product\'s first ML-powered features. Over eight months, we achieved significant revenue and user growth through various strategies but ultimately couldn\'t compete with existing incumbents. We simply didnt have the compute, so we decided to exit with our remaining capital.'
+      imageAlt: 'Godesk platform interface showcasing the support dashboard'
     },
     body: {
+      problemStatement: {
+        title: 'Problem Space',
+        content: 'The "Blue collar" SME market was overserved by bloated existing solutions.'
+      },
       impact: {
         title: 'Impact',
-        content: ['10X revenue growth to $3000+ MRR']
+        content: ['10X revenue growth to $3000+ MRR', '10X revenue growth to $3000+ MRR']
       },
       teamMembers: {
         title: 'Team Members',
@@ -59,11 +63,13 @@ export const experienceData: Record<string, ProjectData> = {
   fresha: {
     header: {
       imageSrc: freshaHero,
-      imageAlt: 'Fresha design system components and style guide',
-      standfirst: 'Bringing order to design complexity—from fragmented systems to unified clarity at scale.',
-      content: 'As Lead Product Designer at Fresha, I inherited a fragmented design ecosystem with 1000+ inconsistent components across three failed previous attempts at systematization. Over 18 months, I built and led a team of 4 (3 engineers, 1 designer) to architect a comprehensive design system serving 130+ global team members and customers across 120 countries.'
+      imageAlt: 'Fresha design system components and style guide'
     },
     body: {
+      problemStatement: {
+        title: 'Problem Statement',
+        content: '[Problem statement content to be added]'
+      },
       impact: {
         title: 'Impact',
         content: ['Cut front-end bugs by 95% and halved feature delivery time through systematic component reduction (1000+ to 88)','Created federated governance and automation that continues enabling Fresha\'s global expansion 2+ years later']
@@ -71,10 +77,10 @@ export const experienceData: Record<string, ProjectData> = {
       teamMembers: {
         title: 'Team Members',
         members: [
-          { name: 'Alex Thompson', role: 'Head of Design' },
-          { name: 'Priya Patel', role: 'Design Systems Engineer' },
-          { name: 'Tom Wilson', role: 'Product Manager' },
-          { name: 'Lisa Chen', role: 'Frontend Lead' }
+          { name: 'Matt Styles', role: 'Engineering Lead' },
+          { name: 'Mathias Bercoux', role: 'Senior Designer' },
+          { name: 'Darek Napłoszek', role: 'Senior Engineer' },
+          { name: 'Patryk Wac', role: 'Engineer' }
         ]
       }
     },
@@ -85,11 +91,13 @@ export const experienceData: Record<string, ProjectData> = {
   jio: {
     header: {
       imageSrc: jioHero,
-      imageAlt: 'Jio Assist mobile interface showing network diagnostics and support workflows',
-      standfirst: 'Transforming data-heavy desktop workflows into mobile-first experiences for India\'s largest telecom workforce.',
-      content: 'As Senior Product Designer at Jio, I led the digital transformation of customer support tools during their shift to remote work. Over 7 months, I redesigned data-dense desktop dashboards into mobile-first experiences for field support staff, navigating cultural research challenges and performance constraints while delivering the JIO Assist product suite that enabled thousands of employees to work remotely for the first time.'
+      imageAlt: 'Jio Assist mobile interface showing network diagnostics and support workflows'
     },
     body: {
+      problemStatement: {
+        title: 'Problem Statement',
+        content: 'Covid dramatically changed customer support needs, requiring rapid adaptation to remote operations and mobile-first workflows.'
+      },
       impact: {
         title: 'Impact',
         content: [
@@ -101,10 +109,11 @@ export const experienceData: Record<string, ProjectData> = {
       teamMembers: {
         title: 'Team Members',
         members: [
-          { name: 'Arjun Patel', role: 'Creative Director' },
-          { name: 'Priya Sharma', role: 'Principal Product Designer' },
-          { name: 'Rajesh Kumar', role: 'In-house Systems Expert' },
-          { name: 'Lisa Chen', role: 'Project Coordinator' }
+          { name: 'Fillipo Del Carlo', role: 'Copywriter' },
+          { name: 'Priya Prakash', role: 'Principal Product Designer' },
+          { name: 'Peter Abbott', role: 'Senior Product Designer' },
+          { name: 'Prateek Dave', role: 'Senior UI Designer' },
+          { name: 'Philipp Kreicarek', role: 'UX Architect' },
         ]
       }
     },
@@ -116,13 +125,15 @@ export const experienceData: Record<string, ProjectData> = {
     header: {
       imageSrc: ikeaPoster,
       imageAlt: 'IKEA design system motion graphics storyboard and visual narrative',
-      standfirst: 'Translating design system complexity into compelling visual storytelling for company stakeholders.',
-      content: 'As Creative Director for IKEA, I crafted a motion graphics piece communicating their design system\'s value to company stakeholders during a digital innovation showcase. Over 2 weeks, I developed a visual narrative working backwards from consumer interfaces to tell the story of "collaboration by the many for the many," emphasizing modularity and the iconic IKEA effect through storyboarding, golden frame identification, and Nordic-inspired visual rhythm.',
       mediaType: 'video',
       videoSrc: skappaVideo,
       videoPoster: ikeaPoster
     },
     body: {
+      problemStatement: {
+        title: 'Problem Statement',
+        content: 'IKEA needed to communicate the value of their design system to internal stakeholders in a compelling way that transcended traditional documentation.'
+      },
       impact: {
         title: 'Impact',
         content: [
@@ -134,10 +145,9 @@ export const experienceData: Record<string, ProjectData> = {
       teamMembers: {
         title: 'Team Members',
         members: [
-          { name: 'Maria Andersson', role: 'Motion Graphics Lead' },
-          { name: 'Erik Johansson', role: 'Brand Strategy' },
-          { name: 'Sophie Laurent', role: 'Project Coordinator' },
-          { name: 'Lars Nilsson', role: 'Design System Liaison' }
+          { name: 'Fredrik Stahre', role: 'Programme Director' },
+          { name: 'Peter Abbott', role: 'Creative Director' },
+          { name: 'Landor Group', role: 'Production' }
         ]
       }
     },
@@ -149,13 +159,15 @@ export const experienceData: Record<string, ProjectData> = {
     header: {
       imageSrc: warhammerPoster,
       imageAlt: 'Warhammer e-commerce interface showing game system hierarchy and product visualization',
-      standfirst: 'Architecting digital commerce for one of gaming\'s most complex ecosystems after decades of stagnation.',
-      content: 'As Senior Product Designer at Games Workshop, I spearheaded the information architecture for their digital transformation initiative. Over 5 months, I leveraged deep hobby knowledge and design systems expertise to restructure their e-commerce experience, tackling complex game system hierarchies, sub-faction interoperability, and innovative features like accurate paint color rendering and interactive model breakdowns.',
       mediaType: 'video',
       videoSrc: warhammerVideo,
       videoPoster: warhammerPoster
     },
     body: {
+      problemStatement: {
+        title: 'Problem Statement',
+        content: 'The Warhammer e-commerce platform needed a comprehensive UX overhaul to improve user engagement and streamline the purchasing process.'
+      },
       impact: {
         title: 'Impact',
         content: [
@@ -167,10 +179,9 @@ export const experienceData: Record<string, ProjectData> = {
       teamMembers: {
         title: 'Team Members',
         members: [
-          { name: 'James Mitchell', role: 'Creative Director' },
-          { name: 'Sarah Davies', role: 'Principal Product Designer' },
-          { name: 'Marcus Chen', role: 'Motion Graphics Designer' },
-          { name: 'Robert Clarke', role: 'Copywriter' }
+          { name: 'Paul Ostryzniuk', role: 'Creative Director' },
+          { name: 'Leo Thorten', role: 'Senior UX Architect' },
+          { name: 'Peter Abbott', role: 'Senior Product Designer' }
         ]
       }
     },
@@ -181,11 +192,13 @@ export const experienceData: Record<string, ProjectData> = {
   shell: {
     header: {
       imageSrc: godeskHero, // Using placeholder for now
-      imageAlt: 'Shell Fleet Hub interface showing card management and fleet optimization tools',
-      standfirst: 'Transforming Shell from fuel card provider to comprehensive mobility solutions platform across 39 global markets.',
-      content: 'As Senior UX Designer embedded at Shell for 18 months, I architected the design foundation for their Fleet Hub transformation serving 32 million customers across 39 markets and 44,000 retail outlets. I pioneered their first design system through the fleet management platform redesign, developed API/developer portal strategy during their "data as a service" pivot, and led the transition from Excel-based logistics workflows to integrated digital experiences with fuel card management, route optimization, and emerging mobility services.'
+      imageAlt: 'Shell Fleet Hub interface showing card management and fleet optimization tools'
     },
     body: {
+      problemStatement: {
+        title: 'Problem Statement',
+        content: 'Shell needed to transform their legacy fleet card management system into a modern, integrated mobility platform that could serve millions of users across multiple regions.'
+      },
       impact: {
         title: 'Impact',
         content: [
@@ -211,11 +224,13 @@ export const experienceData: Record<string, ProjectData> = {
   suzuki: {
     header: {
       imageSrc: freshaHero, // Using placeholder for now
-      imageAlt: 'Suzuki multi-channel website interface showing cars, motorcycles, and marine configurators',
-      standfirst: 'Unifying fragmented digital experiences across cars, motorcycles, and marine products through research-driven design.',
-      content: 'As UX Designer at Foolproof for Suzuki, I led end-to-end customer experience design across four product divisions over 18 months. Using classic qualitative research cycles and double diamond methodology, I consolidated organic digital growth into cohesive experiences that connected online discovery with dealership purchases, creating scalable component systems that reduced site complexity by 75% while addressing distinct user needs across automotive and marine markets.'
+      imageAlt: 'Suzuki multi-channel website interface showing cars, motorcycles, and marine configurators'
     },
     body: {
+      problemStatement: {
+        title: 'Problem Statement',
+        content: 'Suzuki needed to create a seamless multi-channel experience for customers thats worked for their diverse range of vehicles, including cars, motorcycles, and marine products.'
+      },
       impact: {
         title: 'Impact',
         content: [
@@ -241,11 +256,13 @@ export const experienceData: Record<string, ProjectData> = {
   tsb: {
     header: {
       imageSrc: jioHero, // Using placeholder for now
-      imageAlt: 'TSB mobile banking app interface showing demographic-targeted financial packages',
-      standfirst: 'Designing innovative banking experiences that got lost in corporate politics and digital transformation failures.',
-      content: 'As UX Designer at TSB, I spent 7 months delivering a comprehensive digital banking redesign during the critical period when challenger banks like Monzo were reshaping the market. I created a fully interactive design system, redesigned conversion funnels targeting five key demographics, and developed a mobile-first banking app with novel interaction design that could have differentiated TSB—before organizational politics and the Santander merger derailed the entire initiative.'
+      imageAlt: 'TSB mobile banking app interface showing demographic-targeted financial packages'
     },
     body: {
+      problemStatement: {
+        title: 'Problem Statement',
+        content: '[Problem statement content to be added]'
+      },
       impact: {
         title: 'Impact',
         content: [
