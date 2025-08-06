@@ -31,7 +31,7 @@
 
 	.tag--inverse {
 		background-color: transparent;
-		color: var(--bg---fg-text-inverse);
+		color: var(--fg-text-inverse);
 		box-shadow: 0 0 0 1px currentColor;
 	}
 </style>
