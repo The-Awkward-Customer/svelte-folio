@@ -346,7 +346,6 @@ select {
   --bg-inverse: 255 255 255; /* #FFFFFF */
   
   /* Border inverse with opacity variants */
-  --bdr-inverse: rgba(255, 255, 255, 1);
   --bdr-inverse-80: rgba(255, 255, 255, 0.8);
   --bdr-inverse-60: rgba(255, 255, 255, 0.6);
   --bdr-inverse-40: rgba(255, 255, 255, 0.4);

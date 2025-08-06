@@ -9,8 +9,7 @@
 	import {
 		createAccordionState,
 		toggleAccordion,
-		registerAccordion,
-		getOpenAccordions
+		registerAccordion
 	} from '$lib/stores/accordianManager.svelte.';
 
 	interface AccordianProps {
@@ -104,27 +103,29 @@
 	function calculateScrollCompensation(): number {
 		// Find all currently open accordions that are ABOVE this one
 		const allAccordions = document.querySelectorAll('.wrapper');
-		const currentIndex = Array.from(allAccordions).indexOf(buttonElement?.parentElement as Element);
-		
+		if (!buttonElement?.parentElement) return 0;
+		const currentIndex = Array.from(allAccordions).indexOf(buttonElement.parentElement);
+		if (currentIndex === -1) return 0;
+
 		let heightToBeRemoved = 0;
-		
+
 		// Check each accordion before this one
 		for (let i = 0; i < currentIndex; i++) {
 			const accordion = allAccordions[i];
 			const details = accordion.querySelector('.details') as HTMLElement;
-			
+
 			// If this accordion is open, its height will be removed
 			if (details && !details.hidden) {
 				heightToBeRemoved += details.offsetHeight;
 			}
 		}
-		
+
 		return heightToBeRemoved;
 	}
 
 	// Smooth scroll with easing
 	function smoothScrollTo(targetY: number, duration: number): Promise<void> {
-		return new Promise(resolve => {
+		return new Promise((resolve) => {
 			const startY = window.pageYOffset;
 			const distance = targetY - startY;
 			const startTime = performance.now();
@@ -181,13 +182,13 @@
 		const buttonRect = buttonElement.getBoundingClientRect();
 		const currentScrollY = window.pageYOffset;
 		const buttonCurrentTop = buttonRect.top + currentScrollY;
-		
+
 		// Calculate how much height will be removed when other accordions close
 		const heightCompensation = calculateScrollCompensation();
-		
+
 		// Calculate the TRUE target position (accounting for closing accordions)
 		const targetScrollY = buttonCurrentTop - heightCompensation - 20; // 20px padding
-		
+
 		// Determine if we need to scroll
 		const finalButtonTop = buttonCurrentTop - heightCompensation;
 		const viewportTop = currentScrollY;
@@ -196,10 +197,10 @@
 		if (needsScroll) {
 			// Start BOTH animations simultaneously
 			const scrollPromise = smoothScrollTo(targetScrollY, 400);
-			
+
 			// Trigger the accordion state change (which closes others and opens this)
 			toggleAccordion(accordionState);
-			
+
 			// Wait for scroll to complete
 			await scrollPromise;
 		} else {
@@ -215,9 +216,9 @@
 </script>
 
 <li class="wrapper">
-	<button 
-		bind:this={buttonElement} 
-		onclick={handleClick} 
+	<button
+		bind:this={buttonElement}
+		onclick={handleClick}
 		aria-label={label}
 		aria-expanded={accordionState.isOpen}
 		class:animating={isAnimating}

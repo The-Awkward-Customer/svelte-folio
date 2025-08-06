@@ -86,11 +86,11 @@
 		white-space: nowrap;
 	}
 
-	.list--normal:not(.list__item--structured) {
+	.list--normal .list__item:not(.list__item--structured) {
 		font-weight: var(--fw-medium, 500);
 	}
 
-	.list--strong:not(.list__item--structured) {
+	.list--strong .list__item:not(.list__item--structured) {
 		font-weight: var(--fw-bold, 700);
 	}
 

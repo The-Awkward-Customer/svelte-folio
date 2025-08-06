@@ -116,7 +116,6 @@
 					outcome={experienceData.shell.header.outcome}
 					imageSrc={experienceData.shell.header.imageSrc}
 					imageAlt={experienceData.shell.header.imageAlt}
-					standfirst={experienceData.shell.header.standfirst}
 				/>
 				<ProjectBody
 					problemStatement={experienceData.shell.body.problemStatement}
@@ -135,7 +134,6 @@
 					outcome={experienceData.suzuki.header.outcome}
 					imageSrc={experienceData.suzuki.header.imageSrc}
 					imageAlt={experienceData.suzuki.header.imageAlt}
-					standfirst={experienceData.suzuki.header.standfirst}
 				/>
 				<ProjectBody
 					problemStatement={experienceData.suzuki.body.problemStatement}
@@ -154,7 +152,6 @@
 					outcome={experienceData.tsb.header.outcome}
 					imageSrc={experienceData.tsb.header.imageSrc}
 					imageAlt={experienceData.tsb.header.imageAlt}
-					standfirst={experienceData.tsb.header.standfirst}
 				/>
 				<ProjectBody
 					problemStatement={experienceData.tsb.body.problemStatement}
