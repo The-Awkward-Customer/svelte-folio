@@ -25,13 +25,13 @@
 
 	.tag--primary {
 		background-color: transparent;
-		color: var(--fg-text-inverse);
+		color: var(--fg-text-primary);
 		box-shadow: 0 0 0 1px currentColor;
 	}
 
 	.tag--inverse {
 		background-color: transparent;
-		color: var(--bg-surface);
+		color: var(--fg-text-inverse);
 		box-shadow: 0 0 0 1px currentColor;
 	}
 </style>

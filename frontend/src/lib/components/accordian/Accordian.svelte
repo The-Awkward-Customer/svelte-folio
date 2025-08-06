@@ -18,6 +18,7 @@
 		suffix: string;
 		enableShuffleAnimation?: boolean;
 		brand?: BrandKey;
+		themeOverride?: 'light' | 'dark' | 'high-contrast';
 	}
 
 	let {
@@ -25,7 +26,8 @@
 		label = 'Replace me',
 		suffix = 'test',
 		enableShuffleAnimation = true,
-		brand
+		brand,
+		themeOverride
 	}: AccordianProps = $props();
 
 	const accordionState = $state(createAccordionState());
@@ -50,13 +52,15 @@
 	let previousIsOpen = false;
 	let isAnimating = false;
 
-	// Apply brand color when accordion state changes
+	// Apply brand-theme override when accordion state changes
 	$effect(() => {
 		const isOpen = accordionState.isOpen;
 		const currentBrand = brand;
+		const currentThemeOverride = themeOverride;
 
 		console.log('🪗 Accordion effect:', {
 			brand: currentBrand,
+			themeOverride: currentThemeOverride,
 			isOpen,
 			previousIsOpen,
 			stateChanged: isOpen !== previousIsOpen
@@ -64,17 +68,37 @@
 
 		// Only act if state actually changed
 		if (isOpen !== previousIsOpen) {
-			if (currentBrand) {
+			// New brand-theme system
+			if (currentBrand && currentThemeOverride) {
 				if (isOpen) {
-					console.log('🪗 Opening - setting brand:', currentBrand);
+					console.log('🪗 Opening - setting brand-theme override:', {
+						brand: currentBrand,
+						theme: currentThemeOverride
+					});
+					themeManager.setBrandThemeOverride(currentBrand, currentThemeOverride);
+				} else {
+					// Only clear if this accordion's combination is currently active
+					const currentOverride = themeManager.brandThemeOverride;
+					if (currentOverride?.brand === currentBrand && currentOverride?.theme === currentThemeOverride) {
+						console.log('🪗 Closing - clearing brand-theme override');
+						themeManager.clearBrandThemeOverride();
+					} else {
+						console.log('🪗 Closing - NOT clearing (different override active)');
+					}
+				}
+			}
+			// Fallback to legacy brand system if only brand specified
+			else if (currentBrand && !currentThemeOverride) {
+				if (isOpen) {
+					console.log('🪗 Opening - setting brand (legacy):', currentBrand);
 					themeManager.setActiveBrand(currentBrand);
 				} else {
 					// Only clear brand if this accordion was the one that set it
 					if (themeManager.activeBrand === currentBrand) {
-						console.log('🪗 Closing - clearing brand (was active)');
+						console.log('🪗 Closing - clearing brand (legacy, was active)');
 						themeManager.clearBrand();
 					} else {
-						console.log('🪗 Closing - NOT clearing brand (not active)');
+						console.log('🪗 Closing - NOT clearing brand (legacy, not active)');
 					}
 				}
 			}
