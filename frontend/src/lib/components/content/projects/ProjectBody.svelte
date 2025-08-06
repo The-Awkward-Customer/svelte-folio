@@ -1,9 +1,13 @@
 <script lang="ts">
 	import List from '../../primatives/List.svelte';
-	import { Subheader } from '$lib/components/primatives';
+	import { Subheader, Tag } from '$lib/components/primatives';
 
 	// Interface for props
 	interface ProjectBodyProps {
+		problemStatement?: {
+			title: string;
+			content: string;
+		};
 		impact?: {
 			title: string;
 			content: string[];
@@ -14,9 +18,14 @@
 		};
 	}
 
-	let { impact, teamMembers }: ProjectBodyProps = $props();
+	let { problemStatement, impact, teamMembers }: ProjectBodyProps = $props();
 
 	// Dummy placeholder data for debugging
+	const defaultProblemStatement = {
+		title: 'Problem space',
+		content: 'The "Blue collar" SME market was overserved by bloated existing solutions.'
+	};
+
 	const defaultImpact = {
 		title: 'Impact',
 		content: [
@@ -35,31 +44,52 @@
 	};
 
 	// Use provided props or fallback to defaults for debugging
+	const problemStatementData = problemStatement || defaultProblemStatement;
 	const impactData = impact || defaultImpact;
 	const teamMembersData = teamMembers || defaultTeamMembers;
 </script>
 
+<!-- body Problem Statement snippet -->
+{#snippet bodyProblemStatement()}
+	<div class="body-card-root problem-statement">
+		<div class="prefix">
+			<Tag label="01" />
+			<Subheader text={problemStatementData.title} />
+		</div>
+		<div class="body">
+			<p class="problem-statement-text">{problemStatementData.content}</p>
+		</div>
+	</div>
+{/snippet}
+
 <!-- body Impact snippet -->
 {#snippet bodyImpact()}
 	<div class="body-card-root impact">
-		<Subheader text={impactData.title} />
-		<ul class="impact-list">
-			{#each impactData.content as item}
-				<li class="impact-text">{item}</li>
-			{/each}
-		</ul>
+		<div class="prefix">
+			<Tag label="02" />
+			<Subheader text={impactData.title} />
+		</div>
+		<div class="body">
+			<List items={impactData.content} type="plain" emphasis="strong" />
+		</div>
 	</div>
 {/snippet}
 
 <!-- body Team Members snippet -->
 {#snippet bodyTeamMembers()}
 	<div class="body-card-root team">
-		<Subheader text="Team" />
-		<List items={teamMembersData.members} itemFormat="structured" />
+		<div class="prefix">
+			<Tag label="03" />
+			<Subheader text="Team" />
+		</div>
+		<div class="body">
+			<List items={teamMembersData.members} itemFormat="structured" />
+		</div>
 	</div>
 {/snippet}
 
 <section class="project-body">
+	{@render bodyProblemStatement()}
 	{@render bodyImpact()}
 	{@render bodyTeamMembers()}
 </section>
@@ -69,76 +99,58 @@
 	.project-body {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: var(--space-xl);
+		/* gap: var(--space-lg); */
 	}
 
 	.body-card-root {
-		background: rgb(var(--bg-surface));
-		border: 1px solid rgb(var(--border-primary));
-		border-radius: var(--radius-md);
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-		transition: box-shadow 0.2s ease;
-		color: var(--fg-text-primary);
-		padding: var(--space-0) var(--space-xl);
-		border-left: 1px solid var(--fg-text-primary);
+		align-items: flex-start;
+		font-size: var(--fs-xxlarge-clamped);
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;
 	}
 
+	.body-card-root.problem-statement,
 	.body-card-root.impact {
 		color: var(--fg-text-primary);
 	}
 
-	.impact-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-md);
-	}
-
-	.impact-text {
-		font-size: var(--fs-tiny-clamped);
-		font-weight: var(--fw-bold);
+	.problem-statement-text {
+		font-weight: var(--fw-medium);
 		line-height: var(--lh-snug);
 		max-width: var(--width-prose-sm);
 	}
 
-	/* Desktop: 1024px+ */
+	.prefix {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: var(--space-sm);
+		width: 100%;
+		padding-top: var(--space-lg);
+		padding-bottom: var(--space-lg);
+	}
+
+	.body {
+		/* border-bottom: 1px solid currentColor; */
+		padding-bottom: var(--space-sm);
+		width: 100%;
+		flex: 1;
+	}
+
+	/* Desktop Breakpoint */
 	@media (min-width: 1024px) {
-		.project-body {
-			grid-template-columns: 1fr 1fr 2fr;
+		.body-card-root {
+			flex-direction: row;
+			gap: 1em;
 		}
 
-		.body-card-root.impact {
-			grid-column: 1 / 3;
-		}
-
-		.body-card-root.team {
-			grid-column: 3;
+		.prefix {
+			flex-direction: column;
+			align-items: flex-start;
+			width: 164px;
 		}
 	}
-
-	/* Debug styles - remove when done */
-	/* .project-body {
-		box-shadow: 0 0 0 4px solid red !important;
-		outline: 2px solid red !important;
-	}
-
-	.body-card-root {
-		box-shadow: 0 0 0 4px solid blue !important;
-		outline: 2px solid blue !important;
-	}
-
-	.body-card-root.impact {
-		box-shadow: 0 0 0 4px solid green !important;
-		outline: 2px solid green !important;
-	}
-
-
-	.body-card-root.team {
-		box-shadow: 0 0 0 4px solid purple !important;
-		outline: 2px solid purple !important;
-	} */
 </style>

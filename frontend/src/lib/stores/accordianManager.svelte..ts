@@ -49,6 +49,17 @@ export function toggleAccordion(state: AccordionState) {
     console.log(`🔄 Final state - ${state.id}: ${state.isOpen}`);
 }
 
+// Get all currently open accordions
+export function getOpenAccordions(): AccordionState[] {
+    const openAccordions: AccordionState[] = [];
+    accordionRegistry.forEach((state) => {
+        if (state.isOpen) {
+            openAccordions.push(state);
+        }
+    });
+    return openAccordions;
+}
+
 // Cleanup function (optional, for when component unmounts)
 export function removeAccordionState(state: AccordionState) {
     accordionRegistry.delete(state.id);
