@@ -2,7 +2,7 @@
 
 <script lang="ts">
 	import type { ChatMessage, ChatMessageProps, MessageDisplayType } from '$lib/types/chat.js';
-	import Button from '$lib/components/actions/Button.svelte';
+	import PromptButton from '$lib/components/actions/PromptButton.svelte';
 	import { Avatar } from '$lib/components/primatives';
 
 	import Ani_me_glitched from '$lib/assets/Ani_me_glitched.png';
@@ -17,9 +17,9 @@
 
 	// Predefined prompts
 	const suggestedPrompts = [
-		'What technologies do you use?',
-		'Tell me about your experience',
-		'How can I contact you?'
+		"What's your experience?",
+		"What's your tech-stack?",
+		"What's your process"
 	];
 
 	// Handle prompt button clicks
@@ -118,12 +118,9 @@
 			</div>
 			<div class="prompt-buttons">
 				{#each suggestedPrompts as prompt}
-					<Button
-						as="button"
-						variant="inverse"
-						fullWidth={false}
-						label={prompt}
-						handleClick={() => handlePromptClick(prompt)}
+					<PromptButton
+						{prompt}
+						onClick={handlePromptClick}
 					/>
 				{/each}
 			</div>
@@ -201,7 +198,7 @@
 		border-color: var(--fg-text-primary);
 		border-style: solid;
 		border-width: 1px;
-		border-radius: var(--bdr-radius-small) var(--bdr-radius-small) 0px var(--bdr-radius-small);
+		border-radius: var(--bdr-radius-small) var(--bdr-radius-small) var(--bdr-radius-small) 0px;
 	}
 
 	.message-bubble p {

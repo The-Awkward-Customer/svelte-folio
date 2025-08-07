@@ -11,27 +11,20 @@
 		ChatMessage,
 		ChatApiResponse,
 		ChatApiError,
-		ChatState,
 		QAChatProps
 	} from '$lib/types/chat.js';
 	import { isChatApiResponse, isChatApiError } from '$lib/types/chat.js';
+	import { chatStore } from '$lib/stores/chatStore.svelte.js';
 
-	// Props with proper typing
+	// Props with proper typing - now just for compatibility
 	export let isOpen: QAChatProps['isOpen'] = false;
 
-	// State - using proper types
-	let chatState: ChatState = {
-		messages: [],
-		isLoading: false,
-		error: null
-	};
-
-	// Reactive declarations for easier access
-	$: ({ messages, isLoading, error } = chatState);
+	// Direct store property access - no need for reactive statements
+	// These are already reactive because they're $state in the store
 
 	// Functions
 	function closeChat(): void {
-		isOpen = false;
+		chatStore.closeChat();
 	}
 
 	function createUserMessage(content: string): ChatMessage {
@@ -52,23 +45,18 @@
 		};
 	}
 
-	function updateChatState(updates: Partial<ChatState>): void {
-		chatState = { ...chatState, ...updates };
-	}
 
 	async function handleSendMessage(question: string): Promise<void> {
-		if (!question.trim() || chatState.isLoading) {
+		if (!question.trim() || chatStore.isLoading) {
 			return;
 		}
 
 		const userMessage = createUserMessage(question);
 
 		// Add user message immediately and set loading state
-		updateChatState({
-			messages: [...chatState.messages, userMessage],
-			isLoading: true,
-			error: null
-		});
+		chatStore.addMessage(userMessage);
+		chatStore.setLoading(true);
+		chatStore.setError(null);
 
 		try {
 			const response = await fetch('/api/chat-test', {
@@ -94,35 +82,28 @@
 
 			const assistantMessage = createAssistantMessage(result.response);
 
-			updateChatState({
-				messages: [...chatState.messages, assistantMessage],
-				isLoading: false
-			});
+			chatStore.addMessage(assistantMessage);
+			chatStore.setLoading(false);
 		} catch (err) {
 			const errorMessage = err instanceof Error ? err.message : 'Failed to get response';
 			console.error('Chat error:', err);
 
-			updateChatState({
-				error: errorMessage,
-				isLoading: false
-			});
+			chatStore.setError(errorMessage);
+			chatStore.setLoading(false);
 		}
 	}
 
 	function clearMessages(): void {
-		updateChatState({
-			messages: [],
-			error: null
-		});
+		chatStore.clearMessages();
 	}
 </script>
 
-<ChatDialog bind:isOpen on:close={closeChat}>
+<ChatDialog bind:isOpen={chatStore.isOpen} on:close={closeChat}>
 	<div class="chat-container">
 		<div class="chat-header">
 			<Tag label="Beta" />
 			<div class="chat-actions">
-				{#if messages.length > 0}
+				{#if chatStore.messages.length > 0}
 					<Button as="button" variant="inverse" label="Clear" handleClick={clearMessages} />
 				{/if}
 				<IconButton
@@ -135,9 +116,9 @@
 			</div>
 		</div>
 
-		<ChatMessages {messages} {isLoading} {error} onPromptSelected={handleSendMessage} />
+		<ChatMessages messages={chatStore.messages} isLoading={chatStore.isLoading} error={chatStore.error} onPromptSelected={handleSendMessage} />
 
-		<ChatInput on:send={(e) => handleSendMessage(e.detail)} disabled={isLoading} />
+		<ChatInput on:send={(e) => handleSendMessage(e.detail)} disabled={chatStore.isLoading} />
 	</div>
 </ChatDialog>
 
