@@ -134,10 +134,15 @@
 		background: var(--bg-primary);
 		border: 1px solid #e9ecef;
 		border-radius: var(--bdr-radius-pill);
-		padding: 0.75rem 1rem;
+		padding: var(--space-base) var(--space-2xl);
 		transition:
 			border-color 0.2s ease,
 			box-shadow 0.2s ease;
+	}
+
+	.input-wrapper:focus-within {
+		outline: 2px solid var(--focus-ring-color, var(--bg-primary));
+		outline-offset: 2px;
 	}
 
 	.message-input {
@@ -147,7 +152,7 @@
 		background: transparent;
 		resize: none;
 		/* Prevent zoom on input focus (iOS) - minimum 16px font size */
-		font-size: max(16px, 0.9375rem);
+		font-size: var(--fs-350);
 		line-height: 1.5;
 		color: var(--fg-text-inverse);
 		min-height: 24px;
@@ -157,7 +162,7 @@
 	}
 
 	.message-input::placeholder {
-		color: var(--fg-text-inverse);
+		color: var(--fg-text-inverse-60);
 	}
 
 	.message-input:disabled {
@@ -172,7 +177,7 @@
 
 	.hint-text {
 		font-family: var(--font-family-alt);
-		font-size: var(--fs-250);
+		font-size: var(--fs-300);
 		color: var(--fg-text-primary-60);
 	}
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount, onDestroy } from 'svelte';
+	import { slide } from 'svelte/transition';
 	import type { ChatDialogProps, ChatDialogEvents } from '$lib/types/chat.js';
 
 	export let isOpen: ChatDialogProps['isOpen'] = false;
@@ -80,9 +81,11 @@
 	on:click={handleDialogClick}
 	on:keydown={handleDialogKeydown}
 >
-	<div class="dialog-content" role="none">
-		<slot />
-	</div>
+	{#if isOpen}
+		<div class="dialog-content" role="none" transition:slide={{ duration: 300, axis: 'y' }}>
+			<slot />
+		</div>
+	{/if}
 </dialog>
 
 <style>
@@ -95,13 +98,13 @@
 		width: 100%;
 		height: 100%;
 		padding: 0;
-		animation: fadeIn 0.2s ease-out;
+		animation: fadeIn 0.4s ease-in-out;
 	}
 
 	.chat-dialog::backdrop {
-		background: var(--bg-page-40);
+		background: var(--bg-page-20);
 		backdrop-filter: blur(4px);
-		animation: fadeIn 0.3s ease-out;
+		animation: backdropFadeIn 0.5s ease-in-out;
 	}
 
 	.chat-dialog[open] {
@@ -115,8 +118,8 @@
 		background: var(--bg-page);
 		width: 100vw;
 		max-width: 100%;
-		/* Fixed height for consistency - prevents shrinking during loading */
-		height: 80vh;
+		/* Reduced height for better mobile performance */
+		height: 70vh;
 		max-height: calc(100dvh - var(--keyboard-height, 0px) - env(safe-area-inset-bottom));
 		display: flex;
 		flex-direction: column;
@@ -124,24 +127,11 @@
 		padding-bottom: max(1rem, env(safe-area-inset-bottom));
 		padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
 		/* Top inline shadow */
-		box-shadow: inset 0 1px 0 0 var(--bdr-inverse-full);
-
-		/* Simple initial position - start below viewport */
-		transform: translateY(100%);
-		opacity: 0;
-		/* Smooth transition when position changes */
-		transition:
-			transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-			opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+		box-shadow: inset 0 1px 0 0 var(--fg-text-primary);
 	}
 
-	/* Slide in when dialog opens */
-	.chat-dialog[open] .dialog-content {
-		transform: translateY(0);
-		opacity: 1;
-	}
 
-	/* Animations */
+	/* Enhanced Animations */
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
@@ -151,10 +141,21 @@
 		}
 	}
 
+	@keyframes backdropFadeIn {
+		from {
+			opacity: 0;
+			backdrop-filter: blur(0px);
+		}
+		to {
+			opacity: 1;
+			backdrop-filter: blur(4px);
+		}
+	}
+
 	/* Desktop and larger screens - maintain consistent behavior */
 	@media (min-width: 769px) {
 		.dialog-content {
-			/* Keep consistent height and transition behavior */
+			/* Keep desktop height at 80vh */
 			height: 80vh;
 			padding-bottom: 0;
 			padding-inline: 0;

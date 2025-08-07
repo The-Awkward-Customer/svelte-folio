@@ -1,13 +1,18 @@
 <script lang="ts">
 	import Anim_me from '$lib/assets/Ani_me.png';
+	import { Indicator } from '$lib/components/primatives';
 
 	interface ChatTriggerProps {
 		handleClick?: () => void;
 		onMouseEnter?: () => void;
+		shouldShowIndicator?: boolean;
 	}
 
-	let { handleClick = defaultClickHandler, onMouseEnter = handleMouseEnter }: ChatTriggerProps =
-		$props();
+	let { 
+		handleClick = defaultClickHandler, 
+		onMouseEnter = handleMouseEnter,
+		shouldShowIndicator = true
+	}: ChatTriggerProps = $props();
 
 	// Default handler if none provided
 	function defaultClickHandler() {
@@ -26,6 +31,9 @@
 	onmouseenter={onMouseEnter}
 >
 	<span class="profile-image" style="background-image: url({Anim_me})"></span>
+	{#if shouldShowIndicator}
+		<Indicator class="chat-indicator" pulse />
+	{/if}
 </button>
 
 <style>
@@ -58,5 +66,12 @@
 
 	.chat-trigger:hover .profile-image {
 		transform: scale(0.98);
+	}
+
+	.chat-indicator {
+		position: absolute;
+		top: 0;
+		right: 0;
+		transform: translate(25%, -25%);
 	}
 </style>
