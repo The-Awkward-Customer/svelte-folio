@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher, onMount, onDestroy } from 'svelte';
+	import { slide } from 'svelte/transition';
 	import type { ChatDialogProps, ChatDialogEvents } from '$lib/types/chat.js';
 
 	export let isOpen: ChatDialogProps['isOpen'] = false;
@@ -8,7 +9,6 @@
 
 	let savedScrollY = 0;
 	let dialogElement: HTMLDialogElement;
-	let isAnimating = false;
 
 	// Simplified keyboard detection
 	function handleViewportChange() {
@@ -31,22 +31,12 @@
 		}
 	}
 
-	// Enhanced dialog state management with animation timing
+	// Simplified dialog state management
 	$: if (dialogElement) {
 		if (isOpen && !dialogElement.open) {
 			dialogElement.showModal();
-			// Trigger animation after dialog is mounted
-			setTimeout(() => {
-				isAnimating = true;
-			}, 6);
 		} else if (!isOpen && dialogElement.open) {
-			isAnimating = false;
-			// Wait for animation to complete before closing
-			setTimeout(() => {
-				if (!isOpen) {
-					dialogElement.close();
-				}
-			}, 6);
+			dialogElement.close();
 		}
 	}
 
@@ -87,14 +77,15 @@
 <dialog
 	bind:this={dialogElement}
 	class="chat-dialog"
-	class:animating={isAnimating}
 	aria-labelledby="chat-title"
 	on:click={handleDialogClick}
 	on:keydown={handleDialogKeydown}
 >
-	<div class="dialog-content" role="none">
-		<slot />
-	</div>
+	{#if isOpen}
+		<div class="dialog-content" role="none" transition:slide={{ duration: 300, axis: 'y' }}>
+			<slot />
+		</div>
+	{/if}
 </dialog>
 
 <style>
@@ -127,8 +118,8 @@
 		background: var(--bg-page);
 		width: 100vw;
 		max-width: 100%;
-		/* Fixed height for consistency - prevents shrinking during loading */
-		height: 80vh;
+		/* Reduced height for better mobile performance */
+		height: 70vh;
 		max-height: calc(100dvh - var(--keyboard-height, 0px) - env(safe-area-inset-bottom));
 		display: flex;
 		flex-direction: column;
@@ -137,21 +128,8 @@
 		padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
 		/* Top inline shadow */
 		box-shadow: inset 0 1px 0 0 var(--fg-text-primary);
-
-		/* Enhanced initial position - start below viewport */
-		transform: translateY(100%);
-		opacity: 0;
-		/* Enhanced smooth transition with staggered timing */
-		transition:
-			transform 0.3s ease-in-out,
-			opacity 0.4s ease-in-out;
 	}
 
-	/* Enhanced slide in when dialog opens and animating */
-	.chat-dialog.animating .dialog-content {
-		transform: translateY(0);
-		opacity: 1;
-	}
 
 	/* Enhanced Animations */
 	@keyframes fadeIn {
@@ -177,7 +155,7 @@
 	/* Desktop and larger screens - maintain consistent behavior */
 	@media (min-width: 769px) {
 		.dialog-content {
-			/* Keep consistent height and transition behavior */
+			/* Keep desktop height at 80vh */
 			height: 80vh;
 			padding-bottom: 0;
 			padding-inline: 0;
