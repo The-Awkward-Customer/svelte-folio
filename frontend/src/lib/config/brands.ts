@@ -2,7 +2,7 @@ export const BRANDS = {
   godesk: '#DDFF00',     // --color-brand-godesk: rgba(221, 255, 0, 1)
   fresha: '#6950F3',     // --color-brand-fresha: rgba(105, 80, 243, 1)
   jio: '#3E0084',        // --color-brand-jio: rgba(2, 35, 134, 1)
-  ikea: '#FFDB00',       // --color-brand-ikea: rgba(0, 87, 173, 1)
+  ikea: '#FFDA1A',       // --color-brand-ikea: rgba(255, 218, 26, 1)
   warhammer: '#000000',  // --color-brand-warhammer: rgba(0, 0, 0, 1)
   shell: '#FBCE07',      // --color-brand-shell: rgba(251, 206, 7, 1)
   suzuki: '#013044',     // --color-brand-suzuki: rgba(1, 48, 68, 1)
