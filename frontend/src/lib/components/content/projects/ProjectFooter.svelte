@@ -15,7 +15,7 @@
 <style>
 	.project-footer {
 		color: var(--fg-text-primary);
-		font-size: var(--fs-large-clamped);
+		font-size: var(--fs-xxlarge-clamped);
 		font-weight: var(--fw-semibold);
 		line-height: var(--lh-normal);
 	}

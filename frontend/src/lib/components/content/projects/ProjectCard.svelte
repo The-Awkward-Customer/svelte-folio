@@ -16,7 +16,7 @@
 	.project-card {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-4xl);
+		gap: var(--space-2xl);
 		padding-bottom: var(--space-4xl);
 	}
 

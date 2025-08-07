@@ -11,23 +11,23 @@
 	} from '$lib/components/content/projects';
 	import { experienceData } from '$lib/data/experienceData';
 
-	// Clear any active brand when leaving the page
+	// Clear any active theme overrides when leaving the page
 	onDestroy(() => {
+		themeManager.clearBrandThemeOverride();
 		themeManager.clearBrand();
 	});
 </script>
 
 <AccordionList>
-	<Accordian label="godesk" suffix="Co-Founding Designer" brand="godesk">
+	<Accordian label="godesk" suffix="Co-Founding Designer" brand="godesk" themeOverride="light">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
-					content={experienceData.godesk.header.content}
 					imageSrc={experienceData.godesk.header.imageSrc}
 					imageAlt={experienceData.godesk.header.imageAlt}
-					standfirst={experienceData.godesk.header.standfirst}
 				/>
 				<ProjectBody
+					problemStatement={experienceData.godesk.body.problemStatement}
 					impact={experienceData.godesk.body.impact}
 					teamMembers={experienceData.godesk.body.teamMembers}
 				/>
@@ -36,16 +36,15 @@
 		</ProjectCard>
 	</Accordian>
 
-	<Accordian label="fresha" suffix="Design System Lead" brand="fresha">
+	<Accordian label="fresha" suffix="Design System Lead" brand="fresha" themeOverride="light">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
-					content={experienceData.fresha.header.content}
 					imageSrc={experienceData.fresha.header.imageSrc}
 					imageAlt={experienceData.fresha.header.imageAlt}
-					standfirst={experienceData.fresha.header.standfirst}
 				/>
 				<ProjectBody
+					problemStatement={experienceData.fresha.body.problemStatement}
 					impact={experienceData.fresha.body.impact}
 					teamMembers={experienceData.fresha.body.teamMembers}
 				/>
@@ -58,12 +57,11 @@
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
-					content={experienceData.jio.header.content}
 					imageSrc={experienceData.jio.header.imageSrc}
 					imageAlt={experienceData.jio.header.imageAlt}
-					standfirst={experienceData.jio.header.standfirst}
 				/>
 				<ProjectBody
+					problemStatement={experienceData.jio.body.problemStatement}
 					impact={experienceData.jio.body.impact}
 					teamMembers={experienceData.jio.body.teamMembers}
 				/>
@@ -76,15 +74,14 @@
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
-					content={experienceData.ikea.header.content}
 					imageSrc={experienceData.ikea.header.imageSrc}
 					imageAlt={experienceData.ikea.header.imageAlt}
-					standfirst={experienceData.ikea.header.standfirst}
 					mediaType={experienceData.ikea.header.mediaType}
 					videoSrc={experienceData.ikea.header.videoSrc}
 					videoPoster={experienceData.ikea.header.videoPoster}
 				/>
 				<ProjectBody
+					problemStatement={experienceData.ikea.body.problemStatement}
 					impact={experienceData.ikea.body.impact}
 					teamMembers={experienceData.ikea.body.teamMembers}
 				/>
@@ -97,15 +94,14 @@
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
-					content={experienceData.warhammer.header.content}
 					imageSrc={experienceData.warhammer.header.imageSrc}
 					imageAlt={experienceData.warhammer.header.imageAlt}
-					standfirst={experienceData.warhammer.header.standfirst}
 					mediaType={experienceData.warhammer.header.mediaType}
 					videoSrc={experienceData.warhammer.header.videoSrc}
 					videoPoster={experienceData.warhammer.header.videoPoster}
 				/>
 				<ProjectBody
+					problemStatement={experienceData.warhammer.body.problemStatement}
 					impact={experienceData.warhammer.body.impact}
 					teamMembers={experienceData.warhammer.body.teamMembers}
 				/>
@@ -118,12 +114,12 @@
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
-					content={experienceData.shell.header.content}
+					outcome={experienceData.shell.header.outcome}
 					imageSrc={experienceData.shell.header.imageSrc}
 					imageAlt={experienceData.shell.header.imageAlt}
-					standfirst={experienceData.shell.header.standfirst}
 				/>
 				<ProjectBody
+					problemStatement={experienceData.shell.body.problemStatement}
 					impact={experienceData.shell.body.impact}
 					teamMembers={experienceData.shell.body.teamMembers}
 				/>
@@ -136,12 +132,12 @@
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
-					content={experienceData.suzuki.header.content}
+					outcome={experienceData.suzuki.header.outcome}
 					imageSrc={experienceData.suzuki.header.imageSrc}
 					imageAlt={experienceData.suzuki.header.imageAlt}
-					standfirst={experienceData.suzuki.header.standfirst}
 				/>
 				<ProjectBody
+					problemStatement={experienceData.suzuki.body.problemStatement}
 					impact={experienceData.suzuki.body.impact}
 					teamMembers={experienceData.suzuki.body.teamMembers}
 				/>
@@ -154,12 +150,12 @@
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
-					content={experienceData.tsb.header.content}
+					outcome={experienceData.tsb.header.outcome}
 					imageSrc={experienceData.tsb.header.imageSrc}
 					imageAlt={experienceData.tsb.header.imageAlt}
-					standfirst={experienceData.tsb.header.standfirst}
 				/>
 				<ProjectBody
+					problemStatement={experienceData.tsb.body.problemStatement}
 					impact={experienceData.tsb.body.impact}
 					teamMembers={experienceData.tsb.body.teamMembers}
 				/>

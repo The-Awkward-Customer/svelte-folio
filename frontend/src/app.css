@@ -196,9 +196,9 @@ select {
   /* Semantic font sizes */
   --fs-tiny-clamped: clamp(14px, 4vw, 28px);
   --fs-small-clamped: clamp(16px, 4vw, 32px);
-  --fs-large-clamped: clamp(18px, 4vw, 40px);
-  --fs-xlarge-clamped: clamp(24px, 4vw, 56px);
-  --fs-xxlarge-clamped: clamp(32px, 4vw, 64px);
+  --fs-large-clamped: clamp(18px, 4vw, 28px);
+  --fs-xlarge-clamped: clamp(24px, 4vw, 32px);
+  --fs-xxlarge-clamped: clamp(18px, 4vw, 64px);
 
   /* Font weights */
   --fw-thin: 300;
@@ -346,7 +346,6 @@ select {
   --bg-inverse: 255 255 255; /* #FFFFFF */
   
   /* Border inverse with opacity variants */
-  --bdr-inverse-full: rgba(255, 255, 255, 1);
   --bdr-inverse-80: rgba(255, 255, 255, 0.8);
   --bdr-inverse-60: rgba(255, 255, 255, 0.6);
   --bdr-inverse-40: rgba(255, 255, 255, 0.4);

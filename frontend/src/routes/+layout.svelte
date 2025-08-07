@@ -19,11 +19,12 @@
 		console.log('Theme manager initialized with state:', themeManager.current);
 	});
 	
-	// Clear brand colors when navigating away from experience page
+	// Clear theme overrides when navigating between pages
 	beforeNavigate(({ from, to }) => {
-		// If we're navigating away from experience page, clear brand
-		if (from?.url.pathname === '/experience' && to?.url.pathname !== '/experience') {
-			themeManager.clearBrand();
+		// Clear any active theme overrides when navigating
+		if (from && to && from.url.pathname !== to.url.pathname) {
+			console.log('🎨 Navigation detected, clearing theme overrides');
+			themeManager.clearAllOverrides();
 		}
 	});
 
