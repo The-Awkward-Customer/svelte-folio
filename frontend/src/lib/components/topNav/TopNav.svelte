@@ -6,6 +6,7 @@
 	import ChatTrigger from './ChatTrigger.svelte';
 	import QAChat from '../chat/QAChat.svelte';
 	import Button from '../actions/Button.svelte';
+	import { chatStore } from '$lib/stores/chatStore.svelte.js';
 
 	interface LinkItem {
 		label: string;
@@ -28,22 +29,20 @@
 
 	let { list = listData, children }: LinkListArray & TopNavProps = $props();
 
-	// Chat state management
-	let isChatOpen = $state(false);
-
+	// Chat state management through store
 	function openChat() {
-		isChatOpen = true;
+		chatStore.openChat();
 	}
 
 	function closeChat() {
-		isChatOpen = false;
+		chatStore.closeChat();
 	}
 </script>
 
 <nav>
 	<div class="left-wrapper">
 		<div class="left">
-			<ChatTrigger handleClick={openChat} />
+			<ChatTrigger handleClick={openChat} shouldShowIndicator={chatStore.shouldShowIndicator} />
 			<div class="name-and-links">
 				<p>Peter Abbott</p>
 				<LinkList {list} />
@@ -63,7 +62,7 @@
 </nav>
 
 <!-- Chat Component -->
-<QAChat bind:isOpen={isChatOpen} on:close={closeChat} />
+<QAChat isOpen={chatStore.isOpen} on:close={closeChat} />
 
 <style>
 	nav {

@@ -8,6 +8,7 @@
 
 	let savedScrollY = 0;
 	let dialogElement: HTMLDialogElement;
+	let isAnimating = false;
 
 	// Simplified keyboard detection
 	function handleViewportChange() {
@@ -30,12 +31,22 @@
 		}
 	}
 
-	// Simplified dialog state management
+	// Enhanced dialog state management with animation timing
 	$: if (dialogElement) {
 		if (isOpen && !dialogElement.open) {
 			dialogElement.showModal();
+			// Trigger animation after dialog is mounted
+			setTimeout(() => {
+				isAnimating = true;
+			}, 6);
 		} else if (!isOpen && dialogElement.open) {
-			dialogElement.close();
+			isAnimating = false;
+			// Wait for animation to complete before closing
+			setTimeout(() => {
+				if (!isOpen) {
+					dialogElement.close();
+				}
+			}, 6);
 		}
 	}
 
@@ -76,6 +87,7 @@
 <dialog
 	bind:this={dialogElement}
 	class="chat-dialog"
+	class:animating={isAnimating}
 	aria-labelledby="chat-title"
 	on:click={handleDialogClick}
 	on:keydown={handleDialogKeydown}
@@ -95,13 +107,13 @@
 		width: 100%;
 		height: 100%;
 		padding: 0;
-		animation: fadeIn 0.2s ease-out;
+		animation: fadeIn 0.4s ease-in-out;
 	}
 
 	.chat-dialog::backdrop {
-		background: var(--bg-page-40);
+		background: var(--bg-page-20);
 		backdrop-filter: blur(4px);
-		animation: fadeIn 0.3s ease-out;
+		animation: backdropFadeIn 0.5s ease-in-out;
 	}
 
 	.chat-dialog[open] {
@@ -124,30 +136,41 @@
 		padding-bottom: max(1rem, env(safe-area-inset-bottom));
 		padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
 		/* Top inline shadow */
-		box-shadow: inset 0 1px 0 0 var(--bdr-inverse-full);
+		box-shadow: inset 0 1px 0 0 var(--fg-text-primary);
 
-		/* Simple initial position - start below viewport */
+		/* Enhanced initial position - start below viewport */
 		transform: translateY(100%);
 		opacity: 0;
-		/* Smooth transition when position changes */
+		/* Enhanced smooth transition with staggered timing */
 		transition:
-			transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-			opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+			transform 0.3s ease-in-out,
+			opacity 0.4s ease-in-out;
 	}
 
-	/* Slide in when dialog opens */
-	.chat-dialog[open] .dialog-content {
+	/* Enhanced slide in when dialog opens and animating */
+	.chat-dialog.animating .dialog-content {
 		transform: translateY(0);
 		opacity: 1;
 	}
 
-	/* Animations */
+	/* Enhanced Animations */
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
 		}
 		to {
 			opacity: 1;
+		}
+	}
+
+	@keyframes backdropFadeIn {
+		from {
+			opacity: 0;
+			backdrop-filter: blur(0px);
+		}
+		to {
+			opacity: 1;
+			backdrop-filter: blur(4px);
 		}
 	}
 
