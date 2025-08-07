@@ -42,22 +42,23 @@ export const experienceData: Record<string, ProjectData> = {
     body: {
       problemStatement: {
         title: 'Problem Space',
-        content: 'The "Blue collar" SME market was overserved by bloated existing solutions.'
+        content: 'The SME market was overserved by existing solutions. We hypothesized that there was a gap in the market for blue-collar businesses needing simple, affordable support and we could leverage AI to remove dedicated support staff.'
       },
       impact: {
         title: 'Impact',
-        content: ['10X revenue growth to $3000+ MRR', '10X revenue growth to $3000+ MRR']
+        content: ['10X revenue growth to $3000+ MRR', 'LLM Powered Knowledge base', 'Profitable exit']
       },
       teamMembers: {
         title: 'Team Members',
         members: [
           { name: 'Tommy Roberts', role: 'Founder' },
+          { name: 'Peter Abbott', role: 'Co-Founding Designer' },
           { name: 'Hayden Kerr', role: 'Developer' },
         ]
       }
     },
     footer: {
-      footerString: 'Despite achieving 900% sales growth, we never truly found product-market fit. We identified critical macroeconomic inflection points we couldn\'t overcome, coupled with increasingly entrenched incumbents in the customer support market. This experience taught me invaluable lessons about startup dynamics—sometimes you can execute well, but if the timing isn\'t right, it simply isn\'t right.'
+      footerString: 'Despite achieving 900% sales growth, we never truly found product-market fit. We identified critical macroeconomic inflection points we couldn\'t overcome, coupled with increasingly aggressive incumbents in the customer support market. This experience taught me valuable lessons about startups, you can execute well, but if the timing isn\'t right, it simply isn\'t right.'
     }
   },
   fresha: {
@@ -67,16 +68,17 @@ export const experienceData: Record<string, ProjectData> = {
     },
     body: {
       problemStatement: {
-        title: 'Problem Statement',
-        content: '[Problem statement content to be added]'
+        title: 'Problem Space',
+        content: 'Years of technical debt, and no source of truth was slowing Fresha down at a critical time. We rebuilt the Design System from the ground up to provide a scalable foundation for rapid global growth.'
       },
       impact: {
         title: 'Impact',
-        content: ['Cut front-end bugs by 95% and halved feature delivery time through systematic component reduction (1000+ to 88)','Created federated governance and automation that continues enabling Fresha\'s global expansion 2+ years later']
+        content: ['Halved feature delivery time through systematic component consolidation (1000+ to 88)', 'Implemented automation tooling reducing design changes from weeks to hours', 'Created a single source of truth for feature teams.']
       },
       teamMembers: {
         title: 'Team Members',
         members: [
+          { name: 'Peter Abbott', role: 'Lead product Designer' },
           { name: 'Matt Styles', role: 'Engineering Lead' },
           { name: 'Mathias Bercoux', role: 'Senior Designer' },
           { name: 'Darek Napłoszek', role: 'Senior Engineer' },
@@ -85,7 +87,7 @@ export const experienceData: Record<string, ProjectData> = {
       }
     },
     footer: {
-      footerString: 'The role started as Figma-focused and quickly evolved into managing a team and navigating complex organizational politics. The biggest challenge wasn\'t technical—it was winning over developers who\'d witnessed three previous design system failures. We solved this by partnering with one skeptical team first, proving value, then letting their advocacy drive adoption. I learned that design systems succeed by delivering world-class user experiences while providing the path of least resistance for both designers and developers through clear communication and systematic guardrails.'
+      footerString: 'The role started as Figma-focused and quickly evolved into managing a team and navigating complex organizational politics. The biggest challenge wasn\'t technical, rather culture and perception. Developers had witnessed three previous design system failures each one adding more mess. We solved this by partnering with one team first, proving value, then letting their advocacy drive adoption. I learned that design systems succeed by delivering world-class user experiences while also providing the path of least resistance internally for both designers and developers through clear communication and systematic guardrails.'
     }
   },
   jio: {
@@ -95,8 +97,8 @@ export const experienceData: Record<string, ProjectData> = {
     },
     body: {
       problemStatement: {
-        title: 'Problem Statement',
-        content: 'Covid dramatically changed customer support needs, requiring rapid adaptation to remote operations and mobile-first workflows.'
+        title: 'Problem Space',
+        content: 'Covid dramatically changed how Jio operated, requiring rapid adoption of remote first customer support and mobile workflows on performance sensitive devices.'
       },
       impact: {
         title: 'Impact',
@@ -109,11 +111,11 @@ export const experienceData: Record<string, ProjectData> = {
       teamMembers: {
         title: 'Team Members',
         members: [
-          { name: 'Fillipo Del Carlo', role: 'Copywriter' },
-          { name: 'Priya Prakash', role: 'Principal Product Designer' },
+          { name: 'Fillipo Del Carlo', role: 'Principal Product Designer' },
           { name: 'Peter Abbott', role: 'Senior Product Designer' },
           { name: 'Prateek Dave', role: 'Senior UI Designer' },
           { name: 'Philipp Kreicarek', role: 'UX Architect' },
+          { name: 'Priya Prakash', role: 'Copywriter' },  
         ]
       }
     },
@@ -131,7 +133,7 @@ export const experienceData: Record<string, ProjectData> = {
     },
     body: {
       problemStatement: {
-        title: 'Problem Statement',
+        title: 'Problem Space',
         content: 'IKEA needed to communicate the value of their design system to internal stakeholders in a compelling way that transcended traditional documentation.'
       },
       impact: {
@@ -165,7 +167,7 @@ export const experienceData: Record<string, ProjectData> = {
     },
     body: {
       problemStatement: {
-        title: 'Problem Statement',
+        title: 'Problem Space',
         content: 'The Warhammer e-commerce platform needed a comprehensive UX overhaul to improve user engagement and streamline the purchasing process.'
       },
       impact: {
@@ -181,108 +183,12 @@ export const experienceData: Record<string, ProjectData> = {
         members: [
           { name: 'Paul Ostryzniuk', role: 'Creative Director' },
           { name: 'Leo Thorten', role: 'Senior UX Architect' },
-          { name: 'Peter Abbott', role: 'Senior Product Designer' }
+          { name: 'Peter Abbott', role:  "Senior Designer" }
         ]
       }
     },
     footer: {
-      footerString: 'This project taught me the harsh reality of transformation consulting—what gets ideated and what gets shipped can be worlds apart. We pushed boundaries with paint color accuracy and interactive model breakdowns, but the final implementation fell short due to Games Workshop\'s internal content generation capabilities. The most challenging aspect wasn\'t the technical complexity—it was architecting information hierarchy for decades of interconnected game systems and sub-factions. Information architecture, now a rare skill in digital design, proved critical for structuring such complex product relationships. Sometimes the best design strategy means nothing without the organizational capability to execute it properly.'
+      footerString: 'Typically what gets ideated and what gets shipped can be worlds apart. We pushed boundaries with paint color accuracy and interactive model breakdowns, but the final implementation fell short due to Games Workshop\'s internal content generation capabilities. The most challenging aspect was the technical complexity vs in-house competency. Warhammer is a complex IP and defining a coherent purchasing funnel for multiple interconnected game systems and sub-factions was another key challenge, yet one the nerd in me relished. I had very high hopes for this project and believe the final implementation a true technical improvement but one lacking polish.'
     }
   },
-  shell: {
-    header: {
-      imageSrc: godeskHero, // Using placeholder for now
-      imageAlt: 'Shell Fleet Hub interface showing card management and fleet optimization tools'
-    },
-    body: {
-      problemStatement: {
-        title: 'Problem Statement',
-        content: 'Shell needed to transform their legacy fleet card management system into a modern, integrated mobility platform that could serve millions of users across multiple regions.'
-      },
-      impact: {
-        title: 'Impact',
-        content: [
-          'Delivered design system prototype that secured company-wide digital transformation investment approval',
-          'Transformed fleet card management platform serving millions across Europe, India, and China with 44,000 retail outlets',
-          'Created pattern library that accelerated future Shell mobility services including tolls system development'
-        ]
-      },
-      teamMembers: {
-        title: 'Team Members',
-        members: [
-          { name: 'Sarah Mitchell', role: 'Senior Product Manager' },
-          { name: 'David Chen', role: 'Principal Engineer' },
-          { name: 'Maria Rodriguez', role: 'Business Strategy Lead' },
-          { name: 'Tom Harrison', role: 'Data Architecture Lead' }
-        ]
-      }
-    },
-    footer: {
-      footerString: 'This project taught me that "data is the new oil" isn\'t just a catchy phrase—it was Shell\'s literal business strategy during their mobility transition. The biggest challenge wasn\'t technical complexity, but organizational inertia at a 100+ year old company transitioning from fuel provider to comprehensive mobility services. Each division operated independently, creating massive fragmentation that required both design systems thinking and serious political navigation. My design system prototype became the proof point that secured enterprise-wide transformation investment. Watching manual Excel-based fleet management transform into an integrated platform while building API strategies for toll roads and fuel cost data felt like designing Shell\'s future as a mobility company, not just improving their fuel card business.'
-    }
-  },
-  suzuki: {
-    header: {
-      imageSrc: freshaHero, // Using placeholder for now
-      imageAlt: 'Suzuki multi-channel website interface showing cars, motorcycles, and marine configurators'
-    },
-    body: {
-      problemStatement: {
-        title: 'Problem Statement',
-        content: 'Suzuki needed to create a seamless multi-channel experience for customers thats worked for their diverse range of vehicles, including cars, motorcycles, and marine products.'
-      },
-      impact: {
-        title: 'Impact',
-        content: [
-          '37% increase in test drive requests and 48% year-on-year increase in motorcycle leads',
-          'Consolidated digital offering by 75% through component-based design system approach',
-          'Successfully unified customer experience across cars, motorcycles, ATV, and marine product lines'
-        ]
-      },
-      teamMembers: {
-        title: 'Team Members',
-        members: [
-          { name: 'Tom Harman', role: 'Creative Director' },
-          { name: 'Sophie Richards', role: 'Senior UX Designer' },
-          { name: 'Ben Cooper', role: 'Strategy Lead' },
-          { name: 'Alice Wong', role: 'Visual Designer' }
-        ]
-      }
-    },
-    footer: {
-      footerString: 'This project reinforced the power of classic UX methodology—sometimes post-its on walls and proper research cycles trump flashy new techniques. The biggest insight was discovering how different vehicle buyers think: bike buyers craved rich visuals and 360° views, while car buyers needed comparative size information and practical details. Building a 70/30 component reuse strategy across product lines taught me that flexibility within systems is more valuable than rigid consistency. Most importantly, designing the digital-to-dealer handoff reminded me that great UX doesn\'t end at the screen—it extends into the real world where actual purchase decisions happen.'
-    }
-  },
-  tsb: {
-    header: {
-      imageSrc: jioHero, // Using placeholder for now
-      imageAlt: 'TSB mobile banking app interface showing demographic-targeted financial packages'
-    },
-    body: {
-      problemStatement: {
-        title: 'Problem Statement',
-        content: '[Problem statement content to be added]'
-      },
-      impact: {
-        title: 'Impact',
-        content: [
-          'Delivered rare fully interactive design system guidelines and demographic-targeted banking packages',
-          'Created mobile-first banking app with novel interactions during crucial fintech disruption period',
-          'Developed conversion funnel redesigns for five researched customer personas (student to grandparent segments)'
-        ]
-      },
-      teamMembers: {
-        title: 'Team Members',
-        members: [
-          { name: 'Michael Thompson', role: 'Project Lead' },
-          { name: 'Sarah Collins', role: 'Senior UX Designer' },
-          { name: 'David Chen', role: 'Visual Designer' },
-          { name: 'Laura Johnson', role: 'User Researcher' }
-        ]
-      }
-    },
-    footer: {
-      footerString: 'This project taught me that excellent design work means nothing without organizational buy-in and political navigation skills. We delivered innovative banking experiences during the fintech disruption moment—interactive design systems, demographic-targeted packages, novel mobile interactions—only to watch it all get shelved due to internal politics and merger chaos. The brand agency (co-owned by a board member) blocked our interactive animation proposals without reasoning, highlighting how traditional banking\'s risk-averse culture can kill innovation. This painful experience pushed me toward design engineering and learning to navigate organizations that actually deliver value to people. Eight years later, TSB still hasn\'t innovated—a sobering reminder that great design without great execution strategy is just expensive decoration.'
-    }
-  }
 };

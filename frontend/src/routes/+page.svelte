@@ -22,12 +22,6 @@
 	const selectedColorPairs = Array.from({ length: 2 }, () => {
 		return colorPairs[Math.floor(Math.random() * colorPairs.length)];
 	});
-
-	//Page Content
-	let HeroIntroText: string =
-		'Currently based in sunny Madrid, and available for new projects in Q3 2025.';
-
-	$: currentPath = $page.url.pathname;
 </script>
 
 <svelte:head>

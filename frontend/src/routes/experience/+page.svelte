@@ -36,7 +36,7 @@
 		</ProjectCard>
 	</Accordian>
 
-	<Accordian label="fresha" suffix="Design System Lead" brand="fresha" themeOverride="light">
+	<Accordian label="fresha" suffix="Design System Lead" brand="fresha" themeOverride="dark">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
@@ -53,7 +53,7 @@
 		</ProjectCard>
 	</Accordian>
 
-	<Accordian label="jio" suffix="Senior Product Designer" brand="jio">
+	<Accordian label="jio" suffix="Senior Product Designer" brand="jio" themeOverride="dark">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
@@ -70,7 +70,7 @@
 		</ProjectCard>
 	</Accordian>
 
-	<Accordian label="ikea" suffix="Creative Director" brand="ikea">
+	<Accordian label="ikea" suffix="Creative Director" brand="ikea" themeOverride="light">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
@@ -109,60 +109,6 @@
 			{/snippet}
 		</ProjectCard>
 	</Accordian>
-
-	<!-- <Accordian label="shell" suffix="Digital Innovation Designer" brand="shell">
-		<ProjectCard>
-			{#snippet children()}
-				<ProjectHeader
-					outcome={experienceData.shell.header.outcome}
-					imageSrc={experienceData.shell.header.imageSrc}
-					imageAlt={experienceData.shell.header.imageAlt}
-				/>
-				<ProjectBody
-					problemStatement={experienceData.shell.body.problemStatement}
-					impact={experienceData.shell.body.impact}
-					teamMembers={experienceData.shell.body.teamMembers}
-				/>
-				<ProjectFooter FooterString={experienceData.shell.footer.footerString} />
-			{/snippet}
-		</ProjectCard>
-	</Accordian> -->
-
-	<!-- <Accordian label="suzuki" suffix="Lead Digital Designer" brand="suzuki">
-		<ProjectCard>
-			{#snippet children()}
-				<ProjectHeader
-					outcome={experienceData.suzuki.header.outcome}
-					imageSrc={experienceData.suzuki.header.imageSrc}
-					imageAlt={experienceData.suzuki.header.imageAlt}
-				/>
-				<ProjectBody
-					problemStatement={experienceData.suzuki.body.problemStatement}
-					impact={experienceData.suzuki.body.impact}
-					teamMembers={experienceData.suzuki.body.teamMembers}
-				/>
-				<ProjectFooter FooterString={experienceData.suzuki.footer.footerString} />
-			{/snippet}
-		</ProjectCard>
-	</Accordian> -->
-
-	<!-- <Accordian label="tsb" suffix="Head of Digital Banking UX" brand="tsb">
-		<ProjectCard>
-			{#snippet children()}
-				<ProjectHeader
-					outcome={experienceData.tsb.header.outcome}
-					imageSrc={experienceData.tsb.header.imageSrc}
-					imageAlt={experienceData.tsb.header.imageAlt}
-				/>
-				<ProjectBody
-					problemStatement={experienceData.tsb.body.problemStatement}
-					impact={experienceData.tsb.body.impact}
-					teamMembers={experienceData.tsb.body.teamMembers}
-				/>
-				<ProjectFooter FooterString={experienceData.tsb.footer.footerString} />
-			{/snippet}
-		</ProjectCard>
-	</Accordian> -->
 </AccordionList>
 
 <style>

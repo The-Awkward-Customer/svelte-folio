@@ -53,7 +53,7 @@
 
 	.list--bullet {
 		list-style: disc;
-		padding-left: 1.5em;
+		padding-left: 0.8em;
 	}
 
 	.list--number {
@@ -73,6 +73,7 @@
 
 	.list__item-name {
 		white-space: nowrap;
+		color: var(--fg-text-primary);
 	}
 
 	.list__item-separator {

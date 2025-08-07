@@ -70,7 +70,7 @@
 			<Subheader text={impactData.title} />
 		</div>
 		<div class="body">
-			<List items={impactData.content} type="plain" emphasis="strong" />
+			<List items={impactData.content} type="bullet" emphasis="strong" />
 		</div>
 	</div>
 {/snippet}
