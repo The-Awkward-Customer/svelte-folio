@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	import Weather from '../Snoop/Weather.svelte';
+	import Button from '../actions/Button.svelte';
 	import FooterTitle from './FooterTitle.svelte';
 
 	let CopyRight: string = '© 2025 by Peter Abbott';
@@ -43,7 +43,14 @@
 <footer>
 	{@render Title()}
 	<div class="trailing-slot">
-		<Weather />
+		<Button
+			as="link"
+			href="/documents/Peter_Abbott_CV_04:08:25.pdf"
+			target="_blank"
+			rel="noopener noreferrer"
+			label="Download CV"
+			variant="inverse"
+		/>
 		<div class="footer-details-wrapper">
 			{@render Details()}
 		</div>

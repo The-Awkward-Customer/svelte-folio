@@ -13,12 +13,12 @@
 		console.log('About to call theme.init()');
 		theme.init();
 		console.log('After theme.init(), current theme is:', theme.current);
-		
+
 		// Initialize the new theme manager
 		// It initializes itself in the constructor, but we can ensure it's ready
 		console.log('Theme manager initialized with state:', themeManager.current);
 	});
-	
+
 	// Clear theme overrides when navigating between pages
 	beforeNavigate(({ from, to }) => {
 		// Clear any active theme overrides when navigating

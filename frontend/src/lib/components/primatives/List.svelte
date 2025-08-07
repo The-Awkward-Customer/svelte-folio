@@ -73,16 +73,17 @@
 
 	.list__item-name {
 		white-space: nowrap;
+		color: var(--fg-text-primary);
 	}
 
 	.list__item-separator {
-		color: var(--fg-text-primary-80);
+		color: var(--fg-text-primary);
 		white-space: nowrap;
 	}
 
 	.list__item-role {
 		font-weight: var(--fw-regular);
-		color: var(--fg-text-primary-80);
+		color: var(--fg-text-primary);
 		white-space: nowrap;
 	}
 

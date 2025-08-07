@@ -1,33 +1,47 @@
 <script lang="ts">
-	let helloWorld: string = 'Hello world';
-	console.log(helloWorld);
-
-	// components
+	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import AnimatedTextPath from '$lib/components/AnimatedTextPath.svelte';
-
-	// Vibrant color pairs for AnimatedTextPath
-	const colorPairs = [
-		{ background: '#0066FF', foreground: '#FFFF00' }, // Electric Blue & Bright Yellow
-		{ background: '#FF1493', foreground: '#32FF32' }, // Hot Pink & Lime Green
-		{ background: '#FF4500', foreground: '#9932CC' }, // Orange & Purple
-		{ background: '#00FFFF', foreground: '#FF00FF' }, // Cyan & Magenta
-		{ background: '#50C878', foreground: '#FFD700' } // Emerald & Gold
-	];
-
-	// Randomly select a color pair on component mount
-	const selectedColorPair = colorPairs[Math.floor(Math.random() * colorPairs.length)];
-
-	//arrary of pairs
-	const selectedColorPairs = Array.from({ length: 2 }, () => {
-		return colorPairs[Math.floor(Math.random() * colorPairs.length)];
-	});
-
-	//Page Content
-	let HeroIntroText: string =
-		'Currently based in sunny Madrid, and available for new projects in Q3 2025.';
+	
+	import HeroSection from '$lib/components/sections/HeroSection.svelte';
+	import ExperienceSection from '$lib/components/sections/ExperienceSection.svelte';
+	import PortfolioSection from '$lib/components/sections/PortfolioSection.svelte';
+	import { navigationStore } from '$lib/stores/navigationStore.svelte';
 
 	$: currentPath = $page.url.pathname;
+
+	// Handle initial hash navigation on page load
+	onMount(() => {
+		const hash = window.location.hash;
+		if (hash) {
+			// Small delay to ensure page is rendered
+			setTimeout(() => {
+				const element = document.getElementById(hash.slice(1));
+				if (element) {
+					element.scrollIntoView({ behavior: 'smooth' });
+				}
+			}, 100);
+		}
+
+		// Set up intersection observer for section tracking
+		const sections = ['hero', 'experience', 'portfolio'];
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					navigationStore.activeSection = entry.target.id;
+				}
+			});
+		}, { threshold: 0.5 });
+		
+		sections.forEach(id => {
+			const element = document.getElementById(id);
+			if (element) observer.observe(element);
+		});
+
+		// Cleanup
+		return () => {
+			observer.disconnect();
+		};
+	});
 </script>
 
 <svelte:head>
@@ -38,39 +52,14 @@
 	/>
 </svelte:head>
 
-<AnimatedTextPath
-	texts={['HALLO •', ' HEJ •', 'HOLA •', 'HELLO •', 'WELCOME •', 'こんにちは •']}
-	speed={70}
-	pathWildness={0.9}
-	showPath={true}
-	pathStyle={{
-		strokeColor: selectedColorPairs[0].background,
-		strokeWidth: 80,
-		opacity: 1
-	}}
-	textStyle={{
-		font: 'bold 28px sans-serif',
-		size: 24,
-		color: selectedColorPairs[0].foreground
-	}}
-/>
-
-<AnimatedTextPath
-	texts={['LETS COOK –', ' WHY NOT TRY?', 'LETS CREATE //', 'LETS MAKE //', 'LETS EXPLORE //']}
-	speed={100}
-	pathWildness={0.9}
-	showPath={true}
-	pathStyle={{
-		strokeColor: selectedColorPairs[1].background,
-		strokeWidth: 80,
-		opacity: 1
-	}}
-	textStyle={{
-		font: 'bold 28px sans-serif',
-		size: 24,
-		color: selectedColorPairs[1].foreground
-	}}
-/>
+<main>
+	<HeroSection />
+	<ExperienceSection />
+	<PortfolioSection />
+</main>
 
 <style>
+	main {
+		scroll-behavior: smooth;
+	}
 </style>

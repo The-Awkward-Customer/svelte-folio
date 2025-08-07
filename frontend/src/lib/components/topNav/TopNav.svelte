@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { page } from '$app/stores';
 
 	import LinkList from '../navigation/LinkList.svelte';
 	import ChatTrigger from './ChatTrigger.svelte';
 	import QAChat from '../chat/QAChat.svelte';
 	import Button from '../actions/Button.svelte';
+	import Weather from '../Snoop/Weather.svelte';
+	import { navigationStore } from '$lib/stores/navigationStore.svelte';
 
 	interface LinkItem {
 		label: string;
@@ -17,9 +18,9 @@
 	}
 
 	let listData: LinkItem[] = [
-		{ label: 'Index', href: '/' },
-		{ label: 'Graphics', href: '/graphics' },
-		{ label: 'Experience', href: '/experience' }
+		{ label: 'Index', href: '#hero' },
+		{ label: 'Experience', href: '#experience' },
+		{ label: 'Graphics', href: '#portfolio' }
 	];
 
 	interface TopNavProps {
@@ -46,19 +47,12 @@
 			<ChatTrigger handleClick={openChat} />
 			<div class="name-and-links">
 				<p>Peter Abbott</p>
-				<LinkList {list} />
+				<LinkList {list} activeSection={navigationStore.activeSection} />
 			</div>
 		</div>
 	</div>
 	<div class="right">
-		<Button
-			as="link"
-			href="/documents/Peter_Abbott_CV_04:08:25.pdf"
-			target="_blank"
-			rel="noopener noreferrer"
-			label="Download CV"
-			variant="inverse"
-		/>
+		<Weather />
 	</div>
 </nav>
 
