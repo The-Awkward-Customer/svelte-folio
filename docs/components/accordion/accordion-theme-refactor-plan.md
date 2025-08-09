@@ -167,3 +167,7 @@ get backgroundOverride(): string | null
 3. Test thoroughly in development
 4. Deploy with feature flag if needed
 5. Remove old brand system after verification
+## Related Components & Paths
+- [`../frontend/src/lib/components/accordian/Accordian.svelte`](../../../frontend/src/lib/components/accordian/Accordian.svelte)
+- [`../frontend/src/lib/components/accordian/AccordionList.svelte`](../../../frontend/src/lib/components/accordian/AccordionList.svelte)
+- Theme systems: `../frontend/src/lib/stores/themeManager.svelte.ts`, `../frontend/src/lib/theme.svelte.ts`

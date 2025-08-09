@@ -6,7 +6,7 @@ Enhanced the Accordion component to automatically scroll the opened accordion to
 ## Implementation Details
 
 ### Files Modified
-- `frontend/src/lib/components/accordian/Accordian.svelte`
+- [`frontend/src/lib/components/accordian/Accordian.svelte`](../../../frontend/src/lib/components/accordian/Accordian.svelte)
 
 ### Changes Made
 
@@ -196,7 +196,7 @@ Pre-calculate the exact height that will be removed when other accordions close,
 
 **Files Modified**:
 - `frontend/src/lib/stores/accordianManager.svelte..ts` - Added `getOpenAccordions()` function
-- `frontend/src/lib/components/accordian/Accordian.svelte` - Complete scroll logic overhaul
+- [`frontend/src/lib/components/accordian/Accordian.svelte`](../../../frontend/src/lib/components/accordian/Accordian.svelte) - Complete scroll logic overhaul
 
 **Critical Functions**:
 
@@ -275,7 +275,7 @@ Perfect smooth animation: Click → Accordion opens while page smoothly scrolls 
 
 ## Current Stable Implementation (REVERT Point)
 
-**File**: `frontend/src/lib/components/accordian/Accordian.svelte`
+**File**: [`frontend/src/lib/components/accordian/Accordian.svelte`](../../../frontend/src/lib/components/accordian/Accordian.svelte)
 
 ```typescript
 // Button element reference
@@ -721,4 +721,7 @@ Momentum scrolling - Continue slight scroll after accordion opens
 Parallax effects - Subtle content reveal as it expands
 
 Try the demo above to see how smooth the experience is! The key is orchestrating the animations in the right sequence rather than trying to do everything at once.
-
+## Related Components & Paths
+- [`../frontend/src/lib/components/accordian/Accordian.svelte`](../../../frontend/src/lib/components/accordian/Accordian.svelte)
+- [`../frontend/src/lib/components/accordian/AccordionList.svelte`](../../../frontend/src/lib/components/accordian/AccordionList.svelte)
+- Theming hooks: `../frontend/src/lib/stores/themeManager.svelte.ts`, `../frontend/src/lib/theme.svelte.ts`

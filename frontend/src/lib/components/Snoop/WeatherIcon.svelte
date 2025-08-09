@@ -1,3 +1,4 @@
+<!-- Docs: ../../../../docs/integrations/weather_api_separation_plan.md -->
 <script lang="ts">
   type WeatherIconCode = 
     | '01d' | '01n' 

@@ -1,3 +1,4 @@
+<!-- Docs: ../../../../docs/components/animation/Enhanced-Glitch-Animation-Refactor-Plan.md -->
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import { AnimationEngine } from '$lib/animations/AnimationEngine';

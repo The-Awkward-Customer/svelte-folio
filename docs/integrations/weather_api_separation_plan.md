@@ -1,7 +1,7 @@
 # Weather API Separation Plan: Single Composable Approach
 
 ## Overview
-Separate API logic from the [`Weather.svelte`](frontend/src/lib/components/Snoop/Weather.svelte) component using a single `useWeather` composable while maintaining full backwards compatibility.
+Separate API logic from the [`Weather.svelte`](../../frontend/src/lib/components/Snoop/Weather.svelte) component using a single `useWeather` composable while maintaining full backwards compatibility.
 
 ## Architecture: Single Composable Pattern
 
@@ -215,3 +215,6 @@ export function useLocation() {
 6. **Test integration** - Ensure debug system works perfectly
 
 This approach provides clean separation while maintaining the exact same functionality and debug capabilities you currently have.
+## Related Components
+- [`../frontend/src/lib/components/Snoop/Weather.svelte`](../../frontend/src/lib/components/Snoop/Weather.svelte)
+- [`../frontend/src/lib/components/Snoop/WeatherIcon.svelte`](../../frontend/src/lib/components/Snoop/WeatherIcon.svelte)

@@ -2,7 +2,7 @@
 
 ## Problem Statement
 
-The current auto-scroll functionality in [`ChatMessages.svelte`](frontend/src/lib/components/chat/ChatMessages.svelte) is causing issues where users cannot scroll up to read older messages because the auto-scroll immediately pulls them back to the bottom.
+The current auto-scroll functionality in [`ChatMessages.svelte`](../../../frontend/src/lib/components/chat/ChatMessages.svelte) is causing issues where users cannot scroll up to read older messages because the auto-scroll immediately pulls them back to the bottom.
 
 ### Current Issues
 - **Immediate scroll interference**: Users cannot scroll up at all - they get pulled back to bottom immediately
@@ -279,4 +279,6 @@ function checkScrollPosition(): void // Add direction tracking
 
 ---
 
-**Next Steps**: Implement this refactoring plan in the [`ChatMessages.svelte`](frontend/src/lib/components/chat/ChatMessages.svelte) component following the detailed steps outlined above.
+**Next Steps**: Implement this refactoring plan in the [`ChatMessages.svelte`](../../../frontend/src/lib/components/chat/ChatMessages.svelte) component following the detailed steps outlined above.
+## Related Component
+- [`../frontend/src/lib/components/chat/ChatMessages.svelte`](../../../frontend/src/lib/components/chat/ChatMessages.svelte)

@@ -80,3 +80,6 @@ The portfolio tells a compelling story of evolution from startup co-founder to e
 
 *Review conducted: August 7, 2025*
 *Status: Ready for asset procurement and content completion*
+## Related Routes & Data
+- Route: `../frontend/src/routes/experience/+page.svelte`
+- Data: `../frontend/src/modelData/dataSets/experience.json`

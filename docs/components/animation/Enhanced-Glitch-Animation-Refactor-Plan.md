@@ -151,7 +151,7 @@ interface EnhancedAvatarProps {
 
 ### **Core Files to Modify/Create**
 1. `frontend/src/lib/animations/gsap/glitchAnimations.ts` - Enhanced animation engine
-2. `frontend/src/lib/components/primatives/Avatar.svelte` - Updated component
+2. [`frontend/src/lib/components/primatives/Avatar.svelte`](../../../frontend/src/lib/components/primatives/Avatar.svelte) - Updated component
 3. `frontend/src/lib/animations/gsap/types.ts` - Enhanced type definitions
 4. `frontend/src/routes/test-avatar-enhanced/+page.svelte` - Updated test page
 
@@ -200,3 +200,7 @@ interface EnhancedAvatarProps {
 - Unpredictable timing
 
 This plan will transform the glitch animation from a good effect into a truly spectacular, PIXI.js-quality visual experience that's both performant and highly customizable.
+## Related Components
+- [`../frontend/src/lib/components/AnimatedTextPath.svelte`](../../../frontend/src/lib/components/AnimatedTextPath.svelte)
+- [`../frontend/src/lib/components/AnimatedTextPathSpag.svelte`](../../../frontend/src/lib/components/AnimatedTextPathSpag.svelte)
+- [`../frontend/src/lib/components/CanvasAnimation.svelte`](../../../frontend/src/lib/components/CanvasAnimation.svelte)

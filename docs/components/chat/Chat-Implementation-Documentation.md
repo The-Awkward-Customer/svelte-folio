@@ -424,3 +424,7 @@ The implementation demonstrates a tension between ambitious architectural goals 
 3. Unclear architectural vision
 
 The component architecture shows more maturity than the backend implementation, suggesting frontend-first development approach. The extensive TypeScript typing indicates a quality-focused engineering culture, but the incomplete abstractions and test coverage reveal time or resource constraints.
+## Related Components, Stores & APIs
+- Components: [`../frontend/src/lib/components/chat/QAChat.svelte`](../../../frontend/src/lib/components/chat/QAChat.svelte), [`../frontend/src/lib/components/chat/ChatMessages.svelte`](../../../frontend/src/lib/components/chat/ChatMessages.svelte), [`../frontend/src/lib/components/chat/ChatInput.svelte`](../../../frontend/src/lib/components/chat/ChatInput.svelte)
+- Store: `../frontend/src/lib/stores/chatStore.svelte.ts`
+- API: `../frontend/src/routes/api/messages/+server.js`

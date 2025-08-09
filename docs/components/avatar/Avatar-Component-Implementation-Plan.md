@@ -50,7 +50,7 @@ Based on the existing design system in `app.css`, create three size variants:
 
 ### File Organization
 ```
-frontend/src/lib/components/primatives/
+[`frontend/src/lib/components/primatives/`](../../../frontend/src/lib/components/primatives/)
 ├── Avatar.svelte          # New component
 ├── Icon.svelte           # Existing
 ├── Tag.svelte            # Existing
@@ -242,7 +242,7 @@ Leverage existing CSS custom properties:
 
 ## Migration Strategy
 
-1. **Create the new Avatar component** in `frontend/src/lib/components/primatives/Avatar.svelte`
+1. **Create the new Avatar component** in [`frontend/src/lib/components/primatives/Avatar.svelte`](../../../frontend/src/lib/components/primatives/Avatar.svelte)
 2. **Update the primitives index** to export the new component
 3. **Test the component** in isolation with different props
 4. **Later**: Refactor `ChatTrigger.svelte` to use the new Avatar component (separate task)
@@ -282,3 +282,7 @@ The component is designed to easily accommodate future content types:
 - **Accessibility**: WCAG 2.1 AA compliance
 - **Responsive**: Container queries and clamp-based sizing
 - **Performance**: Efficient rendering and minimal DOM updates
+## Related Components & Routes
+- [`../frontend/src/lib/components/primatives/Avatar.svelte`](../../../frontend/src/lib/components/primatives/Avatar.svelte)
+- `../frontend/src/routes/test-avatar/+page.svelte`
+- `../frontend/src/routes/test-avatar-enhanced/+page.svelte`

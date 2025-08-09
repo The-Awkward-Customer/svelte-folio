@@ -381,7 +381,7 @@ Added auto-scroll functionality to accordion components to improve user experien
 
 ### Technical Solution
 
-**File**: `frontend/src/lib/components/accordian/Accordian.svelte`
+**File**: [`frontend/src/lib/components/accordian/Accordian.svelte`](../../frontend/src/lib/components/accordian/Accordian.svelte)
 
 **Key Changes**:
 1. Added button element binding: `let buttonElement: HTMLButtonElement`
@@ -449,7 +449,7 @@ The implementation uses basic `scrollIntoView` without smooth behavior to ensure
 The experience page utilizes a modular project content system with the following components:
 
 #### AccordionList Component
-**File**: `frontend/src/lib/components/accordian/AccordionList.svelte`
+**File**: [`frontend/src/lib/components/accordian/AccordionList.svelte`](../../frontend/src/lib/components/accordian/AccordionList.svelte)
 
 **Purpose**: Provides structured container and context for accordion components
 - Renders accordions in an ordered list (`<ol>`) with appropriate styling
@@ -463,7 +463,7 @@ The experience page utilizes a modular project content system with the following
 - Responsive padding using CSS custom properties
 
 #### ProjectCard Component Structure
-**Files**: `frontend/src/lib/components/content/projects/`
+**Files**: [`frontend/src/lib/components/content/projects/`](../../frontend/src/lib/components/content/projects/)
 
 The project card system consists of four main components:
 
@@ -572,3 +572,6 @@ Components include commented debug styles for development:
 - Analytics integration for project interactions
 
 **Status**: All core functionality specified and implemented. Additional enhancements could include content management and performance optimizations.
+## Related Routes & Data
+- Route: `../frontend/src/routes/experience/+page.svelte`
+- Data: `../frontend/src/modelData/dataSets/experience.json`

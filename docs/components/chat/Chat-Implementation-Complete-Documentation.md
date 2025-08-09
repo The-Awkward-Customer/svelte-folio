@@ -326,3 +326,7 @@ The chat implementation successfully combines modern AI capabilities with robust
 - **Production Readiness**: ✅ Ready for deployment
 
 The implementation is now stable and ready for production use. The recent refactor established proper Svelte 5 patterns that will support future enhancements while maintaining reliability.
+## Related Components, Stores & APIs
+- Components: [`../frontend/src/lib/components/chat/QAChat.svelte`](../../../frontend/src/lib/components/chat/QAChat.svelte), [`../frontend/src/lib/components/chat/ChatMessages.svelte`](../../../frontend/src/lib/components/chat/ChatMessages.svelte), [`../frontend/src/lib/components/chat/ChatInput.svelte`](../../../frontend/src/lib/components/chat/ChatInput.svelte), [`../frontend/src/lib/components/chat/ChatDialog.svelte`](../../../frontend/src/lib/components/chat/ChatDialog.svelte)
+- Store: `../frontend/src/lib/stores/chatStore.svelte.ts`
+- API: `../frontend/src/routes/api/messages/+server.js`

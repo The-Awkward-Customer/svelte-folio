@@ -342,3 +342,6 @@ The updated theming system provides significant improvements:
 - **Flexible Configuration**: Each accordion can specify its own combination
 
 This theming system provides a robust, accessible, and visually appealing foundation for the portfolio application while maintaining excellent performance and user experience. The new brand-theme override system offers the flexibility and control needed for complex brand presentations while preserving the simplicity of the underlying theme architecture.
+## Related Stores & Utilities
+- Store: `../frontend/src/lib/stores/themeManager.svelte.ts`
+- Legacy utility: `../frontend/src/lib/theme.svelte.ts`

@@ -1,3 +1,4 @@
+<!-- Docs: ../../../../docs/integrations/weather_api_separation_plan.md -->
 <script lang="ts">
 	// Import the composable and types
 	import { useWeather } from '$lib/composables';

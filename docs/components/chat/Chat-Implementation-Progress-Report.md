@@ -216,3 +216,7 @@ This document summarizes all steps taken to implement and debug the Q&A chat sys
 
 ## Summary
 The implementation is largely complete but blocked by a critical embedding generation issue. The diagnostic tools created during debugging will help verify the fix once implemented. The system architecture is sound, with good separation of concerns, comprehensive error handling, and proper TypeScript typing throughout.
+## Related Components, Stores & APIs
+- Components: [`../frontend/src/lib/components/chat/QAChat.svelte`](../../../frontend/src/lib/components/chat/QAChat.svelte), [`../frontend/src/lib/components/chat/ChatMessages.svelte`](../../../frontend/src/lib/components/chat/ChatMessages.svelte), [`../frontend/src/lib/components/chat/ChatInput.svelte`](../../../frontend/src/lib/components/chat/ChatInput.svelte)
+- Store: `../frontend/src/lib/stores/chatStore.svelte.ts`
+- API: `../frontend/src/routes/api/messages/+server.js`

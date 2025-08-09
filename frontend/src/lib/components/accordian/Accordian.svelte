@@ -1,3 +1,4 @@
+<!-- Docs: ../../../../docs/components/accordion/accordion-theme-refactor-plan.md, components/accordion/accordion-scroll-to-top-feature.md -->
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 	import { onMount, getContext } from 'svelte';
