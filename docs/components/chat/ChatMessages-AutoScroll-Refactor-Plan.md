@@ -106,6 +106,7 @@ function setScrollLock() {
 let lastScrollTop = 0;
 let scrollDirection: 'up' | 'down' | 'none' = 'none';
 let userActivelyScrolling = false;
+let userHasScrolledUp = false;
 
 function checkScrollPosition() {
     if (!messagesContainer) return;
@@ -220,6 +221,8 @@ let scrollLockActive = false;
 let scrollLockTimeout: ReturnType<typeof setTimeout>;
 let lastScrollTop = 0;
 let scrollDirection: 'up' | 'down' | 'none' = 'none';
+let userHasScrolledUp = false; // true when user is away from bottom
+let userActivelyScrolling = false; // true while user is moving
 let previousMessageCount = 0;
 let lastMessageId = '';
 ```

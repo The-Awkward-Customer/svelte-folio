@@ -237,6 +237,9 @@ async function handleClick() {
     // Calculate TRUE target position
     const targetScrollY = buttonCurrentTop - heightCompensation - 20;
     
+    // Determine if a scroll is actually needed (with small tolerance)
+    const needsScroll = Math.abs(currentScrollY - targetScrollY) > 2;
+    
     if (needsScroll) {
         // Start BOTH animations simultaneously
         const scrollPromise = smoothScrollTo(targetScrollY, 400);

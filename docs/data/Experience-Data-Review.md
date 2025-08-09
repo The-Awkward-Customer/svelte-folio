@@ -15,12 +15,7 @@ The portfolio tells a compelling story of evolution from startup co-founder to e
 ### Missing Assets & Content
 
 #### Critical Asset Gaps:
-- **Shell**: Using Godesk placeholder image (needs dedicated hero)
-- **Suzuki**: Using Fresha placeholder image (needs dedicated hero) 
-- **TSB**: Using Jio placeholder image (needs dedicated hero)
-
-#### Content Gaps:
-- **TSB Problem Statement**: Placeholder text "[Problem statement content to be added]"
+ (None — Shell, Suzuki, and TSB were removed; see Progress Tracking below.)
 
 ## Creative Director Perspective
 
