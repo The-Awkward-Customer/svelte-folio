@@ -1,3 +1,4 @@
+<!-- Docs: ../../../../docs/components/chat/Chat-Implementation-Documentation.md, components/chat/Chat-Implementation-Complete-Documentation.md, components/chat/Chat-Implementation-Progress-Report.md, components/chat/ChatMessages-AutoScroll-Refactor-Plan.md -->
 <!-- Input form component -->
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';

@@ -1,3 +1,4 @@
+<!-- Docs: ../../../../docs/components/avatar/Avatar-Component-Implementation-Plan.md -->
 <script lang="ts">
 	import Ani_me from '$lib/assets/Ani_me.png';
 	import { onMount } from 'svelte';
