@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/components/actions/Button.svelte';
-	import { dialogManager } from '$lib/stores/dialogManager.svelte.js';
+import { dialogManager } from '$lib';
 	import DialogRoot from '$lib/components/Dialog/DialogRoot.svelte';
 
 	function handleButtonClick() {

@@ -7,7 +7,7 @@
 	import ChatInput from './ChatInput.svelte';
 	import Button from '$lib/components/actions/Button.svelte';
 	import IconButton from '$lib/components/actions/IconButton.svelte';
-	import Tag from '../primatives/Tag.svelte';
+import Tag from '../primitives/Tag.svelte';
 	import type {
 		ChatMessage,
 		ChatApiResponse,
@@ -15,7 +15,7 @@
 		QAChatProps
 	} from '$lib/types/chat.js';
 	import { isChatApiResponse, isChatApiError } from '$lib/types/chat.js';
-	import { chatStore } from '$lib/stores/chatStore.svelte.js';
+import { chatStore } from '$lib';
 
 	// Props with proper typing - now just for compatibility
 	export let isOpen: QAChatProps['isOpen'] = false;

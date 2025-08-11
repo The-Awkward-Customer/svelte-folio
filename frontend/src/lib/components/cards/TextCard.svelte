@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Tag from '../primatives/Tag.svelte';
+import Tag from '../primitives/Tag.svelte';
 	import IconButton from '../actions/IconButton.svelte';
 
 	type ButtonTypes = 'primary' | 'inverse';

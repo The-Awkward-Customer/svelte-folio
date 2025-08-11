@@ -1,4 +1,5 @@
 import { browser } from '$app/environment';
+import { createLogger } from '$lib/utils/logger';
 import { BRANDS, type BrandKey } from '$lib/config/brands';
 
 type ThemePreference = 'light' | 'dark' | 'high-contrast';
@@ -11,6 +12,7 @@ interface ThemeState {
 }
 
 class ThemeManager {
+  private log = createLogger('theme');
   private state = $state<ThemeState>({
     userPreference: 'light',
     activeBrand: null,
@@ -89,7 +91,7 @@ class ThemeManager {
 
   // Method for components to call when navigation occurs
   clearAllOverrides() {
-    console.log('🎨 Clearing all theme overrides due to navigation');
+    this.log.debug('Clearing all theme overrides due to navigation');
     this.state.brandThemeOverride = null;
     this.state.activeBrand = null;
     this.applyTheme();
@@ -102,14 +104,10 @@ class ThemeManager {
   }
 
   setActiveBrand(brand: BrandKey | null) {
-    console.log('🎨 setActiveBrand called:', { 
-      requestedBrand: brand, 
-      currentBrand: this.state.activeBrand,
-      willSkip: this.state.activeBrand === brand 
-    });
+    this.log.debug('setActiveBrand called', { requestedBrand: brand, currentBrand: this.state.activeBrand, willSkip: this.state.activeBrand === brand });
     
     if (this.state.activeBrand === brand) {
-      console.log('🎨 SKIPPING - brand already active');
+      this.log.debug('SKIPPING - brand already active');
       return;
     }
     
@@ -151,11 +149,7 @@ class ThemeManager {
       // Set data attribute for additional styling hooks
       root.setAttribute('data-brand-override', brand);
       
-      console.log('🎨 Applied brand-theme override:', {
-        brand,
-        theme: themeToApply,
-        backgroundOverride: `var(--color-brand-${brand})`
-      });
+      this.log.debug('Applied brand-theme override', { brand, theme: themeToApply, backgroundOverride: `var(--color-brand-${brand})` });
     } 
     // Handle legacy brand override (old system) 
     else if (this.state.activeBrand) {
@@ -223,16 +217,12 @@ class ThemeManager {
   }
 
   setBrandThemeOverride(brand: BrandKey, theme: ThemePreference) {
-    console.log('🎨 setBrandThemeOverride called:', { 
-      brand, 
-      theme,
-      current: this.state.brandThemeOverride 
-    });
+    this.log.debug('setBrandThemeOverride called', { brand, theme, current: this.state.brandThemeOverride });
     
     // Check if this is the same combination already active
     if (this.state.brandThemeOverride?.brand === brand && 
         this.state.brandThemeOverride?.theme === theme) {
-      console.log('🎨 SKIPPING - same brand-theme combination already active');
+      this.log.debug('SKIPPING - same brand-theme combination already active');
       return;
     }
     
@@ -256,10 +246,10 @@ class ThemeManager {
   }
 
   clearBrandThemeOverride() {
-    console.log('🎨 clearBrandThemeOverride called');
+    this.log.debug('clearBrandThemeOverride called');
     
     if (!this.state.brandThemeOverride) {
-      console.log('🎨 SKIPPING - no brand theme override active');
+      this.log.debug('SKIPPING - no brand theme override active');
       return;
     }
     
@@ -283,7 +273,7 @@ class ThemeManager {
   }
 
   clearBrand() {
-    console.log('🎨 clearBrand called');
+    this.log.debug('clearBrand called');
     this.setActiveBrand(null);
   }
 

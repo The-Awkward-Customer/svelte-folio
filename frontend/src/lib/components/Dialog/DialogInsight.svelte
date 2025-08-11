@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Icon from '$lib/components/primatives/Icon.svelte';
+import Icon from '$lib/components/primitives/Icon.svelte';
 	import { createThemeAwareNoiseEffect } from '$lib/utils/noiseGenerator';
-	import { theme } from '$lib/theme.svelte';
+	import { themeManager } from '$lib';
 	import type { GridArea } from './DialogSection.svelte';
 
 	interface InsightData {
@@ -41,16 +41,14 @@
 	}
 
 	onMount(() => {
-		// Initialize theme if not already done
-		theme.init();
+		// Unified theme manager initializes itself; nothing to do here.
 	});
 
-	// Svelte 5 effect that runs whenever theme.current changes
+	// Svelte 5 effect that runs whenever the applied theme changes
 	$effect(() => {
 		if (contentWrapper) {
-			// This will re-run automatically when theme.current changes
-			// because we're accessing theme.current inside the effect
-			const currentTheme = theme.current;
+			// Accessing themeManager.appliedTheme creates a dependency for reactivity
+			const currentTheme = themeManager.appliedTheme;
 
 			// Generate noise pattern with current theme colors
 			createThemeAwareNoiseEffect(contentWrapper, '--generated-noise', 100, 100, 0.08);

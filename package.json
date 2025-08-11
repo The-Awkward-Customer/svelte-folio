@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "check:console": "bash scripts/check-no-console.sh"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.48.0",
     "gsap": "^3.13.0"

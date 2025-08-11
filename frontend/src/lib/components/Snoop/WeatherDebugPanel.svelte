@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { weatherDebugManager } from '$lib/stores/weatherDebugManager.svelte.js';
+import { weatherDebugManager } from '$lib';
 	import { LoadingState, WeatherErrorType } from '$lib/types/weatherDebug.js';
 	import Button from '$lib/components/actions/Button.svelte';
 
