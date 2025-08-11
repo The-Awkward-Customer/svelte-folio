@@ -1,4 +1,7 @@
 import { COMPOSED_DIALOGS, type DialogId, isValidDialogId } from '../config/dialogRegistry.js';
+import { createLogger } from '$lib/utils/logger';
+
+const log = createLogger('dialog');
 
 export interface DialogCycleState {
   activeDialogId: DialogId | null;
@@ -36,7 +39,7 @@ function createDialogManager() {
   const actions = {
     showDialog(dialogId: DialogId): boolean {
       if (!isValidDialogId(dialogId)) {
-        console.warn(`Invalid dialog ID: ${dialogId}`);
+        log.warn(`Invalid dialog ID: ${dialogId}`);
         return false;
       }
 
@@ -87,7 +90,7 @@ function createDialogManager() {
 
     // Dev reset function
     devReset(): void {
-      console.log('🔄 Developer reset triggered');
+      log.debug('Developer reset triggered');
       actions.resetCycle();
       if (typeof window !== 'undefined') {
         window.location.reload();
@@ -109,7 +112,7 @@ function createDialogManager() {
           completed: state.hasCompletedCycle
         }));
       } catch (e) {
-        console.warn('Failed to save dialog state:', e);
+        log.warn('Failed to save dialog state:', e as any);
       }
     }
   }
@@ -124,7 +127,7 @@ function createDialogManager() {
           state.hasCompletedCycle = data.completed || false;
         }
       } catch (e) {
-        console.warn('Failed to load dialog state:', e);
+        log.warn('Failed to load dialog state:', e as any);
       }
     }
   }

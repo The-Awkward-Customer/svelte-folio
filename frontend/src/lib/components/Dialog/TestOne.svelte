@@ -6,7 +6,6 @@
 		DialogDetails,
 		DialogFooter,
 		DialogHeader,
-		DialogInsight,
 		DialogIntro,
 		DialogPrefix,
 		DialogPrinciples,
@@ -99,10 +98,6 @@
 		<DialogText title={freshaData.journey.title} content={freshaData.journey.content} />
 	</DialogSection>
 
-	<DialogSection id="insight one" hasPadding={true}>
-		<DialogInsight insight={freshaData.insightOne.insightText} alt={freshaData.insightOne.alt} />
-	</DialogSection>
-
 	<DialogSection id="graphic one" hasPadding={true}>
 		<DialogPrefix variant="subtitle" text={freshaData.graphicOne.prefixText} />
 		<DialogImage src={placeholder16x9} alt={freshaData.graphicOne.alt} />
@@ -120,10 +115,6 @@
 	<DialogSection id="principles" hasPadding={true}>
 		<DialogPrefix variant="header" text="Principles" />
 		<DialogPrinciples />
-	</DialogSection>
-
-	<DialogSection id="insight one" hasPadding={true}>
-		<DialogInsight insight={freshaData.insightOne.insightText} alt={freshaData.insightOne.alt} />
 	</DialogSection>
 
 	<DialogSection hasPadding={true}>

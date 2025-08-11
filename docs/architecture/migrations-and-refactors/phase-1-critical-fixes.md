@@ -145,3 +145,34 @@ Final Scan
 - Phase 1 (Critical Fixes) is complete as of 2025-08-11.
 - Version control tag: `phase-1-critical-fixes-complete-2025-08-11`.
 - Next: proceed to Phase 2 (Quality Improvements) per roadmap.
+
+---
+
+## Post‑Merge Changes
+
+These changes were applied during final stabilization to keep scope tight and the branch easy to close.
+
+- Removed noise generator and dependent component:
+  - Deleted `$lib/utils/noiseGenerator.ts`.
+  - Deleted `DialogInsight.svelte`; removed its export from `components/Dialog/index.js` and usages in `Fresha.svelte`, `TestOne.svelte`, `TestTwo.svelte`, `TestThree.svelte`, and `Shell.svelte`.
+- Naming and barrels:
+  - Standardized “Accordion” spelling in `routes/experience/+page.svelte` (import and all tags).
+  - Primitives barrel now exports `List`; `ProjectBody.svelte` imports `{ Subheader, Tag, List }` from `$lib/components/primitives`.
+  - Actions components now import `Icon` from the primitives barrel (`../primitives`).
+  - `$lib` barrel exposes `dialogManager`, `chatStore`, and `weatherDebugManager`; deep store imports uplifted.
+- Logging posture (Phase 1 freeze):
+  - Kept the minimal `$lib/utils/logger`; avoided broad console→logger refactors in this phase.
+  - Reverted incidental logger changes in `useWeather.svelte.ts` to reduce churn.
+- Console check script and CI posture:
+  - `scripts/check-no-console.sh` made executable; added npm scripts: `check:console`, `lint:ci` (runs `check:console`).
+  - Script excludes `server/`, `scripts/`, and the logger implementation itself.
+  - Not enforced in CI for Phase 1; to be adopted with policy/allowlist in Phase 2.
+
+Follow‑ups (Phase 2 candidates)
+- Decide on enforcement for the console policy (ESLint rule and/or the existing script with an allowlist).
+- Continue import uplift to `$lib` where beneficial and document the public surface.
+- Re‑introduce an insight/texture solution if needed, with a lighter dependency model.
+
+Amendment: DevTools well‑known endpoint
+- Added `frontend/static/.well-known/appspecific/com.chrome.devtools.json` with `{}` to prevent noisy 404s from Chrome DevTools probing `/.well-known/appspecific/com.chrome.devtools.json`.
+- Rationale: Benign probe caused error logs; serving a static empty JSON removes noise without altering runtime behavior.

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
-	import Accordian from '$lib/components/accordion/Accordion.svelte';
+	import Accordion from '$lib/components/accordion/Accordion.svelte';
 	import AccordionList from '$lib/components/accordion/AccordionList.svelte';
 	import { themeManager } from '$lib';
 	import {
@@ -18,8 +18,8 @@
 	});
 </script>
 
-<AccordionList>
-	<Accordian label="godesk" suffix="Co-Founding Designer" brand="godesk" themeOverride="light">
+	<AccordionList>
+		<Accordion label="godesk" suffix="Co-Founding Designer" brand="godesk" themeOverride="light">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
@@ -34,9 +34,9 @@
 				<ProjectFooter FooterString={experienceData.godesk.footer.footerString} />
 			{/snippet}
 		</ProjectCard>
-	</Accordian>
+		</Accordion>
 
-	<Accordian label="fresha" suffix="Design System Lead" brand="fresha" themeOverride="dark">
+		<Accordion label="fresha" suffix="Design System Lead" brand="fresha" themeOverride="dark">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
@@ -51,9 +51,9 @@
 				<ProjectFooter FooterString={experienceData.fresha.footer.footerString} />
 			{/snippet}
 		</ProjectCard>
-	</Accordian>
+		</Accordion>
 
-	<Accordian label="jio" suffix="Senior Product Designer" brand="jio" themeOverride="dark">
+		<Accordion label="jio" suffix="Senior Product Designer" brand="jio" themeOverride="dark">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
@@ -68,9 +68,9 @@
 				<ProjectFooter FooterString={experienceData.jio.footer.footerString} />
 			{/snippet}
 		</ProjectCard>
-	</Accordian>
+		</Accordion>
 
-	<Accordian label="ikea" suffix="Creative Director" brand="ikea" themeOverride="light">
+		<Accordion label="ikea" suffix="Creative Director" brand="ikea" themeOverride="light">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
@@ -88,9 +88,9 @@
 				<ProjectFooter FooterString={experienceData.ikea.footer.footerString} />
 			{/snippet}
 		</ProjectCard>
-	</Accordian>
+		</Accordion>
 
-	<Accordian label="warhammer" suffix="Product Designer" brand="warhammer">
+		<Accordion label="warhammer" suffix="Product Designer" brand="warhammer">
 		<ProjectCard>
 			{#snippet children()}
 				<ProjectHeader
@@ -108,7 +108,7 @@
 				<ProjectFooter FooterString={experienceData.warhammer.footer.footerString} />
 			{/snippet}
 		</ProjectCard>
-	</Accordian>
+		</Accordion>
 </AccordionList>
 
 <style>

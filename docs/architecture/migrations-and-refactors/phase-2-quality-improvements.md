@@ -64,3 +64,46 @@ Elevate code quality and developer experience by adding component-level tests wi
 - Expand component test coverage to priority areas.
 - Adopt visual regression testing for critical UI flows.
 
+---
+
+## Residual Risks (from Phase 1 handoff)
+
+- Console usage policy not yet enforced in CI:
+  - A shell-based checker exists (`scripts/check-no-console.sh`) and npm scripts (`check:console`, `lint:ci`) were added.
+  - Current code contains dev/demo console calls (e.g., CanvasAnimation, ChatTrigger, landing/test routes); decide to either migrate to the logger or allowlist for dev.
+- `$lib` barrel circulars:
+  - Stores exported by `$lib` should not import from `$lib` to avoid SSR circular imports; prefer direct imports for internals (logger, brands, etc.).
+  - Add a lint rule/doc guardrail to keep this pattern explicit.
+- Import uplift breadth:
+  - Many deep imports remain; expand `$lib` adoption where it improves ergonomics, but keep internals private.
+- Removed utilities/components:
+  - `noiseGenerator` and `DialogInsight` were removed; if similar functionality is reintroduced, ensure a lightweight, testable design and avoid coupling with theming.
+- Theming parity tests:
+  - Unified themeManager is live; add targeted tests (light/dark/system, brand overrides) to protect behavior.
+
+---
+
+## Phase 2 TODOs (Actionable)
+
+- Console policy and CI
+  - Decide policy for dev/demo console usage (allowlist vs. convert to logger).
+  - Add an allowlist file for `scripts/check-no-console.sh` and enforce via `npm run lint:ci` in CI.
+  - Optional: introduce ESLint `no-console` for app code as a secondary guard.
+- Import uplift (targeted)
+  - Expand `$lib` barrel adoption for frequently used public modules; keep internals private.
+  - Add a short doc note on what belongs in `$lib` vs. deep imports.
+- Barrel circular guardrail
+  - Add a lightweight lint or review rule: modules exported by `$lib` should not import from `$lib`.
+  - Document examples and preferred direct-import paths (e.g., `$lib/utils/logger`).
+- Theming tests
+  - Add tests covering light/dark/system and brand overrides; assert DOM attributes and CSS vars.
+- Docs & scripts
+  - Document the console policy, allowlist usage, and how to run `check:console` locally.
+  - Ensure README conventions remain in sync (barrels, theming, logger usage).
+
+--
+
+- DevTools well-known endpoint
+  - Add a static file at `frontend/static/.well-known/appspecific/com.chrome.devtools.json` containing `{}` to prevent noisy 404s when Chrome DevTools probes this path.
+  - Alternatively, serve it via a route (`src/routes/.well-known/appspecific/com.chrome.devtools.json/+server.ts`) or short-circuit in `src/hooks.server.ts` with a 204/200.
+  - Add a brief README note explaining why the file exists and that it has no runtime impact.

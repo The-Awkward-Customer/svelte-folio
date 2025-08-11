@@ -3,9 +3,6 @@
 
 A modern, high-performance portfolio application built with SvelteKit 5, featuring advanced animations, AI-powered chat, and a comprehensive design system.
 
-
-A modern, high-performance portfolio application built with SvelteKit 5, featuring advanced animations, AI-powered chat, and a comprehensive design system.
-
 [![SvelteKit](https://img.shields.io/badge/SvelteKit-5.0-FF3E00?logo=svelte&logoColor=white)](https://kit.svelte.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com)
@@ -77,11 +74,10 @@ npm run format       # Format code with Prettier
 npm run lint         # Lint code with ESLint
 ```
 
-### Testing
+### Quality Checks
 ```bash
-npm run test         # Run all tests
-npm run test:unit    # Unit tests with Vitest
-npm run test:e2e     # End-to-end tests with Playwright
+npm run check:console   # Scan app code for raw console.* (excludes server/scripts/logger)
+npm run lint:ci         # CI-friendly wrapper (currently runs check:console)
 ```
 
 ### Database
