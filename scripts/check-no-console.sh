@@ -4,7 +4,14 @@ set -euo pipefail
 ROOT_DIR=$(cd "$(dirname "$0")/.." && pwd)
 
 echo "Scanning source for raw console.* calls..."
-if grep -RIn --exclude-dir=node_modules --exclude-dir=.git -E "\bconsole\.(log|info|warn|error|debug|trace|table)\b" "$ROOT_DIR/frontend/src"; then
+if grep -RIn \
+  --exclude-dir=node_modules \
+  --exclude-dir=.git \
+  --exclude-dir=server \
+  --exclude-dir=scripts \
+  --exclude=logger.ts \
+  -E "\bconsole\.(log|info|warn|error|debug|trace|table)\b" \
+  "$ROOT_DIR/frontend/src"; then
   echo "Error: Found raw console.* calls in source. Use $lib/utils/logger instead." >&2
   exit 1
 else
@@ -23,4 +30,3 @@ if [ -d "$BUILD_DIR" ]; then
 else
   echo "Note: Build directory not found; skipping build scan."
 fi
-

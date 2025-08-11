@@ -1,6 +1,5 @@
 <script lang="ts">
-import List from '../../primitives/List.svelte';
-import { Subheader, Tag } from '$lib/components/primitives';
+import { Subheader, Tag, List } from '$lib/components/primitives';
 
 	// Interface for props
 	interface ProjectBodyProps {

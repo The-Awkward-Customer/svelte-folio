@@ -6,7 +6,6 @@
 		DialogDetails,
 		DialogFooter,
 		DialogHeader,
-		DialogInsight,
 		DialogIntro,
 		DialogPrefix,
 		DialogPrinciples,

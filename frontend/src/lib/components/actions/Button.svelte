@@ -1,5 +1,6 @@
+
 <script lang="ts">
-import Icon from '../primitives/Icon.svelte';
+import { Icon } from '../primitives';
 	import type { IconName } from '../../types/icons.js';
 
 	type ButtonVariants = 'inverse' | 'primary';

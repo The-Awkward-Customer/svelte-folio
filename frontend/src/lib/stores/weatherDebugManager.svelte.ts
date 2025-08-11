@@ -1,4 +1,6 @@
 import { browser } from '$app/environment';
+import { createLogger } from '$lib/utils/logger';
+const log = createLogger('weather-debug');
 import type {
 	WeatherData,
 	GeoLocation,
@@ -156,8 +158,8 @@ function createWeatherDebugManager() {
 		// Override mode control
 		enableOverrideMode(): void {
 			if (!state.isActive) return;
-			state.overrideMode = true;
-			console.log('🐛 Weather Debug: Override mode enabled');
+      state.overrideMode = true;
+      log.debug('Weather Debug: Override mode enabled');
 		},
 
 		disableOverrideMode(): void {
@@ -165,8 +167,8 @@ function createWeatherDebugManager() {
 			state.mockWeatherData = null;
 			state.mockLocationData = { geoLocation: null, ipInfo: null };
 			state.forcedLoadingState = null;
-			state.forcedErrorState = null;
-			console.log('🐛 Weather Debug: Override mode disabled');
+      state.forcedErrorState = null;
+      log.debug('Weather Debug: Override mode disabled');
 		},
 
 		// Loading state control
@@ -175,8 +177,8 @@ function createWeatherDebugManager() {
 			state.forcedLoadingState = loadingState;
 			state.forcedErrorState = null; // Clear error when setting loading
 			if (loadingState) {
-				actions.enableOverrideMode();
-				console.log(`🐛 Weather Debug: Forced loading state to "${loadingState}"`);
+        actions.enableOverrideMode();
+        log.debug(`Weather Debug: Forced loading state`, loadingState);
 			}
 		},
 
@@ -186,8 +188,8 @@ function createWeatherDebugManager() {
 			state.forcedErrorState = errorState;
 			state.forcedLoadingState = null; // Clear loading when setting error
 			if (errorState) {
-				actions.enableOverrideMode();
-				console.log(`🐛 Weather Debug: Forced error state to "${errorState}"`);
+        actions.enableOverrideMode();
+        log.debug(`Weather Debug: Forced error state`, errorState);
 			}
 		},
 
@@ -196,10 +198,10 @@ function createWeatherDebugManager() {
 			if (!state.isActive) return;
 			state.mockWeatherData = scenario?.data || null;
 			if (scenario) {
-				actions.enableOverrideMode();
-				state.forcedLoadingState = null;
-				state.forcedErrorState = null;
-				console.log(`🐛 Weather Debug: Injected mock weather data for "${scenario.name}"`);
+        actions.enableOverrideMode();
+        state.forcedLoadingState = null;
+        state.forcedErrorState = null;
+        log.debug('Weather Debug: Injected mock weather data', scenario.name);
 			}
 		},
 
@@ -210,8 +212,8 @@ function createWeatherDebugManager() {
 					geoLocation: scenario.geoLocation || null,
 					ipInfo: scenario.ipInfo || null
 				};
-				actions.enableOverrideMode();
-				console.log(`🐛 Weather Debug: Injected mock location data for "${scenario.name}"`);
+        actions.enableOverrideMode();
+        log.debug('Weather Debug: Injected mock location data', scenario?.name);
 			} else {
 				state.mockLocationData = { geoLocation: null, ipInfo: null };
 			}
@@ -220,8 +222,8 @@ function createWeatherDebugManager() {
 		// Component control
 		resetComponentState(): void {
 			if (!state.isActive) return;
-			actions.disableOverrideMode();
-			console.log('🐛 Weather Debug: Component state reset');
+      actions.disableOverrideMode();
+      log.debug('Weather Debug: Component state reset');
 		},
 
 		// Utility functions
@@ -248,8 +250,8 @@ function createWeatherDebugManager() {
 	};
 
 	// Initialize debug mode if active
-	if (browser && state.isActive) {
-		console.log('🐛 Weather Debug: Debug mode activated via ?debug=weather');
+  if (browser && state.isActive) {
+    log.debug('Weather Debug: Debug mode activated via ?debug=weather');
 		
 		// Expose debug functions to window for console access
 		(window as any).__weatherDebug = {

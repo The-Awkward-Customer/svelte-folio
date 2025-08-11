@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "check:console": "bash scripts/check-no-console.sh"
+    "check:console": "bash scripts/check-no-console.sh",
+    "lint:ci": "npm run check:console"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.48.0",
