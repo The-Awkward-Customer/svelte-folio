@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
-	import Accordian from '$lib/components/accordian/Accordian.svelte';
-	import AccordionList from '$lib/components/accordian/AccordionList.svelte';
-	import { themeManager } from '$lib/stores/themeManager.svelte';
+	import Accordian from '$lib/components/accordion/Accordion.svelte';
+	import AccordionList from '$lib/components/accordion/AccordionList.svelte';
+	import { themeManager } from '$lib';
 	import {
 		ProjectCard,
 		ProjectHeader,

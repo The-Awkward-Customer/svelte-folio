@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Anim_me from '$lib/assets/Ani_me.png';
-	import { Indicator } from '$lib/components/primatives';
+	import { Indicator } from '$lib/components/primitives';
 
 	interface ChatTriggerProps {
 		handleClick?: () => void;

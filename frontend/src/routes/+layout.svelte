@@ -6,24 +6,16 @@
 
 	import { onMount } from 'svelte';
 	import { beforeNavigate } from '$app/navigation';
-	import { theme } from '$lib/theme.svelte';
-	import { themeManager } from '$lib/stores/themeManager.svelte';
+	import { themeManager } from '$lib';
 
 	onMount(() => {
-		console.log('About to call theme.init()');
-		theme.init();
-		console.log('After theme.init(), current theme is:', theme.current);
-		
-		// Initialize the new theme manager
-		// It initializes itself in the constructor, but we can ensure it's ready
-		console.log('Theme manager initialized with state:', themeManager.current);
+		// Unified theme manager initializes itself in the constructor
 	});
 	
 	// Clear theme overrides when navigating between pages
 	beforeNavigate(({ from, to }) => {
 		// Clear any active theme overrides when navigating
 		if (from && to && from.url.pathname !== to.url.pathname) {
-			console.log('🎨 Navigation detected, clearing theme overrides');
 			themeManager.clearAllOverrides();
 		}
 	});

@@ -18,7 +18,7 @@ import {
 	CACHE_DURATION,
 	GEO_OPTIONS
 } from '$lib/types/weather.js';
-import { weatherDebugManager } from '$lib/stores/weatherDebugManager.svelte.js';
+import { weatherDebugManager } from '$lib';
 
 /**
  * useWeather composable - Handles all weather-related API logic

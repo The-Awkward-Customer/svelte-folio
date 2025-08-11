@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from '../primatives/Icon.svelte';
+import Icon from '../primitives/Icon.svelte';
 	import type { IconName } from '../../types/icons.js';
 
 	// Props interface

@@ -6,7 +6,7 @@
 	import ChatTrigger from './ChatTrigger.svelte';
 	import QAChat from '../chat/QAChat.svelte';
 	import Button from '../actions/Button.svelte';
-	import { chatStore } from '$lib/stores/chatStore.svelte.js';
+import { chatStore } from '$lib';
 
 	interface LinkItem {
 		label: string;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Avatar } from '$lib/components/primatives';
+import { Avatar } from '$lib/components/primitives';
 	import Button from '$lib/components/actions/Button.svelte';
 	import Ani_me from '$lib/assets/Ani_me.png';
 

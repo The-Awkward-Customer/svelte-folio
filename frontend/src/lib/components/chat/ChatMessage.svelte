@@ -3,7 +3,7 @@
 <script lang="ts">
 	import type { ChatMessage, ChatMessageProps, MessageDisplayType } from '$lib/types/chat.js';
 	import PromptButton from '$lib/components/actions/PromptButton.svelte';
-	import { Avatar } from '$lib/components/primatives';
+	import { Avatar } from '$lib/components/primitives';
 
 	import Ani_me_glitched from '$lib/assets/Ani_me_glitched.png';
 	let Avatar_Image = Ani_me_glitched;

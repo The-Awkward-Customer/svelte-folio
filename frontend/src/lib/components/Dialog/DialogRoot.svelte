@@ -1,7 +1,7 @@
 <!-- DialogRoot.svelte -->
 <script lang="ts">
 	import { onMount, onDestroy, tick } from 'svelte';
-	import { dialogManager } from '$lib/stores/dialogManager.svelte.js';
+import { dialogManager } from '$lib';
 	import { browser } from '$app/environment'; // Import browser
 
 	import Fresha from './Fresha.svelte';

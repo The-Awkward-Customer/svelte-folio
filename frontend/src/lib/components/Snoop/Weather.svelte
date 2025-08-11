@@ -13,11 +13,11 @@
 	// Components
 	import Button from '$lib/components/actions/Button.svelte';
 	import IconButton from '../actions/IconButton.svelte';
-	import { Icon } from '../primatives';
+import { Icon } from '../primitives';
 	import type { IconName } from '$lib/types';
 
 	// Debug imports
-	import { weatherDebugManager } from '$lib/stores/weatherDebugManager.svelte.js';
+import { weatherDebugManager } from '$lib';
 	import WeatherDebugPanel from './WeatherDebugPanel.svelte';
 
 	// Props - exactly the same as before

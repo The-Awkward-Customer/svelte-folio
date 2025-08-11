@@ -2,12 +2,12 @@
 
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { dialogManager } from '$lib/stores/dialogManager.svelte.js';
+import { dialogManager } from '$lib';
 	import { COMPOSED_DIALOGS, DIALOG_METADATA } from '$lib/config/dialogRegistry.js';
 	import type { GridArea } from './DialogSection.svelte';
 	import Button from '../actions/Button.svelte';
 	import ProgressToast from '../feedback/ProgressToast.svelte';
-	import Icon from '../primatives/Icon.svelte';
+import Icon from '../primitives/Icon.svelte';
 
 	interface DialogFooterProps {
 		label?: string;

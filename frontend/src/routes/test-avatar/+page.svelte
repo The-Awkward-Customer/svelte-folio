@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Avatar } from '$lib/components/primatives';
+import { Avatar } from '$lib/components/primitives';
 
 	function handleAvatarClick() {
 		console.log('Avatar button clicked!');
