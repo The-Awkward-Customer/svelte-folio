@@ -99,29 +99,34 @@ export interface CloseEvent {
  * Props for ChatDialog component
  */
 export interface ChatDialogProps {
-	/** Whether the dialog is open */
-	isOpen: boolean;
+  /** Whether the dialog is open */
+  isOpen: boolean;
 }
 
 /**
  * Message display types for different chat states
  */
-export type MessageDisplayType = 'user' | 'assistant' | 'loading' | 'error' | 'welcome';
+export type MessageDisplayType =
+  | 'user'
+  | 'assistant'
+  | 'loading'
+  | 'error'
+  | 'welcome';
 
 /**
  * Props for ChatMessage component - enhanced to handle all message states
  */
 export interface ChatMessageProps {
-	/** The message to display (optional for non-message states) */
-	message?: ChatMessage;
-	/** The type of display state */
-	displayType?: MessageDisplayType;
-	/** Error message for error state */
-	error?: string;
-	/** Loading state indicator */
-	isLoading?: boolean;
-	/** Callback for when a prompt is selected */
-	onPromptSelected?: (prompt: string) => void;
+  /** The message to display (optional for non-message states) */
+  message?: ChatMessage;
+  /** The type of display state */
+  displayType?: MessageDisplayType;
+  /** Error message for error state */
+  error?: string;
+  /** Loading state indicator */
+  isLoading?: boolean;
+  /** Callback for when a prompt is selected */
+  onPromptSelected?: (prompt: string) => void;
 }
 
 /**

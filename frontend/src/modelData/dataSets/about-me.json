@@ -68,7 +68,11 @@
     {
       "q": "Why don't you work with top-down companies?",
       "a": "Top-down organizations often stifle innovation and create environments where politics matter more than user outcomes. I prefer working with teams that empower people closest to the problem to make decisions.",
-      "tags": ["company-culture", "working-preferences", "organizational-structure"]
+      "tags": [
+        "company-culture",
+        "working-preferences",
+        "organizational-structure"
+      ]
     },
     {
       "q": "What's your leadership style?",
@@ -226,7 +230,11 @@
     {
       "q": "What's your learning approach?",
       "a": "Learn by doing, teach to solidify understanding, and always question assumptions. I believe in T-shaped skills - deep expertise in a few areas with broad understanding across many.",
-      "tags": ["learning-philosophy", "t-shaped-skills", "continuous-improvement"]
+      "tags": [
+        "learning-philosophy",
+        "t-shaped-skills",
+        "continuous-improvement"
+      ]
     }
   ],
   "communication": [

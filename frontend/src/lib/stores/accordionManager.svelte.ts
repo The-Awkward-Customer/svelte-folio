@@ -17,7 +17,7 @@ export function createAccordionState(): AccordionState {
   const state: AccordionState = {
     id,
     isOpen: false,
-    hasBeenOpened: false
+    hasBeenOpened: false,
   };
 
   return state;
@@ -29,7 +29,10 @@ export function registerAccordion(state: AccordionState) {
 }
 
 export function toggleAccordion(state: AccordionState) {
-  log.debug('toggleAccordion called', { id: state.id, currentState: state.isOpen });
+  log.debug('toggleAccordion called', {
+    id: state.id,
+    currentState: state.isOpen,
+  });
 
   // If opening this accordion, close all others first
   if (!state.isOpen) {

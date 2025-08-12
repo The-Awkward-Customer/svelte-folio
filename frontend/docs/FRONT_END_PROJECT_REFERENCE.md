@@ -3,6 +3,7 @@
 ## 🏗️ Core Technologies
 
 ### Framework & Build
+
 - **Svelte 5** - Latest version with runes ($state, $derived, $effect)
 - **SvelteKit** - Full-stack framework with SSR/SSG
 - **Vite** - Build tool and dev server
@@ -10,6 +11,7 @@
 - **Vercel Adapter** - Deployment target
 
 ### Database & Auth
+
 - **Drizzle ORM** - Type-safe database operations
 - **PostgreSQL** - Primary database
 - **Docker Compose** - Local database setup
@@ -17,6 +19,7 @@
 - **Argon2** - Password hashing
 
 ### Styling & Design
+
 - **CSS Custom Properties** - Theme system with 3 themes (light/dark/high-contrast)
 - **Geist Font Family** - Primary and mono variants
 - **Design Tokens** - Comprehensive spacing, typography, color system
@@ -24,6 +27,7 @@
 - **CSS Transitions** - Smooth interactions
 
 ### Animation & Graphics
+
 - **GSAP** - Professional animation library
 - **Canvas API** - Custom graphics and animations
 - **SVG** - Vector graphics and icons
@@ -32,6 +36,7 @@
 ## 🧩 Component Architecture
 
 ### Layout Components
+
 ```
 layout/
 ├── BasicLayout.svelte     # Standard page wrapper
@@ -41,6 +46,7 @@ layout/
 ```
 
 ### Navigation Components
+
 ```
 topNav/
 ├── TopNav.svelte         # Main navigation bar
@@ -54,6 +60,7 @@ navigation/
 ```
 
 ### Content Components
+
 ```
 content/
 ├── IntroText.svelte           # Introduction text blocks
@@ -68,6 +75,7 @@ content/
 ```
 
 ### Interactive Components
+
 ```
 accordian/
 ├── Accordian.svelte           # Main accordion component
@@ -85,6 +93,7 @@ Dialog/                        # Modal system
 ```
 
 ### Action Components
+
 ```
 actions/
 ├── Button.svelte         # Standard button
@@ -95,6 +104,7 @@ actions/
 ```
 
 ### Media Components
+
 ```
 cards/
 ├── ImageCard.svelte      # Image display cards
@@ -106,6 +116,7 @@ media/
 ```
 
 ### Feedback Components
+
 ```
 feedback/
 ├── Callout.svelte           # Alert/notice component
@@ -116,6 +127,7 @@ feedback/
 ## 🎨 Animation System
 
 ### GSAP Text Animations
+
 ```typescript
 // Core animations
 shuffleText()    // Character scramble effect
@@ -131,12 +143,14 @@ typewriterText() // Typewriter effect
 ```
 
 ### Animation Patterns
+
 - **Staggered animations** - Sequential character reveals
 - **Easing functions** - Smooth motion curves
 - **Timeline management** - Complex animation sequences
 - **Performance optimization** - Hardware acceleration
 
 ### Canvas Animations
+
 - **AnimatedTextPath.svelte** - Text following curved paths
 - **CanvasAnimation.svelte** - Custom canvas graphics
 - **Noise generation** - Procedural textures
@@ -144,14 +158,18 @@ typewriterText() // Typewriter effect
 ## 🗄️ State Management
 
 ### Svelte 5 Runes Pattern
+
 ```typescript
 // State management with runes
 let state = $state(initialValue);
 const derived = $derived(computation);
-$effect(() => { /* side effects */ });
+$effect(() => {
+  /* side effects */
+});
 ```
 
 ### Store Patterns
+
 ```
 stores/
 ├── dialogManager.svelte.ts      # Modal state management
@@ -160,6 +178,7 @@ stores/
 ```
 
 ### State Features
+
 - **Persistent storage** - localStorage integration
 - **Debug modes** - Development utilities
 - **Type safety** - Full TypeScript support
@@ -168,6 +187,7 @@ stores/
 ## 🎯 Design System
 
 ### Theme Architecture
+
 ```css
 /* Three-tier theme system */
 :root                    /* Light theme (default) */
@@ -176,6 +196,7 @@ stores/
 ```
 
 ### Token System
+
 - **Typography** - 15 font sizes, 5 weights
 - **Spacing** - 15-step spacing scale
 - **Colors** - Semantic color system
@@ -183,6 +204,7 @@ stores/
 - **Shadows** - 3 elevation levels
 
 ### Responsive Design
+
 - **Container queries** - Component-level responsiveness
 - **Fluid typography** - clamp() functions
 - **Mobile-first** - Progressive enhancement
@@ -191,6 +213,7 @@ stores/
 ## 🔧 Utilities & Composables
 
 ### Composables
+
 ```typescript
 useWeather.svelte.ts  // Weather API integration
 - Geolocation handling
@@ -201,6 +224,7 @@ useWeather.svelte.ts  // Weather API integration
 ```
 
 ### Utility Functions
+
 ```
 utils/
 ├── noiseGenerator.ts  # Procedural noise
@@ -208,6 +232,7 @@ utils/
 ```
 
 ### Type Definitions
+
 ```
 types/
 ├── weather.ts         # Weather API types
@@ -219,6 +244,7 @@ types/
 ## 🚀 Development Features
 
 ### Build & Deploy
+
 - **Hot reload** - Instant development feedback
 - **Type checking** - Real-time TypeScript validation
 - **Code formatting** - Prettier integration
@@ -226,12 +252,14 @@ types/
 - **Testing** - Playwright E2E tests
 
 ### Debug Tools
+
 - **Weather debug panel** - API testing utilities
 - **Dialog manager** - Modal state inspection
 - **Theme switcher** - Runtime theme changes
 - **Console logging** - Structured debug output
 
 ### Performance
+
 - **Code splitting** - Automatic route-based splitting
 - **Tree shaking** - Dead code elimination
 - **Asset optimization** - Image and font optimization
@@ -257,12 +285,14 @@ frontend/src/
 ## 🔄 Redundancies & Optimizations
 
 ### Identified Redundancies
+
 1. **Navigation components** - Multiple similar nav implementations
 2. **Button variants** - Overlapping button component functionality
 3. **Layout components** - Similar grid/layout patterns
 4. **Dialog components** - Multiple test dialogs with similar structure
 
 ### Optimization Opportunities
+
 1. **Component consolidation** - Merge similar components
 2. **Prop standardization** - Consistent component APIs
 3. **Style deduplication** - Shared CSS patterns
@@ -271,6 +301,7 @@ frontend/src/
 ## 🎪 Capabilities
 
 ### Interactive Features
+
 - **Smooth animations** - GSAP-powered interactions
 - **Responsive design** - Works across all devices
 - **Accessibility** - WCAG compliant with high-contrast mode
@@ -279,6 +310,7 @@ frontend/src/
 - **Weather integration** - Real-time weather data
 
 ### Technical Capabilities
+
 - **Type safety** - Full TypeScript coverage
 - **Server-side rendering** - SEO-friendly pages
 - **Progressive enhancement** - Works without JavaScript
@@ -287,6 +319,7 @@ frontend/src/
 - **Developer experience** - Hot reload, debugging tools
 
 ### Content Management
+
 - **Accordion system** - Expandable content sections
 - **Card layouts** - Flexible content presentation
 - **Media handling** - Images, videos, and graphics
@@ -295,4 +328,4 @@ frontend/src/
 
 ---
 
-*Generated: February 2025 | Framework: Svelte 5 + SvelteKit*
+_Generated: February 2025 | Framework: Svelte 5 + SvelteKit_

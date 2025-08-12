@@ -144,7 +144,12 @@
     {
       "q": "Do you work with mobile development?",
       "a": "I've built mobile web applications and have some SwiftUI experience for iOS. I prefer responsive web apps over native unless there's a specific platform need.",
-      "tags": ["mobile-development", "swiftui", "responsive-web", "platform-choice"]
+      "tags": [
+        "mobile-development",
+        "swiftui",
+        "responsive-web",
+        "platform-choice"
+      ]
     },
     {
       "q": "What about performance optimization?",
@@ -154,7 +159,11 @@
     {
       "q": "How do you handle browser compatibility?",
       "a": "Progressive enhancement and feature detection. I build core functionality that works everywhere, then enhance with modern features for capable browsers.",
-      "tags": ["browser-compatibility", "progressive-enhancement", "feature-detection"]
+      "tags": [
+        "browser-compatibility",
+        "progressive-enhancement",
+        "feature-detection"
+      ]
     },
     {
       "q": "What's your approach to accessibility?",

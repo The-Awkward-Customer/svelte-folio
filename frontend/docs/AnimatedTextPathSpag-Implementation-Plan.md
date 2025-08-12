@@ -29,10 +29,10 @@ interface PathSegment {
 }
 
 interface OrganicPathConfig extends PathConfig {
-  wildness: number;           // 0-1 scale for curve variation
-  verticalBounds: number;     // Margin from top/bottom
-  curveCount: number;         // Base number of curves
-  irregularSpacing: boolean;  // Use random spacing
+  wildness: number; // 0-1 scale for curve variation
+  verticalBounds: number; // Margin from top/bottom
+  curveCount: number; // Base number of curves
+  irregularSpacing: boolean; // Use random spacing
 }
 ```
 
@@ -50,6 +50,7 @@ function generateOrganicPath(config: OrganicPathConfig): PathPoint[] {
 ```
 
 Key features:
+
 - **Irregular spacing** between curves (0.5 to 1.5x average)
 - **Organic vertical positioning** with alternating high/low tendencies
 - **Wildness-based variation** affecting curve count and amplitude
@@ -67,8 +68,10 @@ function detectAllIntersections(paths: PathData[]): PathIntersection[] {
 }
 
 function lineIntersection(
-  p1: PathPoint, p2: PathPoint, 
-  p3: PathPoint, p4: PathPoint
+  p1: PathPoint,
+  p2: PathPoint,
+  p3: PathPoint,
+  p4: PathPoint
 ): { x: number; y: number } | null {
   // Standard line-line intersection algorithm
 }
@@ -78,7 +81,7 @@ function lineIntersection(
 
 ```typescript
 function createPathSegments(
-  paths: PathData[], 
+  paths: PathData[],
   intersections: PathIntersection[]
 ): PathSegment[] {
   // 1. Sort intersections by distance along each path
@@ -99,23 +102,27 @@ function renderSegments(segments: PathSegment[], progress: number) {
 ## Implementation Strategy
 
 ### Phase 1: Organic Path Generation
+
 1. **Import and adapt** the organic path generation from AnimatedTextPath.svelte
 2. **Create multiple organic paths** with different wildness and vertical bounds
 3. **Maintain path variation** while ensuring horizontal flow
 
 ### Phase 2: Intersection System
+
 1. **Implement line-line intersection detection**
 2. **Find all intersections** between path pairs
 3. **Assign random depth ordering** at each intersection point
 4. **Create intersection data structure**
 
 ### Phase 3: Segment-Based Rendering
+
 1. **Split paths into segments** between intersections
 2. **Sort segments by render order** at each frame
 3. **Render path+text together** for each segment
 4. **Handle smooth transitions** at intersection points
 
 ### Phase 4: Animation Integration
+
 1. **Maintain GSAP timeline** for smooth animation
 2. **Update segment rendering** based on animation progress
 3. **Optimize performance** for multiple paths and segments
@@ -123,21 +130,25 @@ function renderSegments(segments: PathSegment[], progress: number) {
 ## Key Technical Challenges
 
 ### 1. **Organic Path Generation**
+
 - Adapt the sophisticated curve generation to work with multiple paths
 - Ensure paths have enough variation to create interesting intersections
 - Maintain horizontal flow while preserving organic curvature
 
 ### 2. **Intersection Detection**
+
 - Efficiently detect intersections between all path pairs
 - Handle edge cases (tangent intersections, multiple intersections)
 - Maintain performance with complex paths
 
 ### 3. **Segment Rendering**
+
 - Smoothly transition between segments at intersections
 - Maintain text continuity across segment boundaries
 - Handle depth sorting efficiently
 
 ### 4. **Visual Continuity**
+
 - Ensure paths appear continuous despite segment-based rendering
 - Handle text rotation and positioning at intersection points
 - Maintain animation smoothness
@@ -145,6 +156,7 @@ function renderSegments(segments: PathSegment[], progress: number) {
 ## Expected Outcome
 
 The enhanced component will provide:
+
 - **True spaghetti-like appearance** with organic, intertwining paths
 - **Random over/under relationships** at intersections for chaotic beauty
 - **Unified path+text rendering** where both respect the same depth relationships

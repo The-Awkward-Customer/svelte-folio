@@ -218,7 +218,12 @@
     {
       "q": "How do you handle project changes?",
       "a": "Change is normal in good projects. I build flexibility into timelines and have clear processes for handling scope changes with transparent impact assessment.",
-      "tags": ["project-changes", "scope-changes", "flexibility", "impact-assessment"]
+      "tags": [
+        "project-changes",
+        "scope-changes",
+        "flexibility",
+        "impact-assessment"
+      ]
     }
   ],
   "specific_scenarios": [

@@ -1,7 +1,7 @@
 // frontend/src/lib/server/embeddings.ts
 import { HUGGING_FACE_INFERENCE_KEY } from '$env/static/private';
 
-const EMBEDDING_MODEL = 'BAAI/bge-small-en-v1.5';  // Popular embedding model
+const EMBEDDING_MODEL = 'BAAI/bge-small-en-v1.5'; // Popular embedding model
 const EMBEDDING_DIMENSION = 384;
 
 export async function generateEmbedding(text: string): Promise<number[]> {
@@ -11,16 +11,16 @@ export async function generateEmbedding(text: string): Promise<number[]> {
       {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${HUGGING_FACE_INFERENCE_KEY}`,
-          'Content-Type': 'application/json'
+          Authorization: `Bearer ${HUGGING_FACE_INFERENCE_KEY}`,
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           inputs: text,
-          options: { 
+          options: {
             wait_for_model: true,
-            use_cache: true
-          }
-        })
+            use_cache: true,
+          },
+        }),
       }
     );
 
@@ -30,17 +30,17 @@ export async function generateEmbedding(text: string): Promise<number[]> {
     }
 
     const result = await response.json();
-    
+
     // This model returns embeddings directly as an array
     if (!Array.isArray(result) || result.length !== EMBEDDING_DIMENSION) {
-      console.error('Unexpected response:', { 
+      console.error('Unexpected response:', {
         type: Array.isArray(result) ? 'array' : typeof result,
         length: Array.isArray(result) ? result.length : 'N/A',
-        sample: JSON.stringify(result).slice(0, 100)
+        sample: JSON.stringify(result).slice(0, 100),
       });
       throw new Error(`Invalid embedding response`);
     }
-    
+
     return result;
   } catch (error) {
     console.error('Error generating embedding:', error);

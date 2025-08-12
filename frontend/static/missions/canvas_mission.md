@@ -209,40 +209,46 @@ static/
 ```typescript
 // Core engine - framework agnostic
 class AnimationEngine {
-  loadAnimation(name: string): Promise<AnimationSequence>
-  createRenderer(canvas: HTMLCanvasElement, options: RenderOptions): AnimationRenderer
-  preloadAll(animations: string[]): Promise<void> // All animations are critical
-  checkReducedMotion(): boolean // Accessibility check
+  loadAnimation(name: string): Promise<AnimationSequence>;
+  createRenderer(
+    canvas: HTMLCanvasElement,
+    options: RenderOptions
+  ): AnimationRenderer;
+  preloadAll(animations: string[]): Promise<void>; // All animations are critical
+  checkReducedMotion(): boolean; // Accessibility check
 }
 
 // Renderer with trigger support
 class AnimationRenderer {
-  play(): void
-  pause(): void
-  setTrigger(type: 'auto' | 'viewport' | 'hover' | 'click' | 'manual'): void
-  respectReducedMotion(enabled: boolean): void
+  play(): void;
+  pause(): void;
+  setTrigger(type: 'auto' | 'viewport' | 'hover' | 'click' | 'manual'): void;
+  respectReducedMotion(enabled: boolean): void;
 }
 
 // Svelte-specific wrapper
-export function createCanvasAnimation(animationName: string, options?: AnimationOptions)
+export function createCanvasAnimation(
+  animationName: string,
+  options?: AnimationOptions
+);
 ```
 
 ### Component API Design
 
 ```svelte
 <!-- Current: Inline text usage (auto-trigger) -->
-<CanvasAnimation 
-  name="stylish-motion" 
-  size="1em" 
+<CanvasAnimation
+  name="stylish-motion"
+  size="1em"
   trigger="viewport"
   delay={200}
-  alt="stylish motion graphic" 
+  alt="stylish motion graphic"
 />
 
 <!-- Future: Interactive usage -->
-<CanvasAnimation 
-  name="hero-animation" 
-  size="256px" 
+<CanvasAnimation
+  name="hero-animation"
+  size="256px"
   trigger="hover"
   class="hero-graphic"
 >
@@ -251,9 +257,9 @@ export function createCanvasAnimation(animationName: string, options?: Animation
 </CanvasAnimation>
 
 <!-- Manual control for complex interactions -->
-<CanvasAnimation 
-  name="portfolio-reveal" 
-  size="100%" 
+<CanvasAnimation
+  name="portfolio-reveal"
+  size="100%"
   trigger="manual"
   bind:this={animationRef}
 />
@@ -265,7 +271,7 @@ export function createCanvasAnimation(animationName: string, options?: Animation
 // Text integration
 const textAnimations = ['stylish-motion', 'intuitive-motion', 'rapid-motion'];
 
-// Card/header integration  
+// Card/header integration
 const heroAnimation = 'large-hero-motion';
 
 // Gallery integration
@@ -316,7 +322,9 @@ const portfolioAnimations = ['project-1', 'project-2', 'project-3'];
 
 ```typescript
 // Automatic reduced motion detection
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const prefersReducedMotion = window.matchMedia(
+  '(prefers-reduced-motion: reduce)'
+).matches;
 
 if (prefersReducedMotion) {
   // Option 1: Show static fallback image

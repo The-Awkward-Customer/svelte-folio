@@ -1,4 +1,8 @@
-import { COMPOSED_DIALOGS, type DialogId, isValidDialogId } from '../config/dialogRegistry.js';
+import {
+  COMPOSED_DIALOGS,
+  type DialogId,
+  isValidDialogId,
+} from '../config/dialogRegistry.js';
 import { createLogger } from '$lib/utils/logger';
 
 const log = createLogger('dialog');
@@ -14,7 +18,7 @@ function getNextDialogInSequence(currentId: DialogId | null): DialogId | null {
   if (!currentId) {
     return COMPOSED_DIALOGS[0];
   }
-  
+
   const currentIndex = COMPOSED_DIALOGS.indexOf(currentId);
   const nextIndex = (currentIndex + 1) % COMPOSED_DIALOGS.length;
   return COMPOSED_DIALOGS[nextIndex];
@@ -26,7 +30,7 @@ function createDialogManager() {
   let state = $state<DialogCycleState>({
     activeDialogId: null,
     dialogHistory: [],
-    hasCompletedCycle: false
+    hasCompletedCycle: false,
   });
 
   // Derived runes
@@ -44,20 +48,20 @@ function createDialogManager() {
       }
 
       state.activeDialogId = dialogId;
-      
+
       // Add to history if not already viewed
       if (!state.dialogHistory.includes(dialogId)) {
         state.dialogHistory = [...state.dialogHistory, dialogId];
-        
+
         // Check if all dialogs have been viewed
         if (state.dialogHistory.length >= COMPOSED_DIALOGS.length) {
           state.hasCompletedCycle = true;
         }
-        
+
         // Save to localStorage
         saveToStorage();
       }
-      
+
       return true;
     },
 
@@ -81,7 +85,7 @@ function createDialogManager() {
       state.activeDialogId = null;
       state.dialogHistory = [];
       state.hasCompletedCycle = false;
-      
+
       // Clear storage
       if (typeof window !== 'undefined') {
         localStorage.removeItem('svelte-folio:dialog-state');
@@ -100,17 +104,20 @@ function createDialogManager() {
     getCycleStartTime(): number {
       // Simple implementation - just return current time
       return Date.now();
-    }
+    },
   };
 
   // Simple storage functions
   function saveToStorage() {
     if (typeof window !== 'undefined') {
       try {
-        localStorage.setItem('svelte-folio:dialog-state', JSON.stringify({
-          history: state.dialogHistory,
-          completed: state.hasCompletedCycle
-        }));
+        localStorage.setItem(
+          'svelte-folio:dialog-state',
+          JSON.stringify({
+            history: state.dialogHistory,
+            completed: state.hasCompletedCycle,
+          })
+        );
       } catch (e) {
         log.warn('Failed to save dialog state:', e as any);
       }
@@ -135,7 +142,7 @@ function createDialogManager() {
   // Initialize from storage
   if (typeof window !== 'undefined') {
     loadFromStorage();
-    
+
     // Expose dev functions in development
     if (import.meta.env.DEV) {
       (window as any).__dialogManager = actions;
@@ -145,14 +152,24 @@ function createDialogManager() {
 
   return {
     // State getters
-    get currentDialog() { return currentDialog; },
-    get dialogHistory() { return dialogHistory; },
-    get cycleCompleted() { return cycleCompleted; },
-    get isDialogOpen() { return isDialogOpen; },
-    get state() { return state; },
-    
+    get currentDialog() {
+      return currentDialog;
+    },
+    get dialogHistory() {
+      return dialogHistory;
+    },
+    get cycleCompleted() {
+      return cycleCompleted;
+    },
+    get isDialogOpen() {
+      return isDialogOpen;
+    },
+    get state() {
+      return state;
+    },
+
     // Actions
-    ...actions
+    ...actions,
   };
 }
 

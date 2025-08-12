@@ -16,7 +16,7 @@ export async function checkRateLimit(
     const { data, error } = await supabase.rpc('check_rate_limit', {
       p_identifier: identifier,
       p_limit: limit,
-      p_window_seconds: windowSeconds
+      p_window_seconds: windowSeconds,
     });
 
     if (error) {
@@ -27,7 +27,7 @@ export async function checkRateLimit(
 
     return {
       allowed: data[0]?.allowed || false,
-      remaining: data[0]?.remaining || 0
+      remaining: data[0]?.remaining || 0,
     };
   } catch (error) {
     console.error('Rate limit error:', error);
@@ -47,7 +47,7 @@ export async function logUnansweredQuestion(
     await supabase.from('unanswered_questions').insert({
       question,
       similarity_score: similarityScore,
-      user_ip: userIp
+      user_ip: userIp,
     });
   } catch (error) {
     console.error('Failed to log unanswered question:', error);
@@ -67,7 +67,7 @@ export async function searchSimilarQAs(
     const { data, error } = await supabase.rpc('match_qa', {
       query_embedding: embedding,
       similarity_threshold: threshold,
-      match_count: limit
+      match_count: limit,
     });
 
     if (error) {
@@ -98,7 +98,7 @@ export async function insertQAPair(
         question,
         answer,
         category,
-        tags
+        tags,
       })
       .select()
       .single();
@@ -128,7 +128,7 @@ export async function insertEmbedding(
         qa_id: qaId,
         content,
         embedding,
-        content_type: contentType
+        content_type: contentType,
       })
       .select()
       .single();
@@ -152,12 +152,12 @@ export async function testSupabaseConnection(): Promise<boolean> {
       .from('qa_pairs')
       .select('id')
       .limit(1);
-    
+
     if (error) {
       console.error('Supabase connection error:', error);
       return false;
     }
-    
+
     return true;
   } catch (err) {
     console.error('Supabase test failed:', err);

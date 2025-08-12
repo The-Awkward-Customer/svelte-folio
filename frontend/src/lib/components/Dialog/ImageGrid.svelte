@@ -14,15 +14,24 @@
     console.error('DialogSectionGrid variant "two" requires areaB content.');
   }
   if (variant === 'three' && (!areaB || !areaC)) {
-    console.error('DialogSectionGrid variant "three" requires areaB and areaC content.');
+    console.error(
+      'DialogSectionGrid variant "three" requires areaB and areaC content.'
+    );
   }
   if (variant === 'four' && (!areaB || !areaC || !areaD)) {
-    console.error('DialogSectionGrid variant "four" requires areaB, areaC, and areaD content.');
+    console.error(
+      'DialogSectionGrid variant "four" requires areaB, areaC, and areaD content.'
+    );
   }
-
 </script>
 
-<div class="dialog-section-grid" class:variant-one="{variant === 'one'}" class:variant-two="{variant === 'two'}" class:variant-three="{variant === 'three'}" class:variant-four="{variant === 'four'}">
+<div
+  class="dialog-section-grid"
+  class:variant-one={variant === 'one'}
+  class:variant-two={variant === 'two'}
+  class:variant-three={variant === 'three'}
+  class:variant-four={variant === 'four'}
+>
   <div class="grid-area area-a">{@render areaA()}</div>
   {#if areaB}
     <div class="grid-area area-b">{@render areaB()}</div>
@@ -52,41 +61,48 @@
   .variant-one {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas:
-      "A";
+    grid-template-areas: 'A';
   }
 
   .variant-two {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 2fr;
     grid-template-areas:
-      "A"
-      "B";
+      'A'
+      'B';
   }
 
   .variant-three {
     grid-template-columns: 1fr;
     grid-template-rows: 4fr 3fr 2fr;
     grid-template-areas:
-      "A"
-      "B"
-      "C";
+      'A'
+      'B'
+      'C';
   }
 
   .variant-four {
     grid-template-columns: 1fr;
     grid-template-rows: 2fr 2fr 2fr 1fr;
     grid-template-areas:
-      "A"
-      "B"
-      "D"
-      "C";
+      'A'
+      'B'
+      'D'
+      'C';
   }
 
-  .area-a { grid-area: A; }
-  .area-b { grid-area: B; }
-  .area-c { grid-area: C; }
-  .area-d { grid-area: D; }
+  .area-a {
+    grid-area: A;
+  }
+  .area-b {
+    grid-area: B;
+  }
+  .area-c {
+    grid-area: C;
+  }
+  .area-d {
+    grid-area: D;
+  }
 
   /* Desktop Styles */
   @media (min-width: 896px) {
@@ -97,36 +113,34 @@
     .variant-one {
       grid-template-columns: 1fr;
       grid-template-rows: 1fr;
-      grid-template-areas:
-        "A";
+      grid-template-areas: 'A';
     }
 
     .variant-two {
       grid-template-columns: 2fr 1fr;
       grid-template-rows: 1fr;
-      grid-template-areas:
-        "A B";
+      grid-template-areas: 'A B';
     }
 
     .variant-three {
       grid-template-columns: 2fr 1fr;
       grid-template-rows: repeat(5, 1fr);
       grid-template-areas:
-        "A B"
-        "A B"
-        "A B"
-        "A C"
-        "A C";
+        'A B'
+        'A B'
+        'A B'
+        'A C'
+        'A C';
     }
 
     .variant-four {
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: repeat(4, 1fr);
       grid-template-areas:
-        "A B D"
-        "A B D"
-        "A B D"
-        "A C D";
+        'A B D'
+        'A B D'
+        'A B D'
+        'A C D';
     }
   }
 </style>
