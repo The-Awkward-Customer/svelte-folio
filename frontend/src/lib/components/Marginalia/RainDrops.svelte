@@ -34,8 +34,8 @@
       context.lineWidth = 1;
       context.beginPath();
       context.rect(
-        this.x - this.size/2,
-        this.y - this.size/2,
+        this.x - this.size / 2,
+        this.y - this.size / 2,
         this.size,
         this.size
       );
@@ -58,15 +58,19 @@
       this.opacity = 1;
       this.fadeSpeed = 0.5;
       this.ripple = null;
-      
+
       setTimeout(() => {
-        this.ripple = new Ripple(this.x + this.size/2, this.y + this.size/2, this.size);
+        this.ripple = new Ripple(
+          this.x + this.size / 2,
+          this.y + this.size / 2,
+          this.size
+        );
       }, 50);
     }
 
     update(): boolean {
       this.opacity -= this.fadeSpeed * 0.01;
-      
+
       if (this.ripple && !this.ripple.update()) {
         this.ripple = null;
       }
@@ -77,7 +81,7 @@
     draw(context: CanvasRenderingContext2D): void {
       context.fillStyle = `rgba(1, 8, 28, ${this.opacity})`;
       context.fillRect(this.x, this.y, this.size, this.size);
-      
+
       if (this.ripple) {
         this.ripple.draw(context);
       }
@@ -87,8 +91,8 @@
   function animate(): void {
     if (!ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    drops = drops.filter(drop => {
+
+    drops = drops.filter((drop) => {
       const isAlive = drop.update();
       if (isAlive && ctx) {
         drop.draw(ctx);
@@ -101,7 +105,7 @@
 
   function addDrop(): void {
     drops.push(new Drop());
-    
+
     const delay = 300 + Math.random() * 700;
     setTimeout(addDrop, delay);
   }
@@ -140,4 +144,4 @@
 <canvas
   bind:this={canvas}
   style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: -1;"
-></canvas> 
+></canvas>

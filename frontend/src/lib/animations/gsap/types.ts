@@ -15,18 +15,18 @@ export interface TextAnimationOptions {
  * Options specific to character shuffle animation
  */
 export interface ShuffleOptions extends TextAnimationOptions {
-  iterations?: number;        // Number of random character cycles (default: 4)
-  characters?: string;        // Character set for randomization
-  preserveSpaces?: boolean;   // Keep spaces intact during animation
-  startDelay?: number;        // Delay before starting the shuffle
+  iterations?: number; // Number of random character cycles (default: 4)
+  characters?: string; // Character set for randomization
+  preserveSpaces?: boolean; // Keep spaces intact during animation
+  startDelay?: number; // Delay before starting the shuffle
 }
 
 /**
  * Options for wave motion animation (future implementation)
  */
 export interface WaveOptions extends TextAnimationOptions {
-  amplitude?: number;         // Wave height in pixels
-  frequency?: number;         // Wave speed multiplier
+  amplitude?: number; // Wave height in pixels
+  frequency?: number; // Wave speed multiplier
   direction?: 'up' | 'down' | 'both';
 }
 

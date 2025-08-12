@@ -5,7 +5,7 @@ export type {
   IconName,
   IconProps,
   WeatherIconName,
-  SimpleIconName
+  SimpleIconName,
 } from './icons.js';
 
 // Export weather types
@@ -18,7 +18,7 @@ export type {
   IPInfo,
   LocationData,
   LoadingStateType,
-  WeatherErrorTypeType
+  WeatherErrorTypeType,
 } from './weather.js';
 
 // Export chat types
@@ -35,7 +35,7 @@ export type {
   ChatMessagesProps,
   ChatInputProps,
   ChatError,
-  ChatConfig
+  ChatConfig,
 } from './chat.js';
 
 export {
@@ -45,14 +45,14 @@ export {
   WEATHER_API_BASE,
   IP_INFO_API,
   CACHE_DURATION,
-  GEO_OPTIONS
+  GEO_OPTIONS,
 } from './weather.js';
 
 // Export debug types (re-exported from weatherDebug.ts)
 export type {
   WeatherDebugState,
   MockWeatherScenario,
-  MockLocationScenario
+  MockLocationScenario,
 } from './weatherDebug.js';
 
 // Usage examples:

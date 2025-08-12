@@ -7,8 +7,8 @@ export type AnimationManifest = {
     duration: number;
     fps: number;
     description: string;
-    format: 'svg';  // SVG only
-    viewBox?: string;  // SVG viewBox for consistent scaling
+    format: 'svg'; // SVG only
+    viewBox?: string; // SVG viewBox for consistent scaling
     preserveAspectRatio?: string;
   };
 };

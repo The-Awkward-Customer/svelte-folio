@@ -26,16 +26,16 @@ import { shuffleText, typewriterText } from '$lib/animations/gsap';
 <script lang="ts">
   import { onMount } from 'svelte';
   import { shuffleText } from '$lib/animations/gsap';
-  
+
   let textElement: HTMLElement;
-  
+
   onMount(() => {
     if (textElement) {
       shuffleText(textElement, 'HELLO WORLD', {
         duration: 1.2,
         iterations: 2,
         stagger: 0.05,
-        delay: 0.1
+        delay: 0.1,
       });
     }
   });
@@ -50,14 +50,14 @@ import { shuffleText, typewriterText } from '$lib/animations/gsap';
 <script lang="ts">
   import { onMount } from 'svelte';
   import { typewriterText } from '$lib/animations/gsap';
-  
+
   let textElement: HTMLElement;
-  
+
   onMount(() => {
     if (textElement) {
       typewriterText(textElement, 'Hello World', {
         duration: 2,
-        delay: 0.5
+        delay: 0.5,
       });
     }
   });
@@ -86,15 +86,15 @@ The accordion component demonstrates the integration pattern:
 <script lang="ts">
   import { onMount } from 'svelte';
   import { shuffleText } from '$lib/animations/gsap';
-  
+
   interface Props {
     label: string;
     enableShuffleAnimation?: boolean;
   }
-  
+
   let { label, enableShuffleAnimation = true }: Props = $props();
   let labelElement: HTMLElement | undefined;
-  
+
   onMount(() => {
     if (enableShuffleAnimation) {
       setTimeout(() => {
@@ -103,7 +103,7 @@ The accordion component demonstrates the integration pattern:
             duration: 1.2,
             iterations: 4,
             stagger: 0.05,
-            delay: 0.1
+            delay: 0.1,
           });
         }
       }, 50);
@@ -153,3 +153,4 @@ frontend/src/lib/animations/gsap/
 ├── types.ts             # TypeScript definitions
 ├── utils.ts             # Helper utilities
 └── README.md            # This documentation
+```

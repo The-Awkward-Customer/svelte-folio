@@ -7,6 +7,7 @@ This document outlines the migration from the current fetch-based animation load
 ## Problem Statement
 
 The current AnimationEngine uses runtime `fetch()` calls which cause:
+
 - **NS_BINDING_ABORTED errors** - Network requests cancelled due to component lifecycle conflicts
 - **Build incompatibility** - Vite cannot statically analyze dynamic fetch paths
 - **Poor performance** - No asset optimization, caching, or bundling
@@ -40,13 +41,14 @@ const response = await fetch(`/animations/${name}/${frame}.webp`);
 // New approach (Vite-compatible)
 const imageModules = import.meta.glob('/src/lib/animations/assets/**/*.webp', {
   eager: false,
-  as: 'url'
+  as: 'url',
 });
 ```
 
 ### 3. Fallback Mechanism
 
 Implement graceful degradation:
+
 1. Try Vite import first
 2. Fall back to static path if needed
 3. Log loading method for debugging
@@ -54,21 +56,25 @@ Implement graceful degradation:
 ## Implementation Steps
 
 ### Phase 1: Asset Migration
+
 1. Create new directory structure
 2. Move all animation assets
 3. Update manifest location
 
 ### Phase 2: Engine Refactor
+
 1. Implement `import.meta.glob` loading
 2. Add fallback mechanism
 3. Update error handling
 
 ### Phase 3: Component Updates
+
 1. Update CanvasAnimation component
 2. Ensure proper cleanup
 3. Add loading states
 
 ### Phase 4: Testing
+
 1. Development environment testing
 2. Production build verification
 3. Cross-browser compatibility
@@ -88,19 +94,25 @@ Implement graceful degradation:
 ```typescript
 export class AnimationEngine {
   private imageModules: Record<string, () => Promise<string>>;
-  
+
   constructor() {
     // Vite static import discovery
-    this.imageModules = import.meta.glob('/src/lib/animations/assets/**/*.webp', {
-      eager: false,
-      as: 'url'
-    });
+    this.imageModules = import.meta.glob(
+      '/src/lib/animations/assets/**/*.webp',
+      {
+        eager: false,
+        as: 'url',
+      }
+    );
   }
-  
-  private async loadFrame(animationName: string, frameNumber: number): Promise<HTMLImageElement> {
+
+  private async loadFrame(
+    animationName: string,
+    frameNumber: number
+  ): Promise<HTMLImageElement> {
     const paddedNumber = frameNumber.toString().padStart(5, '0');
     const moduleKey = `/src/lib/animations/assets/${animationName}/${paddedNumber}.webp`;
-    
+
     try {
       // Try Vite import first
       if (this.imageModules[moduleKey]) {
@@ -110,9 +122,11 @@ export class AnimationEngine {
     } catch (error) {
       console.warn(`Vite import failed for ${moduleKey}, trying fallback`);
     }
-    
+
     // Fallback to static path
-    return this.loadImageFromUrl(`/animations/${animationName}/${paddedNumber}.webp`);
+    return this.loadImageFromUrl(
+      `/animations/${animationName}/${paddedNumber}.webp`
+    );
   }
 }
 ```

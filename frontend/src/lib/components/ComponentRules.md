@@ -3,6 +3,7 @@
 ### Last Updated: 28/07/2025
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [Snippets: The New Slots](#snippets-the-new-slots)
 3. [Component Architecture](#component-architecture)
@@ -19,6 +20,7 @@
 Svelte 5 introduces significant improvements to component composition with the new Snippets API, replacing the traditional slot system. This guide covers best practices for building scalable, type-safe component libraries using modern design system principles.
 
 ### Key Principles
+
 - **Type Safety First**: Leverage TypeScript for compile-time guarantees
 - **Composability**: Build flexible, reusable components
 - **Performance**: Utilize Svelte 5's fine-grained reactivity
@@ -34,7 +36,7 @@ Snippets are Svelte 5's replacement for slots, offering better type safety and m
 <!-- Button.svelte -->
 <script lang="ts">
   import type { Snippet } from 'svelte';
-  
+
   interface ButtonProps {
     variant?: 'primary' | 'secondary' | 'ghost';
     size?: 'sm' | 'md' | 'lg';
@@ -42,8 +44,8 @@ Snippets are Svelte 5's replacement for slots, offering better type safety and m
     startIcon?: Snippet;
     endIcon?: Snippet;
   }
-  
-  let { 
+
+  let {
     variant = 'primary',
     size = 'md',
     children,
@@ -53,18 +55,15 @@ Snippets are Svelte 5's replacement for slots, offering better type safety and m
   }: ButtonProps = $props();
 </script>
 
-<button 
-  class="btn btn--{variant} btn--{size}"
-  {...restProps}
->
+<button class="btn btn--{variant} btn--{size}" {...restProps}>
   {#if startIcon}
     <span class="btn__icon btn__icon--start">
       {@render startIcon()}
     </span>
   {/if}
-  
+
   {@render children()}
-  
+
   {#if endIcon}
     <span class="btn__icon btn__icon--end">
       {@render endIcon()}
@@ -79,13 +78,13 @@ Snippets are Svelte 5's replacement for slots, offering better type safety and m
 <!-- List.svelte -->
 <script lang="ts" generics="T">
   import type { Snippet } from 'svelte';
-  
+
   interface ListProps<T> {
     items: T[];
     renderItem: Snippet<[T, number]>;
     emptyState?: Snippet;
   }
-  
+
   let { items, renderItem, emptyState }: ListProps<T> = $props();
 </script>
 
@@ -110,21 +109,16 @@ Snippets are Svelte 5's replacement for slots, offering better type safety and m
 <!-- Card.svelte -->
 <script lang="ts">
   import type { Snippet } from 'svelte';
-  
+
   interface CardProps {
     children: Snippet;
     header?: Snippet<[{ isExpanded: boolean }]>;
     footer?: Snippet;
     expandable?: boolean;
   }
-  
-  let { 
-    children, 
-    header, 
-    footer,
-    expandable = false 
-  }: CardProps = $props();
-  
+
+  let { children, header, footer, expandable = false }: CardProps = $props();
+
   let isExpanded = $state(false);
 </script>
 
@@ -133,17 +127,20 @@ Snippets are Svelte 5's replacement for slots, offering better type safety and m
     <header class="card__header">
       {@render header({ isExpanded })}
       {#if expandable}
-        <button onclick={() => isExpanded = !isExpanded}>
+        <button onclick={() => (isExpanded = !isExpanded)}>
           {isExpanded ? 'Collapse' : 'Expand'}
         </button>
       {/if}
     </header>
   {/if}
-  
-  <div class="card__content" class:card__content--collapsed={expandable && !isExpanded}>
+
+  <div
+    class="card__content"
+    class:card__content--collapsed={expandable && !isExpanded}
+  >
     {@render children()}
   </div>
-  
+
   {#if footer}
     <footer class="card__footer">
       {@render footer()}
@@ -218,7 +215,7 @@ export interface ButtonProps extends HTMLButtonAttributes {
 <!-- Select.svelte -->
 <script lang="ts" generics="T extends { id: string; label: string }">
   import type { Snippet } from 'svelte';
-  
+
   interface SelectProps<T> {
     options: T[];
     value?: T;
@@ -227,16 +224,16 @@ export interface ButtonProps extends HTMLButtonAttributes {
     renderOption?: Snippet<[T]>;
     renderValue?: Snippet<[T]>;
   }
-  
+
   let {
     options,
     value = $bindable(),
     onchange,
     placeholder = 'Select an option',
     renderOption,
-    renderValue
+    renderValue,
   }: SelectProps<T> = $props();
-  
+
   let isOpen = $state(false);
 </script>
 
@@ -270,29 +267,31 @@ export type WithChildren<T> = T & {
 <script lang="ts">
   import { setContext } from 'svelte';
   import type { Snippet } from 'svelte';
-  
+
   interface FormProps {
     onsubmit?: (data: FormData) => void;
     children: Snippet;
   }
-  
+
   let { onsubmit, children }: FormProps = $props();
-  
+
   const form = {
     errors: $state({}),
     touched: $state({}),
     setError: (field: string, error: string) => {
       form.errors[field] = error;
-    }
+    },
   };
-  
+
   setContext('form', form);
 </script>
 
-<form on:submit|preventDefault={(e) => {
-  const formData = new FormData(e.currentTarget);
-  onsubmit?.(formData);
-}}>
+<form
+  on:submit|preventDefault={(e) => {
+    const formData = new FormData(e.currentTarget);
+    onsubmit?.(formData);
+  }}
+>
   {@render children()}
 </form>
 ```
@@ -302,16 +301,16 @@ export type WithChildren<T> = T & {
 <script lang="ts">
   import { getContext } from 'svelte';
   import type { Snippet } from 'svelte';
-  
+
   interface FormFieldProps {
     name: string;
     label: string;
     children: Snippet;
     error?: string;
   }
-  
+
   let { name, label, children, error }: FormFieldProps = $props();
-  
+
   const form = getContext('form');
   const fieldError = $derived(error || form?.errors[name]);
 </script>
@@ -331,15 +330,15 @@ export type WithChildren<T> = T & {
 <!-- Text.svelte -->
 <script lang="ts" generics="T extends keyof HTMLElementTagNameMap = 'span'">
   import type { Snippet } from 'svelte';
-  
+
   interface TextProps<T> {
     as?: T;
     variant?: 'body' | 'heading' | 'caption';
     size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
     children: Snippet;
   }
-  
-  let { 
+
+  let {
     as = 'span' as T,
     variant = 'body',
     size = 'md',
@@ -348,8 +347,8 @@ export type WithChildren<T> = T & {
   }: TextProps<T> = $props();
 </script>
 
-<svelte:element 
-  this={as} 
+<svelte:element
+  this={as}
   class="text text--{variant} text--{size}"
   {...restProps}
 >
@@ -364,22 +363,22 @@ export type WithChildren<T> = T & {
 <script lang="ts">
   import { setContext } from 'svelte';
   import type { Snippet } from 'svelte';
-  
+
   interface Theme {
     colors: Record<string, string>;
     spacing: Record<string, string>;
     // ... other tokens
   }
-  
+
   interface ThemeProviderProps {
     theme: Theme;
     children: Snippet;
   }
-  
+
   let { theme, children }: ThemeProviderProps = $props();
-  
+
   setContext('theme', theme);
-  
+
   $effect(() => {
     // Apply CSS custom properties
     Object.entries(theme.colors).forEach(([key, value]) => {
@@ -436,14 +435,14 @@ export const colors = {
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
-  
+
   /* Typography */
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;
   --font-size-lg: 1.125rem;
   --font-size-xl: 1.25rem;
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
@@ -462,15 +461,15 @@ interface ComponentProps {
   isDisabled?: boolean;
   isLoading?: boolean;
   hasError?: boolean;
-  
+
   // Event handlers - use "on" prefix
   onclick?: (event: MouseEvent) => void;
   onchange?: (value: string) => void;
-  
+
   // Render props - use "render" prefix
   renderHeader?: Snippet;
   renderItem?: Snippet<[Item]>;
-  
+
   // Variants - use descriptive names
   variant?: 'primary' | 'secondary';
   size?: 'sm' | 'md' | 'lg';
@@ -482,17 +481,17 @@ interface ComponentProps {
 ```svelte
 <script lang="ts">
   import type { HTMLButtonAttributes } from 'svelte/elements';
-  
+
   interface ButtonProps extends HTMLButtonAttributes {
     variant?: 'primary' | 'secondary';
   }
-  
-  let { 
+
+  let {
     variant = 'primary',
     class: className,
-    ...restProps 
+    ...restProps
   }: ButtonProps = $props();
-  
+
   // Merge classes safely
   const classes = cn('btn', `btn--${variant}`, className);
 </script>
@@ -510,9 +509,9 @@ interface ComponentProps {
 <!-- LazyComponent.svelte -->
 <script lang="ts">
   import { onMount } from 'svelte';
-  
+
   let Component: any;
-  
+
   onMount(async () => {
     const module = await import('./HeavyComponent.svelte');
     Component = module.default;
@@ -534,18 +533,18 @@ interface ComponentProps {
     data: T[];
     filter?: string;
   }
-  
+
   let { data, filter = '' }: DataTableProps<T> = $props();
-  
+
   // Memoized filtered data
   const filteredData = $derived(
-    filter 
-      ? data.filter(item => 
+    filter
+      ? data.filter((item) =>
           JSON.stringify(item).toLowerCase().includes(filter.toLowerCase())
         )
       : data
   );
-  
+
   // Memoized calculations
   const stats = $derived.by(() => {
     return {
@@ -563,32 +562,32 @@ interface ComponentProps {
 <script lang="ts" generics="T">
   import { onMount } from 'svelte';
   import type { Snippet } from 'svelte';
-  
+
   interface VirtualListProps<T> {
     items: T[];
     itemHeight: number;
     renderItem: Snippet<[T, number]>;
   }
-  
+
   let { items, itemHeight, renderItem }: VirtualListProps<T> = $props();
-  
+
   let container: HTMLElement;
   let scrollTop = $state(0);
   let containerHeight = $state(0);
-  
+
   const visibleItems = $derived.by(() => {
     const start = Math.floor(scrollTop / itemHeight);
     const end = Math.ceil((scrollTop + containerHeight) / itemHeight);
-    
+
     return items.slice(start, end).map((item, i) => ({
       item,
       index: start + i,
-      top: (start + i) * itemHeight
+      top: (start + i) * itemHeight,
     }));
   });
 </script>
 
-<div 
+<div
   bind:this={container}
   bind:scrollTop
   bind:clientHeight={containerHeight}
@@ -596,8 +595,8 @@ interface ComponentProps {
   style="height: {items.length * itemHeight}px"
 >
   {#each visibleItems as { item, index, top }}
-    <div 
-      class="virtual-list__item" 
+    <div
+      class="virtual-list__item"
       style="top: {top}px; height: {itemHeight}px"
     >
       {@render renderItem(item, index)}
@@ -620,10 +619,10 @@ test('renders with correct variant class', () => {
   const { container } = render(Button, {
     props: {
       variant: 'secondary',
-      children: (text) => text('Click me')
-    }
+      children: (text) => text('Click me'),
+    },
   });
-  
+
   const button = container.querySelector('button');
   expect(button).toHaveClass('btn--secondary');
 });
@@ -633,10 +632,10 @@ test('calls onclick handler', async () => {
   const { getByRole } = render(Button, {
     props: {
       onclick: handleClick,
-      children: (text) => text('Click me')
-    }
+      children: (text) => text('Click me'),
+    },
   });
-  
+
   await fireEvent.click(getByRole('button'));
   expect(handleClick).toHaveBeenCalledOnce();
 });
@@ -656,10 +655,10 @@ test('renders header snippet with context', () => {
       header: ({ isExpanded }) => {
         return isExpanded ? 'Expanded' : 'Collapsed';
       },
-      children: () => 'Card content'
-    }
+      children: () => 'Card content',
+    },
   });
-  
+
   expect(getByText('Collapsed')).toBeInTheDocument();
 });
 ```
@@ -674,7 +673,7 @@ test('renders header snippet with context', () => {
   import type { HTMLButtonAttributes } from 'svelte/elements';
   import type { Snippet } from 'svelte';
   import { cn } from '$lib/utils/cn';
-  
+
   interface ButtonProps extends HTMLButtonAttributes {
     variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
     size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -684,7 +683,7 @@ test('renders header snippet with context', () => {
     startIcon?: Snippet;
     endIcon?: Snippet;
   }
-  
+
   let {
     variant = 'primary',
     size = 'md',
@@ -697,7 +696,7 @@ test('renders header snippet with context', () => {
     endIcon,
     ...restProps
   }: ButtonProps = $props();
-  
+
   const classes = cn(
     'btn',
     `btn--${variant}`,
@@ -710,27 +709,23 @@ test('renders header snippet with context', () => {
   );
 </script>
 
-<button 
-  class={classes}
-  disabled={disabled || loading}
-  {...restProps}
->
+<button class={classes} disabled={disabled || loading} {...restProps}>
   {#if loading}
     <span class="btn__spinner" aria-hidden="true">
       <svg><!-- spinner svg --></svg>
     </span>
   {/if}
-  
+
   {#if startIcon && !loading}
     <span class="btn__icon btn__icon--start">
       {@render startIcon()}
     </span>
   {/if}
-  
+
   <span class="btn__content">
     {@render children()}
   </span>
-  
+
   {#if endIcon}
     <span class="btn__icon btn__icon--end">
       {@render endIcon()}
@@ -747,41 +742,41 @@ test('renders header snippet with context', () => {
     gap: var(--spacing-sm);
     font-weight: 500;
     transition: all 150ms ease;
-    
+
     /* Size variants */
-    &--xs { 
+    &--xs {
       padding: var(--spacing-xs) var(--spacing-sm);
       font-size: var(--font-size-xs);
     }
-    &--sm { 
+    &--sm {
       padding: var(--spacing-sm) var(--spacing-md);
       font-size: var(--font-size-sm);
     }
-    &--md { 
+    &--md {
       padding: var(--spacing-sm) var(--spacing-lg);
       font-size: var(--font-size-md);
     }
-    
+
     /* Variant styles */
     &--primary {
       background: var(--color-primary-500);
       color: white;
-      
+
       &:hover:not(:disabled) {
         background: var(--color-primary-600);
       }
     }
-    
+
     &--full-width {
       width: 100%;
     }
-    
+
     &--loading {
       position: relative;
       color: transparent;
     }
   }
-  
+
   .btn__spinner {
     position: absolute;
     inset: 0;
@@ -798,19 +793,19 @@ test('renders header snippet with context', () => {
 <!-- FormExample.svelte -->
 <script lang="ts">
   import { Form, FormField, Input, Select, Button } from '$lib/components';
-  
+
   let formData = $state({
     name: '',
     email: '',
-    role: ''
+    role: '',
   });
-  
+
   const roles = [
     { id: 'admin', label: 'Administrator' },
     { id: 'user', label: 'User' },
-    { id: 'guest', label: 'Guest' }
+    { id: 'guest', label: 'Guest' },
   ];
-  
+
   function handleSubmit(data: FormData) {
     console.log('Form submitted:', Object.fromEntries(data));
   }
@@ -818,30 +813,26 @@ test('renders header snippet with context', () => {
 
 <Form onsubmit={handleSubmit}>
   <FormField name="name" label="Name">
-    <Input 
-      bind:value={formData.name}
-      placeholder="Enter your name"
-      required
-    />
+    <Input bind:value={formData.name} placeholder="Enter your name" required />
   </FormField>
-  
+
   <FormField name="email" label="Email">
-    <Input 
+    <Input
       type="email"
       bind:value={formData.email}
       placeholder="Enter your email"
       required
     />
   </FormField>
-  
+
   <FormField name="role" label="Role">
-    <Select 
+    <Select
       options={roles}
       bind:value={formData.role}
       placeholder="Select a role"
     />
   </FormField>
-  
+
   <Button type="submit" variant="primary">
     {#snippet children()}
       Submit Form

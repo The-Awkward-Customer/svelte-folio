@@ -1,4 +1,8 @@
-import { generateEmbedding, generateChatResponse, testOpenRouterConnection } from './openrouter.js';
+import {
+  generateEmbedding,
+  generateChatResponse,
+  testOpenRouterConnection,
+} from './openrouter.js';
 import { testSupabaseConnection, searchSimilarQAs } from './supabase.js';
 
 export async function testPhase2Setup() {
@@ -8,7 +12,9 @@ export async function testPhase2Setup() {
   console.log('1. Testing OpenRouter connection...');
   try {
     const isConnected = await testOpenRouterConnection();
-    console.log(isConnected ? '✅ OpenRouter connected' : '❌ OpenRouter failed');
+    console.log(
+      isConnected ? '✅ OpenRouter connected' : '❌ OpenRouter failed'
+    );
   } catch (error) {
     console.log('❌ OpenRouter error:', error);
   }
@@ -44,7 +50,9 @@ export async function testPhase2Setup() {
   // Test 5: Chat Response
   console.log('\n5. Testing chat response...');
   try {
-    const response = await generateChatResponse('Hello, can you introduce yourself?');
+    const response = await generateChatResponse(
+      'Hello, can you introduce yourself?'
+    );
     console.log('✅ Chat response generated:');
     console.log(`"${response.substring(0, 100)}..."`);
   } catch (error) {

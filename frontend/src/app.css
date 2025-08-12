@@ -169,8 +169,9 @@ select {
   --focus-ring-offset: 2px;
 
   /* Typography */
-  --font-family-main: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-alt: 'Geist-Mono', monospace ;
+  --font-family-main: 'Geist', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, sans-serif;
+  --font-family-alt: 'Geist-Mono', monospace;
 
   /* Font sizes */
   --fs-200: 0.5rem; /* 8px */
@@ -191,8 +192,6 @@ select {
   --fs-1400: 9rem; /* 144px */
   --fs-1500: 10rem; /* 160px */
 
-
-
   /* Semantic font sizes */
   --fs-tiny-clamped: clamp(14px, 4vw, 28px);
   --fs-small-clamped: clamp(16px, 4vw, 32px);
@@ -207,34 +206,34 @@ select {
   --fw-semibold: 600;
   --fw-bold: 700;
   --fw-super: 900;
-  
+
   /* Font styles */
   --font-style-normal: normal;
 
   /* Line height tokens - Base options */
-  --lh-none: 1;           /* 1 - No line spacing */
-  --lh-tight: 1.1;        /* 1.1 - Tight spacing for headlines */
-  --lh-snug: 1.25;        /* 1.25 - Snug spacing for subheadings */
-  --lh-normal: 1.5;       /* 1.5 - Standard reading line height */
-  --lh-relaxed: 1.625;    /* 1.625 - Relaxed spacing for comfortable reading */
-  --lh-loose: 2;          /* 2 - Loose spacing for enhanced readability */
+  --lh-none: 1; /* 1 - No line spacing */
+  --lh-tight: 1.1; /* 1.1 - Tight spacing for headlines */
+  --lh-snug: 1.25; /* 1.25 - Snug spacing for subheadings */
+  --lh-normal: 1.5; /* 1.5 - Standard reading line height */
+  --lh-relaxed: 1.625; /* 1.625 - Relaxed spacing for comfortable reading */
+  --lh-loose: 2; /* 2 - Loose spacing for enhanced readability */
 
   /* Semantic line height tokens */
-  --lh-heading-primary: var(--lh-tight);     /* For main headings (h1, h2) */
-  --lh-heading-secondary: var(--lh-snug);    /* For subheadings (h3, h4, h5, h6) */
-  --lh-body-text: var(--lh-normal);          /* For body paragraphs and content */
-  --lh-body-comfortable: var(--lh-relaxed);  /* For long-form reading content */
-  --lh-caption: var(--lh-snug);              /* For captions and small text */
-  --lh-interface: var(--lh-snug);            /* For UI elements and buttons */
-  --lh-code: var(--lh-normal);               /* For code blocks */
-  --lh-list: var(--lh-normal);               /* For list items */
+  --lh-heading-primary: var(--lh-tight); /* For main headings (h1, h2) */
+  --lh-heading-secondary: var(--lh-snug); /* For subheadings (h3, h4, h5, h6) */
+  --lh-body-text: var(--lh-normal); /* For body paragraphs and content */
+  --lh-body-comfortable: var(--lh-relaxed); /* For long-form reading content */
+  --lh-caption: var(--lh-snug); /* For captions and small text */
+  --lh-interface: var(--lh-snug); /* For UI elements and buttons */
+  --lh-code: var(--lh-normal); /* For code blocks */
+  --lh-list: var(--lh-normal); /* For list items */
 
   /* Text transform */
   --text-transform-none: none;
   --text-transform-uppercase: uppercase;
   --text-transform-lowercase: lowercase;
   --text-transform-titlecase: capitalize;
-  
+
   /* Spacing */
   --space-0: 0rem; /* 0px */
   --space-2xs: 0.125rem; /* 2px */
@@ -259,26 +258,26 @@ select {
   --padding-page-default: var(--space-xl);
 
   /* Width tokens - Fixed widths */
-  --width-2xs: 0.125rem;    /* 2px - matches space-2xs */
-  --width-xs: 0.25rem;      /* 4px - matches space-xs */
-  --width-sm: 0.5rem;       /* 8px - matches space-sm */
-  --width-md: 0.75rem;      /* 12px - matches space-md */
-  --width-base: 1rem;       /* 16px - matches space-base */
-  --width-lg: 1.25rem;      /* 20px - matches space-lg */
-  --width-xl: 1.5rem;       /* 24px - matches space-xl */
-  --width-2xl: 2rem;        /* 32px - matches space-3xl */
-  --width-3xl: 3rem;        /* 48px - matches space-4xl */
-  --width-4xl: 4rem;        /* 64px - matches space-5xl */
-  --width-5xl: 5rem;        /* 80px - matches space-6xl */
-  --width-6xl: 6rem;        /* 96px - matches space-7xl */
-  --width-7xl: 8rem;        /* 128px - matches space-9xl */
-  --width-8xl: 10rem;       /* 160px - matches space-11xl */
+  --width-2xs: 0.125rem; /* 2px - matches space-2xs */
+  --width-xs: 0.25rem; /* 4px - matches space-xs */
+  --width-sm: 0.5rem; /* 8px - matches space-sm */
+  --width-md: 0.75rem; /* 12px - matches space-md */
+  --width-base: 1rem; /* 16px - matches space-base */
+  --width-lg: 1.25rem; /* 20px - matches space-lg */
+  --width-xl: 1.5rem; /* 24px - matches space-xl */
+  --width-2xl: 2rem; /* 32px - matches space-3xl */
+  --width-3xl: 3rem; /* 48px - matches space-4xl */
+  --width-4xl: 4rem; /* 64px - matches space-5xl */
+  --width-5xl: 5rem; /* 80px - matches space-6xl */
+  --width-6xl: 6rem; /* 96px - matches space-7xl */
+  --width-7xl: 8rem; /* 128px - matches space-9xl */
+  --width-8xl: 10rem; /* 160px - matches space-11xl */
 
   /* Width tokens - Content widths */
-  --width-prose: 65ch;      /* Optimal reading width */
-  --width-prose-sm: 27ch;   /* Compact prose width */
-  --width-prose-md: 45ch;   /* Medium prose width */
-  --width-prose-lg: 75ch;   /* Extended prose width */
+  --width-prose: 65ch; /* Optimal reading width */
+  --width-prose-sm: 27ch; /* Compact prose width */
+  --width-prose-md: 45ch; /* Medium prose width */
+  --width-prose-lg: 75ch; /* Extended prose width */
   --width-content-sm: 640px;
   --width-content-base: 768px;
   --width-content-lg: 1024px;
@@ -287,10 +286,10 @@ select {
   --width-content-max: 1920px;
 
   /* Min-width tokens for responsive components */
-  --min-width-card: 25ch;        /* Minimum card width for readability */
-  --min-width-card-sm: 20ch;     /* Compact card minimum */
-  --min-width-card-lg: 30ch;     /* Larger card minimum */
-  --min-width-card-xl: 35ch;     /* Extra large card minimum */
+  --min-width-card: 25ch; /* Minimum card width for readability */
+  --min-width-card-sm: 20ch; /* Compact card minimum */
+  --min-width-card-lg: 30ch; /* Larger card minimum */
+  --min-width-card-xl: 35ch; /* Extra large card minimum */
 
   /* Width tokens - Percentage based */
   --width-quarter: 25%;
@@ -309,16 +308,16 @@ select {
   --bdr-radius-pill: 999px;
 
   /* Opacity */
-  --opacity-invisible: 0.0; /* 0% */
+  --opacity-invisible: 0; /* 0% */
   --opacity-hover: 0.04; /* 4% */
   --opacity-active: 0.08; /* 10% */
   --opacity-selected: 0.12; /* 12% */
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  
+
   /* Transitions */
   --transition-fast: 150ms ease;
   --transition-normal: 300ms ease;
@@ -335,16 +334,21 @@ select {
 
 /* Light theme (default) */
 :root,
-[data-theme="light"] {
+[data-theme='light'] {
   /* Overlay */
   --bg-overlay: rgba(255, 255, 255, 1); /* opaque white overlay */
-  --bg-overlay-semi: rgba(255, 255, 255, 0.8); /* semi-transparent white overlay */
+  --bg-overlay-semi: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* semi-transparent white overlay */
   --bg-overlay-light: rgba(255, 255, 255, 0.4); /* light white overlay */
 
   /* Legacy rgb values for backwards compatibility */
   --bdr-inverse: 255 255 255; /* #FFFFFF */
   --bg-inverse: 255 255 255; /* #FFFFFF */
-  
+
   /* Border inverse with opacity variants */
   --bdr-inverse-80: rgba(255, 255, 255, 0.8);
   --bdr-inverse-60: rgba(255, 255, 255, 0.6);
@@ -428,7 +432,6 @@ select {
   --bg-positive-40: rgba(140, 255, 0, 0.4);
   --bg-positive-20: rgba(140, 255, 0, 0.2);
 
-
   /* Brand Colors */
   --color-brand-jio: rgba(2, 35, 134, 1);
   --color-brand-fresha: rgba(105, 80, 243, 1);
@@ -458,7 +461,7 @@ select {
 }
 
 /* Dark theme */
-[data-theme="dark"] {
+[data-theme='dark'] {
   /* Noise texture - using fg-text for dark theme */
   --noise-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.67' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' fill='white'/%3E%3C/svg%3E");
   --noise-color: rgba(var(--fg-text-primary), 0.2);
@@ -472,7 +475,7 @@ select {
   --bdr-inverse: 255 255 255; /* #FFFFFF */
   --bg-component: 180 180 180; /* #B4B4B4 */
   --bg-inverse: 38 39 45; /* #26272D */
-  
+
   /* Border inverse with opacity variants */
   --bdr-inverse-full: rgba(255, 255, 255, 1);
   --bdr-inverse-80: rgba(255, 255, 255, 0.8);
@@ -559,11 +562,10 @@ select {
   --color-brand-unilever: rgba(15, 14, 154, 1);
   --color-brand-axa: rgba(52, 60, 61, 1);
   --color-brand-tsb: rgba(0, 168, 225, 1);
-
 }
 
 /* High contrast theme */
-[data-theme="high-contrast"] {
+[data-theme='high-contrast'] {
   /* No noise for accessibility */
   --noise-mask: none;
   --noise-color: transparent;
@@ -577,7 +579,7 @@ select {
   --bdr-inverse: 0 0 0; /* #000000 */
   --bg-component: 180 180 180; /* #B4B4B4 */
   --bg-inverse: 38 39 45; /* #26272D */
-  
+
   /* Border inverse with opacity variants */
   --bdr-inverse-full: rgba(0, 0, 0, 1);
   --bdr-inverse-80: rgba(0, 0, 0, 0.8);
@@ -651,8 +653,7 @@ select {
   --bg-positive-80: rgba(255, 255, 255, 0.8);
   --bg-positive-60: rgba(255, 255, 255, 0.6);
 
-
-   /* Brand Colors */
+  /* Brand Colors */
   --color-brand-jio: rgba(2, 35, 134, 1);
   --color-brand-fresha: rgba(105, 80, 243, 1);
   --color-brand-godesk: rgba(221, 255, 0, 1);
@@ -687,15 +688,25 @@ select {
 }
 
 /* Typography styles */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-family-main);
 }
 
-p, span, a, li, ol, ul {
+p,
+span,
+a,
+li,
+ol,
+ul {
   font-family: var(--font-family-main);
 }
 
-body{
+body {
   background-color: var(--bg-page);
 }
 
@@ -703,13 +714,13 @@ body{
 :root.transitioning,
 :root.transitioning body,
 :root.transitioning main {
-  transition: 
+  transition:
     background-color 300ms ease-out,
     color 300ms ease-out;
 }
 
 :root.transitioning * {
-  transition: 
+  transition:
     background-color 300ms ease-out,
     color 300ms ease-out,
     border-color 300ms ease-out;

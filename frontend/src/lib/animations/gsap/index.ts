@@ -10,35 +10,41 @@ export { shuffleText, waveText, typewriterText } from './textAnimations.js';
 export { createGlitchAnimation } from './glitchAnimations.js';
 
 // Export utility functions
-export { 
-  splitTextToSpans, 
-  getRandomCharacter, 
+export {
+  splitTextToSpans,
+  getRandomCharacter,
   shouldRespectReducedMotion,
   restoreOriginalText,
   cleanupSpans,
   generateShuffleSequence,
-  DEFAULT_SHUFFLE_CHARS
+  DEFAULT_SHUFFLE_CHARS,
 } from './utils.js';
 
 // Export types
-export type { 
+export type {
   TextAnimationOptions,
   ShuffleOptions,
   WaveOptions,
   AnimationState,
-  CharacterSpan
+  CharacterSpan,
 } from './types.js';
 
 /**
  * Quick setup function for common use cases
  */
 export const textAnimations = {
-  shuffle: (element: HTMLElement, text: string, options = {}) => 
-    import('./textAnimations.js').then(({ shuffleText }) => shuffleText(element, text, options)),
-  
+  shuffle: (element: HTMLElement, text: string, options = {}) =>
+    import('./textAnimations.js').then(({ shuffleText }) =>
+      shuffleText(element, text, options)
+    ),
+
   wave: (element: HTMLElement, text: string, options = {}) =>
-    import('./textAnimations.js').then(({ waveText }) => waveText(element, text, options)),
-    
+    import('./textAnimations.js').then(({ waveText }) =>
+      waveText(element, text, options)
+    ),
+
   typewriter: (element: HTMLElement, text: string, options = {}) =>
-    import('./textAnimations.js').then(({ typewriterText }) => typewriterText(element, text, options))
+    import('./textAnimations.js').then(({ typewriterText }) =>
+      typewriterText(element, text, options)
+    ),
 };

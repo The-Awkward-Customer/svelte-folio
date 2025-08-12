@@ -8,12 +8,10 @@
  if the active step is not equal to the step number, the indicator should be inactive and the bridge should be inactive
  -->
 
-
-
 <script lang="ts">
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
-  
+
   // Props
   export let totalSteps = 3;
   export let activeStep = 1;
@@ -30,8 +28,10 @@
 
   onMount(() => {
     if (browser) {
-      prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      
+      prefersReducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+
       const observer = new IntersectionObserver(
         (entries) => {
           const [entry] = entries;
@@ -60,7 +60,7 @@
 >
   {#each Array(totalSteps) as _, index}
     {@const stepNumber = index + 1}
-    <div 
+    <div
       class="indicator"
       class:active={stepNumber === activeStep && isInView}
       class:animated={!prefersReducedMotion}
@@ -70,13 +70,12 @@
       <span class="step-number">{stepNumber}</span>
       <span class="bracket-right">]</span>
     </div>
-    <div 
+    <div
       class="bridge"
       class:active={stepNumber === activeStep && isInView}
       class:animated={!prefersReducedMotion}
       style="transition-delay: {stepNumber * 0.3}s"
-    >
-    </div>
+    ></div>
   {/each}
 </div>
 
@@ -140,12 +139,15 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .indicator, .bridge {
+    .indicator,
+    .bridge {
       transition: none;
     }
   }
 
-  .bracket-left, .bracket-right, .step-number {
+  .bracket-left,
+  .bracket-right,
+  .step-number {
     font-family: var(--font-family-alt);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -156,8 +158,3 @@
     padding: 0 0.2rem;
   }
 </style>
-
-
-
-
-

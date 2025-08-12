@@ -1,4 +1,9 @@
-import type { AnimationManifest, AnimationSequence, RenderOptions, AnimationState } from '$lib/animations/types';
+import type {
+  AnimationManifest,
+  AnimationSequence,
+  RenderOptions,
+  AnimationState,
+} from '$lib/animations/types';
 
 export class AnimationEngine {
   private manifest: AnimationManifest = {};
@@ -41,29 +46,39 @@ export class AnimationEngine {
   /**
    * Preloads all SVG frames for a given animation
    */
-  private async preloadFrames(name: string, frameCount: number): Promise<HTMLImageElement[]> {
+  private async preloadFrames(
+    name: string,
+    frameCount: number
+  ): Promise<HTMLImageElement[]> {
     const frames: HTMLImageElement[] = [];
     const loadPromises: Promise<void>[] = [];
 
     for (let i = 0; i < frameCount; i++) {
       const paddedIndex = i.toString().padStart(5, '0');
-      
+
       const loadPromise = new Promise<void>(async (resolve, reject) => {
         try {
           // Load SVG from static folder
-          const svgResponse = await fetch(`/animations/${name}/${paddedIndex}.svg`);
+          const svgResponse = await fetch(
+            `/animations/${name}/${paddedIndex}.svg`
+          );
           if (!svgResponse.ok) {
-            console.warn(`Failed to fetch SVG frame ${i} for animation ${name}`);
+            console.warn(
+              `Failed to fetch SVG frame ${i} for animation ${name}`
+            );
             resolve();
             return;
           }
-          
+
           const svgText = await svgResponse.text();
           const img = await this.renderSVGToImage(svgText, 512, 512); // Default size, will be scaled later
           frames[i] = img;
           resolve();
         } catch (error) {
-          console.warn(`Failed to load frame ${i} for animation ${name}:`, error);
+          console.warn(
+            `Failed to load frame ${i} for animation ${name}:`,
+            error
+          );
           resolve(); // Resolve anyway to continue loading other frames
         }
       });
@@ -78,11 +93,15 @@ export class AnimationEngine {
   /**
    * Converts SVG string to HTMLImageElement for canvas rendering
    */
-  private async renderSVGToImage(svgString: string, width: number, height: number): Promise<HTMLImageElement> {
+  private async renderSVGToImage(
+    svgString: string,
+    width: number,
+    height: number
+  ): Promise<HTMLImageElement> {
     return new Promise((resolve, reject) => {
       const blob = new Blob([svgString], { type: 'image/svg+xml' });
       const url = URL.createObjectURL(blob);
-      
+
       const img = new Image();
       img.onload = () => {
         URL.revokeObjectURL(url); // Clean up blob URL
@@ -120,14 +139,14 @@ export class AnimationEngine {
 
     try {
       const frames = await this.preloadFrames(name, animationData.frameCount);
-      
+
       const sequence: AnimationSequence = {
         name,
         frames,
         frameCount: animationData.frameCount,
         duration: animationData.duration,
         fps: animationData.fps,
-        description: animationData.description
+        description: animationData.description,
       };
 
       this.loadedAnimations.set(name, sequence);
@@ -152,7 +171,7 @@ export class AnimationEngine {
    */
   public async preloadAll(animations: string[]): Promise<void> {
     try {
-      await Promise.all(animations.map(name => this.loadAnimation(name)));
+      await Promise.all(animations.map((name) => this.loadAnimation(name)));
     } catch (error) {
       console.error('Error preloading animations:', error);
       throw error;
@@ -183,7 +202,7 @@ export class AnimationRenderer {
     isLoading: true,
     isPlaying: false,
     isPaused: false,
-    currentFrame: 0
+    currentFrame: 0,
   };
   private lastFrameTime: number = 0;
   private sequence: AnimationSequence | null = null;
@@ -210,7 +229,7 @@ export class AnimationRenderer {
   private setupIntersectionObserver(): void {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             this.play();
           } else {
@@ -227,9 +246,9 @@ export class AnimationRenderer {
   public setSequence(sequence: AnimationSequence): void {
     console.log('Setting animation sequence:', sequence);
     this.sequence = sequence;
-    this.updateState({ 
+    this.updateState({
       currentFrame: 0,
-      isLoading: false
+      isLoading: false,
     });
     this.render();
   }
@@ -241,10 +260,12 @@ export class AnimationRenderer {
     }
 
     const frame = this.sequence.frames[this.currentFrame];
-    console.log(`Rendering frame ${this.currentFrame}, canvas size: ${this.canvas.width}x${this.canvas.height}`);
-    
+    console.log(
+      `Rendering frame ${this.currentFrame}, canvas size: ${this.canvas.width}x${this.canvas.height}`
+    );
+
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    
+
     // Calculate scaling to maintain aspect ratio
     const scale = Math.min(
       this.canvas.width / frame.width,
@@ -256,7 +277,9 @@ export class AnimationRenderer {
     const x = (this.canvas.width - width) / 2;
     const y = (this.canvas.height - height) / 2;
 
-    console.log(`Drawing frame with dimensions: ${width}x${height} at position ${x},${y}`);
+    console.log(
+      `Drawing frame with dimensions: ${width}x${height} at position ${x},${y}`
+    );
     this.ctx.drawImage(frame, x, y, width, height);
   }
 
@@ -289,7 +312,9 @@ export class AnimationRenderer {
     this.updateState({ isPlaying: false, isPaused: true });
   }
 
-  public setTrigger(type: 'auto' | 'viewport' | 'hover' | 'click' | 'manual'): void {
+  public setTrigger(
+    type: 'auto' | 'viewport' | 'hover' | 'click' | 'manual'
+  ): void {
     this.options.trigger = type;
     if (type === 'viewport') {
       this.setupIntersectionObserver();
@@ -297,7 +322,10 @@ export class AnimationRenderer {
   }
 
   public respectReducedMotion(enabled: boolean): void {
-    if (enabled && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (
+      enabled &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
       this.pause();
     }
   }

@@ -1,37 +1,37 @@
 <!-- HeroIntro.svelte -->
 
 <script lang="ts">
+  interface $$Props {
+    color?: 'primary' | 'secondary';
+  }
 
-    interface $$Props {
-        color?: 'primary' | 'secondary';
-    }
-
-    export let color: $$Props['color'] = 'primary';
+  export let color: $$Props['color'] = 'primary';
 </script>
 
-<div class="hero-intro" class:primary={color === 'primary'} class:secondary={color === 'secondary'}>
-    <slot>
-        I am placeholder copy.
-    </slot>
+<div
+  class="hero-intro"
+  class:primary={color === 'primary'}
+  class:secondary={color === 'secondary'}
+>
+  <slot>I am placeholder copy.</slot>
 </div>
 
 <style>
-    .hero-intro {
-        display: block;
-        align-items: flex-start;
-        font-family: var(--font-family-main);
-        font-size: var(--fs-400);
-        font-weight: var(--fw-medium);
-        padding-bottom: var(--spc-500);
-        line-height: 130%;
-    }
+  .hero-intro {
+    display: block;
+    align-items: flex-start;
+    font-family: var(--font-family-main);
+    font-size: var(--fs-400);
+    font-weight: var(--fw-medium);
+    padding-bottom: var(--spc-500);
+    line-height: 130%;
+  }
 
+  .hero-intro.primary {
+    color: rgb(var(--color-txt-primary));
+  }
 
-    .hero-intro.primary {
-        color: rgb(var(--color-txt-primary));
-    }
-
-    .hero-intro.secondary {
-        color: rgb(var(--color-txt-secondary));
-    }
+  .hero-intro.secondary {
+    color: rgb(var(--color-txt-secondary));
+  }
 </style>

@@ -12,7 +12,7 @@ export async function generateChatResponse(
   try {
     // Build context from similar Q&As
     const contextText = context
-      .map(item => `Q: ${item.question}\nA: ${item.answer}`)
+      .map((item) => `Q: ${item.question}\nA: ${item.answer}`)
       .join('\n\n');
 
     const systemPrompt = `
@@ -87,24 +87,27 @@ Help visitors understand:
 - Maintain a professional but approachable tone
     `;
 
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${OPEN_ROUTER_API_KEY}`,
-        'Content-Type': 'application/json',
-        'HTTP-Referer': 'https://your-portfolio.com',
-        'X-Title': 'Portfolio Q&A Chat'
-      },
-      body: JSON.stringify({
-        model: 'anthropic/claude-3.5-sonnet',
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: userQuestion }
-        ],
-        max_tokens: 300,
-        temperature: 0.3
-      })
-    });
+    const response = await fetch(
+      'https://openrouter.ai/api/v1/chat/completions',
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${OPEN_ROUTER_API_KEY}`,
+          'Content-Type': 'application/json',
+          'HTTP-Referer': 'https://your-portfolio.com',
+          'X-Title': 'Portfolio Q&A Chat',
+        },
+        body: JSON.stringify({
+          model: 'anthropic/claude-3.5-sonnet',
+          messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: userQuestion },
+          ],
+          max_tokens: 300,
+          temperature: 0.3,
+        }),
+      }
+    );
 
     if (!response.ok) {
       const error = await response.text();
@@ -112,7 +115,10 @@ Help visitors understand:
     }
 
     const data = await response.json();
-    return data.choices[0]?.message?.content || 'Sorry, I could not generate a response.';
+    return (
+      data.choices[0]?.message?.content ||
+      'Sorry, I could not generate a response.'
+    );
   } catch (error) {
     console.error('Error generating chat response:', error);
     throw new Error('Failed to generate response');

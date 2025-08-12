@@ -1,86 +1,86 @@
 import type { ChatMessage, ChatState } from '$lib/types/chat.js';
 
 interface ChatStoreState {
-	messages: ChatMessage[];
-	isLoading: boolean;
-	error: string | null;
-	isOpen: boolean;
-	hasBeenOpened: boolean;
+  messages: ChatMessage[];
+  isLoading: boolean;
+  error: string | null;
+  isOpen: boolean;
+  hasBeenOpened: boolean;
 }
 
 class ChatStoreManager {
-	// Make state properties directly accessible and reactive
-	messages = $state<ChatMessage[]>([]);
-	isLoading = $state(false);
-	error = $state<string | null>(null);
-	isOpen = $state(false);
-	hasBeenOpened = $state(false);
-	
-	// Derived state for indicator visibility
-	get shouldShowIndicator() {
-		return !this.hasBeenOpened || (!this.isOpen && this.messages.length === 0);
-	}
-	
-	get hasMessages() {
-		return this.messages.length > 0;
-	}
+  // Make state properties directly accessible and reactive
+  messages = $state<ChatMessage[]>([]);
+  isLoading = $state(false);
+  error = $state<string | null>(null);
+  isOpen = $state(false);
+  hasBeenOpened = $state(false);
 
-	// Get complete chat state for compatibility
-	get chatState(): ChatState {
-		return {
-			messages: this.messages,
-			isLoading: this.isLoading,
-			error: this.error
-		};
-	}
+  // Derived state for indicator visibility
+  get shouldShowIndicator() {
+    return !this.hasBeenOpened || (!this.isOpen && this.messages.length === 0);
+  }
 
-	// Actions
-	openChat() {
-		this.isOpen = true;
-		this.hasBeenOpened = true;
-	}
+  get hasMessages() {
+    return this.messages.length > 0;
+  }
 
-	closeChat() {
-		this.isOpen = false;
-	}
+  // Get complete chat state for compatibility
+  get chatState(): ChatState {
+    return {
+      messages: this.messages,
+      isLoading: this.isLoading,
+      error: this.error,
+    };
+  }
 
-	addMessage(message: ChatMessage) {
-		this.messages = [...this.messages, message];
-	}
+  // Actions
+  openChat() {
+    this.isOpen = true;
+    this.hasBeenOpened = true;
+  }
 
-	clearMessages() {
-		this.messages = [];
-		this.error = null;
-	}
+  closeChat() {
+    this.isOpen = false;
+  }
 
-	setLoading(loading: boolean) {
-		this.isLoading = loading;
-	}
+  addMessage(message: ChatMessage) {
+    this.messages = [...this.messages, message];
+  }
 
-	setError(error: string | null) {
-		this.error = error;
-	}
+  clearMessages() {
+    this.messages = [];
+    this.error = null;
+  }
 
-	updateChatState(updates: Partial<ChatState>) {
-		if (updates.messages !== undefined) {
-			this.messages = updates.messages;
-		}
-		if (updates.isLoading !== undefined) {
-			this.isLoading = updates.isLoading;
-		}
-		if (updates.error !== undefined) {
-			this.error = updates.error;
-		}
-	}
+  setLoading(loading: boolean) {
+    this.isLoading = loading;
+  }
 
-	// Reset state (useful for testing or user logout)
-	reset() {
-		this.messages = [];
-		this.isLoading = false;
-		this.error = null;
-		this.isOpen = false;
-		this.hasBeenOpened = false;
-	}
+  setError(error: string | null) {
+    this.error = error;
+  }
+
+  updateChatState(updates: Partial<ChatState>) {
+    if (updates.messages !== undefined) {
+      this.messages = updates.messages;
+    }
+    if (updates.isLoading !== undefined) {
+      this.isLoading = updates.isLoading;
+    }
+    if (updates.error !== undefined) {
+      this.error = updates.error;
+    }
+  }
+
+  // Reset state (useful for testing or user logout)
+  reset() {
+    this.messages = [];
+    this.isLoading = false;
+    this.error = null;
+    this.isOpen = false;
+    this.hasBeenOpened = false;
+  }
 }
 
 // Export singleton instance

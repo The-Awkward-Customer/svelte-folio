@@ -10,7 +10,7 @@
       "a": "I've been a designer for about 10 years, before that I was a chef and yet I still manage to burn my toast in the mornings.",
       "tags": ["background", "experience", "career"]
     },
-     {
+    {
       "q": "What's your experience?",
       "a": "I have a decade of experience in product design, working with startups, agencies and established companies to build and scale user-focused applications. My background spans traditional visual design, research, full-stack development, and automation.",
       "tags": ["background", "experience", "career"]
@@ -20,7 +20,7 @@
       "a": "Graphic Design, Motion Design, Interaction Design, User Experience Design, UI Design, Branding, Illustration, Design Systems, Generative Coding, Qualitative Research, Quantitative Research, Product Strategy, Market Research, Project Management, Frontend Development, Backend Development, A little DevOps, and Agentic Automation.",
       "tags": ["background", "experience", "career"]
     },
-     {
+    {
       "q": "What do you not do?",
       "a": "I don't specialize in areas like hardware design, industrial design, or any form of design that doesn't involve user interaction or digital products. I also don't work with top down companies, juggle or breakdance. ",
       "tags": ["background", "experience", "career"]
@@ -75,7 +75,7 @@
       "a": "I am a huge nerd, I love reading science fiction, ceramics, painting and testing new technologies.",
       "tags": ["hobbies", "interests", "personal"]
     },
-     {
+    {
       "q": "What is your favourite thing to do?",
       "a": "I genuinely enjoy watching paint dry. I find it fascinating how the pigments interact and change as they dry, creating unique textures and colors. It's a meditative process that allows me to appreciate the beauty of impermanence.",
       "tags": ["hobbies", "interests", "personal"]
@@ -105,7 +105,7 @@
     {
       "q": "Do you work with React?",
       "a": "Yes! While I specialize in Svelte, I'm very proficient with React and Next.js. I've built numerous production applications using React but find the packages a little tedious.",
-      "tags": ["react", "nextjs", "frontend","engineering"]
+      "tags": ["react", "nextjs", "frontend", "engineering"]
     },
     {
       "q": "What about backend technologies?",
