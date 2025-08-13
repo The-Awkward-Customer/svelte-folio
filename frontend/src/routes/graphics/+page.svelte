@@ -1,8 +1,8 @@
 <!-- Graphics +page -->
 <script lang="ts">
-  import GridLayout from '$lib/components/grids/GridLayout.svelte';
+  import { GridLayout } from '$lib/components/grids';
   import { TextCard, ImageCard, VideoCard } from '$lib/components/cards';
-  import FilterGroup from '$lib/components/filters/FilterGroup.svelte';
+  import { FilterGroup } from '$lib/components/filters';
   import { shuffleArray } from '$lib/utils/shuffle.js';
 
   let P: string = 'GRAPHICS';

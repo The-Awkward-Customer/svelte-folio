@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Tag from '../primitives/Tag.svelte';
+  import { Tag } from '../primitives';
   import { onMount } from 'svelte';
 
   //Interface

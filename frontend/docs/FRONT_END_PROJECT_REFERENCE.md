@@ -79,7 +79,7 @@ content/
 ```
 accordian/
 ├── Accordian.svelte           # Main accordion component
-└── accordionItems/            # Content modules
+└── accordion-items/           # Content modules
     ├── Experience.svelte
     ├── Introduction.svelte
     └── Process.svelte

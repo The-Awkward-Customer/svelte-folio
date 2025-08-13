@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Tag from '../primitives/Tag.svelte';
-  import IconButton from '../actions/IconButton.svelte';
+  import { Tag } from '../primitives';
+  import { IconButton } from '../actions';
 
   type ButtonTypes = 'primary' | 'inverse';
 

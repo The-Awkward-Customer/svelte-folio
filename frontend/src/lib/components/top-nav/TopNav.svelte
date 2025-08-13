@@ -2,10 +2,10 @@
   import type { Snippet } from 'svelte';
   import { page } from '$app/stores';
 
-  import LinkList from '../navigation/LinkList.svelte';
-  import ChatTrigger from './ChatTrigger.svelte';
-  import QAChat from '../chat/QAChat.svelte';
-  import Button from '../actions/Button.svelte';
+  import { LinkList } from '../navigation';
+  import { ChatTrigger } from '.';
+  import { QAChat } from '../chat';
+  import { Button } from '../actions';
   import { chatStore } from '$lib';
 
   interface LinkItem {

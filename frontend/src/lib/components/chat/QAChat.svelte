@@ -2,12 +2,12 @@
 <!-- Main chat operator  -->
 
 <script lang="ts">
-  import ChatDialog from './ChatDialog.svelte';
-  import ChatMessages from './ChatMessages.svelte';
-  import ChatInput from './ChatInput.svelte';
-  import Button from '$lib/components/actions/Button.svelte';
-  import IconButton from '$lib/components/actions/IconButton.svelte';
-  import Tag from '../primitives/Tag.svelte';
+  import { ChatDialog } from '.';
+  import { ChatMessages } from '.';
+  import { ChatInput } from '.';
+  import { Button } from '$lib/components/actions';
+  import { IconButton } from '$lib/components/actions';
+  import { Tag } from '../primitives';
   import type {
     ChatMessage,
     ChatApiResponse,
