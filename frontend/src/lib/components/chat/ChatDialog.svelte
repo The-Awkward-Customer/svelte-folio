@@ -85,13 +85,13 @@
   bind:this={dialogElement}
   class="chat-dialog"
   aria-labelledby="chat-title"
-  on:click={handleDialogClick}
-  on:keydown={handleDialogKeydown}
 >
   {#if isOpen}
     <div
       class="dialog-content"
       role="none"
+      on:click={handleDialogClick}
+      on:keydown={handleDialogKeydown}
       transition:slide={{ duration: 300, axis: 'y' }}
     >
       <slot />

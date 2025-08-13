@@ -68,10 +68,4 @@
     transform: scale(0.98);
   }
 
-  .chat-indicator {
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(25%, -25%);
-  }
 </style>

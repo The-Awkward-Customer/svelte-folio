@@ -1,4 +1,5 @@
 export const BRANDS = {
+  folio: '#FF6B35', // --color-brand-folio: rgba(255, 107, 53, 1)
   godesk: '#DDFF00', // --color-brand-godesk: rgba(221, 255, 0, 1)
   fresha: '#6950F3', // --color-brand-fresha: rgba(105, 80, 243, 1)
   jio: '#3E0084', // --color-brand-jio: rgba(2, 35, 134, 1)

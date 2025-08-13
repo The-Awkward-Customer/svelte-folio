@@ -18,7 +18,7 @@
   import { chatStore } from '$lib';
 
   // Props with proper typing - now just for compatibility
-  export let isOpen: QAChatProps['isOpen'] = false;
+  export const isOpen: QAChatProps['isOpen'] = false;
 
   // Direct store property access - no need for reactive statements
   // These are already reactive because they're $state in the store
@@ -161,12 +161,6 @@
     padding-right: max(1.5rem, env(safe-area-inset-right));
   }
 
-  .chat-header h2 {
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: rgb(var(--fg-text-primary));
-  }
 
   .chat-actions {
     display: flex;

@@ -127,6 +127,7 @@
     object-fit: cover;
     z-index: 0;
     -webkit-appearance: none;
+    appearance: none;
     -webkit-media-controls: none;
     -webkit-media-controls-panel: none;
     -webkit-media-controls-play-button: none;

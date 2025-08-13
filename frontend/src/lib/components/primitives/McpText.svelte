@@ -38,7 +38,6 @@
 
   .content-box {
     box-sizing: border-box;
-    content-stretch: stretch;
     display: flex;
     flex-direction: row;
     gap: 0.625rem;
