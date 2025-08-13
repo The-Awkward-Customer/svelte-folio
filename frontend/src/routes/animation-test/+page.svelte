@@ -1,5 +1,5 @@
 <script lang="ts">
-  import CanvasAnimation from '$lib/components/CanvasAnimation.svelte';
+  import CanvasAnimation from '$lib/components/graphics/CanvasAnimation.svelte';
 </script>
 
 <div class="container">

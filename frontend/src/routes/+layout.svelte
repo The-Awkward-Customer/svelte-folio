@@ -1,8 +1,8 @@
 <script>
   import '../app.css';
 
-  import Footer from '$lib/components/Footer/Footer.svelte';
-  import TopNav from '$lib/components/topNav/TopNav.svelte';
+  import { Footer } from '$lib/components/footer';
+  import TopNav from '$lib/components/top-nav/TopNav.svelte';
 
   import { onMount } from 'svelte';
   import { beforeNavigate } from '$app/navigation';

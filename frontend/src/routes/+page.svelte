@@ -4,7 +4,7 @@
 
   // components
   import { page } from '$app/stores';
-  import AnimatedTextPath from '$lib/components/AnimatedTextPath.svelte';
+  import AnimatedTextPath from '$lib/components/graphics/AnimatedTextPath.svelte';
 
   // Vibrant color pairs for AnimatedTextPath
   const colorPairs = [
