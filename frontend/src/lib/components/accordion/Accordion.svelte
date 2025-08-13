@@ -33,7 +33,7 @@
 
   const accordionState = $state(createAccordionState());
   let labelElement: HTMLElement | undefined;
-  let detailsElement: HTMLElement | undefined;
+  let detailsElement = $state<HTMLElement | undefined>();
   let buttonElement: HTMLElement | undefined;
 
   registerAccordion(accordionState);
@@ -53,7 +53,7 @@
 
   // Track previous state to avoid unnecessary calls
   let previousIsOpen = false;
-  let isAnimating = false;
+  let isAnimating = $state(false);
 
   // Apply brand-theme override when accordion state changes
   $effect(() => {

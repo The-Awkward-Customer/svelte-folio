@@ -45,7 +45,7 @@
   <div class="tag-container">
     {#if tag}
       <div class="tag-container">
-        <Tag label={tag} color="inverse" />
+        <Tag label={tag} variant="inverse" />
       </div>
     {/if}
     <IconButton variant={button} name="plus" {handleClick} />

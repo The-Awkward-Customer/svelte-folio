@@ -8,7 +8,7 @@
     ProjectHeader,
     ProjectBody,
     ProjectFooter,
-  } from '$lib/components/content/projects';
+  } from '$lib/features/site/projects';
   import { experienceData } from '$lib/data/experienceData';
 
   // Clear any active theme overrides when leaving the page

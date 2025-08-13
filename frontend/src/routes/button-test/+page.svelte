@@ -1,7 +1,7 @@
 <script lang="ts">
   import Button from '$lib/components/actions/Button.svelte';
   import { dialogManager } from '$lib';
-  import DialogRoot from '$lib/components/Dialog/DialogRoot.svelte';
+  import DialogRoot from '$lib/components/overlays/dialog/Root.svelte';
 
   function handleButtonClick() {
     alert('Button clicked!');
@@ -281,17 +281,4 @@
     margin-bottom: 1rem;
   }
 
-  .dialog-status {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background-color: rgba(255, 192, 203, 0.1);
-    border-radius: 6px;
-    border: 1px solid rgba(255, 192, 203, 0.3);
-  }
-
-  .dialog-status p {
-    margin: 0.5rem 0;
-    font-size: 0.9rem;
-    color: rgba(var(--color-txt-primary), 0.8);
-  }
 </style>

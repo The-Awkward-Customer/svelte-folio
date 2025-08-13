@@ -227,82 +227,14 @@
     max-width: 24ch;
   }
 
-  .quick-actions {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spc-600);
-    align-items: center;
-    text-align: center;
-  }
 
-  .quick-actions h3 {
-    font-size: var(--fs-500);
-    font-weight: var(--fw-semibold);
-    color: rgb(var(--fg-text-primary));
-  }
 
-  .action-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spc-400);
-    width: 100%;
-    max-width: 300px;
-  }
 
-  /* Helpful Links */
-  .helpful-links {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spc-600);
-    align-items: center;
-    text-align: center;
-  }
 
-  .helpful-links h3 {
-    font-size: var(--fs-500);
-    font-weight: var(--fw-semibold);
-    color: rgb(var(--fg-text-primary));
-  }
 
-  .link-cards {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spc-500);
-    width: 100%;
-    max-width: 600px;
-  }
 
-  .link-card {
-    min-height: 140px;
-  }
 
-  /* Error Details */
-  .error-details {
-    background-color: rgba(var(--bg-component), 0.1);
-    border-radius: var(--bdr-radius-medium);
-    padding: var(--spc-500);
-    margin-top: var(--spc-800);
-  }
 
-  .error-details summary {
-    font-size: var(--fs-300);
-    font-weight: var(--fw-medium);
-    color: rgb(var(--fg-text-secondary));
-    cursor: pointer;
-    padding: var(--spc-200);
-  }
-
-  .error-details pre {
-    font-family: var(--font-family-mono);
-    font-size: var(--fs-250);
-    color: rgb(var(--fg-text-secondary));
-    background-color: rgba(var(--bg-component), 0.1);
-    padding: var(--spc-400);
-    border-radius: var(--bdr-radius-small);
-    overflow-x: auto;
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
 
   /* Desktop Breakpoint */
   /* @media (min-width: 896px) {

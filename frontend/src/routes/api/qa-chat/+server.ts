@@ -80,8 +80,8 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
     // Get suggested questions from similar Q&As
     const suggestedQuestions = similarQAs
       .slice(0, 3)
-      .map((qa) => qa.question)
-      .filter((q) => q && q.length > 0);
+      .map((qa: any) => qa.question)
+      .filter((q: string) => q && q.length > 0);
 
     return json(
       {

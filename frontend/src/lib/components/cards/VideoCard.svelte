@@ -83,7 +83,7 @@
 
   {#if tag}
     <div class="tag-container">
-      <Tag label={tag} color="inverse" />
+      <Tag label={tag} variant="inverse" />
     </div>
   {/if}
 
@@ -127,6 +127,7 @@
     object-fit: cover;
     z-index: 0;
     -webkit-appearance: none;
+    appearance: none;
     -webkit-media-controls: none;
     -webkit-media-controls-panel: none;
     -webkit-media-controls-play-button: none;
