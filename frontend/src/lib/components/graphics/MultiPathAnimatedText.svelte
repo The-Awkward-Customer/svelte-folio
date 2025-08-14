@@ -262,7 +262,7 @@
   }
 
   // Get smoothed angle by averaging nearby segments
-  function getSmoothedAngle(pathData: PathData, segmentIndex: number, ratio: number): number {
+  function getSmoothedAngle(pathData: PathData, segmentIndex: number, _ratio: number): number {
     const points = pathData.points;
     const lookAhead = 15; // Number of points to look ahead/behind for smoothing
     let totalDx = 0;
