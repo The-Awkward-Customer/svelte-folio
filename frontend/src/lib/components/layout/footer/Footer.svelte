@@ -1,7 +1,7 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
   import FooterTitle from "./FooterTitle.svelte";
-  import { Weather } from "$lib/components/snoop";
+  import { Weather } from "$lib/components/Snoop";
 
   let CopyRight: string = "© 2025 by Peter Abbott";
   let TechStack: string =
