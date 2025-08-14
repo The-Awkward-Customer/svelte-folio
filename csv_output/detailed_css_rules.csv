@@ -1,0 +1,1399 @@
+Component,Selector,Property,Value,File Path
+FilterToggle,.filter-toggle,display,inline-flex,filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,align-items,center,filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,padding,6px 10px,filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,font-weight,var(--fw-semibold),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,border-radius,var(--bdr-radius-small),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,border,none,filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,box-shadow,inset 0 0px 0px 1px var(--bg-primary),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,background-color,var(--bg-pae),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,color,var(--fg-text-primary),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,cursor,pointer,filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,white-space,nowrap,filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,user-select,none,filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,font-family,var(--font-family-main),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,font-size,var(--fs-350),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,text-transform,capitalize,filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,transition,all 0.2s ease-in-out,filters/FilterToggle.svelte
+FilterToggle,.filter-toggle:hover,box-shadow,inset 0 0px 0px 2px var(--bg-primary),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle.active,box-shadow,inset 0 0px 0px 4px var(--bg-primary),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle.active,background-color,var(--bg-primary),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle.active,color,var(--fg-text-inverse),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle.active:hover,box-shadow,inset 0 0px 0px 2px var(--bg-primary),filters/FilterToggle.svelte
+FilterGroup,.filter-group,overflow-x,auto,filters/FilterGroup.svelte
+FilterGroup,.filter-group,flex-wrap,wrap,filters/FilterGroup.svelte
+FilterGroup,.filter-group,padding-bottom,1.5rem,filters/FilterGroup.svelte
+FilterGroup,.filter-group,scrollbar-width,none,filters/FilterGroup.svelte
+FilterGroup,.filter-group,-ms-overflow-style,none,filters/FilterGroup.svelte
+FilterGroup,.filter-group::-webkit-scrollbar,display,none,filters/FilterGroup.svelte
+ChatInput,.input-container,padding-left,1rem,chat/ChatInput.svelte
+ChatInput,.input-container,padding-right,1rem,chat/ChatInput.svelte
+ChatInput,.input-container,padding-bottom,1.5rem,chat/ChatInput.svelte
+ChatInput,.input-form,width,100%,chat/ChatInput.svelte
+ChatInput,.input-wrapper,padding,0.625rem 0.875rem,chat/ChatInput.svelte
+ChatInput,.input-wrapper,min-height,44px,chat/ChatInput.svelte
+ChatInput,.input-wrapper:focus-within,outline,"2px solid var(--focus-ring-color, var(--bg-primary))",chat/ChatInput.svelte
+ChatInput,.input-wrapper:focus-within,outline-offset,2px,chat/ChatInput.svelte
+ChatInput,.message-input,font-size,"max(16px, 0.875rem)",chat/ChatInput.svelte
+ChatInput,.message-input::placeholder,color,var(--fg-text-inverse-60),chat/ChatInput.svelte
+ChatInput,.message-input:disabled,opacity,0.6,chat/ChatInput.svelte
+ChatInput,.message-input:disabled,cursor,not-allowed,chat/ChatInput.svelte
+ChatInput,.input-hint,padding-top,var(--space-md),chat/ChatInput.svelte
+ChatInput,.input-hint,text-align,center,chat/ChatInput.svelte
+ChatInput,.hint-text,font-size,0.6875rem,chat/ChatInput.svelte
+ChatMessage,.message,display,flex,chat/ChatMessage.svelte
+ChatMessage,.message,gap,0.75rem,chat/ChatMessage.svelte
+ChatMessage,.message,padding,0.75rem 1.5rem,chat/ChatMessage.svelte
+ChatMessage,.message,align-items,flex-start,chat/ChatMessage.svelte
+ChatMessage,.message,justify-content,flex-start,chat/ChatMessage.svelte
+ChatMessage,.user-message,flex-direction,row-reverse,chat/ChatMessage.svelte
+ChatMessage,.user-content,display,flex,chat/ChatMessage.svelte
+ChatMessage,.user-content,flex-direction,column,chat/ChatMessage.svelte
+ChatMessage,.user-content,align-items,flex-end,chat/ChatMessage.svelte
+ChatMessage,.message-avatar,display,flex,chat/ChatMessage.svelte
+ChatMessage,.message-avatar,align-items,center,chat/ChatMessage.svelte
+ChatMessage,.message-avatar,justify-content,center,chat/ChatMessage.svelte
+ChatMessage,.message-avatar,flex-shrink,0,chat/ChatMessage.svelte
+ChatMessage,.message-content,flex,1,chat/ChatMessage.svelte
+ChatMessage,.message-content,max-width,calc(100% - 50px),chat/ChatMessage.svelte
+ChatMessage,.message-bubble,background,var(--bg-primary),chat/ChatMessage.svelte
+ChatMessage,.message-bubble,border-radius,18px,chat/ChatMessage.svelte
+ChatMessage,.message-bubble,padding,0.75rem 1rem,chat/ChatMessage.svelte
+ChatMessage,.message-bubble,max-width,100%,chat/ChatMessage.svelte
+ChatMessage,.message-bubble,word-wrap,break-word,chat/ChatMessage.svelte
+ChatMessage,.message-bubble,position,relative,chat/ChatMessage.svelte
+ChatMessage,.user-bubble,background,var(--bg-primary),chat/ChatMessage.svelte
+ChatMessage,.user-bubble,color,var(--fg-text-inverse),chat/ChatMessage.svelte
+ChatMessage,.user-bubble,border-radius,"var(--bdr-radius-small) var(--bdr-radius-small) 0px
+      var(--bdr-radius-small)",chat/ChatMessage.svelte
+ChatMessage,.assistant-bubble,background,var(--bg-inverse),chat/ChatMessage.svelte
+ChatMessage,.assistant-bubble,color,var(--fg-text-primary),chat/ChatMessage.svelte
+ChatMessage,.assistant-bubble,border-color,var(--fg-text-primary),chat/ChatMessage.svelte
+ChatMessage,.assistant-bubble,border-style,solid,chat/ChatMessage.svelte
+ChatMessage,.assistant-bubble,border-width,1px,chat/ChatMessage.svelte
+ChatMessage,.assistant-bubble,border-radius,"var(--bdr-radius-small) var(--bdr-radius-small)
+      var(--bdr-radius-small) 0px",chat/ChatMessage.svelte
+ChatMessage,.message-bubble p,margin,0,chat/ChatMessage.svelte
+ChatMessage,.message-bubble p,line-height,130%,chat/ChatMessage.svelte
+ChatMessage,.message-bubble p,font-size,1.2rem,chat/ChatMessage.svelte
+ChatMessage,.message-meta,margin-top,0.25rem,chat/ChatMessage.svelte
+ChatMessage,.message-meta,padding,0 0.25rem,chat/ChatMessage.svelte
+ChatMessage,.message-time,font-size,0.75rem,chat/ChatMessage.svelte
+ChatMessage,.message-time,color,var(--fg-text-primary),chat/ChatMessage.svelte
+ChatMessage,.message-time,opacity,0.7,chat/ChatMessage.svelte
+ChatMessage,.user-meta .message-time,color,var(--fg-text-primary),chat/ChatMessage.svelte
+ChatMessage,.loading-message,align-items,flex-start,chat/ChatMessage.svelte
+ChatMessage,.loading-bubble,background,var(--bg-page),chat/ChatMessage.svelte
+ChatMessage,.loading-bubble,color,var(--fg-text-primary),chat/ChatMessage.svelte
+ChatMessage,.loading-bubble,border-radius,18px,chat/ChatMessage.svelte
+ChatMessage,.loading-bubble,padding,0.75rem 1rem,chat/ChatMessage.svelte
+ChatMessage,.loading-bubble,width,100%,chat/ChatMessage.svelte
+ChatMessage,.loading-bubble,word-wrap,break-word,chat/ChatMessage.svelte
+ChatMessage,.loading-bubble,position,relative,chat/ChatMessage.svelte
+ChatMessage,.loading-bubble,box-sizing,border-box,chat/ChatMessage.svelte
+ChatMessage,.loading-text,margin,0,chat/ChatMessage.svelte
+ChatMessage,.loading-text,line-height,130%,chat/ChatMessage.svelte
+ChatMessage,.loading-text,font-family,var(--font-family-alt),chat/ChatMessage.svelte
+ChatMessage,.loading-text,font-size,var(--fs-200),chat/ChatMessage.svelte
+ChatMessage,.error-message,padding,1rem 1.5rem,chat/ChatMessage.svelte
+ChatMessage,.error-content,display,flex,chat/ChatMessage.svelte
+ChatMessage,.error-content,gap,0.75rem,chat/ChatMessage.svelte
+ChatMessage,.error-content,align-items,flex-start,chat/ChatMessage.svelte
+ChatMessage,.error-content,background,"var(--error-bg, #fef2f2)",chat/ChatMessage.svelte
+ChatMessage,.error-content,border,"1px solid var(--error-border, #fecaca)",chat/ChatMessage.svelte
+ChatMessage,.error-content,border-radius,8px,chat/ChatMessage.svelte
+ChatMessage,.error-content,padding,1rem,chat/ChatMessage.svelte
+ChatMessage,.error-icon,flex-shrink,0,chat/ChatMessage.svelte
+ChatMessage,.error-icon,font-size,1.25rem,chat/ChatMessage.svelte
+ChatMessage,.error-title,margin,0 0 0.25rem 0,chat/ChatMessage.svelte
+ChatMessage,.error-title,font-weight,600,chat/ChatMessage.svelte
+ChatMessage,.error-title,color,"var(--error-text, #dc2626)",chat/ChatMessage.svelte
+ChatMessage,.error-title,font-size,0.875rem,chat/ChatMessage.svelte
+ChatMessage,.error-details,margin,0,chat/ChatMessage.svelte
+ChatMessage,.error-details,color,"var(--error-text-secondary, #7f1d1d)",chat/ChatMessage.svelte
+ChatMessage,.error-details,font-size,0.8125rem,chat/ChatMessage.svelte
+ChatMessage,.prompt-buttons,gap,0.75rem,chat/ChatMessage.svelte
+ChatMessages,.messages-container,display,flex,chat/ChatMessages.svelte
+ChatMessages,.messages-container,flex-direction,column,chat/ChatMessages.svelte
+ChatMessages,.messages-container,justify-content,flex-start,chat/ChatMessages.svelte
+ChatMessages,.messages-container,flex,1,chat/ChatMessages.svelte
+ChatMessages,.messages-container,overflow-y,auto,chat/ChatMessages.svelte
+ChatMessages,.messages-container,padding,0,chat/ChatMessages.svelte
+ChatMessages,.messages-container,height,100%,chat/ChatMessages.svelte
+ChatMessages,.messages-container,min-height,0,chat/ChatMessages.svelte
+ChatMessages,.messages-container,max-height,100%,chat/ChatMessages.svelte
+ChatMessages,.messages-container,width,100%,chat/ChatMessages.svelte
+ChatMessages,.messages-container,max-width,800px,chat/ChatMessages.svelte
+QAChat,.chat-container,max-width,100%,chat/QAChat.svelte
+QAChat,.chat-container,height,100%,chat/QAChat.svelte
+QAChat,.chat-header,padding-left,1rem,chat/QAChat.svelte
+QAChat,.chat-header,padding-right,1rem,chat/QAChat.svelte
+QAChat,.chat-actions,gap,0.25rem,chat/QAChat.svelte
+ChatDialog,.chat-dialog,border,none,chat/ChatDialog.svelte
+ChatDialog,.chat-dialog,background,transparent,chat/ChatDialog.svelte
+ChatDialog,.chat-dialog,max-width,none,chat/ChatDialog.svelte
+ChatDialog,.chat-dialog,max-height,none,chat/ChatDialog.svelte
+ChatDialog,.chat-dialog,width,100%,chat/ChatDialog.svelte
+ChatDialog,.chat-dialog,height,100%,chat/ChatDialog.svelte
+ChatDialog,.chat-dialog,padding,0,chat/ChatDialog.svelte
+ChatDialog,.chat-dialog,animation,fadeIn 0.4s ease-in-out,chat/ChatDialog.svelte
+ChatDialog,.chat-dialog::backdrop,background,var(--bg-page-20),chat/ChatDialog.svelte
+ChatDialog,.chat-dialog::backdrop,backdrop-filter,blur(4px),chat/ChatDialog.svelte
+ChatDialog,.chat-dialog::backdrop,animation,backdropFadeIn 0.5s ease-in-out,chat/ChatDialog.svelte
+ChatDialog,.chat-dialog[open],display,flex,chat/ChatDialog.svelte
+ChatDialog,.chat-dialog[open],align-items,flex-end,chat/ChatDialog.svelte
+ChatDialog,.chat-dialog[open],justify-content,center,chat/ChatDialog.svelte
+ChatDialog,.dialog-content,height,80vh,chat/ChatDialog.svelte
+ChatDialog,.dialog-content,padding-bottom,0,chat/ChatDialog.svelte
+ChatDialog,.dialog-content,padding-inline,0,chat/ChatDialog.svelte
+ChatDialog,from,opacity,0,chat/ChatDialog.svelte
+ChatDialog,from,backdrop-filter,blur(0px),chat/ChatDialog.svelte
+ChatDialog,to,opacity,1,chat/ChatDialog.svelte
+ChatDialog,to,backdrop-filter,blur(4px),chat/ChatDialog.svelte
+Accordion,.wrapper,display,flex,accordion/Accordion.svelte
+Accordion,.wrapper,flex-direction,column,accordion/Accordion.svelte
+Accordion,.wrapper,justify-content,flex-start,accordion/Accordion.svelte
+Accordion,.wrapper,align-items,flex-start,accordion/Accordion.svelte
+Accordion,.wrapper,list-style,none,accordion/Accordion.svelte
+Accordion,button,-webkit-appearance,none,accordion/Accordion.svelte
+Accordion,button,appearance,none,accordion/Accordion.svelte
+Accordion,button,display,flex,accordion/Accordion.svelte
+Accordion,button,flex-direction,row,accordion/Accordion.svelte
+Accordion,button,justify-content,flex-start,accordion/Accordion.svelte
+Accordion,button,align-items,center,accordion/Accordion.svelte
+Accordion,button,gap,0.5em,accordion/Accordion.svelte
+Accordion,button,width,100%,accordion/Accordion.svelte
+Accordion,button,padding-top,0.5em,accordion/Accordion.svelte
+Accordion,button,padding-bottom,0.5em,accordion/Accordion.svelte
+Accordion,button,border,none,accordion/Accordion.svelte
+Accordion,button,font-size,var(--fs-xxlarge-clamped),accordion/Accordion.svelte
+Accordion,button,font-weight,var(--fw-semibold),accordion/Accordion.svelte
+Accordion,button,color,var(--fg-text-primary),accordion/Accordion.svelte
+Accordion,button,background-color,var(--bg-page),accordion/Accordion.svelte
+Accordion,button,border-bottom,1px solid var(--fg-text-primary),accordion/Accordion.svelte
+Accordion,.label,display,flex,accordion/Accordion.svelte
+Accordion,.label,flex-direction,row,accordion/Accordion.svelte
+Accordion,.label,justify-content,space-between,accordion/Accordion.svelte
+Accordion,.label,align-items,baseline,accordion/Accordion.svelte
+Accordion,.label,flex-grow,1,accordion/Accordion.svelte
+Accordion,.label span:first-child,text-transform,uppercase,accordion/Accordion.svelte
+Accordion,button:hover,color,var(--fg-text-primary-80),accordion/Accordion.svelte
+Accordion,button:active,color,var(--fg-text-primary),accordion/Accordion.svelte
+Accordion,.details,padding-bottom,1em,accordion/Accordion.svelte
+Accordion,.details,width,100%,accordion/Accordion.svelte
+Accordion,:global(.gsap-char),display,inline-block,accordion/Accordion.svelte
+Accordion,:global(.gsap-char),position,relative,accordion/Accordion.svelte
+Accordion,:global(.gsap-space),display,inline-block,accordion/Accordion.svelte
+AccordionList,.accordion-list,list-style,none,accordion/AccordionList.svelte
+AccordionList,.accordion-list,padding-left,var(--padding-page-default),accordion/AccordionList.svelte
+AccordionList,.accordion-list,padding-right,var(--padding-page-default),accordion/AccordionList.svelte
+BasicLayout,.basic-layout-root,padding-top,var(--spc-500),layout/BasicLayout.svelte
+BasicLayout,.basic-layout-side-nav,position,absolute,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-side-nav,left,-180px,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-side-nav,top,0,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-side-nav,height,100%,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-side-nav,width,180px,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-top-bar,display,flex,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-top-bar,align-items,center,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-top-bar,width,100%,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-top-bar,max-width,568px,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-top-bar,height,88px,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-top-bar,z-index,10,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-main,position,relative,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-main,flex,1,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-main,height,100%,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-main,width,100%,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-main,max-width,1200px,layout/BasicLayout.svelte
+BasicLayout,.basic-layout-main,margin,0 auto,layout/BasicLayout.svelte
+GridItem,.grid-item,height,100%,layout/GridItem.svelte
+GridItem,.grid-item,width,100%,layout/GridItem.svelte
+GridItem,.square-cell,aspect-ratio,1/1,layout/GridItem.svelte
+Grid,.grid-container,grid-template-columns,var(--grid-desktop-columns),layout/Grid.svelte
+ImageCard,.image-card,position,relative,cards/ImageCard.svelte
+ImageCard,.image-card,width,100%,cards/ImageCard.svelte
+ImageCard,.image-card,height,100%,cards/ImageCard.svelte
+ImageCard,.image-card,overflow,hidden,cards/ImageCard.svelte
+ImageCard,.image-card,display,block,cards/ImageCard.svelte
+ImageCard,.cover-image,position,absolute,cards/ImageCard.svelte
+ImageCard,.cover-image,top,0,cards/ImageCard.svelte
+ImageCard,.cover-image,left,0,cards/ImageCard.svelte
+ImageCard,.cover-image,width,100%,cards/ImageCard.svelte
+ImageCard,.cover-image,height,100%,cards/ImageCard.svelte
+ImageCard,.cover-image,object-fit,cover,cards/ImageCard.svelte
+ImageCard,.cover-image,min-width,100%,cards/ImageCard.svelte
+ImageCard,.cover-image,min-height,100%,cards/ImageCard.svelte
+ImageCard,.cover-image,display,block,cards/ImageCard.svelte
+TextCard,.text-card,display,flex,cards/TextCard.svelte
+TextCard,.text-card,flex-direction,column-reverse,cards/TextCard.svelte
+TextCard,.text-card,justify-content,space-between,cards/TextCard.svelte
+TextCard,.text-card,padding-top,var(--spc-200),cards/TextCard.svelte
+TextCard,.text-card,padding-left,var(--spc-300),cards/TextCard.svelte
+TextCard,.text-card,padding-right,var(--spc-300),cards/TextCard.svelte
+TextCard,.text-card,padding-bottom,var(--spc-300),cards/TextCard.svelte
+TextCard,.text-card,width,100%,cards/TextCard.svelte
+TextCard,.text-card,height,100%,cards/TextCard.svelte
+TextCard,.tag-container,display,flex,cards/TextCard.svelte
+TextCard,.tag-container,flex-direction,row,cards/TextCard.svelte
+TextCard,.tag-container,justify-content,space-between,cards/TextCard.svelte
+TextCard,.tag-container,align-items,center,cards/TextCard.svelte
+TextCard,h2,color,rgb(var(--color-txt-primary)),cards/TextCard.svelte
+TextCard,p,color,rgb(var(--color-txt-primary)),cards/TextCard.svelte
+VideoCard,.video-card,display,flex,cards/VideoCard.svelte
+VideoCard,.video-card,position,relative,cards/VideoCard.svelte
+VideoCard,.video-card,padding-top,var(--spc-200),cards/VideoCard.svelte
+VideoCard,.video-card,padding-left,var(--spc-300),cards/VideoCard.svelte
+VideoCard,.video-card,padding-right,var(--spc-300),cards/VideoCard.svelte
+VideoCard,.video-card,padding-bottom,var(--spc-300),cards/VideoCard.svelte
+VideoCard,.video-card,width,100%,cards/VideoCard.svelte
+VideoCard,.video-card,height,100%,cards/VideoCard.svelte
+VideoCard,.video-card,flex-direction,column-reverse,cards/VideoCard.svelte
+VideoCard,.video-card,justify-content,flex-end,cards/VideoCard.svelte
+VideoCard,.video-card,align-items,flex-end,cards/VideoCard.svelte
+VideoCard,.video-card,overflow,hidden,cards/VideoCard.svelte
+VideoCard,.video-card,border,none,cards/VideoCard.svelte
+VideoCard,.video-card,cursor,pointer,cards/VideoCard.svelte
+VideoCard,.tag-container,position,relative,cards/VideoCard.svelte
+VideoCard,.tag-container,align-self,flex-start,cards/VideoCard.svelte
+VideoCard,.tag-container,z-index,1,cards/VideoCard.svelte
+VideoCard,.cover-video,position,absolute,cards/VideoCard.svelte
+VideoCard,.cover-video,top,0,cards/VideoCard.svelte
+VideoCard,.cover-video,left,0,cards/VideoCard.svelte
+VideoCard,.cover-video,width,100%,cards/VideoCard.svelte
+VideoCard,.cover-video,height,100%,cards/VideoCard.svelte
+VideoCard,.cover-video,object-fit,cover,cards/VideoCard.svelte
+VideoCard,.cover-video,z-index,0,cards/VideoCard.svelte
+VideoCard,.cover-video,-webkit-appearance,none,cards/VideoCard.svelte
+VideoCard,.cover-video,appearance,none,cards/VideoCard.svelte
+VideoCard,.cover-video,-webkit-media-controls,none,cards/VideoCard.svelte
+VideoCard,.cover-video,-webkit-media-controls-panel,none,cards/VideoCard.svelte
+VideoCard,.cover-video,-webkit-media-controls-play-button,none,cards/VideoCard.svelte
+VideoCard,.cover-video,-webkit-media-controls-start-playback-button,none,cards/VideoCard.svelte
+VideoCard,.cover-video::-webkit-media-controls,display,none !important,cards/VideoCard.svelte
+VideoCard,.cover-video::-webkit-media-controls-panel,display,none !important,cards/VideoCard.svelte
+VideoCard,.play-indicator,position,absolute,cards/VideoCard.svelte
+VideoCard,.play-indicator,top,50%,cards/VideoCard.svelte
+VideoCard,.play-indicator,left,50%,cards/VideoCard.svelte
+VideoCard,.play-indicator,transform,"translate(-50%, -50%)",cards/VideoCard.svelte
+VideoCard,.play-indicator,color,white,cards/VideoCard.svelte
+VideoCard,.play-indicator,background-color,"rgba(0, 0, 0, 0.6)",cards/VideoCard.svelte
+VideoCard,.play-indicator,border-radius,50%,cards/VideoCard.svelte
+VideoCard,.play-indicator,width,48px,cards/VideoCard.svelte
+VideoCard,.play-indicator,height,48px,cards/VideoCard.svelte
+VideoCard,.play-indicator,display,flex,cards/VideoCard.svelte
+VideoCard,.play-indicator,align-items,center,cards/VideoCard.svelte
+VideoCard,.play-indicator,justify-content,center,cards/VideoCard.svelte
+VideoCard,.play-indicator,opacity,0,cards/VideoCard.svelte
+VideoCard,.play-indicator,transition,opacity 0.3s ease,cards/VideoCard.svelte
+VideoCard,.play-indicator,z-index,2,cards/VideoCard.svelte
+VideoCard,.play-indicator.visible,opacity,1,cards/VideoCard.svelte
+Link,.link,display,inline-flex,navigation/Link.svelte
+Link,.link,padding,0.5rem 1rem,navigation/Link.svelte
+Link,.link,text-decoration,none,navigation/Link.svelte
+Link,.link,border-radius,0.25rem,navigation/Link.svelte
+Link,.link,transition,all 0.2s ease-in-out,navigation/Link.svelte
+Link,.primary,background-color,"var(--primary-color, #3b82f6)",navigation/Link.svelte
+Link,.primary,color,white,navigation/Link.svelte
+Link,.primary:hover:not(.disabled),background-color,"var(--primary-hover-color, #2563eb)",navigation/Link.svelte
+Link,.secondary,background-color,transparent,navigation/Link.svelte
+Link,.secondary,color,"var(--text-color, #374151)",navigation/Link.svelte
+Link,.secondary:hover:not(.disabled),background-color,"var(--secondary-hover-color, #f3f4f6)",navigation/Link.svelte
+Link,.disabled,opacity,0.5,navigation/Link.svelte
+Link,.disabled,cursor,not-allowed,navigation/Link.svelte
+Link,.link:active:not(.disabled),transform,scale(0.98),navigation/Link.svelte
+LinkList,ul,display,flex,navigation/LinkList.svelte
+LinkList,ul,flex-direction,row,navigation/LinkList.svelte
+LinkList,ul,gap,0.5em,navigation/LinkList.svelte
+LinkList,ul,font-size,"clamp(16px, 4vw, 24px)",navigation/LinkList.svelte
+LinkList,ul,font-weight,var(--fw-semibold),navigation/LinkList.svelte
+LinkList,.nav-link,color,var(--fg-text-primary-60),navigation/LinkList.svelte
+LinkList,.nav-link,text-decoration,none,navigation/LinkList.svelte
+LinkList,.nav-link:hover,color,var(--fg-text-primary),navigation/LinkList.svelte
+LinkList,.nav-link.active,color,var(--fg-text-primary),navigation/LinkList.svelte
+GridLayout,.grid,grid-template-columns,"repeat(var(--columns), 1fr)",grids/GridLayout.svelte
+GridLayout,.grid-item,border-radius,var(--bdr-radius-small),grids/GridLayout.svelte
+GridLayout,.grid-item,overflow,hidden,grids/GridLayout.svelte
+GridLayout,.grid-item.desktop-spans,grid-column,span var(--grid-cols),grids/GridLayout.svelte
+GridLayout,.grid-item.desktop-spans,grid-row,span var(--grid-rows),grids/GridLayout.svelte
+GridLayout,.grid-item[data-grid-size='2-2'],aspect-ratio,1 / 1,grids/GridLayout.svelte
+ProgressIndicator,.progress-container,display,flex,feedback/ProgressIndicator.svelte
+ProgressIndicator,.progress-container,-webkit-flex-direction,row,feedback/ProgressIndicator.svelte
+ProgressIndicator,.progress-container,flex-direction,row,feedback/ProgressIndicator.svelte
+ProgressIndicator,.progress-container,-webkit-align-items,center,feedback/ProgressIndicator.svelte
+ProgressIndicator,.progress-container,align-items,center,feedback/ProgressIndicator.svelte
+ProgressIndicator,.progress-container,-webkit-justify-content,center,feedback/ProgressIndicator.svelte
+ProgressIndicator,.progress-container,justify-content,flex-start,feedback/ProgressIndicator.svelte
+ProgressIndicator,.progress-container,gap,0,feedback/ProgressIndicator.svelte
+ProgressIndicator,.progress-container,width,100%,feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator,display,flex,feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator,-webkit-align-items,center,feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator,align-items,center,feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator,background-color,rgb(var(--color-bg-page)),feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator,color,"var(--fg-text-muted, #666)",feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator,opacity,0.5,feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator,font-size,var(--fs-300),feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator,-webkit-transform,translateZ(0),feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator,transform,translateZ(0),feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator,transition-property,"color, opacity",feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator,transition-duration,0.3s,feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator,transition-timing-function,ease,feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator.active,color,"var(--fg-text, #000)",feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator.active,opacity,1,feedback/ProgressIndicator.svelte
+ProgressIndicator,.bridge,display,flex,feedback/ProgressIndicator.svelte
+ProgressIndicator,.bridge,justify-content,center,feedback/ProgressIndicator.svelte
+ProgressIndicator,.bridge,align-items,center,feedback/ProgressIndicator.svelte
+ProgressIndicator,.bridge,flex,0 0 16px,feedback/ProgressIndicator.svelte
+ProgressIndicator,.bridge,height,1px,feedback/ProgressIndicator.svelte
+ProgressIndicator,.bridge,background-color,rgb(var(--color-bdr-muted)),feedback/ProgressIndicator.svelte
+ProgressIndicator,.bridge,transition-property,"flex-basis, background-color",feedback/ProgressIndicator.svelte
+ProgressIndicator,.bridge,transition-duration,0.3s,feedback/ProgressIndicator.svelte
+ProgressIndicator,.bridge,transition-timing-function,ease,feedback/ProgressIndicator.svelte
+ProgressIndicator,.bridge.active,flex,1 0 auto,feedback/ProgressIndicator.svelte
+ProgressIndicator,.bridge.active,background-color,rgb(var(--color-bdr-primary)),feedback/ProgressIndicator.svelte
+ProgressIndicator,".indicator.animated,
+  .bridge.animated",transition-property,all,feedback/ProgressIndicator.svelte
+ProgressIndicator,".indicator.animated,
+  .bridge.animated",transition-duration,0.3s,feedback/ProgressIndicator.svelte
+ProgressIndicator,".indicator.animated,
+  .bridge.animated",transition-timing-function,ease,feedback/ProgressIndicator.svelte
+ProgressIndicator,".indicator,
+    .bridge",transition,none,feedback/ProgressIndicator.svelte
+ProgressIndicator,".bracket-left,
+  .bracket-right,
+  .step-number",font-family,var(--font-family-alt),feedback/ProgressIndicator.svelte
+ProgressIndicator,".bracket-left,
+  .bracket-right,
+  .step-number",-webkit-font-smoothing,antialiased,feedback/ProgressIndicator.svelte
+ProgressIndicator,".bracket-left,
+  .bracket-right,
+  .step-number",-moz-osx-font-smoothing,grayscale,feedback/ProgressIndicator.svelte
+ProgressIndicator,".bracket-left,
+  .bracket-right,
+  .step-number",font-weight,400,feedback/ProgressIndicator.svelte
+ProgressIndicator,.step-number,padding,0 0.2rem,feedback/ProgressIndicator.svelte
+Callout,.callout-root,display,flex,feedback/Callout.svelte
+Callout,.callout-root,flex-direction,row,feedback/Callout.svelte
+Callout,.callout-root,justify-content,flex-start,feedback/Callout.svelte
+Callout,.callout-root,align-items,center,feedback/Callout.svelte
+Callout,.callout-root,gap,var(--spc-75),feedback/Callout.svelte
+Callout,.callout-root,padding-top,var(--spc-75),feedback/Callout.svelte
+Callout,.callout-root,padding-bottom,var(--spc-75),feedback/Callout.svelte
+Callout,.callout-root,padding-left,var(--spc-50),feedback/Callout.svelte
+Callout,.callout-text,font-family,var(--font-family-main),feedback/Callout.svelte
+Callout,.callout-text,font-size,var(0--fs-tiny-clamped),feedback/Callout.svelte
+Callout,.callout-text,font-weight,var(--fw-medium),feedback/Callout.svelte
+Callout,.callout-text,color,rgb(var(--color-txt-muted)),feedback/Callout.svelte
+Callout,.callout-Indicator,border-radius,var(--bdr-radius-pill),feedback/Callout.svelte
+Callout,.callout-Indicator,width,12px,feedback/Callout.svelte
+Callout,.callout-Indicator,height,12px,feedback/Callout.svelte
+Callout,.callout-Indicator,border,1.5px solid rgb(var(--color-bdr-muted)),feedback/Callout.svelte
+Callout,.callout-Indicator,box-shadow,inset 0 0 0 2px white,feedback/Callout.svelte
+Callout,.callout-Indicator,background-color,"rgb(143, 239, 0)",feedback/Callout.svelte
+ProgressToast,.progress-toast,font-size,var(--fs-200),feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,color,rgb(var(--color-txt-primary)),feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,padding-left,var(--spc-300),feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,padding-right,var(--spc-300),feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,height,44px,feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,border-radius,var(--bdr-radius-small),feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,display,flex,feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,flex-direction,row,feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,align-items,center,feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,justify-content,center,feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,gap,var(--spc-200),feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,background-color,rgba(var(--bg-inverse) / 0),feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,min-width,250px,feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,box-shadow,inset 0 0 0 1px rgba(var(--bdr-primary) / 0),feedback/ProgressToast.svelte
+ProgressToast,.progress-content,display,flex,feedback/ProgressToast.svelte
+ProgressToast,.progress-content,flex-direction,row,feedback/ProgressToast.svelte
+ProgressToast,.progress-content,align-items,center,feedback/ProgressToast.svelte
+ProgressToast,.progress-content,justify-content,center,feedback/ProgressToast.svelte
+ProgressToast,.progress-content,gap,var(--spc-300),feedback/ProgressToast.svelte
+ProgressToast,.progress-dots,display,flex,feedback/ProgressToast.svelte
+ProgressToast,.progress-dots,flex-direction,row,feedback/ProgressToast.svelte
+ProgressToast,.progress-dots,align-items,center,feedback/ProgressToast.svelte
+ProgressToast,.progress-dots,gap,var(--spc-100),feedback/ProgressToast.svelte
+ProgressToast,.progress-dots,background-color,rgba(var(--bg-positive) / 0.8),feedback/ProgressToast.svelte
+ProgressToast,.progress-dots,padding,var(--spc-100),feedback/ProgressToast.svelte
+ProgressToast,.progress-dots,border-radius,var(--bdr-radius-pill),feedback/ProgressToast.svelte
+ProgressToast,.progress-dot,width,16px,feedback/ProgressToast.svelte
+ProgressToast,.progress-dot,height,8px,feedback/ProgressToast.svelte
+ProgressToast,.progress-dot,position,relative,feedback/ProgressToast.svelte
+ProgressToast,.progress-dot,border-radius,var(--bdr-radius-pill),feedback/ProgressToast.svelte
+ProgressToast,.dot-inner,width,100%,feedback/ProgressToast.svelte
+ProgressToast,.dot-inner,height,100%,feedback/ProgressToast.svelte
+ProgressToast,.dot-inner,border-radius,var(--bdr-radius-pill),feedback/ProgressToast.svelte
+ProgressToast,.dot-inner,background-color,rgba(var(--fg-positive) / 0.2),feedback/ProgressToast.svelte
+ProgressToast,.dot-inner,border,1px solid rgba(var(--fg-positive) / 0.4),feedback/ProgressToast.svelte
+ProgressToast,.dot-inner,transition,all 0.3s ease-in-out,feedback/ProgressToast.svelte
+ProgressToast,.dot-inner,transform,scale(1),feedback/ProgressToast.svelte
+ProgressToast,.progress-dot.visited .dot-inner,background-color,rgba(var(--fg-positive) / 1),feedback/ProgressToast.svelte
+ProgressToast,.progress-dot.visited .dot-inner,border-color,rgba(var(--fg-positive) / 1),feedback/ProgressToast.svelte
+ProgressToast,.progress-dot.current .dot-inner,animation,pulse 1.5s ease-in-out infinite,feedback/ProgressToast.svelte
+ProgressToast,.progress-dot.visited.animated .dot-inner,animation,fillDot 0.4s ease-out forwards,feedback/ProgressToast.svelte
+ProgressToast,0%,transform,scale(1),feedback/ProgressToast.svelte
+ProgressToast,0%,opacity,1,feedback/ProgressToast.svelte
+ProgressToast,50%,transform,scale(1.1),feedback/ProgressToast.svelte
+ProgressToast,50%,opacity,0.8,feedback/ProgressToast.svelte
+ProgressToast,100%,transform,scale(1),feedback/ProgressToast.svelte
+ProgressToast,100%,opacity,1,feedback/ProgressToast.svelte
+Avatar,.avatar,position,relative,primitives/Avatar.svelte
+Avatar,.avatar,display,flex,primitives/Avatar.svelte
+Avatar,.avatar,align-items,center,primitives/Avatar.svelte
+Avatar,.avatar,justify-content,center,primitives/Avatar.svelte
+Avatar,.avatar,background-color,rgba(var(--bg-page) / 0),primitives/Avatar.svelte
+Avatar,.avatar,border,none,primitives/Avatar.svelte
+Avatar,.avatar,border-radius,var(--bdr-radius-small),primitives/Avatar.svelte
+Avatar,.avatar,padding,4px,primitives/Avatar.svelte
+Avatar,.avatar,box-shadow,inset 0 0 0 1px rgba(var(--fg-text-primary) / 1),primitives/Avatar.svelte
+Avatar,.avatar,container-type,inline-size,primitives/Avatar.svelte
+Avatar,.avatar,transition,var(--transition-fast),primitives/Avatar.svelte
+Avatar,.avatar,isolation,isolate,primitives/Avatar.svelte
+Avatar,.avatar-image,display,flex,primitives/Avatar.svelte
+Avatar,.avatar-image,width,100%,primitives/Avatar.svelte
+Avatar,.avatar-image,height,100%,primitives/Avatar.svelte
+Avatar,.avatar-image,background-size,cover,primitives/Avatar.svelte
+Avatar,.avatar-image,background-position,top,primitives/Avatar.svelte
+Avatar,.avatar-image,background-repeat,no-repeat,primitives/Avatar.svelte
+Avatar,.avatar-image,border-radius,var(--bdr-radius-tiny),primitives/Avatar.svelte
+Avatar,.avatar-image,transition,var(--transition-fast),primitives/Avatar.svelte
+Avatar,.avatar-image,position,relative,primitives/Avatar.svelte
+Avatar,.avatar-image,z-index,1,primitives/Avatar.svelte
+Avatar,.avatar-image,will-change,"transform, filter",primitives/Avatar.svelte
+Avatar,.glitch-active .avatar-image,animation,glitch-pulse 2s ease-in-out infinite,primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",position,absolute,primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",top,4px,primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",left,4px,primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",right,4px,primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",bottom,4px,primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",background-size,cover,primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",background-position,top,primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",background-repeat,no-repeat,primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",border-radius,var(--bdr-radius-tiny),primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",pointer-events,none,primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",opacity,0,primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",will-change,"transform, opacity",primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",transform,translateZ(0),primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",backface-visibility,hidden,primitives/Avatar.svelte
+Avatar,.glitch-red,filter,"sepia(1) saturate(10) hue-rotate(-60deg) brightness(1.2)
+      contrast(1.5)",primitives/Avatar.svelte
+Avatar,.glitch-red,mix-blend-mode,screen,primitives/Avatar.svelte
+Avatar,.glitch-red,z-index,3,primitives/Avatar.svelte
+Avatar,.glitch-green,filter,"sepia(1) saturate(10) hue-rotate(60deg) brightness(1.1)
+      contrast(1.3)",primitives/Avatar.svelte
+Avatar,.glitch-green,mix-blend-mode,screen,primitives/Avatar.svelte
+Avatar,.glitch-green,z-index,2,primitives/Avatar.svelte
+Avatar,.glitch-blue,filter,"sepia(1) saturate(10) hue-rotate(180deg) brightness(1.3)
+      contrast(1.4)",primitives/Avatar.svelte
+Avatar,.glitch-blue,mix-blend-mode,screen,primitives/Avatar.svelte
+Avatar,.glitch-blue,z-index,4,primitives/Avatar.svelte
+Avatar,.glitch-scanlines,position,absolute,primitives/Avatar.svelte
+Avatar,.glitch-scanlines,top,0,primitives/Avatar.svelte
+Avatar,.glitch-scanlines,left,0,primitives/Avatar.svelte
+Avatar,.glitch-scanlines,width,100%,primitives/Avatar.svelte
+Avatar,.glitch-scanlines,height,100%,primitives/Avatar.svelte
+Avatar,.glitch-scanlines,background,"repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.05) 2px,
+      rgba(255, 255, 255, 0.05) 4px
+    )",primitives/Avatar.svelte
+Avatar,.glitch-scanlines,border-radius,var(--bdr-radius-small),primitives/Avatar.svelte
+Avatar,.glitch-scanlines,pointer-events,none,primitives/Avatar.svelte
+Avatar,.glitch-scanlines,opacity,0,primitives/Avatar.svelte
+Avatar,.glitch-scanlines,z-index,10,primitives/Avatar.svelte
+Avatar,.glitch-scanlines,will-change,opacity,primitives/Avatar.svelte
+Avatar,.glitch-scanlines,transform,translateZ(0),primitives/Avatar.svelte
+Avatar,".glitch-red,
+    .glitch-green,
+    .glitch-blue,
+    .glitch-scanlines",display,none !important,primitives/Avatar.svelte
+Avatar,"0%,
+      100%",opacity,1,primitives/Avatar.svelte
+Avatar,50%,opacity,0.8,primitives/Avatar.svelte
+Avatar,.avatar-xs,width,"clamp(24px, 10vw, 80px)",primitives/Avatar.svelte
+Avatar,.avatar-xs,aspect-ratio,4 / 5,primitives/Avatar.svelte
+Avatar,.avatar-sm,width,"clamp(40px, 15vw, 120px)",primitives/Avatar.svelte
+Avatar,.avatar-sm,aspect-ratio,4 / 5,primitives/Avatar.svelte
+Avatar,.avatar-md,width,"clamp(60px, 20vw, 180px)",primitives/Avatar.svelte
+Avatar,.avatar-md,aspect-ratio,4 / 5,primitives/Avatar.svelte
+Avatar,.avatar-lg,width,"clamp(80px, 25vw, 240px)",primitives/Avatar.svelte
+Avatar,.avatar-lg,aspect-ratio,4 / 5,primitives/Avatar.svelte
+Avatar,.avatar-button,cursor,pointer,primitives/Avatar.svelte
+Avatar,.avatar-button:hover:not(.glitch-active) .avatar-image,transform,scale(0.98),primitives/Avatar.svelte
+Avatar,.avatar-button:disabled,opacity,0.5,primitives/Avatar.svelte
+Avatar,.avatar-button:disabled,cursor,not-allowed,primitives/Avatar.svelte
+Avatar,.avatar-button:disabled:hover .avatar-image,transform,none,primitives/Avatar.svelte
+Avatar,.avatar-button:focus-visible,outline,var(--focus-ring-width) solid var(--focus-ring-color),primitives/Avatar.svelte
+Avatar,.avatar-button:focus-visible,outline-offset,var(--focus-ring-offset),primitives/Avatar.svelte
+Avatar,".glitch-active,
+  .glitch-active .avatar-image,
+  .glitch-red,
+  .glitch-green,
+  .glitch-blue,
+  .glitch-scanlines",transform,translateZ(0),primitives/Avatar.svelte
+Avatar,".glitch-active,
+  .glitch-active .avatar-image,
+  .glitch-red,
+  .glitch-green,
+  .glitch-blue,
+  .glitch-scanlines",backface-visibility,hidden,primitives/Avatar.svelte
+Icon,.icon,display,inline-block,primitives/Icon.svelte
+Icon,.icon,vertical-align,middle,primitives/Icon.svelte
+Icon,.icon,flex-shrink,0,primitives/Icon.svelte
+Icon,.icon-missing,display,inline-flex,primitives/Icon.svelte
+Icon,.icon-missing,align-items,center,primitives/Icon.svelte
+Icon,.icon-missing,justify-content,center,primitives/Icon.svelte
+Icon,.icon-missing,background,#f3f4f6,primitives/Icon.svelte
+Icon,.icon-missing,border,1px dashed #d1d5db,primitives/Icon.svelte
+Icon,.icon-missing,border-radius,4px,primitives/Icon.svelte
+Icon,.icon-missing,color,#6b7280,primitives/Icon.svelte
+Icon,.icon-missing,font-size,10px,primitives/Icon.svelte
+Icon,.icon-missing,font-weight,bold,primitives/Icon.svelte
+Subheader,.subheader,font-family,var(--font-family-main),primitives/Subheader.svelte
+Subheader,.subheader,font-size,var(--fs-xlarge-clamped),primitives/Subheader.svelte
+Subheader,.subheader,font-weight,var(--fw-semibold),primitives/Subheader.svelte
+Subheader,.subheader.primary,color,var(--fg-text-primary),primitives/Subheader.svelte
+Subheader,.subheader.inverse,color,var(--fg-text-inverse),primitives/Subheader.svelte
+Indicator,.indicator,position,absolute,primitives/Indicator.svelte
+Indicator,.indicator,display,inline-block,primitives/Indicator.svelte
+Indicator,.indicator,width,16px,primitives/Indicator.svelte
+Indicator,.indicator,height,16px,primitives/Indicator.svelte
+Indicator,.indicator,border-radius,var(--bdr-radius-pill),primitives/Indicator.svelte
+Indicator,.indicator,border,2px solid var(--bg-page),primitives/Indicator.svelte
+Indicator,.indicator,background-color,var(--fg-text-danger),primitives/Indicator.svelte
+Indicator,.indicator,top,-6px,primitives/Indicator.svelte
+Indicator,.indicator,right,-6px,primitives/Indicator.svelte
+Indicator,.indicator--pulse,animation,none,primitives/Indicator.svelte
+Indicator,"0%,
+    100%",transform,scale(1),primitives/Indicator.svelte
+Indicator,50%,transform,scale(1.1),primitives/Indicator.svelte
+TagList,.tag-list,display,flex,primitives/TagList.svelte
+TagList,.tag-list,list-style,none,primitives/TagList.svelte
+TagList,.tag-list--horizontal,flex-direction,row,primitives/TagList.svelte
+TagList,.tag-list--vertical,flex-direction,column,primitives/TagList.svelte
+TagList,.tag-list--align-start,justify-content,flex-start,primitives/TagList.svelte
+TagList,.tag-list--align-start,align-items,flex-start,primitives/TagList.svelte
+TagList,.tag-list--align-center,justify-content,center,primitives/TagList.svelte
+TagList,.tag-list--align-center,align-items,center,primitives/TagList.svelte
+TagList,.tag-list--align-end,justify-content,flex-end,primitives/TagList.svelte
+TagList,.tag-list--align-end,align-items,flex-end,primitives/TagList.svelte
+TagList,.tag-list--gap-xs,gap,var(--space-xs),primitives/TagList.svelte
+TagList,.tag-list--gap-sm,gap,var(--space-sm),primitives/TagList.svelte
+TagList,.tag-list--gap-md,gap,var(--space-md),primitives/TagList.svelte
+TagList,.tag-list--gap-lg,gap,var(--space-lg),primitives/TagList.svelte
+TagList,.tag-list--wrap,flex-wrap,wrap,primitives/TagList.svelte
+Tag,.tag,display,inline-flex,primitives/Tag.svelte
+Tag,.tag,align-items,center,primitives/Tag.svelte
+Tag,.tag,justify-content,center,primitives/Tag.svelte
+Tag,.tag,padding,var(--space-xs) var(--space-md),primitives/Tag.svelte
+Tag,.tag,font-size,var(--fs-350),primitives/Tag.svelte
+Tag,.tag,font-weight,var(--fw-semibold),primitives/Tag.svelte
+Tag,.tag,border-radius,var(--bdr-radius-pill),primitives/Tag.svelte
+Tag,.tag,white-space,nowrap,primitives/Tag.svelte
+Tag,.tag--primary,background-color,transparent,primitives/Tag.svelte
+Tag,.tag--primary,color,var(--fg-text-primary),primitives/Tag.svelte
+Tag,.tag--primary,box-shadow,0 0 0 1px currentColor,primitives/Tag.svelte
+Tag,.tag--inverse,background-color,transparent,primitives/Tag.svelte
+Tag,.tag--inverse,color,var(--fg-text-inverse),primitives/Tag.svelte
+Tag,.tag--inverse,box-shadow,0 0 0 1px currentColor,primitives/Tag.svelte
+List,.list,display,flex,primitives/List.svelte
+List,.list,flex-direction,column,primitives/List.svelte
+List,.list,padding,0,primitives/List.svelte
+List,.list,gap,var(--space-sm),primitives/List.svelte
+List,.list--plain,list-style,none,primitives/List.svelte
+List,.list--bullet,list-style,disc,primitives/List.svelte
+List,.list--bullet,padding-left,0.8em,primitives/List.svelte
+List,.list--number,list-style,decimal,primitives/List.svelte
+List,.list--number,padding-left,1.5em,primitives/List.svelte
+List,.list--custom,padding-left,1.5em,primitives/List.svelte
+List,.list__item--structured,display,flex,primitives/List.svelte
+List,.list__item--structured,align-items,baseline,primitives/List.svelte
+List,.list__item--structured,gap,0.25em,primitives/List.svelte
+List,.list__item-name,white-space,nowrap,primitives/List.svelte
+List,.list__item-name,color,var(--fg-text-primary),primitives/List.svelte
+List,.list__item-separator,color,var(--fg-text-primary-80),primitives/List.svelte
+List,.list__item-separator,white-space,nowrap,primitives/List.svelte
+List,.list__item-role,font-weight,var(--fw-regular),primitives/List.svelte
+List,.list__item-role,color,var(--fg-text-primary-80),primitives/List.svelte
+List,.list__item-role,white-space,nowrap,primitives/List.svelte
+List,.list--normal .list__item:not(.list__item--structured),font-weight,"var(--fw-medium, 500)",primitives/List.svelte
+List,.list--strong .list__item:not(.list__item--structured),font-weight,"var(--fw-bold, 700)",primitives/List.svelte
+List,.list--strong .list__item,line-height,var(--lh-snug),primitives/List.svelte
+List,.list--strong .list__item,max-width,var(--width-prose-sm),primitives/List.svelte
+List,.list__item-name--normal,font-weight,"var(--fw-medium, 500)",primitives/List.svelte
+List,.list__item-name--strong,font-weight,"var(--fw-bold, 700)",primitives/List.svelte
+McpText,.mcp-text,background-color,"rgba(166, 12, 12, 0.8)",primitives/McpText.svelte
+McpText,.mcp-text,position,relative,primitives/McpText.svelte
+McpText,.mcp-text,width,100%,primitives/McpText.svelte
+McpText,.mcp-text,height,100%,primitives/McpText.svelte
+McpText,.flex-container,display,flex,primitives/McpText.svelte
+McpText,.flex-container,flex-direction,row,primitives/McpText.svelte
+McpText,.flex-container,align-items,center,primitives/McpText.svelte
+McpText,.flex-container,justify-content,center,primitives/McpText.svelte
+McpText,.flex-container,position,relative,primitives/McpText.svelte
+McpText,.flex-container,width,100%,primitives/McpText.svelte
+McpText,.flex-container,height,100%,primitives/McpText.svelte
+McpText,.content-box,padding-inline,12.188rem,primitives/McpText.svelte
+McpText,.content-box,padding-block,4.813rem,primitives/McpText.svelte
+McpText,.text-content,font-family,"'Geist Mono', monospace",primitives/McpText.svelte
+McpText,.text-content,font-weight,500,primitives/McpText.svelte
+McpText,.text-content,line-height,normal,primitives/McpText.svelte
+McpText,.text-content,font-style,normal,primitives/McpText.svelte
+McpText,.text-content,position,relative,primitives/McpText.svelte
+McpText,.text-content,flex-shrink,0,primitives/McpText.svelte
+McpText,.text-content,color,#ffffff,primitives/McpText.svelte
+McpText,.text-content,font-size,1rem,primitives/McpText.svelte
+McpText,.text-content,text-align,left,primitives/McpText.svelte
+McpText,.text-content,white-space,pre,primitives/McpText.svelte
+Weather,.location-info-root,display,flex,snoop/Weather.svelte
+Weather,.location-info-root,flex-direction,column,snoop/Weather.svelte
+Weather,.location-info-root,justify-content,center,snoop/Weather.svelte
+Weather,.location-info-root,align-items,flex-start,snoop/Weather.svelte
+Weather,.location-info-root,font-family,var(--font-family-main),snoop/Weather.svelte
+Weather,.location-info-root,border-radius,var(--bdr-radius-small),snoop/Weather.svelte
+Weather,.location-info-root,width,100%,snoop/Weather.svelte
+Weather,.location-info-root,overflow,hidden,snoop/Weather.svelte
+Weather,.location-info-root,height,72px,snoop/Weather.svelte
+Weather,.location-info-root,background-color,var(--bg-page),snoop/Weather.svelte
+Weather,.location-info-root,box-shadow,inset 0 0 0 1px var(--fg-text-primary),snoop/Weather.svelte
+Weather,.weather-state-container,display,flex,snoop/Weather.svelte
+Weather,.weather-state-container,flex-direction,row,snoop/Weather.svelte
+Weather,.weather-state-container,align-items,center,snoop/Weather.svelte
+Weather,.weather-state-container,justify-content,flex-start,snoop/Weather.svelte
+Weather,.weather-state-container,min-height,64px,snoop/Weather.svelte
+Weather,.weather-state-container,padding,16px,snoop/Weather.svelte
+Weather,.weather-state-container,width,100%,snoop/Weather.svelte
+Weather,.weather-state-container,gap,12px,snoop/Weather.svelte
+Weather,.weather-state-container,transition,all 0.2s ease-in-out,snoop/Weather.svelte
+Weather,.weather-icon-slot,display,flex,snoop/Weather.svelte
+Weather,.weather-icon-slot,align-items,center,snoop/Weather.svelte
+Weather,.weather-icon-slot,justify-content,center,snoop/Weather.svelte
+Weather,.weather-icon-slot,flex-shrink,0,snoop/Weather.svelte
+Weather,.weather-content,display,flex,snoop/Weather.svelte
+Weather,.weather-content,flex-direction,column,snoop/Weather.svelte
+Weather,.weather-content,justify-content,center,snoop/Weather.svelte
+Weather,.weather-content,align-items,flex-start,snoop/Weather.svelte
+Weather,.weather-content,flex-grow,1,snoop/Weather.svelte
+Weather,.weather-content,gap,2px,snoop/Weather.svelte
+Weather,.weather-action-slot,display,flex,snoop/Weather.svelte
+Weather,.weather-action-slot,align-items,center,snoop/Weather.svelte
+Weather,.weather-action-slot,flex-shrink,0,snoop/Weather.svelte
+Weather,.weather-text-primary,font-size,var(--fs-275),snoop/Weather.svelte
+Weather,.weather-text-primary,font-weight,var(--fw-semibold),snoop/Weather.svelte
+Weather,.weather-text-primary,color,var(--fg-text-primary),snoop/Weather.svelte
+Weather,.weather-text-primary,font-family,var(--font-family-main),snoop/Weather.svelte
+Weather,.weather-text-secondary,font-size,var(--fs-200),snoop/Weather.svelte
+Weather,.weather-text-secondary,color,var(--fg-text-secondary),snoop/Weather.svelte
+Weather,.weather-text-secondary,font-family,var(--font-family-main),snoop/Weather.svelte
+Weather,.weather-text-secondary,margin,0,snoop/Weather.svelte
+Weather,.weather-text-secondary,line-height,1.3,snoop/Weather.svelte
+Weather,.loading-state,background-color,var(--bg-page),snoop/Weather.svelte
+Weather,.loading-text,color,var(--fg-text-secondary),snoop/Weather.svelte
+Weather,.loading-text,font-family,var(--font-family-alt),snoop/Weather.svelte
+Weather,.loading-state .weather-icon-slot :global(svg),animation,pulse 2s ease-in-out infinite,snoop/Weather.svelte
+Weather,0%,opacity,0.6,snoop/Weather.svelte
+Weather,0%,transform,scale(1) rotate(0deg),snoop/Weather.svelte
+Weather,50%,opacity,1,snoop/Weather.svelte
+Weather,50%,transform,scale(1.1) rotate(180deg),snoop/Weather.svelte
+Weather,100%,opacity,0.6,snoop/Weather.svelte
+Weather,100%,transform,scale(1) rotate(360deg),snoop/Weather.svelte
+WeatherDebugPanel,.debug-panel,position,fixed,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel,z-index,9999,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel,width,320px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel,max-height,80vh,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel,background,"rgba(0, 0, 0, 0.95)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel,border,"1px solid rgba(255, 255, 255, 0.2)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel,border-radius,8px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel,font-family,"var(--font-family-alt, monospace)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel,font-size,12px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel,color,white,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel,box-shadow,"0 8px 32px rgba(0, 0, 0, 0.5)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel,backdrop-filter,blur(10px),snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel,overflow,hidden,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel,user-select,none,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel.dragging,cursor,grabbing,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-panel.collapsed,height,auto,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-header,display,flex,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-header,justify-content,space-between,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-header,align-items,center,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-header,padding,8px 12px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-header,background,"rgba(255, 255, 255, 0.1)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-header,border-bottom,"1px solid rgba(255, 255, 255, 0.1)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-header,cursor,grab,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-header:active,cursor,grabbing,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-header h3,margin,0,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-header h3,font-size,14px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-header h3,font-weight,600,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.header-controls,display,flex,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.header-controls,gap,8px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,".collapse-btn,
+  .close-btn",background,none,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,".collapse-btn,
+  .close-btn",border,none,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,".collapse-btn,
+  .close-btn",color,white,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,".collapse-btn,
+  .close-btn",cursor,pointer,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,".collapse-btn,
+  .close-btn",padding,4px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,".collapse-btn,
+  .close-btn",border-radius,4px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,".collapse-btn,
+  .close-btn",font-size,12px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,".collapse-btn,
+  .close-btn",line-height,1,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,".collapse-btn:hover,
+  .close-btn:hover",background,"rgba(255, 255, 255, 0.2)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-content,padding,12px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-content,max-height,calc(80vh - 50px),snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-content,overflow-y,auto,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.state-display,margin-bottom,16px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.state-display,padding,8px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.state-display,background,"rgba(255, 255, 255, 0.05)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.state-display,border-radius,4px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.state-display h4,margin,0 0 8px 0,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.state-display h4,font-size,12px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.state-display h4,color,#ccc,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.state-info,display,flex,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.state-info,flex-direction,column,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.state-info,gap,4px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.state-item,display,flex,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.state-item,justify-content,space-between,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.state-item,align-items,center,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.label,color,#aaa,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.label,font-size,11px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.value,font-weight,600,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.value,font-size,11px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.value.active,color,#4ade80,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.value.loading,color,#3b82f6,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.value.error,color,#ef4444,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.value.success,color,#10b981,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.control-section,margin-bottom,16px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.control-section h4,margin,0 0 8px 0,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.control-section h4,font-size,12px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.control-section h4,color,#ccc,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.control-section h4,border-bottom,"1px solid rgba(255, 255, 255, 0.1)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.control-section h4,padding-bottom,4px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.button-grid,display,grid,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.button-grid,grid-template-columns,1fr 1fr,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.button-grid,gap,6px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.scenario-grid,display,flex,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.scenario-grid,flex-direction,column,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.scenario-grid,gap,4px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.scenario-btn,background,"rgba(255, 255, 255, 0.1)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.scenario-btn,border,"1px solid rgba(255, 255, 255, 0.2)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.scenario-btn,color,white,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.scenario-btn,padding,6px 8px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.scenario-btn,border-radius,4px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.scenario-btn,cursor,pointer,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.scenario-btn,font-size,11px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.scenario-btn,text-align,left,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.scenario-btn,transition,background-color 0.2s,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.scenario-btn:hover,background,"rgba(255, 255, 255, 0.2)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.scenario-btn:active,background,"rgba(255, 255, 255, 0.3)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-content::-webkit-scrollbar,width,6px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-content::-webkit-scrollbar-track,background,"rgba(255, 255, 255, 0.1)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-content::-webkit-scrollbar-thumb,background,"rgba(255, 255, 255, 0.3)",snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-content::-webkit-scrollbar-thumb,border-radius,3px,snoop/WeatherDebugPanel.svelte
+WeatherDebugPanel,.debug-content::-webkit-scrollbar-thumb:hover,background,"rgba(255, 255, 255, 0.5)",snoop/WeatherDebugPanel.svelte
+IconButton,.btn,border,none,actions/IconButton.svelte
+IconButton,.btn,border-radius,var(--bdr-radius-small),actions/IconButton.svelte
+IconButton,.btn,font-weight,var(--fw-semibold),actions/IconButton.svelte
+IconButton,.btn,height,44px,actions/IconButton.svelte
+IconButton,.btn,width,44px,actions/IconButton.svelte
+IconButton,.btn,transition,all 0.2s ease-in-out,actions/IconButton.svelte
+IconButton,.btn :global(.icon),transition,transform 0.2s ease-in-out,actions/IconButton.svelte
+IconButton,.btn :global(.icon),transition-delay,0.2ms,actions/IconButton.svelte
+IconButton,.inverse,background-color,var(--bg-primary),actions/IconButton.svelte
+IconButton,.inverse,box-shadow,inset 0 0px 0px 1px var(--bg-primary),actions/IconButton.svelte
+IconButton,.inverse:hover,transform,scale(1.05),actions/IconButton.svelte
+IconButton,.inverse:hover :global(.icon),transform,scale(1.2),actions/IconButton.svelte
+IconButton,.inverse:active,transform,scale(0.95),actions/IconButton.svelte
+IconButton,.primary,background-color,var(--bg-page),actions/IconButton.svelte
+IconButton,.primary,box-shadow,inset 0 0px 0px 1px var(--bg-inverse),actions/IconButton.svelte
+IconButton,.primary:hover,transform,scale(1.05),actions/IconButton.svelte
+IconButton,.primary:hover :global(.icon),transform,scale(1.2),actions/IconButton.svelte
+IconButton,.primary:active,transform,scale(0.95),actions/IconButton.svelte
+IconButton,.btn :global(.loading-icon),animation,spin 1s linear infinite,actions/IconButton.svelte
+IconButton,from,transform,rotate(0deg),actions/IconButton.svelte
+IconButton,to,transform,rotate(360deg),actions/IconButton.svelte
+IconButton,.btn:disabled,opacity,0.6,actions/IconButton.svelte
+IconButton,.btn:disabled,cursor,not-allowed,actions/IconButton.svelte
+IconButton,.btn:disabled:hover,transform,none,actions/IconButton.svelte
+IconButton,.btn:disabled:hover :global(.icon),transform,none,actions/IconButton.svelte
+Button,.btn,border,none,actions/Button.svelte
+Button,.btn,border-radius,var(--bdr-radius-small),actions/Button.svelte
+Button,.btn,font-weight,var(--fw-semibold),actions/Button.svelte
+Button,.btn,font-size,var(--fs-300),actions/Button.svelte
+Button,.btn,height,44px,actions/Button.svelte
+Button,.btn,padding-left,8px,actions/Button.svelte
+Button,.btn,padding-right,8px,actions/Button.svelte
+Button,.btn,text-decoration,none,actions/Button.svelte
+Button,.btn,display,inline-flex,actions/Button.svelte
+Button,.btn,align-items,center,actions/Button.svelte
+Button,.btn,justify-content,center,actions/Button.svelte
+Button,.btn,cursor,pointer,actions/Button.svelte
+Button,.btn,color,inherit,actions/Button.svelte
+Button,.btn,width,fit-content,actions/Button.svelte
+Button,.btn,min-width,max-content,actions/Button.svelte
+Button,.btn,flex-shrink,0,actions/Button.svelte
+Button,.inverse,background-color,var(--bg-primary),actions/Button.svelte
+Button,.inverse,box-shadow,inset 0 0px 0px 1px var(--bg-primary),actions/Button.svelte
+Button,.inverse,color,var(--fg-text-inverse),actions/Button.svelte
+Button,.inverse:hover,background-color,var(--bg-primary),actions/Button.svelte
+Button,.inverse:active,background-color,var(--bg-primary),actions/Button.svelte
+Button,.primary,background-color,var(--bg-page),actions/Button.svelte
+Button,.primary,box-shadow,inset 0 0px 0px 1px var(--bg-inverse),actions/Button.svelte
+Button,.primary,color,var(--fg-text-primary),actions/Button.svelte
+Button,.primary:hover,background-color,var(--bg-page),actions/Button.svelte
+Button,.primary:active,background-color,var(--bg-page),actions/Button.svelte
+Button,.full-width,display,inline-flex,actions/Button.svelte
+Button,.full-width,width,100%,actions/Button.svelte
+Button,.btn-layout,display,flex,actions/Button.svelte
+Button,.btn-layout,width,100%,actions/Button.svelte
+Button,.btn-layout,align-items,center,actions/Button.svelte
+Button,.btn-layout,justify-content,center,actions/Button.svelte
+Button,.btn-layout,gap,6px,actions/Button.svelte
+Button,.btn-layout,padding-left,12px,actions/Button.svelte
+Button,.btn-layout,padding-top,8px,actions/Button.svelte
+Button,.btn-layout,padding-right,12px,actions/Button.svelte
+Button,.btn-layout,padding-bottom,8px,actions/Button.svelte
+Button,.has-icon,padding-left,6px,actions/Button.svelte
+GemButton,.gem-button,font-size,1.25rem,actions/GemButton.svelte
+GemButton,.gem-button,padding,0.75rem 1.5rem,actions/GemButton.svelte
+PromptButton,.prompt-btn,display,inline-flex,actions/PromptButton.svelte
+PromptButton,.prompt-btn,align-items,center,actions/PromptButton.svelte
+PromptButton,.prompt-btn,justify-content,center,actions/PromptButton.svelte
+PromptButton,.prompt-btn,padding,0.5rem 0.75rem,actions/PromptButton.svelte
+PromptButton,.prompt-btn,border-radius,var(--bdr-radius-pill),actions/PromptButton.svelte
+PromptButton,.prompt-btn,font-size,var(--fs-300),actions/PromptButton.svelte
+PromptButton,.prompt-btn,font-weight,var(--fw-medium),actions/PromptButton.svelte
+PromptButton,.prompt-btn,line-height,1.2,actions/PromptButton.svelte
+PromptButton,.prompt-btn,text-align,center,actions/PromptButton.svelte
+PromptButton,.prompt-btn,cursor,pointer,actions/PromptButton.svelte
+PromptButton,.prompt-btn,transition,all 0.2s ease,actions/PromptButton.svelte
+PromptButton,.prompt-btn,white-space,nowrap,actions/PromptButton.svelte
+PromptButton,.prompt-btn,border,1px solid transparent,actions/PromptButton.svelte
+PromptButton,.prompt-btn,background,transparent,actions/PromptButton.svelte
+PromptButton,.prompt-btn,position,relative,actions/PromptButton.svelte
+PromptButton,.prompt-btn,overflow,hidden,actions/PromptButton.svelte
+PromptButton,.prompt-btn,min-height,36px,actions/PromptButton.svelte
+PromptButton,.prompt-btn,flex-shrink,0,actions/PromptButton.svelte
+PromptButton,.prompt-btn,font-family,var(--font-family-main),actions/PromptButton.svelte
+PromptButton,.prompt-btn--default,color,var(--fg-text-primary-60),actions/PromptButton.svelte
+PromptButton,.prompt-btn--default,border-color,var(--fg-text-primary-40),actions/PromptButton.svelte
+PromptButton,.prompt-btn--default:hover:not(.prompt-btn--disabled),color,var(--fg-text-primary),actions/PromptButton.svelte
+PromptButton,.prompt-btn--default:hover:not(.prompt-btn--disabled),border-color,var(--fg-text-primary-60),actions/PromptButton.svelte
+PromptButton,.prompt-btn--default:active:not(.prompt-btn--disabled),color,var(--fg-text-primary-20),actions/PromptButton.svelte
+PromptButton,.prompt-btn--default:active:not(.prompt-btn--disabled),border-color,var(--fg-text-primary-20),actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary,background-color,"var(--bg-secondary, var(--bg-page))",actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary,color,"var(--fg-text-secondary, var(--fg-text-primary))",actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary,border-color,"var(--border-secondary, var(--fg-text-primary-30))",actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary:hover:not(.prompt-btn--disabled),background-color,"var(--bg-secondary-hover, var(--bg-primary))",actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary:hover:not(.prompt-btn--disabled),color,var(--fg-text-inverse),actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary:hover:not(.prompt-btn--disabled),border-color,var(--bg-primary),actions/PromptButton.svelte
+PromptButton,.prompt-btn--disabled,opacity,0.5,actions/PromptButton.svelte
+PromptButton,.prompt-btn--disabled,cursor,not-allowed,actions/PromptButton.svelte
+PromptButton,.prompt-btn--disabled,transform,none !important,actions/PromptButton.svelte
+PromptButton,.prompt-btn--disabled,box-shadow,none !important,actions/PromptButton.svelte
+PromptButton,.prompt-btn:focus-visible,outline,"2px solid var(--focus-ring-color, var(--bg-primary))",actions/PromptButton.svelte
+PromptButton,.prompt-btn:focus-visible,outline-offset,2px,actions/PromptButton.svelte
+CanvasAnimation,.canvas-container,position,relative,graphics/CanvasAnimation.svelte
+CanvasAnimation,.canvas-container,display,flex,graphics/CanvasAnimation.svelte
+CanvasAnimation,.canvas-container,align-items,center,graphics/CanvasAnimation.svelte
+CanvasAnimation,.canvas-container,justify-content,center,graphics/CanvasAnimation.svelte
+CanvasAnimation,.canvas-container,background-color,"rgba(255, 192, 203, 0)",graphics/CanvasAnimation.svelte
+CanvasAnimation,.animation-canvas,width,100%,graphics/CanvasAnimation.svelte
+CanvasAnimation,.animation-canvas,height,100%,graphics/CanvasAnimation.svelte
+CanvasAnimation,.animation-canvas,display,block,graphics/CanvasAnimation.svelte
+CanvasAnimation,.animation-canvas,cursor,default,graphics/CanvasAnimation.svelte
+CanvasAnimation,.animation-canvas.clickable,cursor,pointer,graphics/CanvasAnimation.svelte
+CanvasAnimation,.animation-canvas.hoverable,cursor,pointer,graphics/CanvasAnimation.svelte
+CanvasAnimation,.animation-canvas.hidden,display,none,graphics/CanvasAnimation.svelte
+CanvasAnimation,".loading,
+  .error",position,absolute,graphics/CanvasAnimation.svelte
+CanvasAnimation,".loading,
+  .error",top,0,graphics/CanvasAnimation.svelte
+CanvasAnimation,".loading,
+  .error",left,0,graphics/CanvasAnimation.svelte
+CanvasAnimation,".loading,
+  .error",width,100%,graphics/CanvasAnimation.svelte
+CanvasAnimation,".loading,
+  .error",height,100%,graphics/CanvasAnimation.svelte
+CanvasAnimation,".loading,
+  .error",display,flex,graphics/CanvasAnimation.svelte
+CanvasAnimation,".loading,
+  .error",align-items,center,graphics/CanvasAnimation.svelte
+CanvasAnimation,".loading,
+  .error",justify-content,center,graphics/CanvasAnimation.svelte
+CanvasAnimation,".loading,
+  .error",background-color,"rgba(207, 8, 154, 0)",graphics/CanvasAnimation.svelte
+AnimatedTextPath,.animated-text-path-container,position,absolute,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.animated-text-path-container,width,100%,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.animated-text-path-container,height,100vh,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.animated-text-path-container,overflow-x,hidden,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.animated-text-path-container,overflow-y,visible,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.animated-text-path-container,z-index,-999,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.animated-text-path-container,top,0,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.canvas-wrapper,position,absolute,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.canvas-wrapper,top,0,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.canvas-wrapper,left,50%,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.canvas-wrapper,transform,translateX(-50%),graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.canvas-wrapper,width,2560px,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.canvas-wrapper,height,100%,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.animated-text-path,display,none,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.sr-only,position,absolute,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.sr-only,width,1px,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.sr-only,height,1px,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.sr-only,padding,0,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.sr-only,margin,-1px,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.sr-only,overflow,hidden,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.sr-only,clip,"rect(0, 0, 0, 0)",graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.sr-only,white-space,nowrap,graphics/AnimatedTextPath.svelte
+AnimatedTextPath,.sr-only,border-width,0,graphics/AnimatedTextPath.svelte
+AnimatedTextPathSpag,.animated-text-path-container,position,relative,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.animated-text-path-container,width,100%,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.animated-text-path-container,height,300px,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.animated-text-path-container,overflow,visible,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.canvas-wrapper,position,absolute,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.canvas-wrapper,top,0,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.canvas-wrapper,left,50%,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.canvas-wrapper,transform,translateX(-50%),graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.canvas-wrapper,width,2560px,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.canvas-wrapper,height,100%,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.animated-text-path,display,none,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.sr-only,position,absolute,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.sr-only,width,1px,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.sr-only,height,1px,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.sr-only,padding,0,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.sr-only,margin,-1px,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.sr-only,overflow,hidden,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.sr-only,clip,"rect(0, 0, 0, 0)",graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.sr-only,white-space,nowrap,graphics/AnimatedTextPathSpag.svelte
+AnimatedTextPathSpag,.sr-only,border-width,0,graphics/AnimatedTextPathSpag.svelte
+TopNav,nav,flex-direction,row,top-nav/TopNav.svelte
+TopNav,nav,align-items,center,top-nav/TopNav.svelte
+TopNav,.left-wrapper,display,flex,top-nav/TopNav.svelte
+TopNav,.left-wrapper,justify-content,flex-start,top-nav/TopNav.svelte
+TopNav,.left,display,flex,top-nav/TopNav.svelte
+TopNav,.left,align-items,center,top-nav/TopNav.svelte
+TopNav,.left,gap,var(--space-xl),top-nav/TopNav.svelte
+TopNav,.name-and-links,display,flex,top-nav/TopNav.svelte
+TopNav,.name-and-links,flex-direction,column,top-nav/TopNav.svelte
+TopNav,.name-and-links,justify-content,flex-start,top-nav/TopNav.svelte
+TopNav,.name-and-links,align-items,flex-start,top-nav/TopNav.svelte
+TopNav,.name-and-links,gap,0.5em,top-nav/TopNav.svelte
+TopNav,.right,display,flex,top-nav/TopNav.svelte
+TopNav,.right,align-items,center,top-nav/TopNav.svelte
+TopNav,p,font-size,var(--fs-300),top-nav/TopNav.svelte
+TopNav,p,font-weight,var(--fw-semibold),top-nav/TopNav.svelte
+TopNav,p,color,var(--fg-text-primary),top-nav/TopNav.svelte
+ChatTrigger,.chat-trigger,position,relative,top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,display,flex,top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,align-items,center,top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,justify-content,center,top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,width,var(--width-4xl),top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,aspect-ratio,4 / 5,top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,background-color,var(--bg-page),top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,border,none,top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,border-radius,var(--bdr-radius-small),top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,cursor,pointer,top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,padding,4px,top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,box-shadow,inset 0 0 0 1px var(--fg-text-primary),top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,container-type,inline-size,top-nav/ChatTrigger.svelte
+ChatTrigger,.profile-image,display,flex,top-nav/ChatTrigger.svelte
+ChatTrigger,.profile-image,width,100%,top-nav/ChatTrigger.svelte
+ChatTrigger,.profile-image,height,100%,top-nav/ChatTrigger.svelte
+ChatTrigger,.profile-image,background-size,cover,top-nav/ChatTrigger.svelte
+ChatTrigger,.profile-image,background-position,top,top-nav/ChatTrigger.svelte
+ChatTrigger,.profile-image,background-repeat,no-repeat,top-nav/ChatTrigger.svelte
+ChatTrigger,.profile-image,border-radius,var(--bdr-radius-tiny),top-nav/ChatTrigger.svelte
+ChatTrigger,.profile-image,transition,all 0.15s ease-in-out,top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger:hover .profile-image,transform,scale(0.98),top-nav/ChatTrigger.svelte
+VideoTile,.video-tile-root,width,767px,media/VideoTile.svelte
+VideoTile,.video-tile-root,max-width,568px,media/VideoTile.svelte
+VideoTile,.video-tile-root,height,506.44px,media/VideoTile.svelte
+VideoTile,.tile-header,display,flex,media/VideoTile.svelte
+VideoTile,.tile-header,flex-direction,row,media/VideoTile.svelte
+VideoTile,.tile-header,justify-content,space-between,media/VideoTile.svelte
+VideoTile,.tile-header,width,100%,media/VideoTile.svelte
+VideoTile,.tile-header,height,44px,media/VideoTile.svelte
+VideoTile,.tile-header,padding,16px 0px,media/VideoTile.svelte
+VideoTile,.tile-header,box-sizing,border-box,media/VideoTile.svelte
+VideoTile,.subject-tag,display,flex,media/VideoTile.svelte
+VideoTile,.subject-tag,flex-direction,row,media/VideoTile.svelte
+VideoTile,.subject-tag,align-items,center,media/VideoTile.svelte
+VideoTile,.subject-tag,gap,4px,media/VideoTile.svelte
+VideoTile,.subject-tag,height,12px,media/VideoTile.svelte
+VideoTile,.circle-indicator,width,12px,media/VideoTile.svelte
+VideoTile,.circle-indicator,height,12px,media/VideoTile.svelte
+VideoTile,.circle-indicator,border,1px solid #989cb8,media/VideoTile.svelte
+VideoTile,.circle-indicator,border-radius,999px,media/VideoTile.svelte
+VideoTile,.subject-text,font-family,"'Geist Mono', monospace",media/VideoTile.svelte
+VideoTile,.subject-text,font-size,12px,media/VideoTile.svelte
+VideoTile,.subject-text,font-weight,400,media/VideoTile.svelte
+VideoTile,.subject-text,color,#989cb8,media/VideoTile.svelte
+VideoTile,.duration-info,display,flex,media/VideoTile.svelte
+VideoTile,.duration-info,flex-direction,row,media/VideoTile.svelte
+VideoTile,.duration-info,align-items,center,media/VideoTile.svelte
+VideoTile,.duration-info,height,12px,media/VideoTile.svelte
+VideoTile,.duration-text,font-family,"'Geist Mono', monospace",media/VideoTile.svelte
+VideoTile,.duration-text,font-size,12px,media/VideoTile.svelte
+VideoTile,.duration-text,font-weight,400,media/VideoTile.svelte
+VideoTile,.duration-text,color,#989cb8,media/VideoTile.svelte
+VideoTile,.video-container,height,413.44px,media/VideoTile.svelte
+VideoTile,.video-container,padding-bottom,0,media/VideoTile.svelte
+VideoTile,".video-container iframe,
+  .video-thumbnail",position,absolute,media/VideoTile.svelte
+VideoTile,".video-container iframe,
+  .video-thumbnail",top,0,media/VideoTile.svelte
+VideoTile,".video-container iframe,
+  .video-thumbnail",left,0,media/VideoTile.svelte
+VideoTile,".video-container iframe,
+  .video-thumbnail",width,100%,media/VideoTile.svelte
+VideoTile,".video-container iframe,
+  .video-thumbnail",height,100%,media/VideoTile.svelte
+VideoTile,.video-thumbnail,cursor,pointer,media/VideoTile.svelte
+VideoTile,.video-thumbnail img,width,100%,media/VideoTile.svelte
+VideoTile,.video-thumbnail img,height,100%,media/VideoTile.svelte
+VideoTile,.video-thumbnail img,object-fit,cover,media/VideoTile.svelte
+VideoTile,.play-button,position,absolute,media/VideoTile.svelte
+VideoTile,.play-button,top,50%,media/VideoTile.svelte
+VideoTile,.play-button,left,50%,media/VideoTile.svelte
+VideoTile,.play-button,transform,"translate(-50%, -50%)",media/VideoTile.svelte
+VideoTile,.play-button,transition,transform 0.2s ease,media/VideoTile.svelte
+VideoTile,.video-thumbnail:hover .play-button,transform,"translate(-50%, -50%) scale(1.1)",media/VideoTile.svelte
+VideoTile,.tile-footer,display,flex,media/VideoTile.svelte
+VideoTile,.tile-footer,flex-direction,row,media/VideoTile.svelte
+VideoTile,.tile-footer,width,100%,media/VideoTile.svelte
+VideoTile,.tile-footer,height,49px,media/VideoTile.svelte
+VideoTile,.tile-footer,padding,16px 0px,media/VideoTile.svelte
+VideoTile,.tile-footer,box-sizing,border-box,media/VideoTile.svelte
+VideoTile,.video-title,font-family,"'Geist', sans-serif",media/VideoTile.svelte
+VideoTile,.video-title,font-size,14px,media/VideoTile.svelte
+VideoTile,.video-title,font-weight,500,media/VideoTile.svelte
+VideoTile,.video-title,line-height,120%,media/VideoTile.svelte
+VideoTile,.video-title,color,#26272d,media/VideoTile.svelte
+VideoTile,.video-title,margin,0,media/VideoTile.svelte
+VideoTile,".video-container iframe,
+    .video-thumbnail",position,relative,media/VideoTile.svelte
+Footer,.footer-section-root,flex-direction,row,overlays/dialog/Footer.svelte
+Footer,.footer-section-root,justify-content,flex-end,overlays/dialog/Footer.svelte
+Footer,.footer-section-root,align-items,flex-end,overlays/dialog/Footer.svelte
+Footer,.footer-section-content,flex-direction,column,overlays/dialog/Footer.svelte
+Footer,.footer-section-content,justify-content,stretch,overlays/dialog/Footer.svelte
+Footer,.footer-section-content,gap,1em,overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,display,flex,overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,flex-direction,column,overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,align-items,center,overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,justify-content,flex-start,overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,gap,1em,overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,font-size,var(--fs-200),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,color,rgb(var(--color-txt-primary)),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,text-align,center,overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,padding,2em,overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,background-color,rgba(var(--bg-inverse) / 0.8),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,border-radius,var(--bdr-radius-small),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,box-shadow,inset 0 0 0 1px rgba(var(--bdr-primary) / 0),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message span,font-weight,var(--fw-bold),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message span,font-size,var(--fs-300),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message p,font-size,var(--fs-200),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message p,color,"rgba(var(--color-txt-secondary), 0.8)",overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message p,margin,0,overlays/dialog/Footer.svelte
+FooterTitle,.footer-title-root,display,flex,layout/footer/FooterTitle.svelte
+FooterTitle,.footer-title-root,flex-direction,column,layout/footer/FooterTitle.svelte
+FooterTitle,.footer-title-root,justify-content,flex-end,layout/footer/FooterTitle.svelte
+FooterTitle,.footer-title-root,align-items,flex-start,layout/footer/FooterTitle.svelte
+FooterTitle,.footer-title-root,font-size,var(--fs-large-clamped),layout/footer/FooterTitle.svelte
+FooterTitle,.footer-title-root,font-weight,var(--fw-semibold),layout/footer/FooterTitle.svelte
+FooterTitle,.footer-title-root,color,var(--fg-text-primary),layout/footer/FooterTitle.svelte
+FooterTitle,.footer-title-root,text-transform,capitalize,layout/footer/FooterTitle.svelte
+FooterTitle,.footer-title-root,text-align,start,layout/footer/FooterTitle.svelte
+FooterTitle,.title-line,display,block,layout/footer/FooterTitle.svelte
+FooterTitle,.title-line,line-height,1.1,layout/footer/FooterTitle.svelte
+Experience,div,display,inline-flex,accordion/items/Experience.svelte
+Experience,div,flex-direction,column,accordion/items/Experience.svelte
+Experience,div,font-size,"clamp(18px, 4vw, 28px)",accordion/items/Experience.svelte
+Experience,div,gap,0.5em,accordion/items/Experience.svelte
+Experience,div,padding-left,2em,accordion/items/Experience.svelte
+Experience,div,color,rgb(var(--fg-text-primary)),accordion/items/Experience.svelte
+Experience,.p-3,color,rgb(var(--fg-positive)),accordion/items/Experience.svelte
+Experience,.p-3,font-weight,var(--fw-regular),accordion/items/Experience.svelte
+Introduction,div,display,inline-flex,accordion/items/Introduction.svelte
+Introduction,div,flex-direction,column,accordion/items/Introduction.svelte
+Introduction,div,font-size,"clamp(18px, 4vw, 28px)",accordion/items/Introduction.svelte
+Introduction,div,gap,0.5em,accordion/items/Introduction.svelte
+Introduction,div,padding-left,2em,accordion/items/Introduction.svelte
+Introduction,div,color,rgb(var(--fg-text-primary)),accordion/items/Introduction.svelte
+Introduction,p,font-weight,var(--fw-medium),accordion/items/Introduction.svelte
+Process,div,display,inline-flex,accordion/items/Process.svelte
+Process,div,flex-direction,column,accordion/items/Process.svelte
+Process,div,font-size,"clamp(18px, 4vw, 28px)",accordion/items/Process.svelte
+Process,div,gap,0.5em,accordion/items/Process.svelte
+Process,div,padding-left,2em,accordion/items/Process.svelte
+Process,div,color,rgb(var(--fg-text-primary)),accordion/items/Process.svelte
+Details,.dialog-details,flex-direction,row,overlays/dialog/Details.svelte
+Details,.layout,display,inline-flex,overlays/dialog/Details.svelte
+Details,.layout,width,100%,overlays/dialog/Details.svelte
+Details,.layout,flex-flow,column,overlays/dialog/Details.svelte
+Details,.layout,gap,var(--spc-200),overlays/dialog/Details.svelte
+Details,.title,font-family,var(--font-family-alt),overlays/dialog/Details.svelte
+Details,.title,font-size,var(--fs-300),overlays/dialog/Details.svelte
+Details,.title,font-weight,var(--fw-regular),overlays/dialog/Details.svelte
+Details,.title,color,rgba(var(--color-txt-primary)),overlays/dialog/Details.svelte
+Details,.title,position,relative,overlays/dialog/Details.svelte
+Details,.title,display,flex,overlays/dialog/Details.svelte
+Details,.title,align-items,center,overlays/dialog/Details.svelte
+Details,.title,gap,8px,overlays/dialog/Details.svelte
+Details,.title::after,content,'',overlays/dialog/Details.svelte
+Details,.title::after,display,block,overlays/dialog/Details.svelte
+Details,.title::after,width,100%,overlays/dialog/Details.svelte
+Details,.title::after,height,1px,overlays/dialog/Details.svelte
+Details,.title::after,background,currentColor,overlays/dialog/Details.svelte
+Details,span,font-weight,var(--fw-semibold),overlays/dialog/Details.svelte
+Details,span,color,rgb(var(--color-txt-primary)),overlays/dialog/Details.svelte
+Details,ul,display,flex,overlays/dialog/Details.svelte
+Details,ul,flex-direction,column,overlays/dialog/Details.svelte
+Details,ul,gap,var(--spc-100),overlays/dialog/Details.svelte
+Details,ul,padding-left,0,overlays/dialog/Details.svelte
+Details,ul,list-style,none,overlays/dialog/Details.svelte
+Details,li,display,flex,overlays/dialog/Details.svelte
+Details,li,flex-wrap,nowrap,overlays/dialog/Details.svelte
+Details,li,align-items,center,overlays/dialog/Details.svelte
+Details,li,font-weight,var(--fw-medium),overlays/dialog/Details.svelte
+Details,li,color,rgb(var(--color-txt-primary)),overlays/dialog/Details.svelte
+Details,li,position,relative,overlays/dialog/Details.svelte
+Details,li,padding-left,var(--spc-75),overlays/dialog/Details.svelte
+Details,li::before,content,'',overlays/dialog/Details.svelte
+Details,li::before,display,inline-block,overlays/dialog/Details.svelte
+Details,li::before,width,0.6em,overlays/dialog/Details.svelte
+Details,li::before,height,0.6em,overlays/dialog/Details.svelte
+Details,li::before,background,"var(--before-color, currentColor)",overlays/dialog/Details.svelte
+Details,li::before,border-radius,2px,overlays/dialog/Details.svelte
+Details,li::before,margin-right,6px,overlays/dialog/Details.svelte
+Details,li::before,vertical-align,middle,overlays/dialog/Details.svelte
+Details,.name,font-weight,var(--fw-medium),overlays/dialog/Details.svelte
+Details,.role,font-weight,var(--fw-regular),overlays/dialog/Details.svelte
+Details,".name,
+  .role,
+  .dash,
+  li",white-space,nowrap,overlays/dialog/Details.svelte
+Details,.dash,font-weight,var(--fw-regular),overlays/dialog/Details.svelte
+Details,.dash,color,rgb(var(--color-txt-primary)),overlays/dialog/Details.svelte
+Details,.dash,margin,0 2px,overlays/dialog/Details.svelte
+Intro,.dialog-intro-root,grid-area,var(--grid-area),overlays/dialog/Intro.svelte
+Intro,p,font-size,"clamp(var(--fs-500), 4vw, var(--fs-800))",overlays/dialog/Intro.svelte
+Intro,p,font-weight,var(--fw-bold),overlays/dialog/Intro.svelte
+Intro,p,line-height,120%,overlays/dialog/Intro.svelte
+Intro,p,padding-bottom,var(--spc-400),overlays/dialog/Intro.svelte
+Intro,p,color,rgb(var(--fg-text-primary)),overlays/dialog/Intro.svelte
+Header,.dialog-header,display,flex,overlays/dialog/Header.svelte
+Header,.dialog-header,position,absolute,overlays/dialog/Header.svelte
+Header,.dialog-header,top,0,overlays/dialog/Header.svelte
+Header,.dialog-header,left,0,overlays/dialog/Header.svelte
+Header,.dialog-header,width,100%,overlays/dialog/Header.svelte
+Header,.dialog-header,padding-left,var(--spc-1000),overlays/dialog/Header.svelte
+Header,.dialog-header,padding-right,var(--spc-200),overlays/dialog/Header.svelte
+Header,.dialog-header,padding-bottom,var(--spc-200),overlays/dialog/Header.svelte
+Header,.dialog-header,padding-top,var(--spc-200),overlays/dialog/Header.svelte
+Header,.dialog-header,justify-content,flex-end,overlays/dialog/Header.svelte
+Header,.dialog-header,align-items,center,overlays/dialog/Header.svelte
+ImageGrid,.dialog-section-grid,aspect-ratio,16 / 9,overlays/dialog/ImageGrid.svelte
+ImageGrid,.grid-area,overflow,hidden,overlays/dialog/ImageGrid.svelte
+ImageGrid,.grid-area,background-color,"rgba(0, 0, 255, 0.3)",overlays/dialog/ImageGrid.svelte
+ImageGrid,.variant-one,grid-template-columns,1fr,overlays/dialog/ImageGrid.svelte
+ImageGrid,.variant-one,grid-template-rows,1fr,overlays/dialog/ImageGrid.svelte
+ImageGrid,.variant-one,grid-template-areas,'A',overlays/dialog/ImageGrid.svelte
+ImageGrid,.variant-two,grid-template-columns,2fr 1fr,overlays/dialog/ImageGrid.svelte
+ImageGrid,.variant-two,grid-template-rows,1fr,overlays/dialog/ImageGrid.svelte
+ImageGrid,.variant-two,grid-template-areas,'A B',overlays/dialog/ImageGrid.svelte
+ImageGrid,.variant-three,grid-template-columns,2fr 1fr,overlays/dialog/ImageGrid.svelte
+ImageGrid,.variant-three,grid-template-rows,"repeat(5, 1fr)",overlays/dialog/ImageGrid.svelte
+ImageGrid,.variant-three,grid-template-areas,"'A B'
+        'A B'
+        'A B'
+        'A C'
+        'A C'",overlays/dialog/ImageGrid.svelte
+ImageGrid,.variant-four,grid-template-columns,1fr 1fr 1fr,overlays/dialog/ImageGrid.svelte
+ImageGrid,.variant-four,grid-template-rows,"repeat(4, 1fr)",overlays/dialog/ImageGrid.svelte
+ImageGrid,.variant-four,grid-template-areas,"'A B D'
+        'A B D'
+        'A B D'
+        'A C D'",overlays/dialog/ImageGrid.svelte
+ImageGrid,.area-a,grid-area,A,overlays/dialog/ImageGrid.svelte
+ImageGrid,.area-b,grid-area,B,overlays/dialog/ImageGrid.svelte
+ImageGrid,.area-c,grid-area,C,overlays/dialog/ImageGrid.svelte
+ImageGrid,.area-d,grid-area,D,overlays/dialog/ImageGrid.svelte
+Fresha,.dialog-root-scroll-wrapper,width,100%,overlays/dialog/Fresha.svelte
+Fresha,.dialog-root-scroll-wrapper,overflow-y,auto,overlays/dialog/Fresha.svelte
+Fresha,.dialog-root-scroll-wrapper,scrollbar-width,none,overlays/dialog/Fresha.svelte
+Fresha,.dialog-root-scroll-wrapper,padding-top,124px,overlays/dialog/Fresha.svelte
+Principles,.dialog-principles-word-wrapper,background,transparent,overlays/dialog/Principles.svelte
+Principles,.text-segment,white-space,break-spaces,overlays/dialog/Principles.svelte
+Principles,.text-segment,font-weight,var(--fw-semibold),overlays/dialog/Principles.svelte
+Principles,.image-segment,width,1em,overlays/dialog/Principles.svelte
+Principles,.image-segment,height,1em,overlays/dialog/Principles.svelte
+Principles,.image-segment,object-fit,contain,overlays/dialog/Principles.svelte
+Principles,.image-segment,flex-shrink,0,overlays/dialog/Principles.svelte
+Principles,.image-segment,margin-right,0.5rem,overlays/dialog/Principles.svelte
+Principles,.animation-segment,width,1em,overlays/dialog/Principles.svelte
+Principles,.animation-segment,height,1em,overlays/dialog/Principles.svelte
+Principles,.animation-segment,flex-shrink,0,overlays/dialog/Principles.svelte
+Principles,.animation-segment,margin-right,0.5rem,overlays/dialog/Principles.svelte
+Principles,.animation-segment,display,inline-block,overlays/dialog/Principles.svelte
+Principles,.fallback-image,width,100%,overlays/dialog/Principles.svelte
+Principles,.fallback-image,height,100%,overlays/dialog/Principles.svelte
+Principles,.fallback-image,object-fit,contain,overlays/dialog/Principles.svelte
+Principles,.fallback-image,display,block,overlays/dialog/Principles.svelte
+Title,section,flex-direction,row,overlays/dialog/Title.svelte
+Title,section,justify-content,space-between,overlays/dialog/Title.svelte
+Title,section,align-items,flex-start,overlays/dialog/Title.svelte
+Title,section,padding-bottom,var(--spc-500),overlays/dialog/Title.svelte
+Title,h1,font-size,var(--fs-700),overlays/dialog/Title.svelte
+Title,h1,color,rgb(var(--fg-text-primary)),overlays/dialog/Title.svelte
+Title,h1,font-weight,var(--fw-bold),overlays/dialog/Title.svelte
+Title,h1,text-transform,uppercase,overlays/dialog/Title.svelte
+Title,p,text-align,end,overlays/dialog/Title.svelte
+Image,.image-container,grid-area,var(--grid-area),overlays/dialog/Image.svelte
+Image,.image-container,overflow,hidden,overlays/dialog/Image.svelte
+Image,.image-container,width,100%,overlays/dialog/Image.svelte
+Image,.image-container,background-color,"rgba(
+      255,
+      192,
+      203,
+      0.1
+    )",overlays/dialog/Image.svelte
+Image,.image-container,border,"1px solid rgba(255, 192, 203, 0.3)",overlays/dialog/Image.svelte
+Image,.image-container img,display,block,overlays/dialog/Image.svelte
+Image,.image-container img,width,100%,overlays/dialog/Image.svelte
+Image,.image-container img,height,auto,overlays/dialog/Image.svelte
+Image,.image-container img,border-radius,var(--bdr-radius-medium),overlays/dialog/Image.svelte
+Image,.image-container img,object-fit,cover,overlays/dialog/Image.svelte
+Root,.dialog-backdrop,position,fixed,overlays/dialog/Root.svelte
+Root,.dialog-backdrop,top,0,overlays/dialog/Root.svelte
+Root,.dialog-backdrop,left,0,overlays/dialog/Root.svelte
+Root,.dialog-backdrop,width,100%,overlays/dialog/Root.svelte
+Root,.dialog-backdrop,height,100%,overlays/dialog/Root.svelte
+Root,.dialog-backdrop,background-color,var(--bg-overlay),overlays/dialog/Root.svelte
+Root,.dialog-backdrop,z-index,999,overlays/dialog/Root.svelte
+Root,.dialog-backdrop,border,none,overlays/dialog/Root.svelte
+Root,.dialog-backdrop,padding,0,overlays/dialog/Root.svelte
+Root,.dialog-backdrop,cursor,default,overlays/dialog/Root.svelte
+Root,.dialog-root,width,calc(100vw - 2rem),overlays/dialog/Root.svelte
+Root,.dialog-root,height,calc(100vh - 2rem),overlays/dialog/Root.svelte
+Root,:global(body.dialog-open),overflow,hidden,overlays/dialog/Root.svelte
+Section,.section-root,display,flex,overlays/dialog/Section.svelte
+Section,.section-root,width,100%,overlays/dialog/Section.svelte
+Section,.section-root,justify-content,center,overlays/dialog/Section.svelte
+Section,.section-root,align-content,center,overlays/dialog/Section.svelte
+Section,.section-root,color,rgb(var(--fg-text-primary)),overlays/dialog/Section.svelte
+Section,.section-grid,grid-template-columns,"repeat(4, 1fr)",overlays/dialog/Section.svelte
+Section,.section-grid,grid-template-areas,"'header header header header'
+        'prefix body   body   body'
+        'footer footer footer footer'",overlays/dialog/Section.svelte
+Section,.section-grid,gap,32px,overlays/dialog/Section.svelte
+Section,.has-padding,padding-left,80px,overlays/dialog/Section.svelte
+Section,.has-padding,padding-right,80px,overlays/dialog/Section.svelte
+Shell,.dialog-root-scroll-wrapper,width,100%,overlays/dialog/Shell.svelte
+Shell,.dialog-root-scroll-wrapper,overflow-y,auto,overlays/dialog/Shell.svelte
+Shell,.dialog-root-scroll-wrapper,scrollbar-width,none,overlays/dialog/Shell.svelte
+Shell,.dialog-root-scroll-wrapper,padding-top,124px,overlays/dialog/Shell.svelte
+Prefix,.prefix-root,grid-area,prefix,overlays/dialog/Prefix.svelte
+Prefix,.prefix-root,display,flex,overlays/dialog/Prefix.svelte
+Prefix,.prefix-root,flex-direction,column,overlays/dialog/Prefix.svelte
+Prefix,.prefix-root,align-items,flex-start,overlays/dialog/Prefix.svelte
+Prefix,.prefix-root,justify-content,flex-start,overlays/dialog/Prefix.svelte
+Prefix,.prefix-root,width,100%,overlays/dialog/Prefix.svelte
+Prefix,.prefix-root,min-height,fit-content,overlays/dialog/Prefix.svelte
+Prefix,.prefix-root,flex-shrink,0,overlays/dialog/Prefix.svelte
+Prefix,"h2,
+  div",color,rgb(var(--fg-text-primary)),overlays/dialog/Prefix.svelte
+Prefix,h2,font-size,"clamp(1.5rem, 4vw, 2.5rem)",overlays/dialog/Prefix.svelte
+Prefix,h2,font-weight,"var(--fw-bold, 700)",overlays/dialog/Prefix.svelte
+Prefix,h2,text-align,start,overlays/dialog/Prefix.svelte
+Prefix,h2,flex-shrink,0,overlays/dialog/Prefix.svelte
+Prefix,p,font-size,"clamp(var(--fs-250), 3vw, var(--fs-400))",overlays/dialog/Prefix.svelte
+Prefix,p,font-weight,var(--fw-regular),overlays/dialog/Prefix.svelte
+Prefix,p,text-align,start,overlays/dialog/Prefix.svelte
+Prefix,p,line-height,130%,overlays/dialog/Prefix.svelte
+Prefix,p,flex-shrink,0,overlays/dialog/Prefix.svelte
+Prefix,.image-container,overflow,hidden,overlays/dialog/Prefix.svelte
+Prefix,.image-container,width,100%,overlays/dialog/Prefix.svelte
+Prefix,.image-container,max-width,200px,overlays/dialog/Prefix.svelte
+Prefix,.image-container,aspect-ratio,1 / 1,overlays/dialog/Prefix.svelte
+Prefix,.image-container,flex-shrink,0,overlays/dialog/Prefix.svelte
+Prefix,.image-container,flex-grow,0,overlays/dialog/Prefix.svelte
+Prefix,.image-container,display,flex,overlays/dialog/Prefix.svelte
+Prefix,.image-container,align-items,center,overlays/dialog/Prefix.svelte
+Prefix,.image-container,justify-content,center,overlays/dialog/Prefix.svelte
+Prefix,.image-container img,display,block,overlays/dialog/Prefix.svelte
+Prefix,.image-container img,width,100%,overlays/dialog/Prefix.svelte
+Prefix,.image-container img,height,100%,overlays/dialog/Prefix.svelte
+Prefix,.image-container img,border-radius,var(--bdr-radius-medium),overlays/dialog/Prefix.svelte
+Prefix,.image-container img,object-fit,cover,overlays/dialog/Prefix.svelte
+Prefix,.prefix-root:has(.image-container),display,flex,overlays/dialog/Prefix.svelte
+AnimatedBackground,.background-container,position,absolute,overlays/dialog/AnimatedBackground.svelte
+AnimatedBackground,.background-container,top,0,overlays/dialog/AnimatedBackground.svelte
+AnimatedBackground,.background-container,left,0,overlays/dialog/AnimatedBackground.svelte
+AnimatedBackground,.background-container,width,100%,overlays/dialog/AnimatedBackground.svelte
+AnimatedBackground,.background-container,height,100%,overlays/dialog/AnimatedBackground.svelte
+AnimatedBackground,.background-container,z-index,-1,overlays/dialog/AnimatedBackground.svelte
+AnimatedBackground,.background-container,overflow,hidden,overlays/dialog/AnimatedBackground.svelte
+Text,.dialog-text-section,grid-area,var(--grid-area),overlays/dialog/Text.svelte
+Text,.dialog-text-section,display,flex,overlays/dialog/Text.svelte
+Text,.dialog-text-section,flex-direction,column,overlays/dialog/Text.svelte
+Text,.dialog-text-section,align-items,flex-start,overlays/dialog/Text.svelte
+Text,.dialog-text-section,justify-content,center,overlays/dialog/Text.svelte
+Text,.dialog-text-section,position,relative,overlays/dialog/Text.svelte
+Text,.dialog-text-section-title,visibility,visible,overlays/dialog/Text.svelte
+Text,.dialog-text-section-text,font-size,"clamp(var(--fs-350), 4vw, var(--fs-500))",overlays/dialog/Text.svelte
+Text,.dialog-text-section-text,font-weight,var(--fw-semibold),overlays/dialog/Text.svelte
+Text,.dialog-text-section-text,color,rgb(var(--fg-text-primary)),overlays/dialog/Text.svelte
+Text,.dialog-text-section-text,max-width,47ch,overlays/dialog/Text.svelte
+Text,.dialog-text-section-text,line-height,130%,overlays/dialog/Text.svelte
+Text,.dialog-text-section-content,display,flex,overlays/dialog/Text.svelte
+Text,.dialog-text-section-content,flex-direction,column,overlays/dialog/Text.svelte
+Text,.dialog-text-section-content,align-items,flex-start,overlays/dialog/Text.svelte
+Text,.dialog-text-section-content,justify-content,center,overlays/dialog/Text.svelte
+Text,.dialog-text-section-content,gap,var(--spc-200),overlays/dialog/Text.svelte
+Text,.dialog-text-section-content,position,relative,overlays/dialog/Text.svelte
+TestTwo,.dialog-root-scroll-wrapper,width,100%,experimental/dialog/TestTwo.svelte
+TestTwo,.dialog-root-scroll-wrapper,overflow-y,auto,experimental/dialog/TestTwo.svelte
+TestTwo,.dialog-root-scroll-wrapper,scrollbar-width,none,experimental/dialog/TestTwo.svelte
+TestTwo,.dialog-root-scroll-wrapper,padding-top,124px,experimental/dialog/TestTwo.svelte
+TestThree,.dialog-root-scroll-wrapper,width,100%,experimental/dialog/TestThree.svelte
+TestThree,.dialog-root-scroll-wrapper,overflow-y,auto,experimental/dialog/TestThree.svelte
+TestThree,.dialog-root-scroll-wrapper,scrollbar-width,none,experimental/dialog/TestThree.svelte
+TestThree,.dialog-root-scroll-wrapper,padding-top,124px,experimental/dialog/TestThree.svelte
+TestOne,.dialog-root-scroll-wrapper,width,100%,experimental/dialog/TestOne.svelte
+TestOne,.dialog-root-scroll-wrapper,overflow-y,auto,experimental/dialog/TestOne.svelte
+TestOne,.dialog-root-scroll-wrapper,scrollbar-width,none,experimental/dialog/TestOne.svelte
+TestOne,.dialog-root-scroll-wrapper,padding-top,124px,experimental/dialog/TestOne.svelte
