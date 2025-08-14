@@ -65,7 +65,7 @@
 </nav>
 
 <!-- Chat Component -->
-<QAChat isOpen={chatStore.isOpen} on:close={closeChat} />
+<QAChat />
 
 <style>
   nav {

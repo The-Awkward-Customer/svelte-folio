@@ -17,8 +17,7 @@
   import { isChatApiResponse, isChatApiError } from '$lib/types/chat.js';
   import { chatStore } from '$lib';
 
-  // Props with proper typing - now just for compatibility
-  export const isOpen: QAChatProps['isOpen'] = false;
+  // No props needed - all state managed via store
 
   // Direct store property access - no need for reactive statements
   // These are already reactive because they're $state in the store
@@ -99,7 +98,7 @@
   }
 </script>
 
-<ChatDialog bind:isOpen={chatStore.isOpen} on:close={closeChat}>
+<ChatDialog isOpen={chatStore.isOpen} on:close={closeChat}>
   <div class="chat-container">
     <div class="chat-header">
       <Tag label="Beta" />
