@@ -1,7 +1,8 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
   import FooterTitle from "./FooterTitle.svelte";
-  import { Weather } from "$lib/components/Snoop";
+  import { onMount } from "svelte";
+  import { browser } from "$app/environment";
 
   let CopyRight: string = "© 2025 by Peter Abbott";
   let TechStack: string =
@@ -12,6 +13,43 @@
   }
 
   let { enableShuffleAnimation = true }: FooterProps = $props();
+
+  // Weather component lazy loading
+  let WeatherComponent: any = $state(null);
+  let weatherContainer: HTMLDivElement;
+
+  onMount(() => {
+    if (!browser) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !WeatherComponent) {
+            loadWeatherComponent();
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (weatherContainer) {
+      observer.observe(weatherContainer);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  });
+
+  async function loadWeatherComponent() {
+    try {
+      const module = await import("$lib/components/Snoop/Weather.svelte");
+      WeatherComponent = module.default;
+    } catch (error) {
+      console.warn("Failed to load Weather component:", error);
+    }
+  }
 </script>
 
 {#snippet Languages()}
@@ -49,7 +87,12 @@
 <footer>
   {@render Title()}
   <div class="trailing-slot">
-    <Weather />
+    <div bind:this={weatherContainer} class="weather-container">
+      {#if WeatherComponent}
+        {@const Component = WeatherComponent}
+        <Component />
+      {/if}
+    </div>
     <div class="footer-details-wrapper">
       {@render Details()}
     </div>
@@ -80,6 +123,10 @@
     align-items: flex-end;
     gap: 0.4em;
     max-width: 1024px;
+  }
+
+  .weather-container {
+    width: 100%;
   }
 
   .footer-details-wrapper {
