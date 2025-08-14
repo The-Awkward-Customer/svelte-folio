@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { fly } from 'svelte/transition';
-  import FooterTitle from './FooterTitle.svelte';
-  import Weather from '$lib/components/snoop/Weather.svelte';
+  import { fly } from "svelte/transition";
+  import FooterTitle from "./FooterTitle.svelte";
+  import { Weather } from "$lib/components/snoop";
 
-  let CopyRight: string = '© 2025 by Peter Abbott';
+  let CopyRight: string = "© 2025 by Peter Abbott";
   let TechStack: string =
-    'This website is built with Svelte and hosted on Vercel and uses your IP address to gather but not store Location Information.';
+    "This website is built with Svelte and hosted on Vercel and uses your IP address to gather but not store Location Information.";
 
   interface FooterProps {
     enableShuffleAnimation?: boolean;
