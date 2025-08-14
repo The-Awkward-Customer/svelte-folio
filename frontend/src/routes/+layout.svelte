@@ -1,7 +1,7 @@
 <script>
   import '../app.css';
 
-  import { Footer } from '$lib/components/footer';
+  import { Footer } from '$lib/components/layout';
   import { TopNav } from '$lib/components/top-nav';
 
   import { onMount } from 'svelte';
