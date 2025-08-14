@@ -5,9 +5,7 @@
   import { browser } from '$app/environment'; // Import browser
 
   import Fresha from './Fresha.svelte';
-  import TestOne from '../../experimental/dialog/TestOne.svelte';
-  import TestTwo from '../../experimental/dialog/TestTwo.svelte';
-  import TestThree from '../../experimental/dialog/TestThree.svelte';
+  import { TestOne, TestTwo, TestThree } from '../../experimental/dialog';
 
   // Reactive statement to check if this dialog should be active
   const isActive = $derived(dialogManager.currentDialog !== null);
