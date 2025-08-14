@@ -8,9 +8,9 @@
     DIALOG_METADATA,
   } from '$lib/config/dialogRegistry.js';
   import type { GridArea } from './Section.svelte';
-  import Button from '../../actions/Button.svelte';
-  import ProgressToast from '../../feedback/ProgressToast.svelte';
-  import Icon from '../../primitives/Icon.svelte';
+  import { Button } from '../../actions';
+  import { ProgressToast } from '../../feedback';
+  import { Icon } from '../../primitives';
 
   interface DialogFooterProps {
     label?: string;

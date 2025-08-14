@@ -27,9 +27,16 @@
 
   // Consolidated event handlers
   function handleDialogClick(event: MouseEvent) {
+    // Only close if clicking directly on the dialog element (backdrop)
+    // not on any child elements (content)
     if (event.target === dialogElement) {
       dispatch('close');
     }
+  }
+  
+  function handleContentClick(event: MouseEvent) {
+    // Stop propagation to prevent dialog click handler from firing
+    event.stopPropagation();
   }
 
   function handleDialogKeydown(event: KeyboardEvent) {
@@ -85,13 +92,14 @@
   bind:this={dialogElement}
   class="chat-dialog"
   aria-labelledby="chat-title"
+  on:click={handleDialogClick}
+  on:keydown={handleDialogKeydown}
 >
   {#if isOpen}
     <div
       class="dialog-content"
       role="none"
-      on:click={handleDialogClick}
-      on:keydown={handleDialogKeydown}
+      on:click={handleContentClick}
       transition:slide={{ duration: 300, axis: 'y' }}
     >
       <slot />

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Avatar } from '$lib/components/primitives';
-  import Button from '$lib/components/actions/Button.svelte';
+  import { Button } from '$lib/components/actions';
   import Ani_me from '$lib/assets/Ani_me.png';
 
   // Simplified test state - focus on loading and glitch animation

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import Button from '$lib/components/actions/Button.svelte';
-  import TextCard from '$lib/components/cards/TextCard.svelte';
+  import { Button } from '$lib/components/actions';
+  import { TextCard } from '$lib/components/cards';
 
   // Get error details from the page store
   $: error = $page.error;

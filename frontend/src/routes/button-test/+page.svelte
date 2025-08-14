@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Button from '$lib/components/actions/Button.svelte';
+  import { Button } from '$lib/components/actions';
   import { dialogManager } from '$lib';
-  import DialogRoot from '$lib/components/overlays/dialog/Root.svelte';
+  import { DialogRoot } from '$lib/components/overlays/dialog';
 
   function handleButtonClick() {
     alert('Button clicked!');

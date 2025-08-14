@@ -3,7 +3,7 @@
   import { shuffleText } from '$lib/animations/gsap/textAnimations.js';
   import type { IconName } from '$lib/types/icons.js';
 
-  import Icon from '$lib/components/primitives/Icon.svelte';
+  import { Icon } from '$lib/components/primitives';
 
   // Text content for animations
   const heroTitle = "Let's work together";

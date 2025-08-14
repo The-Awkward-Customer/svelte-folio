@@ -2,7 +2,7 @@
 
 <script lang="ts">
   import { dialogManager } from '$lib';
-  import IconButton from '../../actions/IconButton.svelte';
+  import { IconButton } from '../../actions';
 
   function closeDialog() {
     dialogManager.closeDialog();
