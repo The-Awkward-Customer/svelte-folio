@@ -1,6 +1,7 @@
 <script lang="ts">
   import { fly } from 'svelte/transition';
   import FooterTitle from './FooterTitle.svelte';
+  import Weather from '$lib/components/snoop/Weather.svelte';
 
   let CopyRight: string = '© 2025 by Peter Abbott';
   let TechStack: string =
@@ -48,6 +49,7 @@
 <footer>
   {@render Title()}
   <div class="trailing-slot">
+    <Weather />
     <div class="footer-details-wrapper">
       {@render Details()}
     </div>
