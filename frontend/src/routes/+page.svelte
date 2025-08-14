@@ -4,9 +4,9 @@
 
   // components
   import { page } from '$app/stores';
-  import { AnimatedTextPath } from '$lib/components/graphics';
+  import { MultiPathAnimatedText } from '$lib/components/graphics';
 
-  // Vibrant color pairs for AnimatedTextPath
+  // Vibrant color pairs for MultiPathAnimatedText
   const colorPairs = [
     { background: '#0066FF', foreground: '#FFFF00' }, // Electric Blue & Bright Yellow
     { background: '#FF1493', foreground: '#32FF32' }, // Hot Pink & Lime Green
@@ -15,14 +15,50 @@
     { background: '#50C878', foreground: '#FFD700' }, // Emerald & Gold
   ];
 
-  // Randomly select a color pair on component mount
-  const selectedColorPair =
-    colorPairs[Math.floor(Math.random() * colorPairs.length)];
-
-  //arrary of pairs
-  const selectedColorPairs = Array.from({ length: 2 }, () => {
-    return colorPairs[Math.floor(Math.random() * colorPairs.length)];
-  });
+  // Configure multiple paths for the component
+  const pathConfigs = [
+    {
+      texts: [
+        'HALLO •',
+        ' HEJ •',
+        'HOLA •',
+        'HELLO •',
+        'WELCOME •',
+        'こんにちは •',
+      ],
+      speed: 70,
+      pathWildness: 0.9,
+      showPath: true,
+      pathStyle: {
+        strokeWidth: 80,
+        opacity: 1,
+      },
+      textStyle: {
+        font: 'bold 28px sans-serif',
+        size: 24,
+      }
+    },
+    {
+      texts: [
+        'LETS COOK –',
+        ' WHY NOT TRY?',
+        'LETS CREATE //',
+        'LETS MAKE //',
+        'LETS EXPLORE //',
+      ],
+      speed: 100,
+      pathWildness: 0.9,
+      showPath: true,
+      pathStyle: {
+        strokeWidth: 80,
+        opacity: 1,
+      },
+      textStyle: {
+        font: 'bold 28px sans-serif',
+        size: 24,
+      }
+    }
+  ];
 </script>
 
 <svelte:head>
@@ -33,51 +69,10 @@
   />
 </svelte:head>
 
-<AnimatedTextPath
-  texts={[
-    'HALLO •',
-    ' HEJ •',
-    'HOLA •',
-    'HELLO •',
-    'WELCOME •',
-    'こんにちは •',
-  ]}
-  speed={70}
-  pathWildness={0.9}
-  showPath={true}
-  pathStyle={{
-    strokeColor: selectedColorPairs[0].background,
-    strokeWidth: 80,
-    opacity: 1,
-  }}
-  textStyle={{
-    font: 'bold 28px sans-serif',
-    size: 24,
-    color: selectedColorPairs[0].foreground,
-  }}
-/>
-
-<AnimatedTextPath
-  texts={[
-    'LETS COOK –',
-    ' WHY NOT TRY?',
-    'LETS CREATE //',
-    'LETS MAKE //',
-    'LETS EXPLORE //',
-  ]}
-  speed={100}
-  pathWildness={0.9}
-  showPath={true}
-  pathStyle={{
-    strokeColor: selectedColorPairs[1].background,
-    strokeWidth: 80,
-    opacity: 1,
-  }}
-  textStyle={{
-    font: 'bold 28px sans-serif',
-    size: 24,
-    color: selectedColorPairs[1].foreground,
-  }}
+<MultiPathAnimatedText 
+  paths={pathConfigs}
+  {colorPairs}
+  verticalStacking="random"
 />
 
 <style>
