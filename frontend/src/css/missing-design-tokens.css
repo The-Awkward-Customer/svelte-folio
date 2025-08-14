@@ -1,0 +1,306 @@
+/* Missing Design Tokens - Phase 1 Implementation
+ * Based on gap analysis from docs/token-gap-analysis.md
+ * Created: 2025-08-14
+ * 
+ * This file contains critical missing tokens identified in the gap analysis.
+ * These tokens should be integrated into the main app.css file after review.
+ */
+
+:root {
+  /* ============================================================================
+   * 🚨 CRITICAL TOKENS - Phase 1 (Week 1 Priority)
+   * ============================================================================ */
+
+  /* ---------------------------------------------------------------------------
+   * STATUS/SEMANTIC COLOR SYSTEM - 0% Coverage → 100% Coverage
+   * 
+   * Replaces hardcoded values found in:
+   * - WeatherDebugPanel.svelte: #4ade80, #3b82f6, #ef4444, #10b981
+   * - Callout.svelte: rgb(143, 239, 0)
+   * - Various danger/warning colors across components
+   * --------------------------------------------------------------------------- */
+
+  /* Base Status Colors - Primary semantic colors */
+  --color-status-success: #10b981;      /* Emerald 500 - replaces #10b981, #4ade80 */
+  --color-status-error: #ef4444;        /* Red 500 - replaces #ef4444 */
+  --color-status-warning: #f59e0b;      /* Amber 500 - replaces hardcoded warning colors */
+  --color-status-info: #3b82f6;         /* Blue 500 - replaces #3b82f6 */
+  --color-status-neutral: #6b7280;      /* Gray 500 - for neutral status */
+
+  /* Status Colors - Light variants for hover/active states */
+  --color-status-success-light: #34d399;   /* Emerald 400 */
+  --color-status-error-light: #f87171;     /* Red 400 */
+  --color-status-warning-light: #fbbf24;   /* Amber 400 */
+  --color-status-info-light: #60a5fa;      /* Blue 400 */
+  --color-status-neutral-light: #9ca3af;   /* Gray 400 */
+
+  /* Status Colors - Dark variants for pressed/disabled states */
+  --color-status-success-dark: #059669;    /* Emerald 600 */
+  --color-status-error-dark: #dc2626;      /* Red 600 */
+  --color-status-warning-dark: #d97706;    /* Amber 600 */
+  --color-status-info-dark: #2563eb;       /* Blue 600 */
+  --color-status-neutral-dark: #4b5563;    /* Gray 600 */
+
+  /* Status Background Colors - Subtle backgrounds for status indicators */
+  --bg-status-success-subtle: rgba(16, 185, 129, 0.1);    /* Success with 10% opacity */
+  --bg-status-error-subtle: rgba(239, 68, 68, 0.1);       /* Error with 10% opacity */
+  --bg-status-warning-subtle: rgba(245, 158, 11, 0.1);    /* Warning with 10% opacity */
+  --bg-status-info-subtle: rgba(59, 130, 246, 0.1);       /* Info with 10% opacity */
+  --bg-status-neutral-subtle: rgba(107, 114, 128, 0.1);   /* Neutral with 10% opacity */
+
+  /* Status Background Colors - Medium opacity for cards/panels */
+  --bg-status-success-medium: rgba(16, 185, 129, 0.15);
+  --bg-status-error-medium: rgba(239, 68, 68, 0.15);
+  --bg-status-warning-medium: rgba(245, 158, 11, 0.15);
+  --bg-status-info-medium: rgba(59, 130, 246, 0.15);
+  --bg-status-neutral-medium: rgba(107, 114, 128, 0.15);
+
+  /* Status Border Colors - For outlined status elements */
+  --bdr-status-success: var(--color-status-success);
+  --bdr-status-error: var(--color-status-error);
+  --bdr-status-warning: var(--color-status-warning);
+  --bdr-status-info: var(--color-status-info);
+  --bdr-status-neutral: var(--color-status-neutral);
+
+  /* Special Status Colors - For specific use cases found in analysis */
+  --color-status-available: #10b981;       /* Replaces rgb(143, 239, 0) in Callout.svelte */
+  --color-status-busy: #f59e0b;            /* For busy/loading states */
+  --color-status-offline: #6b7280;         /* For offline/disabled states */
+
+  /* ---------------------------------------------------------------------------
+   * Z-INDEX SYSTEM - 0% Coverage → 100% Coverage
+   * 
+   * Replaces arbitrary z-index values found in components:
+   * - z-index: 9999 (WeatherDebugPanel.svelte)
+   * - z-index: -1, 1, 2, 3, 4, 10 (various components)
+   * --------------------------------------------------------------------------- */
+
+  --z-background: -1;       /* Background elements, decorative items */
+  --z-default: 0;           /* Default stacking context */
+  --z-raised: 1;            /* Slightly elevated content (cards, panels) */
+  --z-sticky: 10;           /* Sticky headers, navigation */
+  --z-overlay: 100;         /* Overlays, dropdowns, popovers */
+  --z-modal: 1000;          /* Modal dialogs, important overlays */
+  --z-tooltip: 2000;        /* Tooltips, highest priority overlays */
+  --z-maximum: 9999;        /* Emergency override (use sparingly) */
+
+  /* ---------------------------------------------------------------------------
+   * COMPONENT SIZING TOKENS - 0% Coverage → 100% Coverage
+   * 
+   * Replaces hardcoded dimensions found in components:
+   * - height: 44px (Button.svelte, IconButton.svelte - 8 instances)
+   * - width: 48px, height: 48px (VideoCard.svelte)
+   * - height: 72px (Weather.svelte)
+   * --------------------------------------------------------------------------- */
+
+  /* Button Sizing - Standard button dimensions */
+  --size-button-height: 44px;              /* Standard button height */
+  --size-button-height-sm: 36px;           /* Small button height */
+  --size-button-height-lg: 52px;           /* Large button height */
+
+  /* Icon Button Sizing - Square icon buttons */
+  --size-icon-button: 44px;                /* Standard icon button size */
+  --size-icon-button-sm: 36px;             /* Small icon button size */
+  --size-icon-button-lg: 52px;             /* Large icon button size */
+
+  /* Avatar Sizing - Profile pictures and avatars */
+  --size-avatar-xs: 24px;                  /* Extra small avatar */
+  --size-avatar-sm: 32px;                  /* Small avatar */
+  --size-avatar-md: 48px;                  /* Medium avatar (matches VideoCard) */
+  --size-avatar-lg: 64px;                  /* Large avatar */
+  --size-avatar-xl: 72px;                  /* Extra large avatar (matches Weather) */
+
+  /* Icon Sizing - Standalone icons */
+  --size-icon-xs: 12px;                    /* Extra small icon */
+  --size-icon-sm: 16px;                    /* Small icon */
+  --size-icon-md: 20px;                    /* Medium icon */
+  --size-icon-lg: 24px;                    /* Large icon */
+  --size-icon-xl: 32px;                    /* Extra large icon */
+
+  /* Card/Panel Sizing - Common component dimensions */
+  --size-card-min-height: 120px;           /* Minimum card height */
+  --size-panel-header-height: 64px;        /* Panel header height */
+  --size-sidebar-width: 280px;             /* Sidebar width */
+  --size-navbar-height: 64px;              /* Navigation bar height */
+
+  /* ============================================================================
+   * 🔶 SIGNIFICANT TOKENS - Phase 2 (Week 2 Priority)
+   * ============================================================================ */
+
+  /* ---------------------------------------------------------------------------
+   * EXPANDED SHADOW SYSTEM - 40% Coverage → 100% Coverage
+   * 
+   * Replaces hardcoded shadows found in components:
+   * - box-shadow: inset 0 0 0 1px var(--fg-text-primary) (Weather.svelte)
+   * - box-shadow: inset 0 0 0 2px white (Callout.svelte)
+   * - box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) (WeatherDebugPanel.svelte)
+   * --------------------------------------------------------------------------- */
+
+  /* Inset Border Shadows - For outlined elements */
+  --shadow-inset-border: inset 0 0 0 1px currentColor;
+  --shadow-inset-border-2: inset 0 0 0 2px currentColor;
+  --shadow-inset-border-white: inset 0 0 0 2px white;
+  --shadow-inset-border-primary: inset 0 0 0 1px var(--fg-text-primary);
+
+  /* Modal and Overlay Shadows */
+  --shadow-modal: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-modal-light: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --shadow-overlay: 0 4px 16px rgba(0, 0, 0, 0.25);
+
+  /* Interactive Shadows */
+  --shadow-button-hover: 0 2px 8px rgba(0, 0, 0, 0.15);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-focus: 0 0 0 3px rgba(59, 130, 246, 0.3);
+
+  /* ---------------------------------------------------------------------------
+   * ANIMATION/TRANSITION TOKENS - Partial Coverage → Full Coverage
+   * 
+   * Extends existing transition tokens with additional timing options
+   * Found patterns: transition: all 0.2s ease-in-out, opacity 0.3s ease
+   * --------------------------------------------------------------------------- */
+
+  /* Duration Tokens - For consistent timing */
+  --duration-instant: 0ms;
+  --duration-fast: 150ms;                  /* Quick interactions */
+  --duration-normal: 300ms;                /* Standard transitions */
+  --duration-slow: 500ms;                  /* Deliberate transitions */
+  --duration-slower: 700ms;                /* Entrance animations */
+
+  /* Easing Functions - For natural motion */
+  --easing-linear: linear;
+  --easing-ease: ease;
+  --easing-ease-in: ease-in;
+  --easing-ease-out: ease-out;
+  --easing-ease-in-out: ease-in-out;
+  --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --easing-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Combined Transition Tokens - Ready-to-use combinations */
+  --transition-all-fast: all var(--duration-fast) var(--easing-ease);
+  --transition-all-normal: all var(--duration-normal) var(--easing-ease);
+  --transition-colors: color var(--duration-normal) var(--easing-ease), 
+                      background-color var(--duration-normal) var(--easing-ease),
+                      border-color var(--duration-normal) var(--easing-ease);
+  --transition-transform: transform var(--duration-normal) var(--easing-ease);
+  --transition-opacity: opacity var(--duration-normal) var(--easing-ease);
+
+  /* ---------------------------------------------------------------------------
+   * OVERLAY SYSTEM COMPLETION - Partial Coverage → Full Coverage
+   * 
+   * Extends existing overlay tokens with dark variants
+   * Found usage: rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.6)
+   * --------------------------------------------------------------------------- */
+
+  /* Dark Overlay Tokens - Missing from current system */
+  --bg-overlay-dark: rgba(0, 0, 0, 0.8);        /* Heavy dark overlay */
+  --bg-overlay-modal: rgba(0, 0, 0, 0.6);       /* Modal backdrop */
+  --bg-overlay-tooltip: rgba(0, 0, 0, 0.9);     /* Tooltip background */
+  --bg-overlay-heavy: rgba(0, 0, 0, 0.95);      /* Maximum dark overlay */
+
+  /* Light Overlay Variants - Additional opacity levels */
+  --bg-overlay-subtle: rgba(255, 255, 255, 0.1);
+  --bg-overlay-medium: rgba(255, 255, 255, 0.6);
+  --bg-overlay-heavy-light: rgba(255, 255, 255, 0.95);
+
+  /* ============================================================================
+   * 🔶 ENHANCEMENT TOKENS - Phase 3 (Week 3 Priority)
+   * ============================================================================ */
+
+  /* ---------------------------------------------------------------------------
+   * EXPANDED BORDER RADIUS SYSTEM - 60% Coverage → 100% Coverage
+   * 
+   * Adds intermediate sizes and special cases
+   * --------------------------------------------------------------------------- */
+
+  /* Additional Border Radius Tokens */
+  --bdr-radius-xs: 2px;                    /* Extra small radius */
+  --bdr-radius-xl: 32px;                   /* Extra large radius */
+  --bdr-radius-2xl: 48px;                  /* 2X large radius */
+  --bdr-radius-rounded: 50%;               /* Perfect circle */
+
+  /* ---------------------------------------------------------------------------
+   * SPECIAL PURPOSE TOKENS
+   * --------------------------------------------------------------------------- */
+
+  /* Focus Ring System - For accessibility */
+  --focus-ring-width: 2px;
+  --focus-ring-color: var(--color-status-info);
+  --focus-ring-offset: 2px;
+  --focus-ring: var(--focus-ring-width) solid var(--focus-ring-color);
+
+  /* Loading and Progress Indicators */
+  --color-progress: var(--color-status-info);
+  --color-progress-bg: var(--bg-status-info-subtle);
+
+  /* Divider and Separator Colors */
+  --color-divider: rgba(0, 0, 0, 0.1);
+  --color-divider-strong: rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================================================
+ * DARK THEME OVERRIDES
+ * ============================================================================ */
+
+[data-theme="dark"] {
+  /* Status Colors - Adjusted for dark theme */
+  --color-status-success: #34d399;      /* Lighter green for dark backgrounds */
+  --color-status-error: #f87171;        /* Lighter red for dark backgrounds */
+  --color-status-warning: #fbbf24;      /* Lighter amber for dark backgrounds */
+  --color-status-info: #60a5fa;         /* Lighter blue for dark backgrounds */
+  --color-status-neutral: #9ca3af;      /* Lighter gray for dark backgrounds */
+
+  /* Dark theme overlay adjustments */
+  --bg-overlay-dark: rgba(0, 0, 0, 0.9);        /* Stronger dark overlay for dark theme */
+  --bg-overlay-modal: rgba(0, 0, 0, 0.8);       /* Darker modal backdrop */
+
+  /* Divider adjustments for dark theme */
+  --color-divider: rgba(255, 255, 255, 0.1);
+  --color-divider-strong: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================================
+ * HIGH CONTRAST THEME OVERRIDES
+ * ============================================================================ */
+
+[data-theme="high-contrast"] {
+  /* High contrast status colors */
+  --color-status-success: #00ff00;      /* Pure green */
+  --color-status-error: #ff0000;        /* Pure red */
+  --color-status-warning: #ffff00;      /* Pure yellow */
+  --color-status-info: #0000ff;         /* Pure blue */
+  --color-status-neutral: #808080;      /* Medium gray */
+
+  /* High contrast focus ring */
+  --focus-ring-width: 3px;
+  --focus-ring-color: #0000ff;
+  --focus-ring-offset: 1px;
+}
+
+/* ============================================================================
+ * USAGE EXAMPLES AND DOCUMENTATION
+ * ============================================================================
+ * 
+ * Status Colors Usage:
+ * background-color: var(--bg-status-success-subtle);
+ * color: var(--color-status-success);
+ * border-color: var(--bdr-status-success);
+ * 
+ * Z-Index Usage:
+ * z-index: var(--z-modal);
+ * z-index: var(--z-tooltip);
+ * 
+ * Component Sizing Usage:
+ * height: var(--size-button-height);
+ * width: var(--size-avatar-md);
+ * height: var(--size-avatar-md);
+ * 
+ * Shadow Usage:
+ * box-shadow: var(--shadow-inset-border);
+ * box-shadow: var(--shadow-modal);
+ * 
+ * Animation Usage:
+ * transition: var(--transition-all-fast);
+ * transition-duration: var(--duration-normal);
+ * transition-timing-function: var(--easing-smooth);
+ * 
+ * ============================================================================ */
