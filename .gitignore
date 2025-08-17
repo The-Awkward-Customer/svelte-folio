@@ -1,3 +1,6 @@
 node_modules/
 .env
 .DS_Store
+
+# Design examples and mockups
+frontend/src/lib/components/experiments/design-mockups/

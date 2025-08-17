@@ -1,8 +1,8 @@
 <!-- Multi-path animated text component - combines multiple animated text paths with coordinated behavior -->
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
-  import { browser } from '$app/environment';
-  import { gsap } from 'gsap';
+  import { onMount, onDestroy } from "svelte";
+  import { browser } from "$app/environment";
+  import { gsap } from "gsap";
 
   // Types
   interface ColorPair {
@@ -46,14 +46,15 @@
   // Props
   export let paths: PathConfig[] = [];
   export let colorPairs: ColorPair[] = [
-    { background: '#0066FF', foreground: '#FFFF00' }, // Electric Blue & Bright Yellow
-    { background: '#FF1493', foreground: '#32FF32' }, // Hot Pink & Lime Green
-    { background: '#FF4500', foreground: '#9932CC' }, // Orange & Purple
-    { background: '#00FFFF', foreground: '#FF00FF' }, // Cyan & Magenta
-    { background: '#50C878', foreground: '#FFD700' }, // Emerald & Gold
+    { background: "#0066FF", foreground: "#FFFF00" }, // Electric Blue & Bright Yellow
+    { background: "#FF1493", foreground: "#32FF32" }, // Hot Pink & Lime Green
+    { background: "#FF4500", foreground: "#9932CC" }, // Orange & Purple
+    { background: "#00FFFF", foreground: "#FF00FF" }, // Cyan & Magenta
+    { background: "#50C878", foreground: "#FFD700" }, // Emerald & Gold
   ];
   export let fixedCanvasWidth: number = 2560;
-  export let verticalStacking: 'random' | 'distributed' | 'overlapping' = 'random';
+  export let verticalStacking: "random" | "distributed" | "overlapping" =
+    "random";
 
   // State
   let canvas: HTMLCanvasElement;
@@ -66,17 +67,23 @@
   let selectedColorPairs: ColorPair[] = [];
 
   // Generate smooth random path with organic, obtuse curves (adapted from AnimatedTextPath)
-  function generatePath(width: number, height: number, config: PathConfig, verticalOffset: number = 0): { x: number; y: number }[] {
+  function generatePath(
+    width: number,
+    height: number,
+    config: PathConfig,
+    verticalOffset: number = 0,
+  ): { x: number; y: number }[] {
     const pathWildness = config.pathWildness ?? 0.7;
     const verticalBounds = config.verticalBounds ?? 0.1;
-    
+
     const extendedWidth = width * 1.5; // Extend past canvas
     const startX = -width * 0.25;
 
     // Generate curves with irregular spacing - pathWildness affects curve count
     const baseNumCurves = 4;
     const wildnessRange = Math.floor(pathWildness * 4); // 0-4 additional curves based on wildness
-    const numCurves = baseNumCurves + Math.floor(Math.random() * (wildnessRange + 1));
+    const numCurves =
+      baseNumCurves + Math.floor(Math.random() * (wildnessRange + 1));
     const points: { x: number; y: number }[] = [];
 
     // Create irregular spacing
@@ -91,7 +98,9 @@
     }
 
     // Normalize spacings to fit the extended width
-    const normalizedSpacings = spacings.map((s) => (s / totalSpacing) * extendedWidth);
+    const normalizedSpacings = spacings.map(
+      (s) => (s / totalSpacing) * extendedWidth,
+    );
 
     // Generate control points with organic variation
     let currentX = startX;
@@ -126,7 +135,9 @@
           y = adjustedMinY + yRange * (Math.random() * maxVariation);
         } else {
           // Go high, but with variation affected by wildness
-          y = adjustedMinY + yRange * (1 - maxVariation + Math.random() * maxVariation);
+          y =
+            adjustedMinY +
+            yRange * (1 - maxVariation + Math.random() * maxVariation);
         }
       }
 
@@ -169,7 +180,13 @@
   }
 
   // Catmull-Rom spline interpolation
-  function catmullRom(p0: number, p1: number, p2: number, p3: number, t: number): number {
+  function catmullRom(
+    p0: number,
+    p1: number,
+    p2: number,
+    p3: number,
+    t: number,
+  ): number {
     const t2 = t * t;
     const t3 = t2 * t;
 
@@ -183,7 +200,9 @@
   }
 
   // Smooth the path to reduce sharp changes
-  function smoothPath(pathPoints: { x: number; y: number }[]): { x: number; y: number }[] {
+  function smoothPath(
+    pathPoints: { x: number; y: number }[],
+  ): { x: number; y: number }[] {
     const smoothedPoints: { x: number; y: number }[] = [];
     const windowSize = 5; // Number of points to average
 
@@ -226,10 +245,10 @@
   // Get point and smoothed angle at specific distance along path
   function getPointAtDistance(
     pathData: PathData,
-    distance: number
+    distance: number,
   ): { x: number; y: number; angle: number } {
     const points = pathData.points;
-    
+
     // Ensure distance is positive
     while (distance < 0) distance += pathData.length;
     distance = distance % pathData.length;
@@ -262,7 +281,11 @@
   }
 
   // Get smoothed angle by averaging nearby segments
-  function getSmoothedAngle(pathData: PathData, segmentIndex: number, _ratio: number): number {
+  function getSmoothedAngle(
+    pathData: PathData,
+    segmentIndex: number,
+    _ratio: number,
+  ): number {
     const points = pathData.points;
     const lookAhead = 15; // Number of points to look ahead/behind for smoothing
     let totalDx = 0;
@@ -292,19 +315,19 @@
     if (!ctx) return;
 
     const textStyle = {
-      font: 'bold 24px sans-serif',
+      font: "bold 24px sans-serif",
       size: 24,
-      color: '#000000',
-      ...pathData.config.textStyle
+      color: "#000000",
+      ...pathData.config.textStyle,
     };
 
     // Set font before measuring to ensure accurate character widths
     ctx.font = textStyle.font;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
 
     // Create pattern with double space separator for clean separation
-    const separator = '  ';
+    const separator = "  ";
     const pattern = pathData.selectedText + separator;
 
     // Calculate pattern width
@@ -324,22 +347,22 @@
   // Calculate vertical offsets based on stacking strategy
   function calculateVerticalOffsets(): number[] {
     const offsets: number[] = [];
-    
+
     switch (verticalStacking) {
-      case 'distributed':
+      case "distributed":
         // Evenly distribute paths across the height
         for (let i = 0; i < paths.length; i++) {
           const fraction = paths.length > 1 ? i / (paths.length - 1) : 0.5;
           offsets.push((fraction - 0.5) * canvasHeight * 0.6); // Use 60% of height for distribution
         }
         break;
-        
-      case 'overlapping':
+
+      case "overlapping":
         // All paths use the same vertical space (original behavior)
         offsets.fill(0, 0, paths.length);
         break;
-        
-      case 'random':
+
+      case "random":
       default:
         // Random vertical offsets
         for (let i = 0; i < paths.length; i++) {
@@ -347,7 +370,7 @@
         }
         break;
     }
-    
+
     return offsets;
   }
 
@@ -365,19 +388,19 @@
     pathsData.forEach((pathData, pathIndex) => {
       const config = pathData.config;
       const colorPair = selectedColorPairs[pathIndex];
-      
+
       const pathStyle = {
-        strokeColor: '#cccccc',
+        strokeColor: "#cccccc",
         strokeWidth: 2,
         opacity: 0.5,
-        ...config.pathStyle
+        ...config.pathStyle,
       };
 
       const textStyle = {
-        font: 'bold 24px sans-serif',
+        font: "bold 24px sans-serif",
         size: 24,
-        color: '#000000',
-        ...config.textStyle
+        color: "#000000",
+        ...config.textStyle,
       };
 
       // Override colors with selected color pair if available
@@ -395,8 +418,8 @@
         ctx.strokeStyle = pathStyle.strokeColor;
         ctx.lineWidth = pathStyle.strokeWidth;
         ctx.globalAlpha = pathStyle.opacity;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
 
         ctx.beginPath();
         let started = false;
@@ -418,8 +441,8 @@
       // Set text style
       ctx.font = textStyle.font;
       ctx.fillStyle = textStyle.color;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
 
       // Calculate how much to offset based on progress (left to right movement)
       const offset = -(progress * pathData.length) % pathData.totalTextWidth;
@@ -465,7 +488,7 @@
   function setup() {
     if (!browser || !canvas || !container) return;
 
-    ctx = canvas.getContext('2d')!;
+    ctx = canvas.getContext("2d")!;
 
     // Get container dimensions
     const rect = container.getBoundingClientRect();
@@ -490,8 +513,14 @@
 
     // Initialize all path data
     pathsData = paths.map((config, index) => {
-      const selectedText = config.texts[Math.floor(Math.random() * config.texts.length)];
-      const points = generatePath(canvasWidth, canvasHeight, config, verticalOffsets[index]);
+      const selectedText =
+        config.texts[Math.floor(Math.random() * config.texts.length)];
+      const points = generatePath(
+        canvasWidth,
+        canvasHeight,
+        config,
+        verticalOffsets[index],
+      );
       const length = calculatePathLength(points);
 
       const pathData: PathData = {
@@ -499,10 +528,10 @@
         points,
         length,
         selectedText,
-        repeatedText: '',
+        repeatedText: "",
         textChars: [],
         totalTextWidth: 0,
-        animationId: null
+        animationId: null,
       };
 
       // Create repeated text for this path
@@ -515,10 +544,10 @@
         {
           progress: 1,
           duration,
-          ease: 'none',
+          ease: "none",
           repeat: -1,
-          onUpdate: render
-        }
+          onUpdate: render,
+        },
       );
 
       return pathData;
@@ -537,23 +566,27 @@
   onMount(() => {
     if (browser) {
       setup();
-      window.addEventListener('resize', handleResize);
+      window.addEventListener("resize", handleResize);
     }
   });
 
   onDestroy(() => {
     if (browser) {
-      pathsData.forEach(pathData => {
+      pathsData.forEach((pathData) => {
         if (pathData.animationId) pathData.animationId.kill();
       });
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     }
   });
 </script>
 
 <div class="multi-path-animated-text-container" bind:this={container}>
   <div class="canvas-wrapper">
-    <canvas bind:this={canvas} class="multi-path-animated-text" aria-hidden="true"></canvas>
+    <canvas
+      bind:this={canvas}
+      class="multi-path-animated-text"
+      aria-hidden="true"
+    ></canvas>
   </div>
   <div class="sr-only">
     {#each pathsData as pathData}
@@ -569,7 +602,7 @@
     height: 100vh;
     overflow-x: hidden;
     overflow-y: visible;
-    z-index: -999;
+    z-index: -1;
     top: 0;
   }
 
