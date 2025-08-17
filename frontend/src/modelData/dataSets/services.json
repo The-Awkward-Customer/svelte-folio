@@ -1,0 +1,261 @@
+{
+  "services_offered": [
+    {
+      "q": "What services do you offer?",
+      "a": "Full-stack design and development, design systems, user research, product strategy, and technical consulting. I work across the entire product development lifecycle from concept to launch.",
+      "tags": ["services", "full-stack", "design-systems", "consulting"]
+    },
+    {
+      "q": "Do you do just design or also development?",
+      "a": "Both. I'm a design engineer who can take projects from concept through implementation. This integrated approach ensures designs are technically feasible and delivered as intended.",
+      "tags": ["design-engineering", "full-stack", "implementation"]
+    },
+    {
+      "q": "What kind of design systems work do you do?",
+      "a": "I build design systems from scratch, audit and improve existing systems, and create governance frameworks. My focus is on adoption and real-world usage, not just documentation.",
+      "tags": ["design-systems", "audit", "governance", "adoption"]
+    },
+    {
+      "q": "Do you offer user research services?",
+      "a": "Yes, I conduct user interviews, usability testing, competitive analysis, and behavioral research. I adapt methods to cultural context and organizational constraints.",
+      "tags": ["user-research", "usability-testing", "cultural-adaptation"]
+    },
+    {
+      "q": "What's included in your product strategy work?",
+      "a": "Market analysis, user needs assessment, feature prioritization, roadmap planning, and competitive positioning. I help align product direction with user needs and business objectives.",
+      "tags": ["product-strategy", "market-analysis", "roadmap-planning"]
+    },
+    {
+      "q": "Do you help with technical architecture?",
+      "a": "Yes, I advise on technology choices, system architecture, and implementation approaches. My development background helps me design systems that are both user-friendly and technically sound.",
+      "tags": ["technical-architecture", "technology-choices", "system-design"]
+    },
+    {
+      "q": "Can you help with existing products or just new ones?",
+      "a": "Both. I've improved existing products (like the Fresha redesign) and built new ones from scratch (like GoDesk). Each requires different approaches but similar systematic thinking.",
+      "tags": ["existing-products", "new-products", "product-improvement"]
+    },
+    {
+      "q": "Do you work with design teams or independently?",
+      "a": "Both. I can work as an embedded team member, lead design initiatives, or work independently as needed. I adapt to whatever structure serves the project best.",
+      "tags": ["team-integration", "leadership", "independent-work"]
+    }
+  ],
+  "project_types": [
+    {
+      "q": "What types of projects do you work on?",
+      "a": "MVP development, design system creation, product redesigns, user research initiatives, and technical consulting. I prefer projects where design and technology intersect.",
+      "tags": ["project-types", "mvp", "redesigns", "consulting"]
+    },
+    {
+      "q": "Do you work on mobile projects?",
+      "a": "Yes, I design responsive web applications and have mobile development experience. I prefer progressive web apps over native apps unless there's a specific platform requirement.",
+      "tags": ["mobile", "responsive-web", "progressive-web-apps"]
+    },
+    {
+      "q": "What about e-commerce projects?",
+      "a": "I've worked on complex e-commerce systems like Games Workshop's Warhammer store. E-commerce requires understanding conversion optimization, inventory management, and payment flows.",
+      "tags": ["ecommerce", "conversion-optimization", "payment-flows"]
+    },
+    {
+      "q": "Do you work on SaaS applications?",
+      "a": "Yes, including platforms like Fresha and GoDesk. SaaS requires understanding user onboarding, feature adoption, and subscription business models.",
+      "tags": ["saas", "user-onboarding", "subscription-models"]
+    },
+    {
+      "q": "What about enterprise software?",
+      "a": "I've designed enterprise tools for Shell and Jio. Enterprise software requires understanding complex workflows, permission systems, and organizational hierarchies.",
+      "tags": ["enterprise-software", "complex-workflows", "permissions"]
+    },
+    {
+      "q": "Do you work on data visualization projects?",
+      "a": "Yes, I create dashboards and data visualization tools. The key is making complex data accessible and actionable for the intended audience.",
+      "tags": ["data-visualization", "dashboards", "data-accessibility"]
+    },
+    {
+      "q": "What about AI-powered products?",
+      "a": "I've built ML-powered features at GoDesk and work with AI integration in various projects. The challenge is making AI feel helpful rather than unpredictable.",
+      "tags": ["ai-products", "ml-features", "ai-integration"]
+    }
+  ],
+  "availability_timeline": [
+    {
+      "q": "Are you available for new projects?",
+      "a": "I'm currently available for Q4 2025. I take on one project at a time to ensure quality delivery and proper attention to each client.",
+      "tags": ["availability", "projects", "capacity", "q4-2025"]
+    },
+    {
+      "q": "What's your typical project timeline?",
+      "a": "Get in touch",
+      "tags": ["timeline", "estimates", "project-duration"]
+    },
+    {
+      "q": "How long do projects usually take?",
+      "a": "Depends on scope and complexity. MVPs might take 6-12 weeks, design systems 3-6 months, full product redesigns 4-8 months. I provide detailed estimates after understanding requirements.",
+      "tags": ["project-duration", "scope-dependent", "estimates"]
+    },
+    {
+      "q": "Do you work on long-term contracts?",
+      "a": "Yes, I'm open to both project-based work and longer-term engagements. I've successfully worked on retainer arrangements and ongoing development partnerships.",
+      "tags": ["long-term", "contracts", "retainer", "partnerships"]
+    },
+    {
+      "q": "Can you work on urgent projects?",
+      "a": "Depends on current capacity and project scope. I prioritize quality over speed, but I can often accommodate urgent needs with clear scope definition.",
+      "tags": ["urgent-projects", "capacity", "scope-definition"]
+    },
+    {
+      "q": "Do you offer maintenance and ongoing support?",
+      "a": "Yes, I provide ongoing support, updates, and iterations after project delivery. Long-term relationships often produce the best results.",
+      "tags": ["maintenance", "ongoing-support", "long-term-relationships"]
+    },
+    {
+      "q": "How do you handle project scheduling?",
+      "a": "Clear milestones, regular check-ins, and flexible scheduling that accommodates both my availability and client needs. Communication is key to successful project timing.",
+      "tags": ["project-scheduling", "milestones", "communication"]
+    }
+  ],
+  "working_arrangements": [
+    {
+      "q": "Do you work remotely?",
+      "a": "Yes, I'm based in Madrid but work with clients globally. I'm experienced with remote collaboration tools and processes, and can also work onsite when needed.",
+      "tags": ["remote-work", "global-clients", "collaboration"]
+    },
+    {
+      "q": "Can you work onsite?",
+      "a": "Yes, when it adds value to the project. Some work benefits from face-to-face collaboration, especially during discovery phases or when building team relationships.",
+      "tags": ["onsite-work", "face-to-face", "discovery-phases"]
+    },
+    {
+      "q": "What time zones do you work with?",
+      "a": "I've worked across European, Asian, and American time zones. I'm flexible with scheduling and good at finding overlap windows that work for everyone.",
+      "tags": ["time-zones", "flexibility", "scheduling"]
+    },
+    {
+      "q": "How do you handle communication across time zones?",
+      "a": "Structured async communication, clear documentation, and strategic use of overlap time. I design workflows that don't require constant real-time collaboration.",
+      "tags": ["async-communication", "documentation", "workflow-design"]
+    },
+    {
+      "q": "What tools do you use for remote collaboration?",
+      "a": "Figma for design collaboration, Slack for communication, Zoom for meetings, and whatever project management tools the team prefers. I adapt to client preferences.",
+      "tags": ["collaboration-tools", "figma", "slack", "adaptability"]
+    },
+    {
+      "q": "Do you integrate with existing teams?",
+      "a": "Yes, I integrate seamlessly with existing teams and processes. I adapt to your culture and workflows while bringing fresh perspectives and expertise.",
+      "tags": ["team-integration", "cultural-adaptation", "existing-processes"]
+    }
+  ],
+  "pricing_business": [
+    {
+      "q": "How do you price your work?",
+      "a": "Project-based pricing based on scope, timeline, and value delivered. I provide detailed proposals after understanding your specific needs and objectives.",
+      "tags": ["pricing", "project-based", "value-based", "proposals"]
+    },
+    {
+      "q": "Do you work on hourly or project rates?",
+      "a": "I prefer project-based pricing for defined scopes, but I'm flexible based on client needs. Hourly rates work better for ongoing consultation or undefined scope work.",
+      "tags": ["hourly-vs-project", "pricing-flexibility", "scope-definition"]
+    },
+    {
+      "q": "What information do you need for a quote?",
+      "a": "I need to understand the problem you're solving, your target users, technical constraints, timeline, and budget range. The more context you provide, the more accurate and helpful I can be.",
+      "tags": ["quotes", "project-requirements", "scoping", "context"]
+    },
+    {
+      "q": "Do you require deposits or have payment terms?",
+      "a": "Yes, I typically require a deposit to begin work with payment milestones tied to project phases. Terms are outlined clearly in project agreements.",
+      "tags": ["deposits", "payment-terms", "milestones", "agreements"]
+    },
+    {
+      "q": "Do you work with different budget ranges?",
+      "a": "I work with various budget ranges and can often adjust scope to fit budget constraints. Clear budget discussion upfront helps align expectations and deliverables.",
+      "tags": ["budget-ranges", "scope-adjustment", "budget-constraints"]
+    },
+    {
+      "q": "What's included in your project pricing?",
+      "a": "Design work, development when applicable, documentation, training, and reasonable revisions. I clearly outline what's included vs. additional services in project proposals.",
+      "tags": ["pricing-inclusions", "documentation", "training", "revisions"]
+    }
+  ],
+  "contact_process": [
+    {
+      "q": "How can I get in touch?",
+      "a": "You can reach me through the contact form on this site, or email me directly at abbottsayshi@gmail.com. I typically respond within 4 hours and am happy to discuss potential projects or collaborations.",
+      "tags": ["contact", "email", "response-time", "communication"]
+    },
+    {
+      "q": "What's the best way to start a project with you?",
+      "a": "I believe in a candid and casual approach to business relationships. We can have a quick chat online or over the phone to see if there is a fit then go from there. Alternatively, if you're certain you want to work with me I'm happy to produce a proposal based on your requirements.",
+      "tags": ["project-start", "discovery", "proposal", "casual-approach"]
+    },
+    {
+      "q": "Do you offer consultations?",
+      "a": "Yes, I offer initial consultations to discuss project feasibility, technology choices, and strategic direction. The first consultation is complimentary.",
+      "tags": ["consultation", "strategy", "advice", "complimentary"]
+    },
+    {
+      "q": "What happens after initial contact?",
+      "a": "We'll have a conversation to understand your needs, I'll ask questions about your goals and constraints, then provide recommendations on approach and next steps.",
+      "tags": ["initial-contact", "needs-assessment", "recommendations"]
+    },
+    {
+      "q": "How detailed are your project proposals?",
+      "a": "Very detailed. I outline scope, timeline, deliverables, pricing, and assumptions. Clear proposals prevent misunderstandings and set projects up for success.",
+      "tags": ["detailed-proposals", "scope", "timeline", "deliverables"]
+    },
+    {
+      "q": "Do you sign NDAs?",
+      "a": "Yes, I'm happy to sign reasonable NDAs to discuss confidential projects. I understand the importance of protecting sensitive business information.",
+      "tags": ["nda", "confidentiality", "sensitive-information"]
+    },
+    {
+      "q": "What if we're not sure what we need?",
+      "a": "That's common and completely fine. I often start with discovery workshops to help clarify needs, define problems, and identify the best approach forward.",
+      "tags": ["unclear-needs", "discovery-workshops", "problem-definition"]
+    },
+    {
+      "q": "How do you handle project changes?",
+      "a": "Change is normal in good projects. I build flexibility into timelines and have clear processes for handling scope changes with transparent impact assessment.",
+      "tags": [
+        "project-changes",
+        "scope-changes",
+        "flexibility",
+        "impact-assessment"
+      ]
+    }
+  ],
+  "specific_scenarios": [
+    {
+      "q": "Do you work with startups?",
+      "a": "Yes, I love working with startups! Having co-founded GoDesk, I understand the unique challenges and constraints. I can help with everything from MVP design to scaling for growth.",
+      "tags": ["startups", "mvp", "scaling", "founder-experience"]
+    },
+    {
+      "q": "Do you take on enterprise projects?",
+      "a": "Absolutely. I have extensive experience with Fortune 500 companies and understand how to navigate complex stakeholder landscapes while delivering results at scale.",
+      "tags": ["enterprise", "fortune-500", "scale", "stakeholder-management"]
+    },
+    {
+      "q": "Can you help with design system implementation?",
+      "a": "Yes, that's one of my specialties. I've built design systems from scratch at multiple companies and can help with implementation, adoption, and governance.",
+      "tags": ["design-system-implementation", "adoption", "governance"]
+    },
+    {
+      "q": "Do you help with hiring design teams?",
+      "a": "I can advise on design team structure, hiring criteria, and interview processes. I've built and led design teams and understand what skills are needed at different stages.",
+      "tags": ["team-hiring", "design-teams", "interview-processes"]
+    },
+    {
+      "q": "Can you help with design audits?",
+      "a": "Yes, I conduct comprehensive design audits covering usability, accessibility, technical implementation, and business alignment. Audits often reveal quick wins and long-term opportunities.",
+      "tags": ["design-audits", "usability", "accessibility", "quick-wins"]
+    },
+    {
+      "q": "Do you offer design training or workshops?",
+      "a": "I occasionally run workshops on design systems, cross-functional collaboration, and design thinking. I prefer small, intensive sessions working through real problems.",
+      "tags": ["training", "workshops", "design-systems", "real-problems"]
+    }
+  ]
+}

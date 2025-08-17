@@ -1,0 +1,742 @@
+/* CSS Reset (unchanged) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 100%;
+  line-height: 1.15;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  justify-content: center;
+  align-items: center;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+:focus {
+  outline: revert;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: revert;
+}
+
+/* Typography (unchanged) */
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/Geist-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/Geist-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/Geist-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/Geist-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/Geist-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/Geist-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist-Mono';
+  src: url('/fonts/GeistMono-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist-Mono';
+  src: url('/fonts/GeistMono-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist-Mono';
+  src: url('/fonts/GeistMono-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist-Mono';
+  src: url('/fonts/GeistMono-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist-Mono';
+  src: url('/fonts/GeistMono-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist-Mono';
+  src: url('/fonts/GeistMono-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Theme-independent variables */
+:root {
+  /* Dev colors */
+  --color-dev-pink: 241 114 255; /* #F172FF */
+
+  /* Project colors */
+  --fresha-purple: 105, 80, 243;
+
+  /* Focus ring */
+  --focus-ring-color: rgba(255, 98, 0, 1);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
+  /* Typography */
+  --font-family-main: 'Geist', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, sans-serif;
+  --font-family-alt: 'Geist-Mono', monospace;
+
+  /* Font sizes */
+  --fs-200: 0.5rem; /* 8px */
+  --fs-250: 0.75rem; /* 12px */
+  --fs-275: 0.875rem; /* 14px */
+  --fs-300: 1rem; /* 16px */
+  --fs-350: 1.125rem; /* 18px */
+  --fs-400: 1.25rem; /* 20px */
+  --fs-500: 1.5rem; /* 24px */
+  --fs-600: 1.875rem; /* 30px */
+  --fs-700: 2.5rem; /* 40px */
+  --fs-800: 3rem; /* 48px */
+  --fs-900: 4rem; /* 64px */
+  --fs-1000: 5rem; /* 80px */
+  --fs-1100: 6rem; /* 96px */
+  --fs-1200: 7rem; /* 112px */
+  --fs-1300: 8rem; /* 128px */
+  --fs-1400: 9rem; /* 144px */
+  --fs-1500: 10rem; /* 160px */
+
+  /* Semantic font sizes */
+  --fs-tiny-clamped: clamp(14px, 4vw, 28px);
+  --fs-small-clamped: clamp(16px, 4vw, 32px);
+  --fs-large-clamped: clamp(18px, 4vw, 28px);
+  --fs-xlarge-clamped: clamp(24px, 4vw, 32px);
+  --fs-xxlarge-clamped: clamp(18px, 4vw, 64px);
+
+  /* Font weights */
+  --fw-thin: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-super: 900;
+
+  /* Font styles */
+  --font-style-normal: normal;
+
+  /* Line height tokens - Base options */
+  --lh-none: 1; /* 1 - No line spacing */
+  --lh-tight: 1.1; /* 1.1 - Tight spacing for headlines */
+  --lh-snug: 1.25; /* 1.25 - Snug spacing for subheadings */
+  --lh-normal: 1.5; /* 1.5 - Standard reading line height */
+  --lh-relaxed: 1.625; /* 1.625 - Relaxed spacing for comfortable reading */
+  --lh-loose: 2; /* 2 - Loose spacing for enhanced readability */
+
+  /* Semantic line height tokens */
+  --lh-heading-primary: var(--lh-tight); /* For main headings (h1, h2) */
+  --lh-heading-secondary: var(--lh-snug); /* For subheadings (h3, h4, h5, h6) */
+  --lh-body-text: var(--lh-normal); /* For body paragraphs and content */
+  --lh-body-comfortable: var(--lh-relaxed); /* For long-form reading content */
+  --lh-caption: var(--lh-snug); /* For captions and small text */
+  --lh-interface: var(--lh-snug); /* For UI elements and buttons */
+  --lh-code: var(--lh-normal); /* For code blocks */
+  --lh-list: var(--lh-normal); /* For list items */
+
+  /* Text transform */
+  --text-transform-none: none;
+  --text-transform-uppercase: uppercase;
+  --text-transform-lowercase: lowercase;
+  --text-transform-titlecase: capitalize;
+
+  /* Spacing */
+  --space-0: 0rem; /* 0px */
+  --space-2xs: 0.125rem; /* 2px */
+  --space-xs: 0.25rem; /* 4px */
+  --space-sm: 0.5rem; /* 8px */
+  --space-md: 0.75rem; /* 12px */
+  --space-base: 1rem; /* 16px */
+  --space-lg: 1.25rem; /* 20px */
+  --space-xl: 1.5rem; /* 24px */
+  --space-2xl: 1.75rem; /* 28px */
+  --space-3xl: 2rem; /* 32px */
+  --space-4xl: 3rem; /* 48px */
+  --space-5xl: 4rem; /* 64px */
+  --space-6xl: 5rem; /* 80px */
+  --space-7xl: 6rem; /* 96px */
+  --space-8xl: 7rem; /* 112px */
+  --space-9xl: 8rem; /* 128px */
+  --space-10xl: 9rem; /* 144px */
+  --space-11xl: 10rem; /* 160px */
+
+  /* Semantic spacing */
+  --padding-page-default: var(--space-xl);
+
+  /* Width tokens - Fixed widths */
+  --width-2xs: 0.125rem; /* 2px - matches space-2xs */
+  --width-xs: 0.25rem; /* 4px - matches space-xs */
+  --width-sm: 0.5rem; /* 8px - matches space-sm */
+  --width-md: 0.75rem; /* 12px - matches space-md */
+  --width-base: 1rem; /* 16px - matches space-base */
+  --width-lg: 1.25rem; /* 20px - matches space-lg */
+  --width-xl: 1.5rem; /* 24px - matches space-xl */
+  --width-2xl: 2rem; /* 32px - matches space-3xl */
+  --width-3xl: 3rem; /* 48px - matches space-4xl */
+  --width-4xl: 4rem; /* 64px - matches space-5xl */
+  --width-5xl: 5rem; /* 80px - matches space-6xl */
+  --width-6xl: 6rem; /* 96px - matches space-7xl */
+  --width-7xl: 8rem; /* 128px - matches space-9xl */
+  --width-8xl: 10rem; /* 160px - matches space-11xl */
+
+  /* Width tokens - Content widths */
+  --width-prose: 65ch; /* Optimal reading width */
+  --width-prose-sm: 27ch; /* Compact prose width */
+  --width-prose-md: 45ch; /* Medium prose width */
+  --width-prose-lg: 75ch; /* Extended prose width */
+  --width-content-sm: 640px;
+  --width-content-base: 768px;
+  --width-content-lg: 1024px;
+  --width-content-xl: 1280px;
+  --width-content-2xl: 1440px;
+  --width-content-max: 1920px;
+
+  /* Min-width tokens for responsive components */
+  --min-width-card: 25ch; /* Minimum card width for readability */
+  --min-width-card-sm: 20ch; /* Compact card minimum */
+  --min-width-card-lg: 30ch; /* Larger card minimum */
+  --min-width-card-xl: 35ch; /* Extra large card minimum */
+
+  /* Width tokens - Percentage based */
+  --width-quarter: 25%;
+  --width-third: 33.333%;
+  --width-half: 50%;
+  --width-two-thirds: 66.667%;
+  --width-three-quarters: 75%;
+  --width-full: 100%;
+  --width-screen: 100vw;
+
+  /* Border radius */
+  --bdr-radius-tiny: 4px;
+  --bdr-radius-small: 8px;
+  --bdr-radius-medium: 16px;
+  --bdr-radius-large: 24px;
+  --bdr-radius-pill: 999px;
+
+  /* Opacity */
+  --opacity-invisible: 0; /* 0% */
+  --opacity-hover: 0.04; /* 4% */
+  --opacity-active: 0.08; /* 10% */
+  --opacity-selected: 0.12; /* 12% */
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+
+  /* Breakpoints */
+  --bp-mobile-max: 767px;
+  --bp-mobile-min: 768px;
+  --bp-tablet: 1024px;
+  --bp-desktop: 1440px;
+
+  --brand-fresha-accent: 105, 80, 243; /* #694CF3 */
+}
+
+/* Light theme (default) */
+:root,
+[data-theme='light'] {
+  /* Overlay */
+  --bg-overlay: rgba(255, 255, 255, 1); /* opaque white overlay */
+  --bg-overlay-semi: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* semi-transparent white overlay */
+  --bg-overlay-light: rgba(255, 255, 255, 0.4); /* light white overlay */
+
+  /* Legacy rgb values for backwards compatibility */
+  --bdr-inverse: 255 255 255; /* #FFFFFF */
+  --bg-inverse: 255 255 255; /* #FFFFFF */
+
+  /* Border inverse with opacity variants */
+  --bdr-inverse-80: rgba(255, 255, 255, 0.8);
+  --bdr-inverse-60: rgba(255, 255, 255, 0.6);
+  --bdr-inverse-40: rgba(255, 255, 255, 0.4);
+  --bdr-inverse-20: rgba(255, 255, 255, 0.2);
+
+  /* Noise texture mask */
+  --noise-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.67' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' fill='white'/%3E%3C/svg%3E");
+  --noise-color: rgba(var(--bdr-inverse), 0.2);
+
+  /* RGBA Color Variants with Opacity */
+  /* Text colors with opacity variants */
+  --fg-text-primary: rgba(38, 39, 45, 1);
+  --fg-text-primary-90: rgba(38, 39, 45, 0.9);
+  --fg-text-primary-80: rgba(38, 39, 45, 0.8);
+  --fg-text-primary-60: rgba(38, 39, 45, 0.6);
+  --fg-text-primary-40: rgba(38, 39, 45, 0.4);
+  --fg-text-primary-20: rgba(38, 39, 45, 0.2);
+  --fg-text-primary-10: rgba(38, 39, 45, 0.1);
+
+  --fg-text-secondary: rgba(112, 113, 125, 1);
+  --fg-text-secondary-80: rgba(112, 113, 125, 0.8);
+  --fg-text-secondary-60: rgba(112, 113, 125, 0.6);
+  --fg-text-secondary-40: rgba(112, 113, 125, 0.4);
+
+  --fg-text-inverse: rgba(255, 255, 255, 1);
+  --fg-text-inverse-90: rgba(255, 255, 255, 0.9);
+  --fg-text-inverse-80: rgba(255, 255, 255, 0.8);
+  --fg-text-inverse-60: rgba(255, 255, 255, 0.6);
+  --fg-text-inverse-40: rgba(255, 255, 255, 0.4);
+  --fg-text-inverse-20: rgba(255, 255, 255, 0.2);
+  --fg-text-inverse-10: rgba(255, 255, 255, 0.1);
+
+  --fg-text-danger: rgba(255, 62, 0, 1);
+  --fg-text-danger-80: rgba(255, 62, 0, 0.8);
+  --fg-text-danger-60: rgba(255, 62, 0, 0.6);
+  --fg-text-danger-40: rgba(255, 62, 0, 0.4);
+
+  --fg-text-muted: rgba(146, 147, 161, 1);
+  --fg-text-muted-80: rgba(146, 147, 161, 0.8);
+  --fg-text-muted-60: rgba(146, 147, 161, 0.6);
+
+  /* Background colors with opacity variants */
+  --bg-page: rgba(255, 255, 255, 1);
+  --bg-page-90: rgba(255, 255, 255, 0.9);
+  --bg-page-80: rgba(255, 255, 255, 0.8);
+  --bg-page-60: rgba(255, 255, 255, 0.6);
+  --bg-page-40: rgba(255, 255, 255, 0.4);
+  --bg-page-20: rgba(255, 255, 255, 0.2);
+
+  --bg-component: rgba(180, 180, 180, 1);
+  --bg-component-80: rgba(180, 180, 180, 0.8);
+  --bg-component-60: rgba(180, 180, 180, 0.6);
+  --bg-component-40: rgba(180, 180, 180, 0.4);
+
+  --bg-primary: rgba(38, 39, 45, 1);
+  --bg-primary-90: rgba(38, 39, 45, 0.9);
+  --bg-primary-80: rgba(38, 39, 45, 0.8);
+  --bg-primary-60: rgba(38, 39, 45, 0.6);
+  --bg-primary-40: rgba(38, 39, 45, 0.4);
+  --bg-primary-20: rgba(38, 39, 45, 0.2);
+
+  /* Border colors with opacity variants */
+  --bdr-primary: rgba(38, 39, 45, 1);
+  --bdr-primary-60: rgba(38, 39, 45, 0.6);
+  --bdr-primary-40: rgba(38, 39, 45, 0.4);
+  --bdr-primary-20: rgba(38, 39, 45, 0.2);
+
+  --bdr-secondary: rgba(192, 192, 192, 1);
+  --bdr-secondary-60: rgba(192, 192, 192, 0.6);
+  --bdr-secondary-40: rgba(192, 192, 192, 0.4);
+
+  /* Status colors with opacity variants */
+  --fg-positive: rgba(42, 83, 20, 1);
+  --fg-positive-80: rgba(42, 83, 20, 0.8);
+  --fg-positive-60: rgba(42, 83, 20, 0.6);
+
+  --bg-positive: rgba(140, 255, 0, 1);
+  --bg-positive-80: rgba(140, 255, 0, 0.8);
+  --bg-positive-60: rgba(140, 255, 0, 0.6);
+  --bg-positive-40: rgba(140, 255, 0, 0.4);
+  --bg-positive-20: rgba(140, 255, 0, 0.2);
+
+  /* Brand Colors */
+  --color-brand-jio: rgba(2, 35, 134, 1);
+  --color-brand-fresha: rgba(105, 80, 243, 1);
+  --color-brand-godesk: rgba(221, 255, 0, 1);
+  --color-brand-suzuki: rgba(1, 48, 68, 1);
+  --color-brand-warhammer: rgba(0, 0, 0, 1);
+  --color-brand-shell: rgba(251, 206, 7, 1);
+  --color-brand-ikea: rgba(255, 218, 26, 1);
+  --color-brand-postoffice: rgba(238, 39, 34, 1);
+  --color-brand-hsbc: rgba(255, 255, 255, 1);
+  --color-brand-unilever: rgba(15, 14, 154, 1);
+  --color-brand-axa: rgba(52, 60, 61, 1);
+  --color-brand-tsb: rgba(0, 168, 225, 1);
+
+  /* Legacy variable mappings for backward compatibility */
+  --color-fg-primary: var(--fg-text-primary);
+  --color-fg-secondary: var(--fg-text-secondary);
+  --color-fg-accent: var(--fg-text-danger);
+  --color-bg-primary: var(--bg-page);
+  --color-bg-secondary: var(--bg-component);
+  --color-bg-inverse: var(--fg-text-primary);
+  --color-txt-primary: var(--fg-text-primary);
+  --color-txt-secondary: var(--fg-text-secondary);
+  --color-txt-muted: var(--fg-text-muted);
+  --color-txt-inverse: var(--bg-page);
+  --color-bdr-muted: var(--fg-text-muted);
+}
+
+/* Dark theme */
+[data-theme='dark'] {
+  /* Noise texture - using fg-text for dark theme */
+  --noise-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.67' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='discrete' tableValues='0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' fill='white'/%3E%3C/svg%3E");
+  --noise-color: rgba(var(--fg-text-primary), 0.2);
+
+  /* Overlay */
+  --bg-overlay: rgba(45, 45, 51, 1); /* opaque dark overlay */
+  --bg-overlay-semi: rgba(45, 45, 51, 0.8); /* semi-transparent dark overlay */
+  --bg-overlay-light: rgba(45, 45, 51, 0.4); /* light dark overlay */
+
+  /* Legacy rgb values for backwards compatibility */
+  --bdr-inverse: 255 255 255; /* #FFFFFF */
+  --bg-component: 180 180 180; /* #B4B4B4 */
+  --bg-inverse: 38 39 45; /* #26272D */
+
+  /* Border inverse with opacity variants */
+  --bdr-inverse-full: rgba(255, 255, 255, 1);
+  --bdr-inverse-80: rgba(255, 255, 255, 0.8);
+  --bdr-inverse-60: rgba(255, 255, 255, 0.6);
+  --bdr-inverse-40: rgba(255, 255, 255, 0.4);
+  --bdr-inverse-20: rgba(255, 255, 255, 0.2);
+
+  /* RGBA Color Variants with Opacity - Dark Theme */
+  /* Text colors with opacity variants */
+  --fg-text-primary: rgba(255, 255, 255, 1);
+  --fg-text-primary-90: rgba(255, 255, 255, 0.9);
+  --fg-text-primary-80: rgba(255, 255, 255, 0.8);
+  --fg-text-primary-60: rgba(255, 255, 255, 0.6);
+  --fg-text-primary-40: rgba(255, 255, 255, 0.4);
+  --fg-text-primary-20: rgba(255, 255, 255, 0.2);
+  --fg-text-primary-10: rgba(255, 255, 255, 0.1);
+
+  --fg-text-secondary: rgba(196, 197, 215, 1);
+  --fg-text-secondary-80: rgba(196, 197, 215, 0.8);
+  --fg-text-secondary-60: rgba(196, 197, 215, 0.6);
+  --fg-text-secondary-40: rgba(196, 197, 215, 0.4);
+
+  --fg-text-inverse: rgba(45, 45, 51, 1);
+  --fg-text-inverse-90: rgba(45, 45, 51, 0.9);
+  --fg-text-inverse-80: rgba(45, 45, 51, 0.8);
+  --fg-text-inverse-60: rgba(45, 45, 51, 0.6);
+  --fg-text-inverse-40: rgba(45, 45, 51, 0.4);
+  --fg-text-inverse-20: rgba(45, 45, 51, 0.2);
+  --fg-text-inverse-10: rgba(45, 45, 51, 0.1);
+
+  --fg-text-danger: rgba(255, 94, 0, 1);
+  --fg-text-danger-80: rgba(255, 94, 0, 0.8);
+  --fg-text-danger-60: rgba(255, 94, 0, 0.6);
+  --fg-text-danger-40: rgba(255, 94, 0, 0.4);
+
+  --fg-text-muted: rgba(198, 197, 217, 1);
+  --fg-text-muted-80: rgba(198, 197, 217, 0.8);
+  --fg-text-muted-60: rgba(198, 197, 217, 0.6);
+
+  /* Background colors with opacity variants */
+  --bg-page: rgba(45, 45, 51, 1);
+  --bg-page-90: rgba(45, 45, 51, 0.9);
+  --bg-page-80: rgba(45, 45, 51, 0.8);
+  --bg-page-60: rgba(45, 45, 51, 0.6);
+  --bg-page-40: rgba(45, 45, 51, 0.4);
+  --bg-page-20: rgba(45, 45, 51, 0.2);
+
+  --bg-primary: rgba(255, 255, 255, 1);
+  --bg-primary-90: rgba(255, 255, 255, 0.9);
+  --bg-primary-80: rgba(255, 255, 255, 0.8);
+  --bg-primary-60: rgba(255, 255, 255, 0.6);
+  --bg-primary-40: rgba(255, 255, 255, 0.4);
+  --bg-primary-20: rgba(255, 255, 255, 0.2);
+
+  /* Border colors with opacity variants */
+  --bdr-primary: rgba(240, 240, 247, 1);
+  --bdr-primary-60: rgba(240, 240, 247, 0.6);
+  --bdr-primary-40: rgba(240, 240, 247, 0.4);
+  --bdr-primary-20: rgba(240, 240, 247, 0.2);
+
+  --bdr-secondary: rgba(76, 75, 179, 1);
+  --bdr-secondary-60: rgba(76, 75, 179, 0.6);
+  --bdr-secondary-40: rgba(76, 75, 179, 0.4);
+
+  /* Status colors with opacity variants */
+  --fg-positive: rgba(140, 255, 0, 1);
+  --fg-positive-80: rgba(140, 255, 0, 0.8);
+  --fg-positive-60: rgba(140, 255, 0, 0.6);
+
+  --bg-positive: rgba(42, 83, 20, 1);
+  --bg-positive-80: rgba(42, 83, 20, 0.8);
+  --bg-positive-60: rgba(42, 83, 20, 0.6);
+
+  /* Brand Colors */
+  --color-brand-jio: rgba(2, 35, 134, 1);
+  --color-brand-fresha: rgba(105, 80, 243, 1);
+  --color-brand-godesk: rgba(221, 255, 0, 1);
+  --color-brand-suzuki: rgba(1, 48, 68, 1);
+  --color-brand-warhammer: rgba(0, 0, 0, 1);
+  --color-brand-shell: rgba(251, 206, 7, 1);
+  --color-brand-ikea: rgba(255, 218, 26, 1);
+  --color-brand-postoffice: rgba(238, 39, 34, 1);
+  --color-brand-hsbc: rgba(255, 255, 255, 1);
+  --color-brand-unilever: rgba(15, 14, 154, 1);
+  --color-brand-axa: rgba(52, 60, 61, 1);
+  --color-brand-tsb: rgba(0, 168, 225, 1);
+}
+
+/* High contrast theme */
+[data-theme='high-contrast'] {
+  /* No noise for accessibility */
+  --noise-mask: none;
+  --noise-color: transparent;
+
+  /* Overlay */
+  --bg-overlay: rgba(0, 0, 0, 1); /* opaque black overlay */
+  --bg-overlay-semi: rgba(0, 0, 0, 0.8); /* semi-transparent black overlay */
+  --bg-overlay-light: rgba(0, 0, 0, 0.4); /* light black overlay */
+
+  /* Legacy rgb values for backwards compatibility */
+  --bdr-inverse: 0 0 0; /* #000000 */
+  --bg-component: 180 180 180; /* #B4B4B4 */
+  --bg-inverse: 38 39 45; /* #26272D */
+
+  /* Border inverse with opacity variants */
+  --bdr-inverse-full: rgba(0, 0, 0, 1);
+  --bdr-inverse-80: rgba(0, 0, 0, 0.8);
+  --bdr-inverse-60: rgba(0, 0, 0, 0.6);
+  --bdr-inverse-40: rgba(0, 0, 0, 0.4);
+  --bdr-inverse-20: rgba(0, 0, 0, 0.2);
+
+  /* RGBA Color Variants with Opacity - High Contrast Theme */
+  /* Text colors with opacity variants */
+  --fg-text-primary: rgba(0, 0, 0, 1);
+  --fg-text-primary-90: rgba(0, 0, 0, 0.9);
+  --fg-text-primary-80: rgba(0, 0, 0, 0.8);
+  --fg-text-primary-60: rgba(0, 0, 0, 0.6);
+  --fg-text-primary-40: rgba(0, 0, 0, 0.4);
+  --fg-text-primary-20: rgba(0, 0, 0, 0.2);
+  --fg-text-primary-10: rgba(0, 0, 0, 0.1);
+
+  --fg-text-secondary: rgba(0, 0, 0, 1);
+  --fg-text-secondary-80: rgba(0, 0, 0, 0.8);
+  --fg-text-secondary-60: rgba(0, 0, 0, 0.6);
+  --fg-text-secondary-40: rgba(0, 0, 0, 0.4);
+
+  --fg-text-inverse: rgba(255, 255, 255, 1);
+  --fg-text-inverse-90: rgba(255, 255, 255, 0.9);
+  --fg-text-inverse-80: rgba(255, 255, 255, 0.8);
+  --fg-text-inverse-60: rgba(255, 255, 255, 0.6);
+  --fg-text-inverse-40: rgba(255, 255, 255, 0.4);
+  --fg-text-inverse-20: rgba(255, 255, 255, 0.2);
+  --fg-text-inverse-10: rgba(255, 255, 255, 0.1);
+
+  --fg-text-danger: rgba(199, 56, 0, 1);
+  --fg-text-danger-80: rgba(199, 56, 0, 0.8);
+  --fg-text-danger-60: rgba(199, 56, 0, 0.6);
+  --fg-text-danger-40: rgba(199, 56, 0, 0.4);
+
+  --fg-text-muted: rgba(0, 0, 0, 1);
+  --fg-text-muted-80: rgba(0, 0, 0, 0.8);
+  --fg-text-muted-60: rgba(0, 0, 0, 0.6);
+
+  /* Background colors with opacity variants */
+  --bg-page: rgba(255, 255, 255, 1);
+  --bg-page-90: rgba(255, 255, 255, 0.9);
+  --bg-page-80: rgba(255, 255, 255, 0.8);
+  --bg-page-60: rgba(255, 255, 255, 0.6);
+  --bg-page-40: rgba(255, 255, 255, 0.4);
+  --bg-page-20: rgba(255, 255, 255, 0.2);
+
+  --bg-primary: rgba(38, 39, 45, 1);
+  --bg-primary-90: rgba(38, 39, 45, 0.9);
+  --bg-primary-80: rgba(38, 39, 45, 0.8);
+  --bg-primary-60: rgba(38, 39, 45, 0.6);
+  --bg-primary-40: rgba(38, 39, 45, 0.4);
+  --bg-primary-20: rgba(38, 39, 45, 0.2);
+
+  /* Border colors with opacity variants */
+  --bdr-primary: rgba(0, 0, 0, 1);
+  --bdr-primary-60: rgba(0, 0, 0, 0.6);
+  --bdr-primary-40: rgba(0, 0, 0, 0.4);
+  --bdr-primary-20: rgba(0, 0, 0, 0.2);
+
+  --bdr-secondary: rgba(0, 0, 0, 1);
+  --bdr-secondary-60: rgba(0, 0, 0, 0.6);
+  --bdr-secondary-40: rgba(0, 0, 0, 0.4);
+
+  /* Status colors with opacity variants */
+  --fg-positive: rgba(63, 115, 0, 1);
+  --fg-positive-80: rgba(63, 115, 0, 0.8);
+  --fg-positive-60: rgba(63, 115, 0, 0.6);
+
+  --bg-positive: rgba(255, 255, 255, 1);
+  --bg-positive-80: rgba(255, 255, 255, 0.8);
+  --bg-positive-60: rgba(255, 255, 255, 0.6);
+
+  /* Brand Colors */
+  --color-brand-jio: rgba(2, 35, 134, 1);
+  --color-brand-fresha: rgba(105, 80, 243, 1);
+  --color-brand-godesk: rgba(221, 255, 0, 1);
+  --color-brand-suzuki: rgba(1, 48, 68, 1);
+  --color-brand-warhammer: rgba(0, 0, 0, 1);
+  --color-brand-shell: rgba(251, 206, 7, 1);
+  --color-brand-ikea: rgba(255, 218, 26, 1);
+  --color-brand-postoffice: rgba(238, 39, 34, 1);
+  --color-brand-hsbc: rgba(255, 255, 255, 1);
+  --color-brand-unilever: rgba(15, 14, 154, 1);
+  --color-brand-axa: rgba(52, 60, 61, 1);
+  --color-brand-tsb: rgba(0, 168, 225, 1);
+
+  /* Legacy variable mappings for backward compatibility */
+  --color-fg-primary: var(--fg-text-primary);
+  --color-fg-secondary: var(--fg-text-secondary);
+  --color-fg-accent: var(--fg-text-danger);
+  --color-bg-primary: var(--bg-page);
+  --color-bg-secondary: var(--bg-component);
+  --color-bg-inverse: var(--fg-text-primary);
+  --color-txt-primary: var(--fg-text-primary);
+  --color-txt-secondary: var(--fg-text-secondary);
+  --color-txt-muted: var(--fg-text-muted);
+  --color-txt-inverse: var(--bg-page);
+  --color-bdr-muted: var(--fg-text-muted);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Typography styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-main);
+}
+
+p,
+span,
+a,
+li,
+ol,
+ul {
+  font-family: var(--font-family-main);
+}
+
+body {
+  background-color: var(--bg-page);
+}
+
+/* Brand color transitions */
+:root.transitioning,
+:root.transitioning body,
+:root.transitioning main {
+  transition:
+    background-color 300ms ease-out,
+    color 300ms ease-out;
+}
+
+:root.transitioning * {
+  transition:
+    background-color 300ms ease-out,
+    color 300ms ease-out,
+    border-color 300ms ease-out;
+}
+
+/* Prevent layout shifts during transitions */
+:root.transitioning {
+  overflow-x: hidden;
+}
+
+/* Optional: Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  :root.transitioning,
+  :root.transitioning *,
+  :root.transitioning body,
+  :root.transitioning main {
+    transition-duration: 0.01ms !important;
+  }
+}

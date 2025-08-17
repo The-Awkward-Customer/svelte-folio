@@ -1,0 +1,634 @@
+/* Alternative Design Token Naming Convention Samples
+ * Created: 2025-08-14
+ * 
+ * Analysis of current system:
+ * Current system uses: prefix-category-variant pattern
+ * Examples: --fg-text-primary, --bg-page-80, --space-lg, --fs-300
+ * 
+ * Strengths: Clear categorization, good opacity variants
+ * Areas for improvement: Mixed numeric/semantic naming, inconsistent prefixes
+ */
+
+/* ============================================================================
+ * CURRENT SYSTEM ANALYSIS
+ * ============================================================================
+ * 
+ * Patterns found in app.css:
+ * - Colors: --fg-text-primary, --bg-page, --bdr-primary
+ * - Typography: --fs-300 (numeric), --fw-bold (semantic), --lh-tight (semantic)
+ * - Spacing: --space-lg (semantic), --space-3xl (size-based)
+ * - Effects: --shadow-md, --transition-fast
+ * 
+ * Issues:
+ * - Mixed semantic (--space-lg) and numeric (--fs-300) naming
+ * - Inconsistent prefixes (fg- vs color-)
+ * - Complex opacity variants (--fg-text-primary-80)
+ */
+
+/* ============================================================================
+ * ALTERNATIVE 1: ATOMIC DESIGN SYSTEM (Material/Tailwind-inspired)
+ * ============================================================================
+ * 
+ * Philosophy: Category-first, scale-based naming with clear numeric progression
+ * Pattern: --{category}-{scale}[-{modifier}]
+ * Benefits: Predictable, scalable, easy to learn
+ * Best for: Teams that like systematic approaches, design systems
+ */
+
+:root {
+  /* ---------------------------------------------------------------------------
+   * COLORS - Semantic with numeric scales
+   * --------------------------------------------------------------------------- */
+  
+  /* Base Color Palette */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+
+  /* Status Colors */
+  --color-success-50: #f0fdf4;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-900: #14532d;
+  
+  --color-error-50: #fef2f2;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-900: #7f1d1d;
+  
+  --color-warning-50: #fffbeb;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-900: #78350f;
+  
+  --color-info-50: #eff6ff;
+  --color-info-500: #3b82f6;
+  --color-info-600: #2563eb;
+  --color-info-900: #1e3a8a;
+
+  /* Semantic Color Applications */
+  --text-primary: var(--color-neutral-900);
+  --text-secondary: var(--color-neutral-600);
+  --text-muted: var(--color-neutral-400);
+  --text-inverse: var(--color-neutral-50);
+  
+  --bg-primary: var(--color-neutral-50);
+  --bg-secondary: var(--color-neutral-100);
+  --bg-elevated: var(--color-neutral-50);
+  
+  --border-primary: var(--color-neutral-200);
+  --border-secondary: var(--color-neutral-100);
+
+  /* ---------------------------------------------------------------------------
+   * SPACING - Consistent scale progression
+   * --------------------------------------------------------------------------- */
+  
+  --space-1: 0.25rem;    /* 4px */
+  --space-2: 0.5rem;     /* 8px */
+  --space-3: 0.75rem;    /* 12px */
+  --space-4: 1rem;       /* 16px */
+  --space-5: 1.25rem;    /* 20px */
+  --space-6: 1.5rem;     /* 24px */
+  --space-8: 2rem;       /* 32px */
+  --space-10: 2.5rem;    /* 40px */
+  --space-12: 3rem;      /* 48px */
+  --space-16: 4rem;      /* 64px */
+  --space-20: 5rem;      /* 80px */
+  --space-24: 6rem;      /* 96px */
+
+  /* ---------------------------------------------------------------------------
+   * TYPOGRAPHY - Scale-based with clear hierarchy
+   * --------------------------------------------------------------------------- */
+  
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.875rem;   /* 14px */
+  --text-base: 1rem;     /* 16px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.25rem;    /* 20px */
+  --text-2xl: 1.5rem;    /* 24px */
+  --text-3xl: 1.875rem;  /* 30px */
+  --text-4xl: 2.25rem;   /* 36px */
+  --text-5xl: 3rem;      /* 48px */
+  --text-6xl: 3.75rem;   /* 60px */
+  
+  --weight-thin: 100;
+  --weight-light: 300;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-black: 900;
+
+  /* ---------------------------------------------------------------------------
+   * SHADOWS - Progressive depth
+   * --------------------------------------------------------------------------- */
+  
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-2: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-3: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.03);
+  --shadow-4: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-5: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+
+  /* ---------------------------------------------------------------------------
+   * SIZING - Component-specific with numeric scale
+   * --------------------------------------------------------------------------- */
+  
+  --size-1: 0.25rem;     /* 4px */
+  --size-2: 0.5rem;      /* 8px */
+  --size-4: 1rem;        /* 16px */
+  --size-6: 1.5rem;      /* 24px */
+  --size-8: 2rem;        /* 32px */
+  --size-10: 2.5rem;     /* 40px */
+  --size-12: 3rem;       /* 48px */
+  --size-16: 4rem;       /* 64px */
+  
+  /* Component Sizing */
+  --height-button: var(--size-10);     /* 40px */
+  --height-input: var(--size-10);      /* 40px */
+  --height-nav: var(--size-16);        /* 64px */
+
+  /* ---------------------------------------------------------------------------
+   * MOTION - Duration and easing scales
+   * --------------------------------------------------------------------------- */
+  
+  --duration-75: 75ms;
+  --duration-100: 100ms;
+  --duration-150: 150ms;
+  --duration-200: 200ms;
+  --duration-300: 300ms;
+  --duration-500: 500ms;
+  --duration-700: 700ms;
+  
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ---------------------------------------------------------------------------
+   * LAYERING - Z-index scale
+   * --------------------------------------------------------------------------- */
+  
+  --layer-below: -1;
+  --layer-base: 0;
+  --layer-raised: 1;
+  --layer-overlay: 10;
+  --layer-modal: 100;
+  --layer-popover: 1000;
+  --layer-tooltip: 2000;
+  --layer-top: 9999;
+}
+
+/* ============================================================================
+ * ALTERNATIVE 2: SEMANTIC-FIRST SYSTEM (Human-readable)
+ * ============================================================================
+ * 
+ * Philosophy: Natural language naming focused on purpose and meaning
+ * Pattern: --{purpose}-{variant}[-{state}]
+ * Benefits: Intuitive, self-documenting, designer-friendly
+ * Best for: Content-heavy sites, teams with strong design collaboration
+ */
+
+:root {
+  /* ---------------------------------------------------------------------------
+   * COLORS - Purpose-driven naming
+   * --------------------------------------------------------------------------- */
+  
+  /* Semantic Intent Colors */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #3b82f6;
+  --neutral: #6b7280;
+
+  /* Success variations */
+  --success-bright: #34d399;
+  --success-subtle: #dcfce7;
+  --success-muted: #059669;
+  
+  /* Danger variations */  
+  --danger-bright: #f87171;
+  --danger-subtle: #fee2e2;
+  --danger-muted: #dc2626;
+  
+  /* Warning variations */
+  --warning-bright: #fbbf24;
+  --warning-subtle: #fef3c7;
+  --warning-muted: #d97706;
+  
+  /* Info variations */
+  --info-bright: #60a5fa;
+  --info-subtle: #dbeafe;
+  --info-muted: #2563eb;
+
+  /* Content Colors */
+  --heading: #1f2937;
+  --body-text: #374151;
+  --caption: #6b7280;
+  --placeholder: #9ca3af;
+  --disabled: #d1d5db;
+  
+  /* Surface Colors */
+  --canvas: #ffffff;
+  --paper: #f9fafb;
+  --card: #ffffff;
+  --overlay: rgba(0, 0, 0, 0.5);
+  --backdrop: rgba(0, 0, 0, 0.8);
+
+  /* Interactive Colors */
+  --interactive: #3b82f6;
+  --interactive-hover: #2563eb;
+  --interactive-pressed: #1d4ed8;
+  --interactive-disabled: #93c5fd;
+
+  /* ---------------------------------------------------------------------------
+   * SPACING - Semantic sizing names
+   * --------------------------------------------------------------------------- */
+  
+  --spacing-hairline: 1px;
+  --spacing-tiny: 0.25rem;       /* 4px */
+  --spacing-small: 0.5rem;       /* 8px */
+  --spacing-medium: 1rem;        /* 16px */
+  --spacing-large: 1.5rem;       /* 24px */
+  --spacing-huge: 2rem;          /* 32px */
+  --spacing-massive: 3rem;       /* 48px */
+  --spacing-gigantic: 4rem;      /* 64px */
+
+  /* Content spacing */
+  --content-spacing: var(--spacing-medium);
+  --section-spacing: var(--spacing-huge);
+  --page-padding: var(--spacing-large);
+
+  /* ---------------------------------------------------------------------------
+   * TYPOGRAPHY - Semantic hierarchy
+   * --------------------------------------------------------------------------- */
+  
+  /* Content Hierarchy */
+  --hero-text: 3rem;          /* 48px */
+  --headline: 2.25rem;        /* 36px */
+  --title: 1.875rem;          /* 30px */
+  --subtitle: 1.25rem;        /* 20px */
+  --body: 1rem;               /* 16px */
+  --small-text: 0.875rem;     /* 14px */
+  --fine-print: 0.75rem;      /* 12px */
+  
+  /* Interface Text */
+  --button-text: var(--body);
+  --label-text: var(--small-text);
+  --helper-text: var(--fine-print);
+  --badge-text: var(--fine-print);
+
+  /* Font Weights */
+  --weight-light: 300;
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-strong: 600;
+  --weight-bold: 700;
+  --weight-heavy: 900;
+
+  /* ---------------------------------------------------------------------------
+   * EFFECTS - Descriptive shadows and borders
+   * --------------------------------------------------------------------------- */
+  
+  --subtle-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --soft-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --medium-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --strong-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --dramatic-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  
+  --card-shadow: var(--soft-shadow);
+  --modal-shadow: var(--dramatic-shadow);
+  --button-hover-shadow: var(--medium-shadow);
+
+  /* Border styles */
+  --hairline-border: 1px solid var(--neutral);
+  --thin-border: 2px solid var(--neutral);
+  --thick-border: 4px solid var(--neutral);
+  
+  --focus-ring: 2px solid var(--info);
+  --error-border: 2px solid var(--danger);
+  --success-border: 2px solid var(--success);
+
+  /* ---------------------------------------------------------------------------
+   * LAYOUT - Semantic component dimensions
+   * --------------------------------------------------------------------------- */
+  
+  --button-height: 2.75rem;      /* 44px */
+  --input-height: 2.75rem;       /* 44px */
+  --avatar-small: 2rem;          /* 32px */
+  --avatar-medium: 3rem;         /* 48px */
+  --avatar-large: 4rem;          /* 64px */
+  
+  --sidebar-width: 16rem;        /* 256px */
+  --navbar-height: 4rem;         /* 64px */
+  --footer-height: 6rem;         /* 96px */
+
+  /* ---------------------------------------------------------------------------
+   * MOTION - Expressive timing
+   * --------------------------------------------------------------------------- */
+  
+  --instant: 0ms;
+  --quick: 150ms;
+  --smooth: 300ms;
+  --leisurely: 500ms;
+  --slow: 700ms;
+  
+  --bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-in-gentle: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out-gentle: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Common transitions */
+  --fade-in: opacity var(--smooth) var(--ease-out-gentle);
+  --slide-up: transform var(--smooth) var(--ease-out-gentle);
+  --color-change: color var(--quick) var(--ease-in-gentle);
+
+  /* ---------------------------------------------------------------------------
+   * LAYERING - Contextual z-index
+   * --------------------------------------------------------------------------- */
+  
+  --behind: -1;
+  --default: 0;
+  --lifted: 1;
+  --floating: 10;
+  --modal: 100;
+  --notification: 1000;
+  --tooltip: 2000;
+  --debug: 9999;
+}
+
+/* ============================================================================
+ * ALTERNATIVE 3: FUNCTIONAL SYSTEM (BEM/Utility-inspired)
+ * ============================================================================
+ * 
+ * Philosophy: Function-first naming focused on CSS property mapping
+ * Pattern: --{property}-{value}[-{modifier}]
+ * Benefits: Direct mapping to CSS, no mental translation, efficient
+ * Best for: Utility-first developers, CSS-in-JS systems
+ */
+
+:root {
+  /* ---------------------------------------------------------------------------
+   * COLORS - Direct CSS property mapping
+   * --------------------------------------------------------------------------- */
+  
+  /* Color values */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+
+  --green-500: #10b981;
+  --red-500: #ef4444;
+  --yellow-500: #f59e0b;
+  --blue-500: #3b82f6;
+
+  /* Color application tokens */
+  --color-text-primary: var(--gray-900);
+  --color-text-secondary: var(--gray-600);
+  --color-text-muted: var(--gray-400);
+  --color-text-inverse: var(--gray-50);
+  
+  --color-bg-primary: var(--gray-50);
+  --color-bg-secondary: var(--gray-100);
+  --color-bg-elevated: var(--gray-50);
+  
+  --color-border-primary: var(--gray-200);
+  --color-border-secondary: var(--gray-100);
+
+  /* Status colors */
+  --color-success: var(--green-500);
+  --color-error: var(--red-500);
+  --color-warning: var(--yellow-500);
+  --color-info: var(--blue-500);
+
+  /* ---------------------------------------------------------------------------
+   * SPACING - Direct rem values
+   * --------------------------------------------------------------------------- */
+  
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;      /* 4px */
+  --spacing-2: 0.5rem;       /* 8px */
+  --spacing-3: 0.75rem;      /* 12px */
+  --spacing-4: 1rem;         /* 16px */
+  --spacing-5: 1.25rem;      /* 20px */
+  --spacing-6: 1.5rem;       /* 24px */
+  --spacing-8: 2rem;         /* 32px */
+  --spacing-10: 2.5rem;      /* 40px */
+  --spacing-12: 3rem;        /* 48px */
+  --spacing-16: 4rem;        /* 64px */
+  --spacing-20: 5rem;        /* 80px */
+
+  /* Margin utilities */
+  --margin-auto: auto;
+  --margin-0: var(--spacing-0);
+  --margin-1: var(--spacing-1);
+  --margin-2: var(--spacing-2);
+  --margin-4: var(--spacing-4);
+  --margin-8: var(--spacing-8);
+
+  /* Padding utilities */
+  --padding-0: var(--spacing-0);
+  --padding-1: var(--spacing-1);
+  --padding-2: var(--spacing-2);
+  --padding-4: var(--spacing-4);
+  --padding-8: var(--spacing-8);
+
+  /* ---------------------------------------------------------------------------
+   * TYPOGRAPHY - Font property mapping
+   * --------------------------------------------------------------------------- */
+  
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;    /* 18px */
+  --font-size-xl: 1.25rem;     /* 20px */
+  --font-size-2xl: 1.5rem;     /* 24px */
+  --font-size-3xl: 1.875rem;   /* 30px */
+  --font-size-4xl: 2.25rem;    /* 36px */
+  --font-size-5xl: 3rem;       /* 48px */
+
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+
+  /* ---------------------------------------------------------------------------
+   * DIMENSIONS - Width and height utilities
+   * --------------------------------------------------------------------------- */
+  
+  --width-0: 0;
+  --width-1: 0.25rem;         /* 4px */
+  --width-2: 0.5rem;          /* 8px */
+  --width-4: 1rem;            /* 16px */
+  --width-6: 1.5rem;          /* 24px */
+  --width-8: 2rem;            /* 32px */
+  --width-10: 2.5rem;         /* 40px */
+  --width-12: 3rem;           /* 48px */
+  --width-16: 4rem;           /* 64px */
+  
+  --width-full: 100%;
+  --width-screen: 100vw;
+  --width-min: min-content;
+  --width-max: max-content;
+
+  --height-0: 0;
+  --height-1: 0.25rem;        /* 4px */
+  --height-2: 0.5rem;         /* 8px */
+  --height-4: 1rem;           /* 16px */
+  --height-6: 1.5rem;         /* 24px */
+  --height-8: 2rem;           /* 32px */
+  --height-10: 2.5rem;        /* 40px */
+  --height-12: 3rem;          /* 48px */
+  --height-16: 4rem;          /* 64px */
+  
+  --height-full: 100%;
+  --height-screen: 100vh;
+
+  /* ---------------------------------------------------------------------------
+   * EFFECTS - Box shadow and border mapping
+   * --------------------------------------------------------------------------- */
+  
+  --box-shadow-none: none;
+  --box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --box-shadow-default: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --box-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --box-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  --border-width-0: 0;
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+  --border-width-4: 4px;
+  --border-width-8: 8px;
+
+  --border-radius-none: 0;
+  --border-radius-sm: 0.125rem;    /* 2px */
+  --border-radius-default: 0.25rem; /* 4px */
+  --border-radius-md: 0.375rem;     /* 6px */
+  --border-radius-lg: 0.5rem;       /* 8px */
+  --border-radius-xl: 0.75rem;      /* 12px */
+  --border-radius-2xl: 1rem;        /* 16px */
+  --border-radius-3xl: 1.5rem;      /* 24px */
+  --border-radius-full: 9999px;
+
+  /* ---------------------------------------------------------------------------
+   * ANIMATION - Transition property mapping
+   * --------------------------------------------------------------------------- */
+  
+  --transition-duration-75: 75ms;
+  --transition-duration-100: 100ms;
+  --transition-duration-150: 150ms;
+  --transition-duration-200: 200ms;
+  --transition-duration-300: 300ms;
+  --transition-duration-500: 500ms;
+  --transition-duration-700: 700ms;
+  --transition-duration-1000: 1000ms;
+
+  --transition-timing-function-linear: linear;
+  --transition-timing-function-in: cubic-bezier(0.4, 0, 1, 1);
+  --transition-timing-function-out: cubic-bezier(0, 0, 0.2, 1);
+  --transition-timing-function-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --transition-property-none: none;
+  --transition-property-all: all;
+  --transition-property-default: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  --transition-property-colors: color, background-color, border-color, text-decoration-color, fill, stroke;
+  --transition-property-opacity: opacity;
+  --transition-property-shadow: box-shadow;
+  --transition-property-transform: transform;
+
+  /* ---------------------------------------------------------------------------
+   * LAYERING - Z-index utilities
+   * --------------------------------------------------------------------------- */
+  
+  --z-index-auto: auto;
+  --z-index-0: 0;
+  --z-index-10: 10;
+  --z-index-20: 20;
+  --z-index-30: 30;
+  --z-index-40: 40;
+  --z-index-50: 50;
+  --z-index-negative: -1;
+}
+
+/* ============================================================================
+ * NAMING CONVENTION COMPARISON SUMMARY
+ * ============================================================================
+ * 
+ * ALTERNATIVE 1 - ATOMIC DESIGN SYSTEM:
+ * Pros: 
+ * - Predictable numeric scales
+ * - Easy to extend (just add next number)
+ * - Familiar to Tailwind/Material users
+ * - Clear hierarchy
+ * 
+ * Cons:
+ * - Less semantic meaning
+ * - Requires memorizing scale
+ * - Can feel mechanical
+ * 
+ * Best for: Design systems, component libraries, systematic approaches
+ * 
+ * ---
+ * 
+ * ALTERNATIVE 2 - SEMANTIC-FIRST SYSTEM:
+ * Pros:
+ * - Self-documenting
+ * - Designer-friendly
+ * - Intuitive to use
+ * - Natural language
+ * 
+ * Cons:
+ * - Can become verbose
+ * - Harder to maintain consistency
+ * - Requires more decision-making
+ * 
+ * Best for: Content sites, marketing pages, design-heavy applications
+ * 
+ * ---
+ * 
+ * ALTERNATIVE 3 - FUNCTIONAL SYSTEM:
+ * Pros:
+ * - Direct CSS mapping
+ * - No mental translation
+ * - Efficient for developers
+ * - Works well with utilities
+ * 
+ * Cons:
+ * - Can be verbose
+ * - Less semantic meaning
+ * - Requires CSS knowledge
+ * 
+ * Best for: Utility-first frameworks, CSS-in-JS, developer-focused teams
+ * 
+ * ---
+ * 
+ * RECOMMENDATION FOR YOUR SYSTEM:
+ * Given your current mixed approach, consider a hybrid of Alternative 1 + 2:
+ * - Use semantic naming for colors and effects (Alternative 2)
+ * - Use numeric scales for spacing and typography (Alternative 1)
+ * - Keep functional naming for direct CSS properties (Alternative 3)
+ * 
+ * This gives you the best of all worlds while maintaining consistency.
+ */

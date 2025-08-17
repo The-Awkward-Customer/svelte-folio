@@ -1,0 +1,11 @@
+{
+  "yellow-green-motion": {
+    "frameCount": 72,
+    "duration": 3.0,
+    "fps": 24,
+    "description": "Yellow-green motion animation sequence",
+    "format": "svg",
+    "viewBox": "0 0 512 512",
+    "preserveAspectRatio": "xMidYMid meet"
+  }
+}

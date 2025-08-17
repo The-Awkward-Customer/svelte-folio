@@ -1,0 +1,290 @@
+Component,Selector,Property,Custom Property Used,Full Value,File Path
+FilterToggle,.filter-toggle,font-weight,--fw-semibold,var(--fw-semibold),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,border-radius,--bdr-radius-small,var(--bdr-radius-small),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,box-shadow,--bg-primary,inset 0 0px 0px 1px var(--bg-primary),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,background-color,--bg-pae,var(--bg-pae),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,color,--fg-text-primary,var(--fg-text-primary),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,font-family,--font-family-main,var(--font-family-main),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle,font-size,--fs-350,var(--fs-350),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle:hover,box-shadow,--bg-primary,inset 0 0px 0px 2px var(--bg-primary),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle.active,box-shadow,--bg-primary,inset 0 0px 0px 4px var(--bg-primary),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle.active,background-color,--bg-primary,var(--bg-primary),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle.active,color,--fg-text-inverse,var(--fg-text-inverse),filters/FilterToggle.svelte
+FilterToggle,.filter-toggle.active:hover,box-shadow,--bg-primary,inset 0 0px 0px 2px var(--bg-primary),filters/FilterToggle.svelte
+ChatInput,.input-wrapper:focus-within,outline,--focus-ring-color,"2px solid var(--focus-ring-color, var(--bg-primary))",chat/ChatInput.svelte
+ChatInput,.input-wrapper:focus-within,outline,--bg-primary,"2px solid var(--focus-ring-color, var(--bg-primary))",chat/ChatInput.svelte
+ChatInput,.message-input::placeholder,color,--fg-text-inverse-60,var(--fg-text-inverse-60),chat/ChatInput.svelte
+ChatInput,.input-hint,padding-top,--space-md,var(--space-md),chat/ChatInput.svelte
+ChatMessage,.message-bubble,background,--bg-primary,var(--bg-primary),chat/ChatMessage.svelte
+ChatMessage,.user-bubble,background,--bg-primary,var(--bg-primary),chat/ChatMessage.svelte
+ChatMessage,.user-bubble,color,--fg-text-inverse,var(--fg-text-inverse),chat/ChatMessage.svelte
+ChatMessage,.user-bubble,border-radius,--bdr-radius-small,"var(--bdr-radius-small) var(--bdr-radius-small) 0px
+      var(--bdr-radius-small)",chat/ChatMessage.svelte
+ChatMessage,.user-bubble,border-radius,--bdr-radius-small,"var(--bdr-radius-small) var(--bdr-radius-small) 0px
+      var(--bdr-radius-small)",chat/ChatMessage.svelte
+ChatMessage,.user-bubble,border-radius,--bdr-radius-small,"var(--bdr-radius-small) var(--bdr-radius-small) 0px
+      var(--bdr-radius-small)",chat/ChatMessage.svelte
+ChatMessage,.assistant-bubble,background,--bg-inverse,var(--bg-inverse),chat/ChatMessage.svelte
+ChatMessage,.assistant-bubble,color,--fg-text-primary,var(--fg-text-primary),chat/ChatMessage.svelte
+ChatMessage,.assistant-bubble,border-color,--fg-text-primary,var(--fg-text-primary),chat/ChatMessage.svelte
+ChatMessage,.assistant-bubble,border-radius,--bdr-radius-small,"var(--bdr-radius-small) var(--bdr-radius-small)
+      var(--bdr-radius-small) 0px",chat/ChatMessage.svelte
+ChatMessage,.assistant-bubble,border-radius,--bdr-radius-small,"var(--bdr-radius-small) var(--bdr-radius-small)
+      var(--bdr-radius-small) 0px",chat/ChatMessage.svelte
+ChatMessage,.assistant-bubble,border-radius,--bdr-radius-small,"var(--bdr-radius-small) var(--bdr-radius-small)
+      var(--bdr-radius-small) 0px",chat/ChatMessage.svelte
+ChatMessage,.message-time,color,--fg-text-primary,var(--fg-text-primary),chat/ChatMessage.svelte
+ChatMessage,.user-meta .message-time,color,--fg-text-primary,var(--fg-text-primary),chat/ChatMessage.svelte
+ChatMessage,.loading-bubble,background,--bg-page,var(--bg-page),chat/ChatMessage.svelte
+ChatMessage,.loading-bubble,color,--fg-text-primary,var(--fg-text-primary),chat/ChatMessage.svelte
+ChatMessage,.loading-text,font-family,--font-family-alt,var(--font-family-alt),chat/ChatMessage.svelte
+ChatMessage,.loading-text,font-size,--fs-200,var(--fs-200),chat/ChatMessage.svelte
+ChatMessage,.error-content,background,--error-bg,"var(--error-bg, #fef2f2)",chat/ChatMessage.svelte
+ChatMessage,.error-content,border,--error-border,"1px solid var(--error-border, #fecaca)",chat/ChatMessage.svelte
+ChatMessage,.error-title,color,--error-text,"var(--error-text, #dc2626)",chat/ChatMessage.svelte
+ChatMessage,.error-details,color,--error-text-secondary,"var(--error-text-secondary, #7f1d1d)",chat/ChatMessage.svelte
+ChatDialog,.chat-dialog::backdrop,background,--bg-page-20,var(--bg-page-20),chat/ChatDialog.svelte
+Accordion,button,font-size,--fs-xxlarge-clamped,var(--fs-xxlarge-clamped),accordion/Accordion.svelte
+Accordion,button,font-weight,--fw-semibold,var(--fw-semibold),accordion/Accordion.svelte
+Accordion,button,color,--fg-text-primary,var(--fg-text-primary),accordion/Accordion.svelte
+Accordion,button,background-color,--bg-page,var(--bg-page),accordion/Accordion.svelte
+Accordion,button,border-bottom,--fg-text-primary,1px solid var(--fg-text-primary),accordion/Accordion.svelte
+Accordion,button:hover,color,--fg-text-primary-80,var(--fg-text-primary-80),accordion/Accordion.svelte
+Accordion,button:active,color,--fg-text-primary,var(--fg-text-primary),accordion/Accordion.svelte
+AccordionList,.accordion-list,padding-left,--padding-page-default,var(--padding-page-default),accordion/AccordionList.svelte
+AccordionList,.accordion-list,padding-right,--padding-page-default,var(--padding-page-default),accordion/AccordionList.svelte
+BasicLayout,.basic-layout-root,padding-top,--spc-500,var(--spc-500),layout/BasicLayout.svelte
+Grid,.grid-container,grid-template-columns,--grid-desktop-columns,var(--grid-desktop-columns),layout/Grid.svelte
+TextCard,.text-card,padding-top,--spc-200,var(--spc-200),cards/TextCard.svelte
+TextCard,.text-card,padding-left,--spc-300,var(--spc-300),cards/TextCard.svelte
+TextCard,.text-card,padding-right,--spc-300,var(--spc-300),cards/TextCard.svelte
+TextCard,.text-card,padding-bottom,--spc-300,var(--spc-300),cards/TextCard.svelte
+TextCard,h2,color,--color-txt-primary,rgb(var(--color-txt-primary)),cards/TextCard.svelte
+TextCard,p,color,--color-txt-primary,rgb(var(--color-txt-primary)),cards/TextCard.svelte
+VideoCard,.video-card,padding-top,--spc-200,var(--spc-200),cards/VideoCard.svelte
+VideoCard,.video-card,padding-left,--spc-300,var(--spc-300),cards/VideoCard.svelte
+VideoCard,.video-card,padding-right,--spc-300,var(--spc-300),cards/VideoCard.svelte
+VideoCard,.video-card,padding-bottom,--spc-300,var(--spc-300),cards/VideoCard.svelte
+Link,.primary,background-color,--primary-color,"var(--primary-color, #3b82f6)",navigation/Link.svelte
+Link,.primary:hover:not(.disabled),background-color,--primary-hover-color,"var(--primary-hover-color, #2563eb)",navigation/Link.svelte
+Link,.secondary,color,--text-color,"var(--text-color, #374151)",navigation/Link.svelte
+Link,.secondary:hover:not(.disabled),background-color,--secondary-hover-color,"var(--secondary-hover-color, #f3f4f6)",navigation/Link.svelte
+LinkList,ul,font-weight,--fw-semibold,var(--fw-semibold),navigation/LinkList.svelte
+LinkList,.nav-link,color,--fg-text-primary-60,var(--fg-text-primary-60),navigation/LinkList.svelte
+LinkList,.nav-link:hover,color,--fg-text-primary,var(--fg-text-primary),navigation/LinkList.svelte
+LinkList,.nav-link.active,color,--fg-text-primary,var(--fg-text-primary),navigation/LinkList.svelte
+GridLayout,.grid,grid-template-columns,--columns,"repeat(var(--columns), 1fr)",grids/GridLayout.svelte
+GridLayout,.grid-item,border-radius,--bdr-radius-small,var(--bdr-radius-small),grids/GridLayout.svelte
+GridLayout,.grid-item.desktop-spans,grid-column,--grid-cols,span var(--grid-cols),grids/GridLayout.svelte
+GridLayout,.grid-item.desktop-spans,grid-row,--grid-rows,span var(--grid-rows),grids/GridLayout.svelte
+ProgressIndicator,.indicator,background-color,--color-bg-page,rgb(var(--color-bg-page)),feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator,color,--fg-text-muted,"var(--fg-text-muted, #666)",feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator,font-size,--fs-300,var(--fs-300),feedback/ProgressIndicator.svelte
+ProgressIndicator,.indicator.active,color,--fg-text,"var(--fg-text, #000)",feedback/ProgressIndicator.svelte
+ProgressIndicator,.bridge,background-color,--color-bdr-muted,rgb(var(--color-bdr-muted)),feedback/ProgressIndicator.svelte
+ProgressIndicator,.bridge.active,background-color,--color-bdr-primary,rgb(var(--color-bdr-primary)),feedback/ProgressIndicator.svelte
+ProgressIndicator,".bracket-left,
+  .bracket-right,
+  .step-number",font-family,--font-family-alt,var(--font-family-alt),feedback/ProgressIndicator.svelte
+Callout,.callout-root,gap,--spc-75,var(--spc-75),feedback/Callout.svelte
+Callout,.callout-root,padding-top,--spc-75,var(--spc-75),feedback/Callout.svelte
+Callout,.callout-root,padding-bottom,--spc-75,var(--spc-75),feedback/Callout.svelte
+Callout,.callout-root,padding-left,--spc-50,var(--spc-50),feedback/Callout.svelte
+Callout,.callout-text,font-family,--font-family-main,var(--font-family-main),feedback/Callout.svelte
+Callout,.callout-text,font-weight,--fw-medium,var(--fw-medium),feedback/Callout.svelte
+Callout,.callout-text,color,--color-txt-muted,rgb(var(--color-txt-muted)),feedback/Callout.svelte
+Callout,.callout-Indicator,border-radius,--bdr-radius-pill,var(--bdr-radius-pill),feedback/Callout.svelte
+Callout,.callout-Indicator,border,--color-bdr-muted,1.5px solid rgb(var(--color-bdr-muted)),feedback/Callout.svelte
+ProgressToast,.progress-toast,font-size,--fs-200,var(--fs-200),feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,color,--color-txt-primary,rgb(var(--color-txt-primary)),feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,padding-left,--spc-300,var(--spc-300),feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,padding-right,--spc-300,var(--spc-300),feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,border-radius,--bdr-radius-small,var(--bdr-radius-small),feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,gap,--spc-200,var(--spc-200),feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,background-color,--bg-inverse,rgba(var(--bg-inverse) / 0),feedback/ProgressToast.svelte
+ProgressToast,.progress-toast,box-shadow,--bdr-primary,inset 0 0 0 1px rgba(var(--bdr-primary) / 0),feedback/ProgressToast.svelte
+ProgressToast,.progress-content,gap,--spc-300,var(--spc-300),feedback/ProgressToast.svelte
+ProgressToast,.progress-dots,gap,--spc-100,var(--spc-100),feedback/ProgressToast.svelte
+ProgressToast,.progress-dots,background-color,--bg-positive,rgba(var(--bg-positive) / 0.8),feedback/ProgressToast.svelte
+ProgressToast,.progress-dots,padding,--spc-100,var(--spc-100),feedback/ProgressToast.svelte
+ProgressToast,.progress-dots,border-radius,--bdr-radius-pill,var(--bdr-radius-pill),feedback/ProgressToast.svelte
+ProgressToast,.progress-dot,border-radius,--bdr-radius-pill,var(--bdr-radius-pill),feedback/ProgressToast.svelte
+ProgressToast,.dot-inner,border-radius,--bdr-radius-pill,var(--bdr-radius-pill),feedback/ProgressToast.svelte
+ProgressToast,.dot-inner,background-color,--fg-positive,rgba(var(--fg-positive) / 0.2),feedback/ProgressToast.svelte
+ProgressToast,.dot-inner,border,--fg-positive,1px solid rgba(var(--fg-positive) / 0.4),feedback/ProgressToast.svelte
+ProgressToast,.progress-dot.visited .dot-inner,background-color,--fg-positive,rgba(var(--fg-positive) / 1),feedback/ProgressToast.svelte
+ProgressToast,.progress-dot.visited .dot-inner,border-color,--fg-positive,rgba(var(--fg-positive) / 1),feedback/ProgressToast.svelte
+Avatar,.avatar,background-color,--bg-page,rgba(var(--bg-page) / 0),primitives/Avatar.svelte
+Avatar,.avatar,border-radius,--bdr-radius-small,var(--bdr-radius-small),primitives/Avatar.svelte
+Avatar,.avatar,box-shadow,--fg-text-primary,inset 0 0 0 1px rgba(var(--fg-text-primary) / 1),primitives/Avatar.svelte
+Avatar,.avatar,transition,--transition-fast,var(--transition-fast),primitives/Avatar.svelte
+Avatar,.avatar-image,border-radius,--bdr-radius-tiny,var(--bdr-radius-tiny),primitives/Avatar.svelte
+Avatar,.avatar-image,transition,--transition-fast,var(--transition-fast),primitives/Avatar.svelte
+Avatar,".glitch-red,
+  .glitch-green,
+  .glitch-blue",border-radius,--bdr-radius-tiny,var(--bdr-radius-tiny),primitives/Avatar.svelte
+Avatar,.glitch-scanlines,border-radius,--bdr-radius-small,var(--bdr-radius-small),primitives/Avatar.svelte
+Avatar,.avatar-button:focus-visible,outline,--focus-ring-width,var(--focus-ring-width) solid var(--focus-ring-color),primitives/Avatar.svelte
+Avatar,.avatar-button:focus-visible,outline,--focus-ring-color,var(--focus-ring-width) solid var(--focus-ring-color),primitives/Avatar.svelte
+Avatar,.avatar-button:focus-visible,outline-offset,--focus-ring-offset,var(--focus-ring-offset),primitives/Avatar.svelte
+Subheader,.subheader,font-family,--font-family-main,var(--font-family-main),primitives/Subheader.svelte
+Subheader,.subheader,font-size,--fs-xlarge-clamped,var(--fs-xlarge-clamped),primitives/Subheader.svelte
+Subheader,.subheader,font-weight,--fw-semibold,var(--fw-semibold),primitives/Subheader.svelte
+Subheader,.subheader.primary,color,--fg-text-primary,var(--fg-text-primary),primitives/Subheader.svelte
+Subheader,.subheader.inverse,color,--fg-text-inverse,var(--fg-text-inverse),primitives/Subheader.svelte
+Indicator,.indicator,border-radius,--bdr-radius-pill,var(--bdr-radius-pill),primitives/Indicator.svelte
+Indicator,.indicator,border,--bg-page,2px solid var(--bg-page),primitives/Indicator.svelte
+Indicator,.indicator,background-color,--fg-text-danger,var(--fg-text-danger),primitives/Indicator.svelte
+TagList,.tag-list--gap-xs,gap,--space-xs,var(--space-xs),primitives/TagList.svelte
+TagList,.tag-list--gap-sm,gap,--space-sm,var(--space-sm),primitives/TagList.svelte
+TagList,.tag-list--gap-md,gap,--space-md,var(--space-md),primitives/TagList.svelte
+TagList,.tag-list--gap-lg,gap,--space-lg,var(--space-lg),primitives/TagList.svelte
+Tag,.tag,padding,--space-xs,var(--space-xs) var(--space-md),primitives/Tag.svelte
+Tag,.tag,padding,--space-md,var(--space-xs) var(--space-md),primitives/Tag.svelte
+Tag,.tag,font-size,--fs-350,var(--fs-350),primitives/Tag.svelte
+Tag,.tag,font-weight,--fw-semibold,var(--fw-semibold),primitives/Tag.svelte
+Tag,.tag,border-radius,--bdr-radius-pill,var(--bdr-radius-pill),primitives/Tag.svelte
+Tag,.tag--primary,color,--fg-text-primary,var(--fg-text-primary),primitives/Tag.svelte
+Tag,.tag--inverse,color,--fg-text-inverse,var(--fg-text-inverse),primitives/Tag.svelte
+List,.list,gap,--space-sm,var(--space-sm),primitives/List.svelte
+List,.list__item-name,color,--fg-text-primary,var(--fg-text-primary),primitives/List.svelte
+List,.list__item-separator,color,--fg-text-primary-80,var(--fg-text-primary-80),primitives/List.svelte
+List,.list__item-role,font-weight,--fw-regular,var(--fw-regular),primitives/List.svelte
+List,.list__item-role,color,--fg-text-primary-80,var(--fg-text-primary-80),primitives/List.svelte
+List,.list--normal .list__item:not(.list__item--structured),font-weight,--fw-medium,"var(--fw-medium, 500)",primitives/List.svelte
+List,.list--strong .list__item:not(.list__item--structured),font-weight,--fw-bold,"var(--fw-bold, 700)",primitives/List.svelte
+List,.list--strong .list__item,line-height,--lh-snug,var(--lh-snug),primitives/List.svelte
+List,.list--strong .list__item,max-width,--width-prose-sm,var(--width-prose-sm),primitives/List.svelte
+List,.list__item-name--normal,font-weight,--fw-medium,"var(--fw-medium, 500)",primitives/List.svelte
+List,.list__item-name--strong,font-weight,--fw-bold,"var(--fw-bold, 700)",primitives/List.svelte
+Weather,.location-info-root,font-family,--font-family-main,var(--font-family-main),snoop/Weather.svelte
+Weather,.location-info-root,border-radius,--bdr-radius-small,var(--bdr-radius-small),snoop/Weather.svelte
+Weather,.location-info-root,background-color,--bg-page,var(--bg-page),snoop/Weather.svelte
+Weather,.location-info-root,box-shadow,--fg-text-primary,inset 0 0 0 1px var(--fg-text-primary),snoop/Weather.svelte
+Weather,.weather-text-primary,font-size,--fs-275,var(--fs-275),snoop/Weather.svelte
+Weather,.weather-text-primary,font-weight,--fw-semibold,var(--fw-semibold),snoop/Weather.svelte
+Weather,.weather-text-primary,color,--fg-text-primary,var(--fg-text-primary),snoop/Weather.svelte
+Weather,.weather-text-primary,font-family,--font-family-main,var(--font-family-main),snoop/Weather.svelte
+Weather,.weather-text-secondary,font-size,--fs-200,var(--fs-200),snoop/Weather.svelte
+Weather,.weather-text-secondary,color,--fg-text-secondary,var(--fg-text-secondary),snoop/Weather.svelte
+Weather,.weather-text-secondary,font-family,--font-family-main,var(--font-family-main),snoop/Weather.svelte
+Weather,.loading-state,background-color,--bg-page,var(--bg-page),snoop/Weather.svelte
+Weather,.loading-text,color,--fg-text-secondary,var(--fg-text-secondary),snoop/Weather.svelte
+Weather,.loading-text,font-family,--font-family-alt,var(--font-family-alt),snoop/Weather.svelte
+WeatherDebugPanel,.debug-panel,font-family,--font-family-alt,"var(--font-family-alt, monospace)",snoop/WeatherDebugPanel.svelte
+IconButton,.btn,border-radius,--bdr-radius-small,var(--bdr-radius-small),actions/IconButton.svelte
+IconButton,.btn,font-weight,--fw-semibold,var(--fw-semibold),actions/IconButton.svelte
+IconButton,.inverse,background-color,--bg-primary,var(--bg-primary),actions/IconButton.svelte
+IconButton,.inverse,box-shadow,--bg-primary,inset 0 0px 0px 1px var(--bg-primary),actions/IconButton.svelte
+IconButton,.primary,background-color,--bg-page,var(--bg-page),actions/IconButton.svelte
+IconButton,.primary,box-shadow,--bg-inverse,inset 0 0px 0px 1px var(--bg-inverse),actions/IconButton.svelte
+Button,.btn,border-radius,--bdr-radius-small,var(--bdr-radius-small),actions/Button.svelte
+Button,.btn,font-weight,--fw-semibold,var(--fw-semibold),actions/Button.svelte
+Button,.btn,font-size,--fs-300,var(--fs-300),actions/Button.svelte
+Button,.inverse,background-color,--bg-primary,var(--bg-primary),actions/Button.svelte
+Button,.inverse,box-shadow,--bg-primary,inset 0 0px 0px 1px var(--bg-primary),actions/Button.svelte
+Button,.inverse,color,--fg-text-inverse,var(--fg-text-inverse),actions/Button.svelte
+Button,.inverse:hover,background-color,--bg-primary,var(--bg-primary),actions/Button.svelte
+Button,.inverse:active,background-color,--bg-primary,var(--bg-primary),actions/Button.svelte
+Button,.primary,background-color,--bg-page,var(--bg-page),actions/Button.svelte
+Button,.primary,box-shadow,--bg-inverse,inset 0 0px 0px 1px var(--bg-inverse),actions/Button.svelte
+Button,.primary,color,--fg-text-primary,var(--fg-text-primary),actions/Button.svelte
+Button,.primary:hover,background-color,--bg-page,var(--bg-page),actions/Button.svelte
+Button,.primary:active,background-color,--bg-page,var(--bg-page),actions/Button.svelte
+PromptButton,.prompt-btn,border-radius,--bdr-radius-pill,var(--bdr-radius-pill),actions/PromptButton.svelte
+PromptButton,.prompt-btn,font-size,--fs-300,var(--fs-300),actions/PromptButton.svelte
+PromptButton,.prompt-btn,font-weight,--fw-medium,var(--fw-medium),actions/PromptButton.svelte
+PromptButton,.prompt-btn,font-family,--font-family-main,var(--font-family-main),actions/PromptButton.svelte
+PromptButton,.prompt-btn--default,color,--fg-text-primary-60,var(--fg-text-primary-60),actions/PromptButton.svelte
+PromptButton,.prompt-btn--default,border-color,--fg-text-primary-40,var(--fg-text-primary-40),actions/PromptButton.svelte
+PromptButton,.prompt-btn--default:hover:not(.prompt-btn--disabled),color,--fg-text-primary,var(--fg-text-primary),actions/PromptButton.svelte
+PromptButton,.prompt-btn--default:hover:not(.prompt-btn--disabled),border-color,--fg-text-primary-60,var(--fg-text-primary-60),actions/PromptButton.svelte
+PromptButton,.prompt-btn--default:active:not(.prompt-btn--disabled),color,--fg-text-primary-20,var(--fg-text-primary-20),actions/PromptButton.svelte
+PromptButton,.prompt-btn--default:active:not(.prompt-btn--disabled),border-color,--fg-text-primary-20,var(--fg-text-primary-20),actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary,background-color,--bg-secondary,"var(--bg-secondary, var(--bg-page))",actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary,background-color,--bg-page,"var(--bg-secondary, var(--bg-page))",actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary,color,--fg-text-secondary,"var(--fg-text-secondary, var(--fg-text-primary))",actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary,color,--fg-text-primary,"var(--fg-text-secondary, var(--fg-text-primary))",actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary,border-color,--border-secondary,"var(--border-secondary, var(--fg-text-primary-30))",actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary,border-color,--fg-text-primary-30,"var(--border-secondary, var(--fg-text-primary-30))",actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary:hover:not(.prompt-btn--disabled),background-color,--bg-secondary-hover,"var(--bg-secondary-hover, var(--bg-primary))",actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary:hover:not(.prompt-btn--disabled),background-color,--bg-primary,"var(--bg-secondary-hover, var(--bg-primary))",actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary:hover:not(.prompt-btn--disabled),color,--fg-text-inverse,var(--fg-text-inverse),actions/PromptButton.svelte
+PromptButton,.prompt-btn--secondary:hover:not(.prompt-btn--disabled),border-color,--bg-primary,var(--bg-primary),actions/PromptButton.svelte
+PromptButton,.prompt-btn:focus-visible,outline,--focus-ring-color,"2px solid var(--focus-ring-color, var(--bg-primary))",actions/PromptButton.svelte
+PromptButton,.prompt-btn:focus-visible,outline,--bg-primary,"2px solid var(--focus-ring-color, var(--bg-primary))",actions/PromptButton.svelte
+TopNav,.left,gap,--space-xl,var(--space-xl),top-nav/TopNav.svelte
+TopNav,p,font-size,--fs-300,var(--fs-300),top-nav/TopNav.svelte
+TopNav,p,font-weight,--fw-semibold,var(--fw-semibold),top-nav/TopNav.svelte
+TopNav,p,color,--fg-text-primary,var(--fg-text-primary),top-nav/TopNav.svelte
+ChatTrigger,.chat-trigger,width,--width-4xl,var(--width-4xl),top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,background-color,--bg-page,var(--bg-page),top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,border-radius,--bdr-radius-small,var(--bdr-radius-small),top-nav/ChatTrigger.svelte
+ChatTrigger,.chat-trigger,box-shadow,--fg-text-primary,inset 0 0 0 1px var(--fg-text-primary),top-nav/ChatTrigger.svelte
+ChatTrigger,.profile-image,border-radius,--bdr-radius-tiny,var(--bdr-radius-tiny),top-nav/ChatTrigger.svelte
+Footer,.dialog-completion-message,font-size,--fs-200,var(--fs-200),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,color,--color-txt-primary,rgb(var(--color-txt-primary)),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,background-color,--bg-inverse,rgba(var(--bg-inverse) / 0.8),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,border-radius,--bdr-radius-small,var(--bdr-radius-small),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message,box-shadow,--bdr-primary,inset 0 0 0 1px rgba(var(--bdr-primary) / 0),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message span,font-weight,--fw-bold,var(--fw-bold),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message span,font-size,--fs-300,var(--fs-300),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message p,font-size,--fs-200,var(--fs-200),overlays/dialog/Footer.svelte
+Footer,.dialog-completion-message p,color,--color-txt-secondary,"rgba(var(--color-txt-secondary), 0.8)",overlays/dialog/Footer.svelte
+FooterTitle,.footer-title-root,font-size,--fs-large-clamped,var(--fs-large-clamped),layout/footer/FooterTitle.svelte
+FooterTitle,.footer-title-root,font-weight,--fw-semibold,var(--fw-semibold),layout/footer/FooterTitle.svelte
+FooterTitle,.footer-title-root,color,--fg-text-primary,var(--fg-text-primary),layout/footer/FooterTitle.svelte
+Experience,div,color,--fg-text-primary,rgb(var(--fg-text-primary)),accordion/items/Experience.svelte
+Experience,.p-3,color,--fg-positive,rgb(var(--fg-positive)),accordion/items/Experience.svelte
+Experience,.p-3,font-weight,--fw-regular,var(--fw-regular),accordion/items/Experience.svelte
+Introduction,div,color,--fg-text-primary,rgb(var(--fg-text-primary)),accordion/items/Introduction.svelte
+Introduction,p,font-weight,--fw-medium,var(--fw-medium),accordion/items/Introduction.svelte
+Process,div,color,--fg-text-primary,rgb(var(--fg-text-primary)),accordion/items/Process.svelte
+Details,.layout,gap,--spc-200,var(--spc-200),overlays/dialog/Details.svelte
+Details,.title,font-family,--font-family-alt,var(--font-family-alt),overlays/dialog/Details.svelte
+Details,.title,font-size,--fs-300,var(--fs-300),overlays/dialog/Details.svelte
+Details,.title,font-weight,--fw-regular,var(--fw-regular),overlays/dialog/Details.svelte
+Details,.title,color,--color-txt-primary,rgba(var(--color-txt-primary)),overlays/dialog/Details.svelte
+Details,span,font-weight,--fw-semibold,var(--fw-semibold),overlays/dialog/Details.svelte
+Details,span,color,--color-txt-primary,rgb(var(--color-txt-primary)),overlays/dialog/Details.svelte
+Details,ul,gap,--spc-100,var(--spc-100),overlays/dialog/Details.svelte
+Details,li,font-weight,--fw-medium,var(--fw-medium),overlays/dialog/Details.svelte
+Details,li,color,--color-txt-primary,rgb(var(--color-txt-primary)),overlays/dialog/Details.svelte
+Details,li,padding-left,--spc-75,var(--spc-75),overlays/dialog/Details.svelte
+Details,li::before,background,--before-color,"var(--before-color, currentColor)",overlays/dialog/Details.svelte
+Details,.name,font-weight,--fw-medium,var(--fw-medium),overlays/dialog/Details.svelte
+Details,.role,font-weight,--fw-regular,var(--fw-regular),overlays/dialog/Details.svelte
+Details,.dash,font-weight,--fw-regular,var(--fw-regular),overlays/dialog/Details.svelte
+Details,.dash,color,--color-txt-primary,rgb(var(--color-txt-primary)),overlays/dialog/Details.svelte
+Intro,.dialog-intro-root,grid-area,--grid-area,var(--grid-area),overlays/dialog/Intro.svelte
+Intro,p,font-size,--fs-500,"clamp(var(--fs-500), 4vw, var(--fs-800))",overlays/dialog/Intro.svelte
+Intro,p,font-size,--fs-800,"clamp(var(--fs-500), 4vw, var(--fs-800))",overlays/dialog/Intro.svelte
+Intro,p,font-weight,--fw-bold,var(--fw-bold),overlays/dialog/Intro.svelte
+Intro,p,padding-bottom,--spc-400,var(--spc-400),overlays/dialog/Intro.svelte
+Intro,p,color,--fg-text-primary,rgb(var(--fg-text-primary)),overlays/dialog/Intro.svelte
+Header,.dialog-header,padding-left,--spc-1000,var(--spc-1000),overlays/dialog/Header.svelte
+Header,.dialog-header,padding-right,--spc-200,var(--spc-200),overlays/dialog/Header.svelte
+Header,.dialog-header,padding-bottom,--spc-200,var(--spc-200),overlays/dialog/Header.svelte
+Header,.dialog-header,padding-top,--spc-200,var(--spc-200),overlays/dialog/Header.svelte
+Principles,.text-segment,font-weight,--fw-semibold,var(--fw-semibold),overlays/dialog/Principles.svelte
+Title,section,padding-bottom,--spc-500,var(--spc-500),overlays/dialog/Title.svelte
+Title,h1,font-size,--fs-700,var(--fs-700),overlays/dialog/Title.svelte
+Title,h1,color,--fg-text-primary,rgb(var(--fg-text-primary)),overlays/dialog/Title.svelte
+Title,h1,font-weight,--fw-bold,var(--fw-bold),overlays/dialog/Title.svelte
+Image,.image-container,grid-area,--grid-area,var(--grid-area),overlays/dialog/Image.svelte
+Image,.image-container img,border-radius,--bdr-radius-medium,var(--bdr-radius-medium),overlays/dialog/Image.svelte
+Root,.dialog-backdrop,background-color,--bg-overlay,var(--bg-overlay),overlays/dialog/Root.svelte
+Section,.section-root,color,--fg-text-primary,rgb(var(--fg-text-primary)),overlays/dialog/Section.svelte
+Prefix,"h2,
+  div",color,--fg-text-primary,rgb(var(--fg-text-primary)),overlays/dialog/Prefix.svelte
+Prefix,h2,font-weight,--fw-bold,"var(--fw-bold, 700)",overlays/dialog/Prefix.svelte
+Prefix,p,font-size,--fs-250,"clamp(var(--fs-250), 3vw, var(--fs-400))",overlays/dialog/Prefix.svelte
+Prefix,p,font-size,--fs-400,"clamp(var(--fs-250), 3vw, var(--fs-400))",overlays/dialog/Prefix.svelte
+Prefix,p,font-weight,--fw-regular,var(--fw-regular),overlays/dialog/Prefix.svelte
+Prefix,.image-container img,border-radius,--bdr-radius-medium,var(--bdr-radius-medium),overlays/dialog/Prefix.svelte
+Text,.dialog-text-section,grid-area,--grid-area,var(--grid-area),overlays/dialog/Text.svelte
+Text,.dialog-text-section-text,font-size,--fs-350,"clamp(var(--fs-350), 4vw, var(--fs-500))",overlays/dialog/Text.svelte
+Text,.dialog-text-section-text,font-size,--fs-500,"clamp(var(--fs-350), 4vw, var(--fs-500))",overlays/dialog/Text.svelte
+Text,.dialog-text-section-text,font-weight,--fw-semibold,var(--fw-semibold),overlays/dialog/Text.svelte
+Text,.dialog-text-section-text,color,--fg-text-primary,rgb(var(--fg-text-primary)),overlays/dialog/Text.svelte
+Text,.dialog-text-section-content,gap,--spc-200,var(--spc-200),overlays/dialog/Text.svelte

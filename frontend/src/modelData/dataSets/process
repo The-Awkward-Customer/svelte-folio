@@ -1,0 +1,226 @@
+{
+  "design_methodology": [
+    {
+      "q": "What's your design process?",
+      "a": "I start with problem definition, conduct research cycles using qualitative and quantitative methods, then iterate through prototyping. I believe in double diamond methodology but adapt based on project constraints and organizational culture.",
+      "tags": ["process", "methodology", "research", "iteration", "double-diamond"]
+    },
+    {
+      "q": "How do you approach problem definition?",
+      "a": "I spend significant time understanding the real problem versus the perceived problem. Often what clients think they need isn't what users actually need. Clear problem definition saves months of wasted effort.",
+      "tags": ["problem-definition", "user-needs", "client-alignment"]
+    },
+    {
+      "q": "What's your research philosophy?",
+      "a": "Research should inform decisions, not just validate assumptions. I use mixed methods - qualitative for understanding why, quantitative for understanding what and how much.",
+      "tags": ["research-philosophy", "mixed-methods", "decision-making"]
+    },
+    {
+      "q": "How do you handle conflicting user feedback?",
+      "a": "Look for patterns in the conflict. Often disagreement reveals different user segments or contexts. I segment feedback and look for underlying needs rather than just surface preferences.",
+      "tags": ["user-feedback", "conflict-resolution", "user-segments"]
+    },
+    {
+      "q": "What's your prototyping approach?",
+      "a": "Start low-fidelity to test concepts, increase fidelity to test interactions, code prototypes for technical validation. The goal is learning, not perfection.",
+      "tags": ["prototyping", "fidelity-progression", "learning-focused"]
+    },
+    {
+      "q": "How do you know when a design is ready?",
+      "a": "When it solves the defined problem effectively and users can complete their goals without confusion. Perfect is the enemy of shipped - I optimize for value delivery over pixel perfection.",
+      "tags": ["design-completion", "problem-solving", "value-delivery"]
+    }
+  ],
+  "research_methods": [
+    {
+      "q": "How do you approach research?",
+      "a": "I use both qualitative and quantitative methods. At Jio, cultural tendencies made user testing unreliable, so I pivoted to behavioral observation and metrics. The method must fit the context.",
+      "tags": ["research", "user-testing", "cultural-sensitivity", "methodology"]
+    },
+    {
+      "q": "What research methods do you use?",
+      "a": "User interviews, behavioral observation, A/B testing, analytics analysis, journey mapping, and competitive analysis. I choose methods based on what questions need answering.",
+      "tags": ["research-methods", "user-interviews", "analytics", "journey-mapping"]
+    },
+    {
+      "q": "How do you handle cultural differences in research?",
+      "a": "Adapt methods to cultural context. In hierarchical cultures, direct feedback to authority figures may be unreliable. I use observation, peer interviews, and indirect feedback methods.",
+      "tags": ["cultural-research", "cross-cultural-design", "methodology-adaptation"]
+    },
+    {
+      "q": "What's your approach to user interviews?",
+      "a": "Focus on behavior and context, not opinions. Ask about specific recent experiences rather than hypothetical preferences. Watch what people do, not just what they say.",
+      "tags": ["user-interviews", "behavioral-focus", "contextual-inquiry"]
+    },
+    {
+      "q": "How do you validate design decisions?",
+      "a": "Through user testing, analytics, business metrics, and stakeholder feedback. But I weight user outcomes more heavily than stakeholder preferences.",
+      "tags": ["validation", "user-testing", "metrics", "stakeholder-feedback"]
+    },
+    {
+      "q": "What's your approach to competitive analysis?",
+      "a": "Understand what others do well and why, but don't copy blindly. Different contexts require different solutions. I look for patterns and principles, not features to copy.",
+      "tags": ["competitive-analysis", "pattern-recognition", "contextual-design"]
+    }
+  ],
+  "collaboration_methods": [
+    {
+      "q": "How do you work with developers?",
+      "a": "I speak their language - literally. I code, so I understand technical constraints and possibilities. This helps me design feasible solutions and have productive conversations about implementation trade-offs.",
+      "tags": ["developer-collaboration", "technical-feasibility", "implementation"]
+    },
+    {
+      "q": "How do you facilitate design workshops?",
+      "a": "Clear objectives, structured activities, and actionable outcomes. I prefer small groups with diverse perspectives and always end with concrete next steps and ownership.",
+      "tags": ["workshops", "facilitation", "collaboration", "actionable-outcomes"]
+    },
+    {
+      "q": "What's your approach to stakeholder alignment?",
+      "a": "Frequent communication, shared artifacts, and clear decision-making processes. I document decisions and their rationale to prevent revisiting settled issues.",
+      "tags": ["stakeholder-alignment", "communication", "decision-documentation"]
+    },
+    {
+      "q": "How do you handle disagreements in design reviews?",
+      "a": "Focus on user outcomes and business objectives rather than personal preferences. I present data and reasoning, facilitate discussion, and ensure decisions are made explicitly.",
+      "tags": ["design-reviews", "conflict-resolution", "objective-focus"]
+    },
+    {
+      "q": "What tools do you use for collaboration?",
+      "a": "Figma for design collaboration, Miro for workshops, Slack for ongoing communication, and whatever project management tool the team prefers. Tools serve communication, not the other way around.",
+      "tags": ["collaboration-tools", "figma", "miro", "communication"]
+    },
+    {
+      "q": "How do you ensure cross-functional understanding?",
+      "a": "Regular cross-team presentations, shared documentation, and encouraging team members to sit in on each other's work. Understanding breeds better collaboration.",
+      "tags": ["cross-functional", "knowledge-sharing", "team-understanding"]
+    }
+  ],
+  "design_systems_process": [
+    {
+      "q": "How do you handle design systems?",
+      "a": "I focus on governance and adoption, not just pretty components. At Fresha, I won over skeptical developers by partnering with one team first, proving value, then letting their advocacy drive adoption.",
+      "tags": ["design-systems", "governance", "adoption", "developer-relations"]
+    },
+    {
+      "q": "What's your design system methodology?",
+      "a": "Audit existing patterns, identify core use cases, build minimum viable system, test with real teams, iterate based on usage. Adoption is more important than perfection.",
+      "tags": ["design-system-methodology", "audit", "mvp", "adoption-focus"]
+    },
+    {
+      "q": "How do you ensure design system adoption?",
+      "a": "Make it easier to use the system than to build custom solutions. Provide excellent documentation, responsive support, and prove value through small wins before asking for bigger commitments.",
+      "tags": ["adoption-strategy", "ease-of-use", "documentation", "support"]
+    },
+    {
+      "q": "What's your approach to component design?",
+      "a": "Design for flexibility within constraints. Components should handle common use cases elegantly while allowing for necessary variations without breaking the system.",
+      "tags": ["component-design", "flexibility", "constraints", "variation-handling"]
+    },
+    {
+      "q": "How do you handle design system governance?",
+      "a": "Clear contribution guidelines, automated testing, regular review cycles, and federated ownership. Teams can extend the system but with guardrails to maintain consistency.",
+      "tags": ["governance", "contribution-guidelines", "federated-ownership"]
+    },
+    {
+      "q": "What makes a design system successful?",
+      "a": "Usage and adoption by real teams. A beautiful unused system is a failure. Success means teams choose your components over building custom solutions.",
+      "tags": ["success-metrics", "adoption-rate", "team-choice"]
+    }
+  ],
+  "information_architecture": [
+    {
+      "q": "What's your approach to information architecture?",
+      "a": "Information architecture is a rare skill now but critical for complex products. At Games Workshop, I structured decades of interconnected game systems - it's about understanding relationships and user mental models, not just hierarchies.",
+      "tags": ["information-architecture", "user-mental-models", "complex-systems"]
+    },
+    {
+      "q": "How do you approach complex information structures?",
+      "a": "Start with user mental models, not organizational structure. Map how people think about and search for information, then design structures that match those patterns.",
+      "tags": ["mental-models", "user-centered-structure", "findability"]
+    },
+    {
+      "q": "What tools do you use for IA work?",
+      "a": "Card sorting, tree testing, user journey mapping, and lots of whiteboarding. I also analyze search queries and navigation patterns to understand how people actually look for things.",
+      "tags": ["ia-tools", "card-sorting", "tree-testing", "behavioral-analysis"]
+    },
+    {
+      "q": "How do you handle legacy system complexity?",
+      "a": "Document existing relationships, identify core user paths, then gradually restructure while maintaining functionality. At Games Workshop, decades of interconnected systems required careful mapping before any changes.",
+      "tags": ["legacy-systems", "relationship-mapping", "gradual-restructuring"]
+    },
+    {
+      "q": "What's the biggest IA challenge?",
+      "a": "Balancing organizational needs with user mental models. Companies organize information for internal efficiency, but users think about it completely differently.",
+      "tags": ["organizational-vs-user-needs", "mental-model-mismatch"]
+    },
+    {
+      "q": "How do you test information architecture?",
+      "a": "Tree testing for navigation, first-click testing for findability, and task-based usability testing. I also analyze search queries and help desk tickets to understand where people get stuck.",
+      "tags": ["ia-testing", "tree-testing", "first-click", "search-analysis"]
+    }
+  ],
+  "problem_solving": [
+    {
+      "q": "How do you approach complex design problems?",
+      "a": "Break them into smaller problems, understand the constraints, identify the core user needs, then iterate through solutions. Complex problems usually have simple components.",
+      "tags": ["problem-solving", "decomposition", "constraints", "iteration"]
+    },
+    {
+      "q": "What's your process for innovation?",
+      "a": "Question assumptions, look at adjacent industries, combine existing solutions in new ways. Innovation often comes from applying solutions from one domain to problems in another.",
+      "tags": ["innovation", "assumption-questioning", "cross-domain-thinking"]
+    },
+    {
+      "q": "How do you handle technical constraints?",
+      "a": "Work with them, not against them. Constraints often lead to more creative solutions. I involve developers early to understand what's possible and design within realistic boundaries.",
+      "tags": ["technical-constraints", "creative-constraints", "developer-involvement"]
+    },
+    {
+      "q": "What's your approach to trade-offs?",
+      "a": "Be explicit about what you're optimizing for. Every design decision involves trade-offs. I document the reasoning so future decisions can build on that context.",
+      "tags": ["trade-offs", "optimization-clarity", "decision-documentation"]
+    },
+    {
+      "q": "How do you prioritize features?",
+      "a": "User impact, business value, and implementation effort. I use frameworks like RICE but weight user outcomes heavily. Features that don't solve real problems shouldn't be built.",
+      "tags": ["feature-prioritization", "user-impact", "business-value"]
+    },
+    {
+      "q": "What's your approach to edge cases?",
+      "a": "Design for the 80% use case, then handle edge cases gracefully. Don't let edge cases complicate the primary experience, but don't ignore them completely.",
+      "tags": ["edge-cases", "80-20-rule", "graceful-handling"]
+    }
+  ],
+  "quality_standards": [
+    {
+      "q": "How do you ensure design quality?",
+      "a": "Clear standards, regular reviews, user testing, and measuring outcomes. Quality isn't just visual polish - it's whether the design achieves its intended purpose.",
+      "tags": ["quality-standards", "design-reviews", "outcome-measurement"]
+    },
+    {
+      "q": "What's your definition of good design?",
+      "a": "Design that solves the intended problem effectively while being accessible, usable, and maintainable. Pretty doesn't matter if it doesn't work.",
+      "tags": ["good-design", "problem-solving", "accessibility", "usability"]
+    },
+    {
+      "q": "How do you handle perfectionism in design?",
+      "a": "Perfect is the enemy of shipped. I optimize for value delivery and user outcomes, not pixel perfection. Iteration beats perfection every time.",
+      "tags": ["perfectionism", "value-delivery", "iteration"]
+    },
+    {
+      "q": "What's your approach to accessibility?",
+      "a": "Design for accessibility from the start - semantic HTML, proper focus management, sufficient color contrast. It's not a checklist item, it's fundamental to good design.",
+      "tags": ["accessibility", "inclusive-design", "semantic-html"]
+    },
+    {
+      "q": "How do you measure design success?",
+      "a": "User task completion, error rates, satisfaction scores, and business metrics. But I also look at qualitative feedback and long-term usage patterns.",
+      "tags": ["success-measurement", "user-metrics", "business-outcomes"]
+    },
+    {
+      "q": "What's your approach to design documentation?",
+      "a": "Document decisions and reasoning, not just specifications. Future designers need to understand why choices were made to build on them effectively.",
+      "tags": ["design-documentation", "decision-rationale", "knowledge-transfer"]
+    }
+  ]
+}

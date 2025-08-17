@@ -1,0 +1,228 @@
+{
+  "technical_stack": [
+    {
+      "q": "What technologies do you specialize in?",
+      "a": "My core stack includes Svelte/SvelteKit, TypeScript, Node.js, PostgreSQL, and Semantic CSS. I also work extensively with React, Next.js, and various cloud platforms like Vercel and Supabase. I'm also familiar with SwiftUI for iOS development.",
+      "tags": ["technologies", "stack", "svelte", "typescript"]
+    },
+    {
+      "q": "Why do you prefer Svelte over React?",
+      "a": "Svelte compiles away, resulting in faster, smaller bundles. The developer experience is more intuitive - less boilerplate, more readable code. React is powerful but feels over-engineered for most use cases.",
+      "tags": ["svelte", "react", "preferences", "performance"]
+    },
+    {
+      "q": "Do you work with React?",
+      "a": "Yes! While I specialize in Svelte, I'm very proficient with React and Next.js. I've built numerous production applications using React but find the packages a little tedious.",
+      "tags": ["react", "nextjs", "frontend", "engineering"]
+    },
+    {
+      "q": "What about backend technologies?",
+      "a": "I work with Node.js, Express, and various databases including PostgreSQL. I'm experienced with API design, authentication systems, and enjoy system architecture.",
+      "tags": ["backend", "nodejs", "databases", "apis"]
+    },
+    {
+      "q": "What's your experience with TypeScript?",
+      "a": "I use TypeScript for everything now. It catches errors early, makes refactoring safer, and improves code documentation. The initial setup cost pays dividends in maintainability.",
+      "tags": ["typescript", "type-safety", "maintainability"]
+    },
+    {
+      "q": "Do you have experience with databases?",
+      "a": "Yes, I work with both SQL and SQLite databases. My primary experience is with PostgreSQL for relational data, I'm also semi-familiar with database optimization and query performance.",
+      "tags": ["databases", "postgresql", "sql", "optimization"]
+    },
+    {
+      "q": "What about DevOps and deployment?",
+      "a": "I deploy applications using Vercel or Hostinger. I'm familiar with CI/CD pipelines, and infrastructure as code.",
+      "tags": ["devops", "deployment", "vercel", "hostinger"]
+    },
+    {
+      "q": "What's your approach to CSS?",
+      "a": "I write semantic CSS with custom properties for theming. I avoid framework dependencies where possible and focus on performance and maintainability. Container queries are a game-changer for responsive design.",
+      "tags": ["css", "semantic-css", "performance", "responsive-design"]
+    },
+    {
+      "q": "Do you use CSS frameworks?",
+      "a": "Occasionally Tailwind for rapid prototyping, but I prefer writing semantic CSS for production. Frameworks can create maintenance debt and make customization harder.",
+      "tags": ["css-frameworks", "tailwind", "semantic-css", "maintenance"]
+    },
+    {
+      "q": "What testing approaches do you use?",
+      "a": "I focus on integration tests and user-focused testing rather than unit test everything. Playwright for E2E testing, and I believe in testing user workflows, not implementation details.",
+      "tags": ["testing", "playwright", "integration-testing", "user-workflows"]
+    }
+  ],
+  "design_systems": [
+    {
+      "q": "Do you work with design systems?",
+      "a": "Absolutely! I've built design systems from scratch at multiple companies. At Fresha, I reduced 1000+ inconsistent components down to 88, which cut front-end bugs by 95% and halved feature delivery time.",
+      "tags": ["design-systems", "component-libraries", "scalability"]
+    },
+    {
+      "q": "What's your design systems philosophy?",
+      "a": "Design systems succeed through adoption, not perfection. Focus on solving real problems developers face, provide clear guidelines, and build governance that scales with the organization.",
+      "tags": ["design-systems", "philosophy", "adoption", "governance"]
+    },
+    {
+      "q": "How do you ensure design system adoption?",
+      "a": "Partner with skeptical teams first, prove value through small wins, then let their advocacy drive broader adoption. Politics and relationships matter as much as the components themselves.",
+      "tags": ["adoption", "change-management", "stakeholder-buy-in"]
+    },
+    {
+      "q": "What tools do you use for design systems?",
+      "a": "Figma for design, Storybook for component documentation, and custom tooling for token management. I believe in building the minimum viable tooling that actually gets used.",
+      "tags": ["tools", "figma", "storybook", "token-management"]
+    },
+    {
+      "q": "How do you handle design tokens?",
+      "a": "I use a layered approach - base tokens for primitives, semantic tokens for meaning, and component tokens for specific use cases. The key is keeping the system flexible without being chaotic.",
+      "tags": ["design-tokens", "token-architecture", "flexibility"]
+    },
+    {
+      "q": "What's the biggest design system challenge?",
+      "a": "Organizational politics, not technical challenges. Getting buy-in from teams who've seen previous attempts fail requires building trust through consistent delivery and clear value demonstration.",
+      "tags": ["challenges", "organizational-politics", "trust-building"]
+    },
+    {
+      "q": "How do you measure design system success?",
+      "a": "Adoption metrics, bug reduction, and development velocity. But the real measure is whether teams choose to use it over building custom solutions.",
+      "tags": ["metrics", "success-measurement", "adoption-rate"]
+    }
+  ],
+  "ai_automation": [
+    {
+      "q": "What's your experience with machine learning?",
+      "a": "I delivered the first ML-powered customer support features at GoDesk. I'm increasingly interested in integrating AI into design workflows and building intelligent user experiences.",
+      "tags": ["machine-learning", "ai", "automation", "intelligent-ux"]
+    },
+    {
+      "q": "How do you use AI in your work?",
+      "a": "I use AI for rapid prototyping, content generation, and automating repetitive tasks. But I'm careful about where AI adds value versus where human judgment is essential.",
+      "tags": ["ai-tools", "prototyping", "automation", "human-judgment"]
+    },
+    {
+      "q": "What's agentic automation?",
+      "a": "Building systems that can make decisions and take actions based on defined goals and constraints. Think AI assistants that can handle complex workflows autonomously while knowing when to ask for human input.",
+      "tags": ["agentic-automation", "ai-systems", "autonomous-workflows"]
+    },
+    {
+      "q": "Do you build AI-powered products?",
+      "a": "Yes, I'm working on projects that integrate AI naturally into user workflows. The key is making AI feel helpful rather than intrusive or unpredictable.",
+      "tags": ["ai-products", "user-experience", "ai-integration"]
+    },
+    {
+      "q": "What AI tools do you recommend?",
+      "a": "For design: Claude for ideation, Midjourney for concepts, GitHub Copilot for coding. But tools change fast - I focus on understanding capabilities rather than specific products.",
+      "tags": ["ai-tools", "recommendations", "capabilities"]
+    },
+    {
+      "q": "How do you see AI changing design?",
+      "a": "AI will handle more routine tasks, letting designers focus on strategy and human understanding. But it won't replace the need for empathy, context, and systems thinking.",
+      "tags": ["ai-future", "design-evolution", "human-skills"]
+    }
+  ],
+  "development_engineering": [
+    {
+      "q": "Are you a developer or a designer?",
+      "a": "Both. I believe the future belongs to people who can think across disciplines. I design with technical constraints in mind and code with user experience as the priority.",
+      "tags": ["multidisciplinary", "design-engineering", "cross-functional"]
+    },
+    {
+      "q": "What's your coding background?",
+      "a": "Self-taught programmer who started with HTML/CSS, moved through JavaScript frameworks, and now work full-stack. I approach code as a design medium - it should be elegant and purposeful.",
+      "tags": ["coding-background", "self-taught", "full-stack"]
+    },
+    {
+      "q": "How do you approach learning new technologies?",
+      "a": "Build something real with it, not just tutorials. I create small projects that solve actual problems, which forces me to understand the technology's strengths and limitations.",
+      "tags": ["learning-approach", "hands-on", "practical-projects"]
+    },
+    {
+      "q": "What's your development workflow?",
+      "a": "Design in code when possible, prototype fast, test with real users early, iterate based on feedback. I prefer working software over perfect documentation.",
+      "tags": ["workflow", "prototyping", "iteration", "user-feedback"]
+    },
+    {
+      "q": "Do you work with mobile development?",
+      "a": "I've built mobile web applications and have some SwiftUI experience for iOS. I prefer responsive web apps over native unless there's a specific platform need.",
+      "tags": [
+        "mobile-development",
+        "swiftui",
+        "responsive-web",
+        "platform-choice"
+      ]
+    },
+    {
+      "q": "What about performance optimization?",
+      "a": "Performance is a feature, not an afterthought. I optimize images, minimize JavaScript bundles, use efficient CSS, and measure real-world performance with tools like Lighthouse.",
+      "tags": ["performance", "optimization", "web-vitals", "user-experience"]
+    },
+    {
+      "q": "How do you handle browser compatibility?",
+      "a": "Progressive enhancement and feature detection. I build core functionality that works everywhere, then enhance with modern features for capable browsers.",
+      "tags": [
+        "browser-compatibility",
+        "progressive-enhancement",
+        "feature-detection"
+      ]
+    },
+    {
+      "q": "What's your approach to accessibility?",
+      "a": "Design for accessibility from the start - semantic HTML, proper focus management, sufficient color contrast. It's not a checklist item, it's fundamental to good design.",
+      "tags": ["accessibility", "semantic-html", "inclusive-design"]
+    }
+  ],
+  "creative_technical": [
+    {
+      "q": "What's generative coding?",
+      "a": "Using code to create visual and interactive experiences - procedural graphics, data visualizations, interactive art. It's where programming becomes a creative medium.",
+      "tags": ["generative-coding", "creative-coding", "procedural-graphics"]
+    },
+    {
+      "q": "Do you work with animation?",
+      "a": "Yes, I use GSAP for web animations and have experience with motion design. Animation should enhance understanding, not just look pretty.",
+      "tags": ["animation", "gsap", "motion-design", "purposeful-animation"]
+    },
+    {
+      "q": "What creative tools do you use?",
+      "a": "Figma for design, After Effects for motion, various coding environments for generative work. But I spend more time thinking about problems than perfecting tool skills.",
+      "tags": ["creative-tools", "figma", "after-effects", "problem-focused"]
+    },
+    {
+      "q": "Do you work with data visualization?",
+      "a": "Yes, I create interactive dashboards and data stories. The key is understanding what story the data tells and making it accessible to the audience.",
+      "tags": ["data-visualization", "dashboards", "data-storytelling"]
+    },
+    {
+      "q": "What's your approach to visual design?",
+      "a": "Function first, then form. I start with information hierarchy and user needs, then apply visual design to support those goals. Pretty doesn't matter if it doesn't work.",
+      "tags": ["visual-design", "function-over-form", "hierarchy"]
+    }
+  ],
+  "architecture_systems": [
+    {
+      "q": "How do you approach system architecture?",
+      "a": "Start simple, optimize for change. I design systems that can evolve as requirements change, avoiding over-engineering while ensuring scalability when needed.",
+      "tags": ["system-architecture", "simplicity", "scalability", "evolution"]
+    },
+    {
+      "q": "What's your API design philosophy?",
+      "a": "APIs should be intuitive and consistent. I design them from the consumer's perspective, focusing on clear naming, predictable behavior, and comprehensive error handling.",
+      "tags": ["api-design", "developer-experience", "consistency"]
+    },
+    {
+      "q": "How do you handle state management?",
+      "a": "Keep it simple. Local state when possible, global state only when necessary. Svelte's reactivity and stores handle most cases without complex state management libraries.",
+      "tags": ["state-management", "simplicity", "svelte-stores"]
+    },
+    {
+      "q": "What about security considerations?",
+      "a": "Security by design, not as an afterthought. Proper authentication, input validation, secure communication, and principle of least privilege. I regularly audit dependencies and follow security best practices.",
+      "tags": ["security", "authentication", "best-practices", "secure-design"]
+    },
+    {
+      "q": "How do you approach documentation?",
+      "a": "Code should be self-documenting where possible. I write documentation for context and decisions, not implementation details. README files and inline comments for why, not what.",
+      "tags": ["documentation", "self-documenting-code", "context"]
+    }
+  ]
+}

@@ -1,0 +1,366 @@
+{
+  "godesk_experience": [
+    {
+      "q": "Tell me about GoDesk",
+      "a": "As co-founding designer at GoDesk, I achieved 900% revenue growth in 8 months through strategic positioning and ML-powered features. Despite strong execution, we couldn't compete with established incumbents and made a strategic exit with remaining capital.",
+      "tags": ["godesk", "startup", "growth", "machine-learning", "exit"]
+    },
+    {
+      "q": "What did you learn from GoDesk?",
+      "a": "That timing beats execution. We executed well but couldn't overcome macroeconomic inflection points and entrenched incumbents. Sometimes you can do everything right, but if the timing isn't right, it simply isn't right.",
+      "tags": ["startup-lessons", "timing", "market-dynamics", "execution"]
+    },
+    {
+      "q": "What were the ML features you built?",
+      "a": "Automated ticket routing, sentiment analysis for customer communications, and predictive support workflows. The challenge was making AI feel helpful rather than replacing human judgment.",
+      "tags": [
+        "machine-learning",
+        "customer-support",
+        "automation",
+        "human-ai-collaboration"
+      ]
+    },
+    {
+      "q": "How did you achieve 900% growth?",
+      "a": "Strategic market positioning, focusing on underserved niches, and building features that directly solved customer pain points. We also optimized our onboarding and conversion funnel based on user behavior data.",
+      "tags": [
+        "growth-strategy",
+        "market-positioning",
+        "conversion-optimization"
+      ]
+    },
+    {
+      "q": "Why did you exit GoDesk?",
+      "a": "We identified critical macroeconomic inflection points we couldn't overcome, coupled with increasingly entrenched incumbents. Rather than burn through all our capital, we made a strategic exit to preserve value.",
+      "tags": ["startup-exit", "strategic-decisions", "market-conditions"]
+    },
+    {
+      "q": "What was your role as co-founding designer?",
+      "a": "I was responsible for business strategy, market fit, brand positioning, customer research, complete rebrand, and product development. Essentially everything design and strategy related while my co-founder handled technical architecture.",
+      "tags": ["co-founder", "strategy", "branding", "product-development"]
+    },
+    {
+      "q": "What would you do differently at GoDesk?",
+      "a": "Focus more on market timing analysis upfront. We built a great product but entered a market dominated by incumbents with massive compute advantages. I'd spend more time on competitive analysis and timing assessment.",
+      "tags": ["lessons-learned", "market-analysis", "competitive-intelligence"]
+    }
+  ],
+  "fresha_experience": [
+    {
+      "q": "What happened at Fresha?",
+      "a": "At Fresha, I inherited a mess of 1000+ inconsistent components and built a design system that reduced front-end bugs by 95%. I led a team of 4 and created governance that still enables their global expansion 4+ years later.",
+      "tags": ["fresha", "design-systems", "scale", "leadership", "governance"]
+    },
+    {
+      "q": "How did you reduce components from 1000+ to 88?",
+      "a": "Systematic audit, grouping similar patterns, identifying the core use cases, and ruthless prioritization. Most 'unique' components were actually variations of the same pattern with inconsistent implementation.",
+      "tags": ["component-reduction", "systematization", "pattern-recognition"]
+    },
+    {
+      "q": "What was the biggest challenge at Fresha?",
+      "a": "Winning over developers who'd witnessed three previous design system failures. We solved this by partnering with one skeptical team first, proving value, then letting their advocacy drive adoption.",
+      "tags": ["change-management", "developer-relations", "trust-building"]
+    },
+    {
+      "q": "How did you measure the 95% bug reduction?",
+      "a": "We tracked front-end bugs before and after implementation, categorizing them by UI consistency issues, styling conflicts, and component behavior problems. The systematic approach eliminated most categories entirely.",
+      "tags": ["metrics", "bug-tracking", "measurement", "systematic-approach"]
+    },
+    {
+      "q": "What governance model did you create?",
+      "a": "Federated governance with clear contribution guidelines, automated testing, and regular review cycles. Teams could extend the system but with guardrails to maintain consistency.",
+      "tags": ["governance", "federated-model", "contribution-guidelines"]
+    },
+    {
+      "q": "How did you lead the design systems team?",
+      "a": "I focused on empowering team members, clear communication of goals, and building relationships across engineering teams. Leadership was more about influence and facilitation than top-down management.",
+      "tags": [
+        "leadership",
+        "team-management",
+        "cross-functional-collaboration"
+      ]
+    },
+    {
+      "q": "What made Fresha's design system successful?",
+      "a": "Focus on developer experience, clear documentation, automated tooling, and continuous iteration based on real usage. We built what teams actually needed, not what we thought they should want.",
+      "tags": [
+        "success-factors",
+        "developer-experience",
+        "user-centered-design"
+      ]
+    }
+  ],
+  "jio_experience": [
+    {
+      "q": "What did you do at Jio?",
+      "a": "At Jio, I transformed data-heavy desktop workflows into mobile-first experiences for India's largest telecom workforce. I redesigned support tools that reduced issue resolution time by 12% and enabled remote work during their digital transformation.",
+      "tags": [
+        "jio",
+        "mobile-design",
+        "workflow-optimization",
+        "telecom",
+        "remote-work"
+      ]
+    },
+    {
+      "q": "What were the cultural research challenges?",
+      "a": "Cultural tendencies to agree with authority figures made user testing unreliable. People would say they liked everything, forcing us to pivot to quantitative metrics and behavioral observation instead.",
+      "tags": [
+        "cultural-research",
+        "user-testing",
+        "behavioral-observation",
+        "methodology"
+      ]
+    },
+    {
+      "q": "How did you handle the desktop to mobile transition?",
+      "a": "Rethinking information hierarchy for smaller screens, simplifying workflows, and optimizing for performance on lower-end devices. We had to question every assumption about what information was truly necessary.",
+      "tags": ["mobile-optimization", "information-hierarchy", "performance"]
+    },
+    {
+      "q": "What was the JIO Assist product suite?",
+      "a": "Mobile tools for field support staff including network diagnostics, customer information lookup, issue tracking, and resolution workflows. The key was making complex technical data accessible on mobile devices.",
+      "tags": [
+        "product-suite",
+        "field-support",
+        "mobile-tools",
+        "technical-data"
+      ]
+    },
+    {
+      "q": "What did you learn about gamification at Jio?",
+      "a": "The gamification features I implemented, while popular in surveys, likely increased employee pressure rather than engagement. User feedback and user impact aren't always aligned.",
+      "tags": [
+        "gamification",
+        "unintended-consequences",
+        "user-feedback",
+        "employee-pressure"
+      ]
+    },
+    {
+      "q": "How did you measure the 12% improvement?",
+      "a": "We tracked average resolution time before and after the mobile tools rollout, controlling for issue complexity and team experience. The improvement came from faster access to information and streamlined workflows.",
+      "tags": ["metrics", "performance-measurement", "workflow-efficiency"]
+    }
+  ],
+  "games_workshop_experience": [
+    {
+      "q": "What was your role at Games Workshop?",
+      "a": "I architected the information hierarchy for Warhammer's complex e-commerce ecosystem. The biggest challenge was structuring decades of interconnected game systems and sub-factions while pioneering features like accurate paint color rendering.",
+      "tags": [
+        "games-workshop",
+        "warhammer",
+        "information-architecture",
+        "ecommerce"
+      ]
+    },
+    {
+      "q": "What made Warhammer's IA so complex?",
+      "a": "Decades of interconnected game systems, sub-factions with overlapping rules, products that work across multiple systems, and a fan base that knows every detail. Any organizational mistake would be immediately noticed.",
+      "tags": [
+        "information-architecture",
+        "complexity",
+        "legacy-systems",
+        "fan-community"
+      ]
+    },
+    {
+      "q": "What innovative features did you design?",
+      "a": "Accurate paint color rendering so customers could see true colors online, interactive model breakdowns showing assembly steps, and cross-system compatibility indicators for products.",
+      "tags": [
+        "innovative-features",
+        "color-accuracy",
+        "interactive-models",
+        "compatibility"
+      ]
+    },
+    {
+      "q": "What was the biggest challenge at Games Workshop?",
+      "a": "What gets ideated and what gets shipped can be worlds apart. We pushed boundaries with paint color accuracy and interactive features, but the final implementation fell short due to internal content generation capabilities.",
+      "tags": [
+        "implementation-challenges",
+        "organizational-constraints",
+        "content-generation"
+      ]
+    },
+    {
+      "q": "How did you approach the paint color rendering problem?",
+      "a": "Color calibration across devices is notoriously difficult. We worked on standardized lighting conditions, color profiles, and user education about viewing conditions. The technical challenge was significant.",
+      "tags": ["color-rendering", "technical-challenges", "user-education"]
+    },
+    {
+      "q": "What did you learn about information architecture?",
+      "a": "Information architecture is a rare skill now but critical for complex products. It's about understanding relationships and user mental models, not just hierarchies. Users need to find things the way they think about them.",
+      "tags": ["information-architecture", "user-mental-models", "findability"]
+    }
+  ],
+  "shell_experience": [
+    {
+      "q": "What did you do at Shell?",
+      "a": "I spent 18 months embedded at Shell, transforming them from a fuel card provider to a comprehensive mobility platform. My design system prototype secured company-wide digital transformation investment across 39 markets and 32 million customers.",
+      "tags": [
+        "shell",
+        "enterprise-transformation",
+        "mobility",
+        "fleet-management"
+      ]
+    },
+    {
+      "q": "What was Shell's digital transformation about?",
+      "a": "Moving from just selling fuel to providing comprehensive mobility services - fleet management, route optimization, tolls integration, fuel cost analytics. Essentially becoming a mobility data company.",
+      "tags": ["digital-transformation", "mobility-services", "data-company"]
+    },
+    {
+      "q": "How big was Shell's operation?",
+      "a": "32 million customers across 39 markets with 44,000 retail outlets. The scale was enormous - any change had to work across different countries, currencies, languages, and regulatory environments.",
+      "tags": ["enterprise-scale", "global-operations", "regulatory-complexity"]
+    },
+    {
+      "q": "What was the Fleet Hub platform?",
+      "a": "Integrated fleet management replacing Excel-based workflows. It included fuel card management, route optimization, cost analytics, and emerging mobility services like tolls and parking.",
+      "tags": ["fleet-hub", "workflow-digitization", "integrated-platform"]
+    },
+    {
+      "q": "What's the biggest challenge with enterprise transformation?",
+      "a": "Organizational inertia at a 100+ year old company. Each division operated independently, creating massive fragmentation that required both design systems thinking and serious political navigation.",
+      "tags": [
+        "enterprise-challenges",
+        "organizational-inertia",
+        "political-navigation"
+      ]
+    },
+    {
+      "q": "How did your prototype secure investment?",
+      "a": "It demonstrated the value of systematic design at Shell's scale. Rather than just talking about design systems, we showed how it would work across their complex organizational structure and global markets.",
+      "tags": ["prototype", "investment-securing", "value-demonstration"]
+    }
+  ],
+  "tsb_experience": [
+    {
+      "q": "What did you learn at TSB?",
+      "a": "TSB taught me that excellent design means nothing without organizational buy-in. We created innovative banking experiences during the fintech disruption, but internal politics and merger chaos killed the project.",
+      "tags": [
+        "tsb",
+        "banking",
+        "organizational-politics",
+        "fintech",
+        "lessons-learned"
+      ]
+    },
+    {
+      "q": "What innovative features did you design for TSB?",
+      "a": "Demographic-targeted banking packages, mobile-first interactions that were novel at the time, and conversion funnels designed around five researched customer personas from students to grandparents.",
+      "tags": [
+        "banking-innovation",
+        "demographic-targeting",
+        "mobile-first",
+        "personas"
+      ]
+    },
+    {
+      "q": "Why did the TSB project fail?",
+      "a": "Organizational politics and the Santander merger derailed everything. The brand agency (co-owned by a board member) blocked our proposals without reasoning, highlighting how risk-averse banking culture kills innovation.",
+      "tags": [
+        "project-failure",
+        "organizational-politics",
+        "risk-averse-culture"
+      ]
+    },
+    {
+      "q": "What was innovative about your banking UX?",
+      "a": "This was during the Monzo/Starling era when challenger banks were reshaping expectations. We designed interactions that felt modern and intuitive compared to traditional banking apps.",
+      "tags": ["banking-ux", "challenger-banks", "modern-interactions"]
+    },
+    {
+      "q": "How did this experience change your approach?",
+      "a": "It pushed me toward design engineering and learning to navigate organizations that actually deliver value. I realized technical skills help you work around organizational constraints.",
+      "tags": [
+        "career-impact",
+        "design-engineering",
+        "organizational-navigation"
+      ]
+    },
+    {
+      "q": "What would you do differently at TSB?",
+      "a": "Spend more time understanding internal politics before proposing solutions. Build relationships with key stakeholders and find ways to demonstrate value that align with their incentives.",
+      "tags": ["lessons-learned", "stakeholder-management", "internal-politics"]
+    }
+  ],
+  "agency_consulting": [
+    {
+      "q": "What was your experience at Foolproof?",
+      "a": "At Foolproof, I crafted transformative digital experiences for Fortune 500 clients across finance, retail, and technology. Agency work taught me to navigate diverse industries and deliver under tight timelines while maintaining quality.",
+      "tags": ["foolproof", "agency", "fortune-500", "diverse-industries"]
+    },
+    {
+      "q": "What did you learn from agency work?",
+      "a": "How to quickly understand different business models, adapt to various client cultures, and deliver value under constraint. Agencies taught me that influence matters as much as craft.",
+      "tags": [
+        "agency-lessons",
+        "adaptability",
+        "influence",
+        "client-management"
+      ]
+    },
+    {
+      "q": "Tell me about the Suzuki project",
+      "a": "I unified fragmented digital experiences across cars, motorcycles, and marine products. The insight was that bike buyers want rich visuals while car buyers need practical comparisons - different vehicles, different psychology.",
+      "tags": ["suzuki", "multi-product", "user-psychology", "automotive"]
+    },
+    {
+      "q": "How did you approach the Suzuki complexity?",
+      "a": "Classic qualitative research cycles and double diamond methodology. We consolidated digital offerings by 75% through component-based design while addressing distinct user needs across automotive and marine markets.",
+      "tags": [
+        "research-methodology",
+        "consolidation",
+        "component-based-design"
+      ]
+    },
+    {
+      "q": "What were the results at Suzuki?",
+      "a": "37% increase in test drive requests and 48% year-on-year increase in motorcycle leads. The key was understanding that different product buyers have completely different information needs and browsing behaviors.",
+      "tags": ["results", "conversion-improvement", "user-behavior-insights"]
+    },
+    {
+      "q": "What's the value of classic UX methodology?",
+      "a": "Sometimes post-its on walls and proper research cycles trump flashy new techniques. The fundamentals work - understand users, define problems clearly, iterate based on evidence.",
+      "tags": ["ux-methodology", "fundamentals", "research-cycles"]
+    }
+  ],
+  "ikea_creative": [
+    {
+      "q": "Tell me about the IKEA project",
+      "a": "I created a motion graphics piece explaining their design system value to stakeholders. Working with limited assets in 2 weeks forced creative constraints that resulted in one of my favorite projects - sometimes limitations spark innovation.",
+      "tags": [
+        "ikea",
+        "motion-graphics",
+        "storytelling",
+        "creative-constraints"
+      ]
+    },
+    {
+      "q": "What was challenging about the IKEA brief?",
+      "a": "Communicating complex design system value in a visual format that non-technical stakeholders could understand, while capturing that distinctly Nordic 'playful wrongness' in the design language.",
+      "tags": [
+        "stakeholder-communication",
+        "visual-storytelling",
+        "nordic-design"
+      ]
+    },
+    {
+      "q": "How did you approach the visual narrative?",
+      "a": "Working backwards from consumer interfaces to tell the story of 'collaboration by the many for the many,' emphasizing modularity and the iconic IKEA effect through storyboarding and golden frame identification.",
+      "tags": ["visual-narrative", "storyboarding", "modularity", "ikea-effect"]
+    },
+    {
+      "q": "What did you learn from creative constraints?",
+      "a": "That limitations become catalysts for innovative solutions. Having only 2 weeks and limited assets forced us to interpret their design system work more creatively than if we'd had full access.",
+      "tags": ["creative-constraints", "innovation", "interpretation"]
+    },
+    {
+      "q": "How do you balance creativity with business goals?",
+      "a": "Start with the business objective, then find creative ways to achieve it. At IKEA, the goal was stakeholder buy-in for design systems - the creativity served that purpose.",
+      "tags": ["creative-business-balance", "objective-driven-creativity"]
+    }
+  ]
+}
