@@ -1,25 +1,10 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { themeManager } from "$lib/stores/themeManager.svelte";
+  import { mouseManager } from "$lib/stores/mouseManager.svelte";
 
   let canvas: HTMLCanvasElement;
   let ctx: CanvasRenderingContext2D;
-  let mouseX = 0;
-  let mouseY = 0;
-  let isMouseInside = false;
-
-  // Export functions so parent can call them
-  export function updateMousePosition(x: number, y: number) {
-    mouseX = x;
-    mouseY = y;
-    isMouseInside = true;
-    draw();
-  }
-
-  export function setMouseLeave() {
-    isMouseInside = false;
-    draw();
-  }
 
   // Grid Pattern Configuration
   // Controls the density and appearance of the dot grid
@@ -87,8 +72,8 @@
       for (let y = offsetY; y < height; y += dotSpacing) {
         // Vertical grid positions
         dotCount++;
-        const distance = isMouseInside
-          ? Math.sqrt((x - mouseX) ** 2 + (y - mouseY) ** 2)
+        const distance = $mouseManager.isActive
+          ? Math.sqrt((x - $mouseManager.x) ** 2 + (y - $mouseManager.y) ** 2)
           : highlightDistance + 1;
 
         let alpha = baseOpacity; // Base opacity using design system
@@ -118,8 +103,13 @@
     }
   }
 
-  // Reactive draw when theme changes
+  // Reactive draw when theme or mouse position changes
   $: if (ctx) {
+    draw();
+  }
+
+  // Reactive draw on mouse movement
+  $: if (ctx && $mouseManager) {
     draw();
   }
 </script>

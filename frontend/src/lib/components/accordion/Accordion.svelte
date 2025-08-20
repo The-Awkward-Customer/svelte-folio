@@ -1,17 +1,17 @@
 <!-- Docs: ../../../../docs/components/accordion/accordion-theme-refactor-plan.md, components/accordion/accordion-scroll-to-top-feature.md -->
 <script lang="ts">
-  import { slide } from 'svelte/transition';
-  import { onMount, getContext } from 'svelte';
-  import { shuffleText } from '$lib/animations/gsap';
-  import type { Readable } from 'svelte/store';
-  import { themeManager, type BrandKey, createLogger } from '$lib';
+  import { slide } from "svelte/transition";
+  import { onMount, getContext } from "svelte";
+  import { shuffleText } from "$lib/animations/gsap";
+  import type { Readable } from "svelte/store";
+  import { themeManager, type BrandKey, createLogger } from "$lib";
 
   import {
     createAccordionState,
     toggleAccordion,
     registerAccordion,
-  } from '$lib';
-  const log = createLogger('accordion-comp');
+  } from "$lib";
+  const log = createLogger("accordion-comp");
 
   interface AccordianProps {
     children?: any;
@@ -19,13 +19,13 @@
     suffix: string;
     enableShuffleAnimation?: boolean;
     brand?: BrandKey;
-    themeOverride?: 'light' | 'dark' | 'high-contrast';
+    themeOverride?: "light" | "dark" | "high-contrast";
   }
 
   let {
     children,
-    label = 'Replace me',
-    suffix = 'test',
+    label = "Replace me",
+    suffix = "test",
     enableShuffleAnimation = true,
     brand,
     themeOverride,
@@ -41,15 +41,15 @@
   // Get context from AccordionList if available
   const accordionListContext = getContext<
     Readable<{ getIndex: (id: string) => number }> | undefined
-  >('accordionList');
+  >("accordionList");
   const accordionId = crypto.randomUUID();
 
   // Get index from context or default to 1
   let contextValue = $derived(
-    accordionListContext ? $accordionListContext : null
+    accordionListContext ? $accordionListContext : null,
   );
   let index = $derived(contextValue ? contextValue.getIndex(accordionId) : 1);
-  let formattedNumber = $derived(index.toString().padStart(2, '0'));
+  let formattedNumber = $derived(index.toString().padStart(2, "0"));
 
   // Track previous state to avoid unnecessary calls
   let previousIsOpen = false;
@@ -61,7 +61,7 @@
     const currentBrand = brand;
     const currentThemeOverride = themeOverride;
 
-    log.debug('Accordion effect', {
+    log.debug("Accordion effect", {
       brand: currentBrand,
       themeOverride: currentThemeOverride,
       isOpen,
@@ -74,13 +74,13 @@
       // New brand-theme system
       if (currentBrand && currentThemeOverride) {
         if (isOpen) {
-          log.debug('Opening - setting brand-theme override', {
+          log.debug("Opening - setting brand-theme override", {
             brand: currentBrand,
             theme: currentThemeOverride,
           });
           themeManager.setBrandThemeOverride(
             currentBrand,
-            currentThemeOverride
+            currentThemeOverride,
           );
         } else {
           // Only clear if this accordion's combination is currently active
@@ -89,25 +89,25 @@
             currentOverride?.brand === currentBrand &&
             currentOverride?.theme === currentThemeOverride
           ) {
-            log.debug('Closing - clearing brand-theme override');
+            log.debug("Closing - clearing brand-theme override");
             themeManager.clearBrandThemeOverride();
           } else {
-            log.debug('Closing - NOT clearing (different override active)');
+            log.debug("Closing - NOT clearing (different override active)");
           }
         }
       }
       // Fallback to legacy brand system if only brand specified
       else if (currentBrand && !currentThemeOverride) {
         if (isOpen) {
-          log.debug('Opening - setting brand (legacy)', currentBrand);
+          log.debug("Opening - setting brand (legacy)", currentBrand);
           themeManager.setActiveBrand(currentBrand);
         } else {
           // Only clear brand if this accordion was the one that set it
           if (themeManager.activeBrand === currentBrand) {
-            log.debug('Closing - clearing brand (legacy, was active)');
+            log.debug("Closing - clearing brand (legacy, was active)");
             themeManager.clearBrand();
           } else {
-            log.debug('Closing - NOT clearing brand (legacy, not active)');
+            log.debug("Closing - NOT clearing brand (legacy, not active)");
           }
         }
       }
@@ -135,10 +135,10 @@
   // CRITICAL FIX: Calculate scroll compensation for closing accordions
   function calculateScrollCompensation(): number {
     // Find all currently open accordions that are ABOVE this one
-    const allAccordions = document.querySelectorAll('.wrapper');
+    const allAccordions = document.querySelectorAll(".wrapper");
     if (!buttonElement?.parentElement) return 0;
     const currentIndex = Array.from(allAccordions).indexOf(
-      buttonElement.parentElement
+      buttonElement.parentElement,
     );
     if (currentIndex === -1) return 0;
 
@@ -147,7 +147,7 @@
     // Check each accordion before this one
     for (let i = 0; i < currentIndex; i++) {
       const accordion = allAccordions[i];
-      const details = accordion.querySelector('.details') as HTMLElement;
+      const details = accordion.querySelector(".details") as HTMLElement;
 
       // If this accordion is open, its height will be removed
       if (details && !details.hidden) {
@@ -167,7 +167,7 @@
 
       // Check for reduced motion preference
       const prefersReducedMotion = window.matchMedia(
-        '(prefers-reduced-motion: reduce)'
+        "(prefers-reduced-motion: reduce)",
       ).matches;
       if (prefersReducedMotion) {
         window.scrollTo(0, targetY);
@@ -303,7 +303,7 @@
     font-size: var(--fs-xxlarge-clamped);
     font-weight: var(--fw-semibold);
     color: var(--fg-text-primary);
-    background-color: var(--bg-page);
+    background-color: transparent;
     border-bottom: 1px solid var(--fg-text-primary);
   }
 

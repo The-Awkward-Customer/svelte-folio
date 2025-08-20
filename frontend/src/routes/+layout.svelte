@@ -3,7 +3,7 @@
 
   import { Footer } from '$lib/components/layout';
   import { TopNav } from '$lib/components/top-nav';
-  import { DotGridBackground } from '$lib/components/experiments';
+  import { CharacterGridBackground } from '$lib/components/experiments';
 
   import { onMount } from 'svelte';
   import { beforeNavigate } from '$app/navigation';
@@ -22,33 +22,12 @@
   });
 
   let { children } = $props();
-  
-  let dotGridRef: any;
-  
-  function handleMouseMove(event: MouseEvent) {
-    if (dotGridRef) {
-      // Use viewport coordinates directly since canvas is positioned fixed
-      const x = event.clientX;
-      const y = event.clientY;
-      dotGridRef.updateMousePosition(x, y);
-    }
-  }
-  
-  function handleMouseLeave() {
-    if (dotGridRef) {
-      dotGridRef.setMouseLeave();
-    }
-  }
 </script>
 
 <TopNav></TopNav>
 
-<main 
-  onmousemove={handleMouseMove}
-  onmouseleave={handleMouseLeave}
-  role="presentation"
->
-  <DotGridBackground bind:this={dotGridRef} />
+<main>
+  <CharacterGridBackground />
   {@render children()}
 </main>
 
