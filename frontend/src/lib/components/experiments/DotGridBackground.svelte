@@ -72,8 +72,8 @@
       for (let y = offsetY; y < height; y += dotSpacing) {
         // Vertical grid positions
         dotCount++;
-        const distance = mouseManager.isActive
-          ? Math.sqrt((x - mouseManager.x) ** 2 + (y - mouseManager.y) ** 2)
+        const distance = $mouseManager.isActive
+          ? Math.sqrt((x - $mouseManager.x) ** 2 + (y - $mouseManager.y) ** 2)
           : highlightDistance + 1;
 
         let alpha = baseOpacity; // Base opacity using design system
@@ -109,7 +109,7 @@
   }
 
   // Reactive draw on mouse movement
-  $: if (ctx && (mouseManager.x || mouseManager.y || mouseManager.isActive)) {
+  $: if (ctx && $mouseManager) {
     draw();
   }
 </script>

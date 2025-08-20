@@ -26,7 +26,7 @@
 
 <TopNav></TopNav>
 
-<main role="presentation">
+<main>
   <CharacterGridBackground />
   {@render children()}
 </main>
