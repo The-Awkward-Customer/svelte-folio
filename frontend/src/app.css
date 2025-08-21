@@ -27,7 +27,7 @@ body {
   -webkit-text-rendering: optimizeLegibility;
   -moz-text-rendering: optimizeLegibility;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 img,
@@ -158,7 +158,7 @@ select {
 /* Theme-independent variables */
 :root {
   /* Dev colors */
-  --color-dev-pink: 241 114 255; /* #F172FF */
+  --color-dev-pink: 241 114 255; /* rgba(241, 114, 255, 1) */
 
   /* Project colors */
   --fresha-purple: 105, 80, 243;
@@ -257,6 +257,17 @@ select {
   /* Semantic spacing */
   --padding-page-default: var(--space-xl);
 
+  /* Spacing tokens */
+  --spacing-none: 0;
+  --spacing-related-inset: 2px;
+  --spacing-related-dense: 4px;
+  --spacing-related: 8px;
+  --spacing-related-relaxed: 12px;
+  --spacing-grouped: 16px;
+  --spacing-grouped-relaxed: 20px;
+  --spacing-separated: 28px;
+  --spacing-isolated: 48px;
+
   /* Width tokens - Fixed widths */
   --width-2xs: 0.125rem; /* 2px - matches space-2xs */
   --width-xs: 0.25rem; /* 4px - matches space-xs */
@@ -285,6 +296,13 @@ select {
   --width-content-2xl: 1440px;
   --width-content-max: 1920px;
 
+
+  /* Size */
+  --size-touch-safe-inset: 40px; /* Touch safe area for mobile devices */
+  --size-touch-safe: 44px; /* Touch safe area for mobile devices */
+  
+
+
   /* Min-width tokens for responsive components */
   --min-width-card: 25ch; /* Minimum card width for readability */
   --min-width-card-sm: 20ch; /* Compact card minimum */
@@ -306,6 +324,7 @@ select {
   --bdr-radius-medium: 16px;
   --bdr-radius-large: 24px;
   --bdr-radius-pill: 999px;
+  --border-radius-card: 8px;
 
   /* Opacity */
   --opacity-invisible: 0; /* 0% */
@@ -329,7 +348,7 @@ select {
   --bp-tablet: 1024px;
   --bp-desktop: 1440px;
 
-  --brand-fresha-accent: 105, 80, 243; /* #694CF3 */
+  --brand-fresha-accent: 105, 80, 243; /* rgba(105, 80, 243, 1) */
 }
 
 /* Light theme (default) */
@@ -343,11 +362,10 @@ select {
     255,
     0.8
   ); /* semi-transparent white overlay */
-  --bg-overlay-light: rgba(255, 255, 255, 0.4); /* light white overlay */
 
   /* Legacy rgb values for backwards compatibility */
-  --bdr-inverse: 255 255 255; /* #FFFFFF */
-  --bg-inverse: 255 255 255; /* #FFFFFF */
+  --bdr-inverse: 255 255 255; /* rgba(255, 255, 255, 1) */
+  --bg-inverse: 255 255 255; /* rgba(255, 255, 255, 1) */
 
   /* Border inverse with opacity variants */
   --bdr-inverse-80: rgba(255, 255, 255, 0.8);
@@ -432,6 +450,27 @@ select {
   --bg-positive-40: rgba(140, 255, 0, 0.4);
   --bg-positive-20: rgba(140, 255, 0, 0.2);
 
+  /* Text Primary Tokens */
+  --text-primary-key: rgba(38, 39, 45, 1);
+  --text-primary-default: rgba(38, 39, 45, 1);
+  --text-primary-hover: rgba(38, 39, 45, 1);
+  --text-primary-active: rgba(38, 39, 45, 1);
+  --text-primary-muted: rgba(38, 39, 45, 1);
+  --text-primary-disabled: rgba(38, 39, 45, 1);
+
+  /* Border Tokens */
+  --border-neutral: rgba(255, 255, 255, 0.2);
+  --border-hover: rgba(255, 255, 255, 0.5);
+  --border-active: rgba(255, 255, 255, 1);
+
+  /* Surface Tokens */
+  --surface-neutral-mask: rgba(255, 255, 255, 1);
+  --surface-neutral-reading: rgba(229, 229, 237, 1);
+  --surface-neutral-loud: rgba(210, 210, 216, 1);
+  --surface-positive-loud: rgba(42, 83, 20, 1);
+  --surface-positive-muted: rgba(42, 83, 20, 0.6);
+  --surface-transparent: rgba(255, 255, 255, 0);
+
   /* Brand Colors */
   --color-brand-jio: rgba(2, 35, 134, 1);
   --color-brand-fresha: rgba(105, 80, 243, 1);
@@ -469,12 +508,11 @@ select {
   /* Overlay */
   --bg-overlay: rgba(45, 45, 51, 1); /* opaque dark overlay */
   --bg-overlay-semi: rgba(45, 45, 51, 0.8); /* semi-transparent dark overlay */
-  --bg-overlay-light: rgba(45, 45, 51, 0.4); /* light dark overlay */
 
   /* Legacy rgb values for backwards compatibility */
-  --bdr-inverse: 255 255 255; /* #FFFFFF */
-  --bg-component: 180 180 180; /* #B4B4B4 */
-  --bg-inverse: 38 39 45; /* #26272D */
+  --bdr-inverse: 255 255 255; /* rgba(255, 255, 255, 1) */
+  --bg-component: 180 180 180; /* rgba(180, 180, 180, 1) */
+  --bg-inverse: 38 39 45; /* rgba(38, 39, 45, 1) */
 
   /* Border inverse with opacity variants */
   --bdr-inverse-full: rgba(255, 255, 255, 1);
@@ -549,6 +587,27 @@ select {
   --bg-positive-80: rgba(42, 83, 20, 0.8);
   --bg-positive-60: rgba(42, 83, 20, 0.6);
 
+  /* Border Tokens - Dark Theme */
+  --border-neutral: rgba(255, 255, 255, 0.2);
+  --border-hover: rgba(255, 255, 255, 0.75);
+  --border-active: rgba(255, 255, 255, 1);
+
+  /* Text Primary Tokens - Dark Theme */
+  --text-primary-key: rgba(255, 255, 255, 1);
+  --text-primary-default: rgba(255, 255, 255, 1);
+  --text-primary-hover: rgba(255, 255, 255, 1);
+  --text-primary-active: rgba(255, 255, 255, 1);
+  --text-primary-muted: rgba(194, 194, 194, 1);
+  --text-primary-disabled: rgba(129, 129, 129, 1);
+
+  /* Surface Tokens - Dark Theme */
+  --surface-neutral-mask: rgba(22, 22, 22, 1);
+  --surface-neutral-reading: rgba(28, 28, 29, 1);
+  --surface-neutral-loud: rgba(62, 62, 66, 1);
+  --surface-positive-loud: rgba(174, 255, 0, 1);
+  --surface-positive-muted: rgba(174, 255, 0, 0.6);
+  --surface-transparent: rgba(22, 22, 22, 0);
+
   /* Brand Colors */
   --color-brand-jio: rgba(2, 35, 134, 1);
   --color-brand-fresha: rgba(105, 80, 243, 1);
@@ -573,12 +632,11 @@ select {
   /* Overlay */
   --bg-overlay: rgba(0, 0, 0, 1); /* opaque black overlay */
   --bg-overlay-semi: rgba(0, 0, 0, 0.8); /* semi-transparent black overlay */
-  --bg-overlay-light: rgba(0, 0, 0, 0.4); /* light black overlay */
 
   /* Legacy rgb values for backwards compatibility */
-  --bdr-inverse: 0 0 0; /* #000000 */
-  --bg-component: 180 180 180; /* #B4B4B4 */
-  --bg-inverse: 38 39 45; /* #26272D */
+  --bdr-inverse: 0 0 0; /* rgba(0, 0, 0, 1) */
+  --bg-component: 180 180 180; /* rgba(180, 180, 180, 1) */
+  --bg-inverse: 38 39 45; /* rgba(38, 39, 45, 1) */
 
   /* Border inverse with opacity variants */
   --bdr-inverse-full: rgba(0, 0, 0, 1);
@@ -652,6 +710,27 @@ select {
   --bg-positive: rgba(255, 255, 255, 1);
   --bg-positive-80: rgba(255, 255, 255, 0.8);
   --bg-positive-60: rgba(255, 255, 255, 0.6);
+
+  /* Border Tokens - High Contrast Theme */
+  --border-neutral: rgba(255, 255, 255, 0.2);
+  --border-hover: rgba(255, 255, 255, 0.5);
+  --border-active: rgba(255, 255, 255, 1);
+
+  /* Text Primary Tokens - High Contrast Theme */
+  --text-primary-key: rgba(0, 0, 0, 1);
+  --text-primary-default: rgba(0, 0, 0, 1);
+  --text-primary-hover: rgba(0, 0, 0, 1);
+  --text-primary-active: rgba(0, 0, 0, 1);
+  --text-primary-muted: rgba(0, 0, 0, 1);
+  --text-primary-disabled: rgba(0, 0, 0, 1);
+
+  /* Surface Tokens - High Contrast Theme */
+  --surface-neutral-mask: rgba(255, 255, 255, 1);
+  --surface-neutral-reading: rgba(0, 0, 0, 1);
+  --surface-neutral-loud: rgba(0, 0, 0, 1);
+  --surface-positive-loud: rgba(0, 0, 0, 1);
+  --surface-positive-muted: rgba(0, 0, 0, 0.6);
+  --surface-transparent: rgba(255, 255, 255, 0);
 
   /* Brand Colors */
   --color-brand-jio: rgba(2, 35, 134, 1);

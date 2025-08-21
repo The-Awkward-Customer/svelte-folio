@@ -2,7 +2,7 @@
   import '../app.css';
 
   import { Footer } from '$lib/components/layout';
-  import { TopNav } from '$lib/components/top-nav';
+  import { TopNav } from '$lib/components/navigation';
   import { CharacterGridBackground } from '$lib/components/experiments';
 
   import { onMount } from 'svelte';

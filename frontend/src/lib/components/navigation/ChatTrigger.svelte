@@ -1,6 +1,6 @@
 <script lang="ts">
-  import Anim_me from '$lib/assets/Ani_me.png';
-  import { Indicator } from '$lib/components/primitives';
+  import Anim_me from "$lib/assets/Ani_me.png";
+  import { Indicator } from "$lib/components/primitives";
 
   interface ChatTriggerProps {
     handleClick?: () => void;
@@ -16,11 +16,11 @@
 
   // Default handler if none provided
   function defaultClickHandler() {
-    console.log('Chat trigger clicked - no handler provided');
+    console.log("Chat trigger clicked - no handler provided");
   }
 
   function handleMouseEnter() {
-    console.log('Mouse entered chat trigger');
+    console.log("Mouse entered chat trigger");
   }
 </script>
 
@@ -52,20 +52,4 @@
     box-shadow: inset 0 0 0 1px var(--fg-text-primary);
     container-type: inline-size;
   }
-
-  .profile-image {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: top;
-    background-repeat: no-repeat;
-    border-radius: var(--bdr-radius-tiny);
-    transition: all 0.15s ease-in-out;
-  }
-
-  .chat-trigger:hover .profile-image {
-    transform: scale(0.98);
-  }
-
 </style>
