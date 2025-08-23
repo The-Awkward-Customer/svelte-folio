@@ -5,6 +5,9 @@ interface WidgetPosition {
 	scale: number;
 	gridX: number;
 	gridY: number;
+	// Store relative positions (0-1) for viewport scaling
+	relativeX: number;
+	relativeY: number;
 }
 
 interface SafeAreas {
@@ -69,10 +72,14 @@ function createWidgetManager() {
 	}
 
 	function getWidgetScale(): number {
-		const baseScale = viewport.breakpoint === 'mobile' ? MIN_SCALE : 
-						  viewport.breakpoint === 'tablet' ? (MIN_SCALE + MAX_SCALE) / 2 : 
-						  MAX_SCALE;
-		return Math.max(MIN_SCALE, Math.min(MAX_SCALE, baseScale));
+		// Continuous scaling based on viewport width instead of discrete breakpoints
+		const minWidth = 320; // Minimum mobile width
+		const maxWidth = 1200; // Desktop width where max scale is reached
+		
+		const widthRatio = Math.max(0, Math.min(1, (viewport.width - minWidth) / (maxWidth - minWidth)));
+		const scale = MIN_SCALE + (MAX_SCALE - MIN_SCALE) * widthRatio;
+		
+		return Math.max(MIN_SCALE, Math.min(MAX_SCALE, scale));
 	}
 
 	function snapToGrid(value: number): number {
@@ -119,13 +126,18 @@ function createWidgetManager() {
 			const gridX = x / gridSize;
 			const gridY = y / gridSize;
 
+			const safeWidth = viewport.width - safeAreas.left - safeAreas.right;
+			const safeHeight = viewport.height - safeAreas.top - safeAreas.bottom;
+			
 			const newPosition: WidgetPosition = {
 				id: attemptId,
 				x,
 				y,
 				scale,
 				gridX,
-				gridY
+				gridY,
+				relativeX: (x - safeAreas.left) / safeWidth,
+				relativeY: (y - safeAreas.top) / safeHeight
 			};
 
 			if (!checkCollision(newPosition, existingPositions)) {
@@ -165,7 +177,19 @@ function createWidgetManager() {
 				const newPositions = new Map<string, WidgetPosition>();
 				
 				for (const [key, value] of positionsArray) {
-					newPositions.set(key, value as WidgetPosition);
+					const position = value as WidgetPosition;
+					
+					// Handle legacy positions without relative coordinates
+					if (position.relativeX === undefined || position.relativeY === undefined) {
+						const safeAreas = getSafeAreas();
+						const safeWidth = viewport.width - safeAreas.left - safeAreas.right;
+						const safeHeight = viewport.height - safeAreas.top - safeAreas.bottom;
+						
+						position.relativeX = Math.max(0, Math.min(1, (position.x - safeAreas.left) / safeWidth));
+						position.relativeY = Math.max(0, Math.min(1, (position.y - safeAreas.top) / safeHeight));
+					}
+					
+					newPositions.set(key, position);
 				}
 				
 				positions = newPositions;
@@ -205,16 +229,50 @@ function createWidgetManager() {
 		saveToSessionStorage();
 	}
 
+	function scalePositionsToViewport() {
+		const safeAreas = getSafeAreas();
+		const currentScale = getWidgetScale();
+		const safeWidth = viewport.width - safeAreas.left - safeAreas.right;
+		const safeHeight = viewport.height - safeAreas.top - safeAreas.bottom;
+
+		const newPositions = new Map<string, WidgetPosition>();
+
+		for (const [id, position] of positions.entries()) {
+			// Calculate new absolute position from relative position
+			const newX = snapToGrid(safeAreas.left + (position.relativeX * safeWidth));
+			const newY = snapToGrid(safeAreas.top + (position.relativeY * safeHeight));
+			
+			// Ensure widgets stay within bounds
+			const maxX = viewport.width - safeAreas.right - (WIDGET_BASE_SIZE * currentScale);
+			const maxY = viewport.height - safeAreas.bottom - (WIDGET_BASE_SIZE * currentScale);
+			
+			const boundedX = Math.max(safeAreas.left, Math.min(maxX, newX));
+			const boundedY = Math.max(safeAreas.top, Math.min(maxY, newY));
+
+			const scaledPosition: WidgetPosition = {
+				...position,
+				x: boundedX,
+				y: boundedY,
+				scale: currentScale,
+				gridX: boundedX / gridSize,
+				gridY: boundedY / gridSize,
+				// Keep the same relative positions for future scaling
+				relativeX: position.relativeX,
+				relativeY: position.relativeY
+			};
+
+			newPositions.set(id, scaledPosition);
+		}
+
+		positions = newPositions;
+	}
+
 	function handleResize() {
-		const oldViewport = { ...viewport };
 		updateViewport();
 		
-		// Regenerate positions if breakpoint changes
-		if (oldViewport.breakpoint !== viewport.breakpoint) {
-			const currentCount = positions.size;
-			if (currentCount > 0) {
-				shuffle(currentCount);
-			}
+		// Scale existing positions instead of regenerating them
+		if (positions.size > 0) {
+			scalePositionsToViewport();
 		}
 	}
 
