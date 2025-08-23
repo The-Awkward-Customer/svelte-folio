@@ -1,9 +1,8 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { shuffleText } from '$lib/animations/gsap';
+  import { onMount } from "svelte";
+  import { shuffleText } from "$lib/animations/gsap";
 
   interface FooterTitleProps {
-    title?: string;
     enableShuffleAnimation?: boolean;
     shuffleOptions?: {
       duration?: number;
@@ -14,7 +13,6 @@
   }
 
   let {
-    title = 'A\ndigital\ndesigner\n& engineer',
     enableShuffleAnimation = true,
     shuffleOptions = {
       duration: 0.8,
@@ -24,37 +22,22 @@
     },
   }: FooterTitleProps = $props();
 
-  // Split title into lines and create reactive array
-  const titleLines = $derived(
-    title.split('\n').filter((line) => line.trim() !== '')
-  );
-
-  // Array to hold references to each span element (reactive in Svelte 5)
-  let spanElements: HTMLElement[] = $state([]);
+  // Reference to the animated span element
+  let animatedSpan: HTMLElement;
 
   onMount(() => {
-    if (enableShuffleAnimation && spanElements.length > 0) {
+    if (enableShuffleAnimation && animatedSpan) {
       // Use setTimeout to ensure DOM is ready
       setTimeout(() => {
-        spanElements.forEach((spanElement, index) => {
-          if (spanElement && titleLines[index]) {
-            // Add a slight delay between each line animation
-            const lineDelay = (shuffleOptions.delay || 0) + index * 0.2;
-            shuffleText(spanElement, titleLines[index], {
-              ...shuffleOptions,
-              delay: lineDelay,
-            });
-          }
-        });
+        shuffleText(animatedSpan, "product designer", shuffleOptions);
       }, 50);
     }
   });
 </script>
 
 <h2 class="footer-title-root">
-  {#each titleLines as line, index}
-    <span class="title-line" bind:this={spanElements[index]}>{line}</span>
-  {/each}
+  <span class="title-line name">peter abbott</span>
+  <span class="title-line role" bind:this={animatedSpan}>product designer</span>
 </h2>
 
 <style>
@@ -63,15 +46,19 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    font-size: var(--fs-large-clamped);
+    font-size: var(--fs-xxlarge-clamped);
     font-weight: var(--fw-semibold);
-    color: var(--fg-text-primary);
-    text-transform: capitalize;
+    color: var(--text-primary-muted);
+    text-transform: uppercase;
     text-align: start;
   }
 
   .title-line {
     display: block;
     line-height: 1.1;
+  }
+
+  .title-line:nth-child(2) {
+    color: var(--text-primary-default);
   }
 </style>
