@@ -26,7 +26,6 @@ interface ViewportInfo {
 const WIDGET_BASE_SIZE = 512;
 const MIN_SCALE = 0.25;
 const MAX_SCALE = 0.5;
-const SESSION_STORAGE_KEY = 'widget-positions';
 
 function createWidgetManager() {
 	let positions = $state<Map<string, WidgetPosition>>(new Map());
@@ -167,66 +166,21 @@ function createWidgetManager() {
 		return newPositions;
 	}
 
-	function loadFromSessionStorage(): boolean {
-		if (typeof window === 'undefined') return false;
-		
-		try {
-			const stored = sessionStorage.getItem(SESSION_STORAGE_KEY);
-			if (stored) {
-				const positionsArray = JSON.parse(stored);
-				const newPositions = new Map<string, WidgetPosition>();
-				
-				for (const [key, value] of positionsArray) {
-					const position = value as WidgetPosition;
-					
-					// Handle legacy positions without relative coordinates
-					if (position.relativeX === undefined || position.relativeY === undefined) {
-						const safeAreas = getSafeAreas();
-						const safeWidth = viewport.width - safeAreas.left - safeAreas.right;
-						const safeHeight = viewport.height - safeAreas.top - safeAreas.bottom;
-						
-						position.relativeX = Math.max(0, Math.min(1, (position.x - safeAreas.left) / safeWidth));
-						position.relativeY = Math.max(0, Math.min(1, (position.y - safeAreas.top) / safeHeight));
-					}
-					
-					newPositions.set(key, position);
-				}
-				
-				positions = newPositions;
-				return true;
-			}
-		} catch (error) {
-			console.warn('Failed to load widget positions from sessionStorage:', error);
-		}
-		
-		return false;
-	}
+	// Remove session storage loading - widgets will get fresh positions on each page load
 
-	function saveToSessionStorage() {
-		if (typeof window === 'undefined') return;
-		
-		try {
-			const positionsArray = Array.from(positions.entries());
-			sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(positionsArray));
-		} catch (error) {
-			console.warn('Failed to save widget positions to sessionStorage:', error);
-		}
-	}
+	// Remove session storage saving - widgets will get fresh positions on each page load
 
 	function initialize(widgetCount: number = 5) {
 		if (typeof window !== 'undefined') {
 			updateViewport();
 			
-			if (!loadFromSessionStorage() || positions.size === 0) {
-				positions = generatePositions(widgetCount);
-				saveToSessionStorage();
-			}
+			// Always generate fresh positions on page load
+			positions = generatePositions(widgetCount);
 		}
 	}
 
 	function shuffle(widgetCount: number = 5) {
 		positions = generatePositions(widgetCount);
-		saveToSessionStorage();
 	}
 
 	function scalePositionsToViewport() {
@@ -277,14 +231,7 @@ function createWidgetManager() {
 	}
 
 	function setupEffects() {
-		// Session storage sync effect
-		$effect(() => {
-			if (positions.size > 0) {
-				saveToSessionStorage();
-			}
-		});
-
-		// Window resize listener
+		// Window resize listener only - no session storage sync
 		$effect(() => {
 			if (typeof window !== 'undefined') {
 				window.addEventListener('resize', handleResize);
