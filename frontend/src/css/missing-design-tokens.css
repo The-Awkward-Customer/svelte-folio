@@ -21,25 +21,25 @@
    * --------------------------------------------------------------------------- */
 
   /* Base Status Colors - Primary semantic colors */
-  --color-status-success: #10b981;      /* Emerald 500 - replaces #10b981, #4ade80 */
-  --color-status-error: #ef4444;        /* Red 500 - replaces #ef4444 */
-  --color-status-warning: #f59e0b;      /* Amber 500 - replaces hardcoded warning colors */
-  --color-status-info: #3b82f6;         /* Blue 500 - replaces #3b82f6 */
-  --color-status-neutral: #6b7280;      /* Gray 500 - for neutral status */
+  --color-status-success: rgba(16, 185, 129, 1);      /* Emerald 500 - replaces #10b981, #4ade80 */
+  --color-status-error: rgba(239, 68, 68, 1);        /* Red 500 - replaces #ef4444 */
+  --color-status-warning: rgba(245, 158, 11, 1);      /* Amber 500 - replaces hardcoded warning colors */
+  --color-status-info: rgba(59, 130, 246, 1);         /* Blue 500 - replaces #3b82f6 */
+  --color-status-neutral: rgba(107, 114, 128, 1);      /* Gray 500 - for neutral status */
 
   /* Status Colors - Light variants for hover/active states */
-  --color-status-success-light: #34d399;   /* Emerald 400 */
-  --color-status-error-light: #f87171;     /* Red 400 */
-  --color-status-warning-light: #fbbf24;   /* Amber 400 */
-  --color-status-info-light: #60a5fa;      /* Blue 400 */
-  --color-status-neutral-light: #9ca3af;   /* Gray 400 */
+  --color-status-success-light: rgba(52, 211, 153, 1);   /* Emerald 400 */
+  --color-status-error-light: rgba(248, 113, 113, 1);     /* Red 400 */
+  --color-status-warning-light: rgba(251, 191, 36, 1);   /* Amber 400 */
+  --color-status-info-light: rgba(96, 165, 250, 1);      /* Blue 400 */
+  --color-status-neutral-light: rgba(156, 163, 175, 1);   /* Gray 400 */
 
   /* Status Colors - Dark variants for pressed/disabled states */
-  --color-status-success-dark: #059669;    /* Emerald 600 */
-  --color-status-error-dark: #dc2626;      /* Red 600 */
-  --color-status-warning-dark: #d97706;    /* Amber 600 */
-  --color-status-info-dark: #2563eb;       /* Blue 600 */
-  --color-status-neutral-dark: #4b5563;    /* Gray 600 */
+  --color-status-success-dark: rgba(5, 150, 105, 1);    /* Emerald 600 */
+  --color-status-error-dark: rgba(220, 38, 38, 1);      /* Red 600 */
+  --color-status-warning-dark: rgba(217, 119, 6, 1);    /* Amber 600 */
+  --color-status-info-dark: rgba(37, 99, 235, 1);       /* Blue 600 */
+  --color-status-neutral-dark: rgba(75, 85, 99, 1);    /* Gray 600 */
 
   /* Status Background Colors - Subtle backgrounds for status indicators */
   --bg-status-success-subtle: rgba(16, 185, 129, 0.1);    /* Success with 10% opacity */
@@ -63,9 +63,9 @@
   --bdr-status-neutral: var(--color-status-neutral);
 
   /* Special Status Colors - For specific use cases found in analysis */
-  --color-status-available: #10b981;       /* Replaces rgb(143, 239, 0) in Callout.svelte */
-  --color-status-busy: #f59e0b;            /* For busy/loading states */
-  --color-status-offline: #6b7280;         /* For offline/disabled states */
+  --color-status-available: rgba(16, 185, 129, 1);       /* Replaces rgb(143, 239, 0) in Callout.svelte */
+  --color-status-busy: rgba(245, 158, 11, 1);            /* For busy/loading states */
+  --color-status-offline: rgba(107, 114, 128, 1);         /* For offline/disabled states */
 
   /* ---------------------------------------------------------------------------
    * Z-INDEX SYSTEM - 0% Coverage → 100% Coverage
@@ -122,6 +122,9 @@
   --size-panel-header-height: 64px;        /* Panel header height */
   --size-sidebar-width: 280px;             /* Sidebar width */
   --size-navbar-height: 64px;              /* Navigation bar height */
+
+  /* Layout Spacing Tokens */
+  --spacing-layout-inset: 24px;            /* Standard layout padding from edges */
 
   /* ============================================================================
    * 🔶 SIGNIFICANT TOKENS - Phase 2 (Week 2 Priority)
@@ -243,11 +246,11 @@
 
 [data-theme="dark"] {
   /* Status Colors - Adjusted for dark theme */
-  --color-status-success: #34d399;      /* Lighter green for dark backgrounds */
-  --color-status-error: #f87171;        /* Lighter red for dark backgrounds */
-  --color-status-warning: #fbbf24;      /* Lighter amber for dark backgrounds */
-  --color-status-info: #60a5fa;         /* Lighter blue for dark backgrounds */
-  --color-status-neutral: #9ca3af;      /* Lighter gray for dark backgrounds */
+  --color-status-success: rgba(52, 211, 153, 1);      /* Lighter green for dark backgrounds */
+  --color-status-error: rgba(248, 113, 113, 1);        /* Lighter red for dark backgrounds */
+  --color-status-warning: rgba(251, 191, 36, 1);      /* Lighter amber for dark backgrounds */
+  --color-status-info: rgba(96, 165, 250, 1);         /* Lighter blue for dark backgrounds */
+  --color-status-neutral: rgba(156, 163, 175, 1);      /* Lighter gray for dark backgrounds */
 
   /* Dark theme overlay adjustments */
   --bg-overlay-dark: rgba(0, 0, 0, 0.9);        /* Stronger dark overlay for dark theme */
@@ -264,15 +267,15 @@
 
 [data-theme="high-contrast"] {
   /* High contrast status colors */
-  --color-status-success: #00ff00;      /* Pure green */
-  --color-status-error: #ff0000;        /* Pure red */
-  --color-status-warning: #ffff00;      /* Pure yellow */
-  --color-status-info: #0000ff;         /* Pure blue */
-  --color-status-neutral: #808080;      /* Medium gray */
+  --color-status-success: rgba(0, 255, 0, 1);      /* Pure green */
+  --color-status-error: rgba(255, 0, 0, 1);        /* Pure red */
+  --color-status-warning: rgba(255, 255, 0, 1);      /* Pure yellow */
+  --color-status-info: rgba(0, 0, 255, 1);         /* Pure blue */
+  --color-status-neutral: rgba(128, 128, 128, 1);      /* Medium gray */
 
   /* High contrast focus ring */
   --focus-ring-width: 3px;
-  --focus-ring-color: #0000ff;
+  --focus-ring-color: rgba(0, 0, 255, 1);
   --focus-ring-offset: 1px;
 }
 

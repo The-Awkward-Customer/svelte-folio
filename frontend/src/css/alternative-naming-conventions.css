@@ -41,37 +41,37 @@
    * --------------------------------------------------------------------------- */
   
   /* Base Color Palette */
-  --color-neutral-50: #fafafa;
-  --color-neutral-100: #f5f5f5;
-  --color-neutral-200: #e5e5e5;
-  --color-neutral-300: #d4d4d4;
-  --color-neutral-400: #a3a3a3;
-  --color-neutral-500: #737373;
-  --color-neutral-600: #525252;
-  --color-neutral-700: #404040;
-  --color-neutral-800: #262626;
-  --color-neutral-900: #171717;
+  --color-neutral-50: rgba(250, 250, 250, 1);
+  --color-neutral-100: rgba(245, 245, 245, 1);
+  --color-neutral-200: rgba(229, 229, 229, 1);
+  --color-neutral-300: rgba(212, 212, 212, 1);
+  --color-neutral-400: rgba(163, 163, 163, 1);
+  --color-neutral-500: rgba(115, 115, 115, 1);
+  --color-neutral-600: rgba(82, 82, 82, 1);
+  --color-neutral-700: rgba(64, 64, 64, 1);
+  --color-neutral-800: rgba(38, 38, 38, 1);
+  --color-neutral-900: rgba(23, 23, 23, 1);
 
   /* Status Colors */
-  --color-success-50: #f0fdf4;
-  --color-success-500: #22c55e;
-  --color-success-600: #16a34a;
-  --color-success-900: #14532d;
+  --color-success-50: rgba(240, 253, 244, 1);
+  --color-success-500: rgba(34, 197, 94, 1);
+  --color-success-600: rgba(22, 163, 74, 1);
+  --color-success-900: rgba(20, 83, 45, 1);
   
-  --color-error-50: #fef2f2;
-  --color-error-500: #ef4444;
-  --color-error-600: #dc2626;
-  --color-error-900: #7f1d1d;
+  --color-error-50: rgba(254, 242, 242, 1);
+  --color-error-500: rgba(239, 68, 68, 1);
+  --color-error-600: rgba(220, 38, 38, 1);
+  --color-error-900: rgba(127, 29, 29, 1);
   
-  --color-warning-50: #fffbeb;
-  --color-warning-500: #f59e0b;
-  --color-warning-600: #d97706;
-  --color-warning-900: #78350f;
+  --color-warning-50: rgba(255, 251, 235, 1);
+  --color-warning-500: rgba(245, 158, 11, 1);
+  --color-warning-600: rgba(217, 119, 6, 1);
+  --color-warning-900: rgba(120, 53, 15, 1);
   
-  --color-info-50: #eff6ff;
-  --color-info-500: #3b82f6;
-  --color-info-600: #2563eb;
-  --color-info-900: #1e3a8a;
+  --color-info-50: rgba(239, 246, 255, 1);
+  --color-info-500: rgba(59, 130, 246, 1);
+  --color-info-600: rgba(37, 99, 235, 1);
+  --color-info-900: rgba(30, 58, 138, 1);
 
   /* Semantic Color Applications */
   --text-primary: var(--color-neutral-900);
@@ -201,51 +201,51 @@
    * --------------------------------------------------------------------------- */
   
   /* Semantic Intent Colors */
-  --success: #10b981;
-  --warning: #f59e0b;
-  --danger: #ef4444;
-  --info: #3b82f6;
-  --neutral: #6b7280;
+  --success: rgba(16, 185, 129, 1);
+  --warning: rgba(245, 158, 11, 1);
+  --danger: rgba(239, 68, 68, 1);
+  --info: rgba(59, 130, 246, 1);
+  --neutral: rgba(107, 114, 128, 1);
 
   /* Success variations */
-  --success-bright: #34d399;
-  --success-subtle: #dcfce7;
-  --success-muted: #059669;
+  --success-bright: rgba(52, 211, 153, 1);
+  --success-subtle: rgba(220, 252, 231, 1);
+  --success-muted: rgba(5, 150, 105, 1);
   
   /* Danger variations */  
-  --danger-bright: #f87171;
-  --danger-subtle: #fee2e2;
-  --danger-muted: #dc2626;
+  --danger-bright: rgba(248, 113, 113, 1);
+  --danger-subtle: rgba(254, 226, 226, 1);
+  --danger-muted: rgba(220, 38, 38, 1);
   
   /* Warning variations */
-  --warning-bright: #fbbf24;
-  --warning-subtle: #fef3c7;
-  --warning-muted: #d97706;
+  --warning-bright: rgba(251, 191, 36, 1);
+  --warning-subtle: rgba(254, 243, 199, 1);
+  --warning-muted: rgba(217, 119, 6, 1);
   
   /* Info variations */
-  --info-bright: #60a5fa;
-  --info-subtle: #dbeafe;
-  --info-muted: #2563eb;
+  --info-bright: rgba(96, 165, 250, 1);
+  --info-subtle: rgba(219, 234, 254, 1);
+  --info-muted: rgba(37, 99, 235, 1);
 
   /* Content Colors */
-  --heading: #1f2937;
-  --body-text: #374151;
-  --caption: #6b7280;
-  --placeholder: #9ca3af;
-  --disabled: #d1d5db;
+  --heading: rgba(31, 41, 55, 1);
+  --body-text: rgba(55, 65, 81, 1);
+  --caption: rgba(107, 114, 128, 1);
+  --placeholder: rgba(156, 163, 175, 1);
+  --disabled: rgba(209, 213, 219, 1);
   
   /* Surface Colors */
-  --canvas: #ffffff;
-  --paper: #f9fafb;
-  --card: #ffffff;
+  --canvas: rgba(255, 255, 255, 1);
+  --paper: rgba(249, 250, 251, 1);
+  --card: rgba(255, 255, 255, 1);
   --overlay: rgba(0, 0, 0, 0.5);
   --backdrop: rgba(0, 0, 0, 0.8);
 
   /* Interactive Colors */
-  --interactive: #3b82f6;
-  --interactive-hover: #2563eb;
-  --interactive-pressed: #1d4ed8;
-  --interactive-disabled: #93c5fd;
+  --interactive: rgba(59, 130, 246, 1);
+  --interactive-hover: rgba(37, 99, 235, 1);
+  --interactive-pressed: rgba(29, 78, 216, 1);
+  --interactive-disabled: rgba(147, 197, 253, 1);
 
   /* ---------------------------------------------------------------------------
    * SPACING - Semantic sizing names
@@ -378,21 +378,21 @@
    * --------------------------------------------------------------------------- */
   
   /* Color values */
-  --gray-50: #f9fafb;
-  --gray-100: #f3f4f6;
-  --gray-200: #e5e7eb;
-  --gray-300: #d1d5db;
-  --gray-400: #9ca3af;
-  --gray-500: #6b7280;
-  --gray-600: #4b5563;
-  --gray-700: #374151;
-  --gray-800: #1f2937;
-  --gray-900: #111827;
+  --gray-50: rgba(249, 250, 251, 1);
+  --gray-100: rgba(243, 244, 246, 1);
+  --gray-200: rgba(229, 231, 235, 1);
+  --gray-300: rgba(209, 213, 219, 1);
+  --gray-400: rgba(156, 163, 175, 1);
+  --gray-500: rgba(107, 114, 128, 1);
+  --gray-600: rgba(75, 85, 99, 1);
+  --gray-700: rgba(55, 65, 81, 1);
+  --gray-800: rgba(31, 41, 55, 1);
+  --gray-900: rgba(17, 24, 39, 1);
 
-  --green-500: #10b981;
-  --red-500: #ef4444;
-  --yellow-500: #f59e0b;
-  --blue-500: #3b82f6;
+  --green-500: rgba(16, 185, 129, 1);
+  --red-500: rgba(239, 68, 68, 1);
+  --yellow-500: rgba(245, 158, 11, 1);
+  --blue-500: rgba(59, 130, 246, 1);
 
   /* Color application tokens */
   --color-text-primary: var(--gray-900);
