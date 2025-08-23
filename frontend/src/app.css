@@ -411,11 +411,6 @@ select {
 
   /* Background colors with opacity variants */
   --bg-page: rgba(255, 255, 255, 1);
-  --bg-page-90: rgba(255, 255, 255, 0.9);
-  --bg-page-80: rgba(255, 255, 255, 0.8);
-  --bg-page-60: rgba(255, 255, 255, 0.6);
-  --bg-page-40: rgba(255, 255, 255, 0.4);
-  --bg-page-20: rgba(255, 255, 255, 0.2);
 
   --bg-component: rgba(180, 180, 180, 1);
   --bg-component-80: rgba(180, 180, 180, 0.8);
@@ -554,12 +549,8 @@ select {
   --fg-text-muted-60: rgba(198, 197, 217, 0.6);
 
   /* Background colors with opacity variants */
-  --bg-page: rgba(45, 45, 51, 1);
-  --bg-page-90: rgba(45, 45, 51, 0.9);
-  --bg-page-80: rgba(45, 45, 51, 0.8);
-  --bg-page-60: rgba(45, 45, 51, 0.6);
-  --bg-page-40: rgba(45, 45, 51, 0.4);
-  --bg-page-20: rgba(45, 45, 51, 0.2);
+  --bg-page: rgba(22, 22, 22, 1);
+ 
 
   --bg-primary: rgba(255, 255, 255, 1);
   --bg-primary-90: rgba(255, 255, 255, 0.9);
@@ -679,11 +670,6 @@ select {
 
   /* Background colors with opacity variants */
   --bg-page: rgba(255, 255, 255, 1);
-  --bg-page-90: rgba(255, 255, 255, 0.9);
-  --bg-page-80: rgba(255, 255, 255, 0.8);
-  --bg-page-60: rgba(255, 255, 255, 0.6);
-  --bg-page-40: rgba(255, 255, 255, 0.4);
-  --bg-page-20: rgba(255, 255, 255, 0.2);
 
   --bg-primary: rgba(38, 39, 45, 1);
   --bg-primary-90: rgba(38, 39, 45, 0.9);
