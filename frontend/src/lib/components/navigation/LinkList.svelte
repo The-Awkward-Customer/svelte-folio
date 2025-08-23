@@ -52,7 +52,7 @@
 
 <style>
   nav {
-    display: contents;
+    display: block;
   }
 
   ul {
@@ -63,7 +63,7 @@
   }
 
   li {
-    display: contents;
+    display: list-item;
   }
 
   .nav-link {

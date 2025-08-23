@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { LinkList } from "./index";
+  import LinkList from "./LinkList.svelte";
 
   interface LinkItem {
     label: string;
@@ -48,7 +48,8 @@
     mask:
       linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
-    mask-composite: xor;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
     z-index: -1;
   }
 
