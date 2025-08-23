@@ -29,7 +29,7 @@ const MAX_SCALE = 0.5;
 
 function createWidgetManager() {
 	let positions = $state<Map<string, WidgetPosition>>(new Map());
-	let gridSize = $state(16);
+	let gridSize = $state(1);
 	let minSpacing = $state(4);
 	let viewport = $state<ViewportInfo>({
 		width: 1200,
