@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { WidgetContainer } from '$lib/components/widgets';
 </script>
 
 <svelte:head>
@@ -8,6 +9,8 @@
     content="Interactive designer and frontend developer based in Madrid. Available for UI/UX design, development, and consulting projects in Q3 2025."
   />
 </svelte:head>
+
+<WidgetContainer />
 
 <style>
 </style>
