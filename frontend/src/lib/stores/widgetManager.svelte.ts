@@ -25,7 +25,7 @@ interface ViewportInfo {
 
 const WIDGET_BASE_SIZE = 512;
 const MIN_SCALE = 0.25;
-const MAX_SCALE = 0.5;
+const MAX_SCALE = 0.35;
 
 function createWidgetManager() {
 	let positions = $state<Map<string, WidgetPosition>>(new Map());

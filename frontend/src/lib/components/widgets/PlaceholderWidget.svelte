@@ -3,11 +3,11 @@
 
 	interface Props {
 		position: WidgetPosition;
-		color: string;
+		graphic: string;
 		number: number;
 	}
 
-	let { position, color, number }: Props = $props();
+	let { position, graphic, number }: Props = $props();
 
 	function handleClick() {
 		console.log(`Widget ${number} clicked at position (${position.x}, ${position.y})`);
@@ -26,7 +26,7 @@
 	style:--widget-x="{position.x}px"
 	style:--widget-y="{position.y}px"
 	style:--widget-scale="{position.scale}"
-	style:--widget-color="{color}"
+	style:--widget-graphic="url('{graphic}')"
 	onclick={handleClick}
 	onkeydown={handleKeydown}
 	tabindex="0"
@@ -45,7 +45,10 @@
 		height: 512px;
 		transform: scale(var(--widget-scale));
 		transform-origin: top left;
-		background-color: var(--widget-color);
+		background-image: var(--widget-graphic);
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
 		border-radius: 8px;
 		cursor: pointer;
 		user-select: none;
@@ -56,7 +59,8 @@
 		font-family: system-ui, sans-serif;
 		font-weight: 700;
 		font-size: 48px;
-		color: rgba(0, 0, 0, 0.8);
+		color: rgba(255, 255, 255, 0.9);
+		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 		transition: transform 0.2s ease, box-shadow 0.2s ease;
 		contain: layout style paint;
 		will-change: transform;
@@ -77,7 +81,14 @@
 	}
 
 	.widget-number {
-		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+		text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+		background: rgba(0, 0, 0, 0.4);
+		border-radius: 50%;
+		width: 64px;
+		height: 64px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
