@@ -1,8 +1,8 @@
 # Widget System Feature Overview
 
-**Date**: 2025-08-23  
+**Date**: 2025-08-24  
 **Status**: 🟢 Production Ready  
-**Version**: 1.0.0  
+**Version**: 1.1.0  
 
 ## 📖 Table of Contents
 
@@ -74,7 +74,7 @@ frontend/src/lib/
 WidgetContainer (Fixed Overlay)
 ├── PlaceholderWidget × 5
 │   ├── Interactive Square (512px base)
-│   ├── Neon Colors (cyan, magenta, lime, yellow, orange)
+│   ├── PNG Graphics (article, compass, cv, liveChat, weatherWidget)
 │   ├── Click Handlers
 │   ├── Keyboard Navigation
 │   └── Accessibility Labels
@@ -122,7 +122,7 @@ interface ViewportInfo {
 ```typescript
 // Reactive state using Svelte 5 runes
 let positions = $state<Map<string, WidgetPosition>>(new Map());
-let gridSize = $state(16);              // Grid snap size in pixels
+let gridSize = $state(1);               // Grid snap size in pixels (updated for smoother positioning)
 let minSpacing = $state(4);             // Minimum spacing between widgets
 let viewport = $state<ViewportInfo>({   // Current viewport information
   width: 1200,
@@ -136,7 +136,7 @@ let viewport = $state<ViewportInfo>({   // Current viewport information
 ```typescript
 const WIDGET_BASE_SIZE = 512;           // Base widget size (512px square)
 const MIN_SCALE = 0.25;                 // Minimum scale (mobile: 128px)
-const MAX_SCALE = 0.5;                  // Maximum scale (desktop: 256px)
+const MAX_SCALE = 0.35;                 // Maximum scale (desktop: 179px)
 ```
 
 ---
@@ -193,7 +193,7 @@ function getSafeAreas(): SafeAreas {
 
 #### `snapToGrid(value: number): number`
 
-Aligns positions to a 16px grid for consistent visual spacing.
+Aligns positions to a 1px grid for smoother positioning (updated from 16px).
 
 ```typescript
 function snapToGrid(value: number): number {
@@ -317,7 +317,7 @@ function scalePositionsToViewport() {
 
 #### `animateWidgetEntrance(element: HTMLElement, index: number)`
 
-Creates staggered entrance animations from viewport center.
+Creates staggered entrance animations from individual offset positions using golden angle distribution.
 
 ```typescript
 function animateWidgetEntrance(element: HTMLElement, index: number) {
@@ -331,21 +331,23 @@ function animateWidgetEntrance(element: HTMLElement, index: number) {
     return;
   }
 
-  // Get final position from CSS custom properties
+  // Get final scale from CSS custom properties
   const computedStyle = getComputedStyle(element);
-  const finalX = parseFloat(computedStyle.getPropertyValue('--widget-x')) || 0;
-  const finalY = parseFloat(computedStyle.getPropertyValue('--widget-y')) || 0;
   const finalScale = parseFloat(computedStyle.getPropertyValue('--widget-scale')) || 1;
 
-  // Start from center of viewport
-  const startX = window.innerWidth / 2 - (512 * finalScale) / 2;
-  const startY = window.innerHeight / 2 - (512 * finalScale) / 2;
+  // Create individual offset for each widget with consistent distance
+  const offsetDistance = 100; // Consistent offset distance for all widgets
+  const angle = index * 137.5 * (Math.PI / 180); // Golden angle for natural distribution
+  
+  // Calculate offset from final position
+  const offsetX = Math.cos(angle) * offsetDistance;
+  const offsetY = Math.sin(angle) * offsetDistance;
 
-  // Set initial state
+  // Set initial state - offset from final position
   gsap.set(element, {
-    x: startX - finalX,
-    y: startY - finalY,
-    scale: 0.8 * finalScale,
+    x: offsetX,
+    y: offsetY,
+    scale: 0.6 * finalScale,
     opacity: 0,
   });
 
@@ -355,9 +357,9 @@ function animateWidgetEntrance(element: HTMLElement, index: number) {
     y: 0,
     scale: finalScale,
     opacity: 1,
-    duration: 0.6,
-    delay: index * 0.1,        // Stagger: 100ms between widgets
-    ease: 'power2.out',
+    duration: 0.2,
+    delay: index * 0.15,       // Stagger: 150ms between widgets
+    ease: 'expo.inOut',
     onComplete: () => {
       gsap.set(element, { clearProps: 'transform' });
     }
@@ -366,10 +368,11 @@ function animateWidgetEntrance(element: HTMLElement, index: number) {
 ```
 
 **Animation Parameters:**
-- **Duration**: 0.6 seconds per widget
-- **Stagger**: 0.1 second delay between widgets
-- **Easing**: `power2.out` for natural deceleration
-- **Starting Point**: Viewport center
+- **Duration**: 0.2 seconds per widget
+- **Stagger**: 0.15 second delay between widgets
+- **Easing**: `expo.inOut` for dynamic acceleration/deceleration
+- **Starting Point**: Individual offset positions using golden angle (137.5°)
+- **Offset Distance**: 100px from final position
 - **Ending Point**: Final calculated position
 
 **Accessibility:**
@@ -386,9 +389,9 @@ The system uses continuous scaling instead of discrete breakpoints:
 
 ```typescript
 // Continuous scaling range
-Mobile:    320px → 767px   (scale: 0.25 → ~0.35)
-Tablet:    767px → 1199px  (scale: ~0.35 → ~0.45)
-Desktop:   1200px+         (scale: 0.5)
+Mobile:    320px → 767px   (scale: 0.25 → ~0.30)
+Tablet:    767px → 1199px  (scale: ~0.30 → ~0.33)
+Desktop:   1200px+         (scale: 0.35)
 ```
 
 ### Scaling Formula
@@ -400,8 +403,8 @@ const scale = 0.25 + (0.25 * widthRatio);
 
 **Result:**
 - 320px viewport → 0.25 scale (128px widgets)
-- 760px viewport → 0.375 scale (192px widgets)
-- 1200px viewport → 0.5 scale (256px widgets)
+- 760px viewport → 0.30 scale (154px widgets)
+- 1200px viewport → 0.35 scale (179px widgets)
 
 ### Safe Area Calculations
 
@@ -450,7 +453,7 @@ interface Props {
 ```typescript
 interface Props {
   position: WidgetPosition;  // Position data from store
-  color: string;            // Neon color (#00ffff, #ff00ff, etc.)
+  graphic: string;          // PNG graphic path (/src/lib/assets/widgetGraphics/*.png)
   number: number;           // Widget number (1-5)
 }
 ```
@@ -461,7 +464,7 @@ interface Props {
   --widget-x: {position.x}px;
   --widget-y: {position.y}px;
   --widget-scale: {position.scale};
-  --widget-color: {color};
+  --widget-graphic: url('{graphic}');
 }
 ```
 
@@ -470,19 +473,45 @@ interface Props {
 - `handleKeydown()`: Enter/Space key support
 - Accessibility: ARIA labels, tabindex, role="button"
 
-### Neon Color System
+### Widget Graphics System
 
 ```typescript
-const neonColors = [
-  '#00ffff',  // Cyan
-  '#ff00ff',  // Magenta
-  '#00ff00',  // Lime
-  '#ffff00',  // Yellow
-  '#ff6600',  // Orange
+const widgetGraphics = [
+  '/src/lib/assets/widgetGraphics/article.png',
+  '/src/lib/assets/widgetGraphics/compass.png', 
+  '/src/lib/assets/widgetGraphics/cv.png',
+  '/src/lib/assets/widgetGraphics/liveChat.png',
+  '/src/lib/assets/widgetGraphics/weatherWidget.png',
 ];
 ```
 
-Colors cycle through widgets using modulo: `color = neonColors[index % neonColors.length]`
+Graphics cycle through widgets using modulo: `graphic = widgetGraphics[index % widgetGraphics.length]`
+
+**Widget Graphics:**
+- **article.png**: Blog/article content widget preview
+- **compass.png**: Navigation/exploration tool widget
+- **cv.png**: Resume/CV document widget
+- **liveChat.png**: Live chat/communication widget  
+- **weatherWidget.png**: Weather information widget
+
+**CSS Implementation:**
+```css
+.placeholder-widget {
+  background-image: var(--widget-graphic);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.widget-number {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+```
 
 ---
 
@@ -554,12 +583,12 @@ getAvailableWidgets(count: number): WidgetMetadata[]
 
 ```typescript
 // Grid and spacing
-gridSize: 16px          // Grid alignment size
+gridSize: 1px           // Grid alignment size (updated for smoother positioning)
 minSpacing: 4px         // Minimum space between widgets
 
 // Scaling
 MIN_SCALE: 0.25         // Mobile scale factor
-MAX_SCALE: 0.5          // Desktop scale factor
+MAX_SCALE: 0.35         // Desktop scale factor (reduced for better balance)
 
 // Safe areas
 navigationHeight: 120px  // Top safe area
@@ -567,9 +596,11 @@ baseMargin: 24px        // Base margin size
 maxMarginScale: 0.05    // Additional margin (0-5% of viewport)
 
 // Animation
-entranceDuration: 0.6s  // GSAP animation duration
-staggerDelay: 0.1s      // Delay between widget animations
-ease: 'power2.out'      // GSAP easing function
+entranceDuration: 0.2s  // GSAP animation duration (faster)
+staggerDelay: 0.15s     // Delay between widget animations (longer stagger)
+ease: 'expo.inOut'      // GSAP easing function (updated)
+offsetDistance: 100px   // Distance from final position for entrance animation
+goldenAngle: 137.5°     // Angle increment for natural distribution
 
 // Collision detection
 maxAttempts: 50         // Maximum placement attempts per widget
@@ -625,7 +656,7 @@ positions = generatePositions(widgetCount);
 ### Performance Metrics
 
 **Initialization Time**: < 16ms (60fps budget)
-**Animation Duration**: 600ms base + 400ms stagger = ~1000ms total
+**Animation Duration**: 200ms base + 750ms stagger (5 × 150ms) = ~950ms total
 **Memory Usage**: ~2KB per widget position object
 **Collision Detection**: ~5ms for 5 widgets on modern hardware
 **Resize Handling**: < 8ms per viewport change
@@ -640,6 +671,31 @@ positions = generatePositions(widgetCount);
 
 ---
 
-**Last Updated**: 2025-08-23  
-**Next Review**: 2025-09-23  
+**Last Updated**: 2025-08-24  
+**Next Review**: 2025-09-24  
 **Maintainer**: Widget System Team
+
+---
+
+## Recent Updates - v1.1.0
+
+### 2025-08-24: Graphics-Based Widget System
+
+**Major Changes:**
+- **Visual System Overhaul**: Replaced neon color placeholders with PNG graphics
+- **Animation Enhancement**: Individual offset positions using golden angle distribution
+- **Performance Optimization**: Reduced grid size from 16px to 1px for smoother positioning
+- **Scale Adjustment**: Reduced MAX_SCALE from 0.5 to 0.35 for better visual balance
+- **Timing Updates**: Faster animation (0.2s) with longer stagger (0.15s)
+
+**Technical Implementation:**
+- Widget graphics stored in `/src/lib/assets/widgetGraphics/`
+- Background images with `cover` sizing and center positioning
+- Enhanced widget number styling with semi-transparent circular background
+- Golden angle (137.5°) distribution for natural entrance animation spacing
+- Updated CSS custom properties from `--widget-color` to `--widget-graphic`
+
+**Files Modified:**
+- `WidgetContainer.svelte`: Updated graphics array and prop passing
+- `PlaceholderWidget.svelte`: Replaced color system with background-image implementation
+- Documentation updated to reflect graphics-based system
