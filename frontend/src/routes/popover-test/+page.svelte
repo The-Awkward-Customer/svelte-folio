@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PopoverUnified } from '$lib/components/popover';
+  import { Popover } from '$lib/components/popover';
 
   let consoleOutput = $state<string[]>([]);
 
@@ -53,7 +53,7 @@
       <h3>Basic Menu (Bottom)</h3>
       <p>Standard popover with menu items</p>
       
-      <PopoverUnified
+      <Popover
         id="basic-unified"
         onOpen={() => handleOpen('basic')}
         onClose={() => handleClose('basic')}
@@ -73,7 +73,7 @@
             </ul>
           </div>
         {/snippet}
-      </PopoverUnified>
+      </Popover>
     </div>
 
     <!-- Top position -->
@@ -81,7 +81,7 @@
       <h3>Top Position</h3>
       <p>Popover appearing above trigger</p>
       
-      <PopoverUnified
+      <Popover
         id="top-unified"
         position="top"
         onOpen={() => handleOpen('top')}
@@ -97,7 +97,7 @@
             <button>Action Button</button>
           </div>
         {/snippet}
-      </PopoverUnified>
+      </Popover>
     </div>
 
     <!-- Right position -->
@@ -105,7 +105,7 @@
       <h3>Right Position</h3>
       <p>Slides in from the right</p>
       
-      <PopoverUnified
+      <Popover
         id="right-unified"
         position="right"
         onOpen={() => handleOpen('right')}
@@ -121,7 +121,7 @@
             <button>Close Me</button>
           </div>
         {/snippet}
-      </PopoverUnified>
+      </Popover>
     </div>
 
     <!-- Left position -->
@@ -129,7 +129,7 @@
       <h3>Left Position</h3>
       <p>Slides in from the left</p>
       
-      <PopoverUnified
+      <Popover
         id="left-unified"
         position="left"
         onOpen={() => handleOpen('left')}
@@ -145,7 +145,7 @@
             <button>Close Me</button>
           </div>
         {/snippet}
-      </PopoverUnified>
+      </Popover>
     </div>
 
     <!-- Complex content -->
@@ -153,7 +153,7 @@
       <h3>Rich Content</h3>
       <p>Complex interactive content</p>
       
-      <PopoverUnified
+      <Popover
         id="rich-unified"
         position="bottom"
         onOpen={() => handleOpen('rich')}
@@ -180,7 +180,7 @@
             </div>
           </div>
         {/snippet}
-      </PopoverUnified>
+      </Popover>
     </div>
 
     <!-- No outside click -->
@@ -188,7 +188,7 @@
       <h3>No Outside Click</h3>
       <p>Must close with button or Escape</p>
       
-      <PopoverUnified
+      <Popover
         id="no-outside-unified"
         position="bottom"
         closeOnOutsideClick={false}
@@ -208,7 +208,7 @@
             </button>
           </div>
         {/snippet}
-      </PopoverUnified>
+      </Popover>
     </div>
   </div>
 

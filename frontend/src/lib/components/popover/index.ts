@@ -1,6 +1,5 @@
-// Unified popover component
-export { default as Popover } from './PopoverUnified.svelte';
-export { default as PopoverUnified } from './PopoverUnified.svelte';
+// Main popover component
+export { default as Popover } from './Popover.svelte';
 
 // Store
 export { popoverManager } from '../../stores/popoverStore.svelte.js';
