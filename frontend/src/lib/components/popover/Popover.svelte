@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount, onDestroy, tick } from 'svelte';
   import type { Snippet } from 'svelte';
+  import { positionWrapper, calculatePosition, applyPosition, type Position } from '$lib/utils/popper';
 
   interface PopoverProps {
     // Core props
@@ -9,7 +10,7 @@
     content: Snippet;
     
     // Behavior props
-    position?: 'top' | 'bottom' | 'left' | 'right';
+    position?: Position;
     disabled?: boolean;
     
     // Mobile props
@@ -100,7 +101,7 @@
     clearTimers();
     isOpen = true;
     hasScrolledWhileOpen = false;
-    lastScrollY = window.scrollY;
+    lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
     onOpen?.();
   }
 
@@ -160,124 +161,22 @@
   }
 
   // Position wrapper at trigger location
-  function positionWrapper() {
+  function positionPopoverWrapper() {
     if (!triggerElement || !popoverWrapper || isMobile) return;
-    
-    const triggerRect = triggerElement.getBoundingClientRect();
-    
-    Object.assign(popoverWrapper.style, {
-      position: 'fixed',
-      top: `${Math.round(triggerRect.top)}px`,
-      left: `${Math.round(triggerRect.left)}px`,
-      width: `${triggerRect.width}px`,
-      height: `${triggerRect.height}px`,
-      pointerEvents: 'none',
-      zIndex: '999'
-    });
+    positionWrapper(triggerElement, popoverWrapper);
   }
 
   // Calculate content position with proper measurement
   function calculateContentPosition() {
     if (!triggerElement || !contentElement || isMobile) return;
     
-    const triggerRect = triggerElement.getBoundingClientRect();
-    
-    // Reset for measurement
-    Object.assign(contentElement.style, {
-      position: 'absolute',
-      top: '0',
-      left: '0',
-      visibility: 'hidden',
-      pointerEvents: 'none'
+    const result = calculatePosition(triggerElement, contentElement, {
+      position,
+      offset
     });
     
-    // Force layout
-    void contentElement.offsetHeight;
-    
-    const contentWidth = contentElement.offsetWidth;
-    const contentHeight = contentElement.offsetHeight;
-    
-    const viewport = {
-      width: window.innerWidth,
-      height: window.innerHeight
-    };
-
-    type PositionKey = 'top' | 'bottom' | 'left' | 'right';
-    
-    const positions: Record<PositionKey, { top: number; left: number }> = {
-      top: {
-        top: -contentHeight - offset,
-        left: (triggerRect.width - contentWidth) / 2
-      },
-      bottom: {
-        top: triggerRect.height + offset,
-        left: (triggerRect.width - contentWidth) / 2
-      },
-      left: {
-        top: (triggerRect.height - contentHeight) / 2,
-        left: -contentWidth - offset
-      },
-      right: {
-        top: (triggerRect.height - contentHeight) / 2,
-        left: triggerRect.width + offset
-      }
-    };
-
-    // Check viewport fit
-    function fitsInViewport(side: PositionKey): boolean {
-      const pos = positions[side];
-      const absoluteTop = triggerRect.top + pos.top;
-      const absoluteLeft = triggerRect.left + pos.left;
-      
-      return (
-        absoluteTop >= 8 && // Small padding from viewport edge
-        absoluteLeft >= 8 &&
-        absoluteTop + contentHeight <= viewport.height - 8 &&
-        absoluteLeft + contentWidth <= viewport.width - 8
-      );
-    }
-
-    // Find best position
-    let selectedPosition: PositionKey = position;
-    
-    if (!fitsInViewport(position)) {
-      const opposites: Record<PositionKey, PositionKey> = {
-        top: 'bottom',
-        bottom: 'top',
-        left: 'right',
-        right: 'left'
-      };
-      
-      const opposite = opposites[position];
-      if (fitsInViewport(opposite)) {
-        selectedPosition = opposite;
-      } else {
-        // Try remaining positions
-        const fallbackOrder: PositionKey[] = 
-          position === 'top' || position === 'bottom' 
-            ? ['left', 'right'] 
-            : ['bottom', 'top'];
-        
-        for (const pos of fallbackOrder) {
-          if (fitsInViewport(pos)) {
-            selectedPosition = pos;
-            break;
-          }
-        }
-      }
-    }
-
-    actualPosition = selectedPosition;
-    
-    // Apply position
-    const finalPos = positions[selectedPosition];
-    Object.assign(contentElement.style, {
-      position: 'absolute',
-      top: `${Math.round(finalPos.top)}px`,
-      left: `${Math.round(finalPos.left)}px`,
-      visibility: 'visible',
-      pointerEvents: 'auto'
-    });
+    actualPosition = result.position;
+    applyPosition(contentElement, result);
   }
 
   // Trigger event handlers
@@ -361,7 +260,7 @@
 
   // Scroll handler with threshold
   function handleScroll() {
-    if (!isOpen) return;
+    if (!isOpen || typeof window === 'undefined') return;
     
     const currentScrollY = window.scrollY;
     const scrollDelta = Math.abs(currentScrollY - lastScrollY);
@@ -386,7 +285,7 @@
       // Use double rAF to ensure layout is complete
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          positionWrapper();
+          positionPopoverWrapper();
           calculateContentPosition();
         });
       });
@@ -396,12 +295,16 @@
   // Lifecycle
   onMount(() => {
     initMediaQuery();
-    window.addEventListener('scroll', handleScroll, true);
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll, true);
+    }
   });
 
   onDestroy(() => {
     mediaQuery?.removeEventListener('change', handleMediaChange);
-    window.removeEventListener('scroll', handleScroll, true);
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('scroll', handleScroll, true);
+    }
     clearTimers();
   });
 </script>
