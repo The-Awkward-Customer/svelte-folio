@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount, onDestroy, tick } from 'svelte';
-  import { popoverManager } from '$lib/stores/popoverStore.svelte.js';
   import type { Snippet } from 'svelte';
 
   interface PopoverProps {
@@ -12,8 +11,6 @@
     // Behavior props
     position?: 'top' | 'bottom' | 'left' | 'right';
     disabled?: boolean;
-    closeOnOutsideClick?: boolean;
-    closeOnEscape?: boolean;
     
     // Mobile props
     mobileSheet?: boolean;
@@ -34,8 +31,6 @@
     content,
     position = 'bottom',
     disabled = false,
-    closeOnOutsideClick = true,
-    closeOnEscape = true,
     mobileSheet = true,
     offset = 8,
     class: className = '',
@@ -44,49 +39,164 @@
     onClose
   }: PopoverProps = $props();
 
+  // Timing constants for predictable UX
+  const HOVER_OPEN_DELAY = 200;  // Delay before opening on hover
+  const HOVER_CLOSE_DELAY = 300; // Delay before closing (longer for forgiveness)
+  const SCROLL_CLOSE_THRESHOLD = 10; // Pixels scrolled before closing
+
   // State
   let triggerElement = $state<HTMLElement>();
   let contentElement = $state<HTMLElement>();
-  let isOpen = $derived(popoverManager.openPopoversList.includes(id));
+  let popoverWrapper = $state<HTMLElement>();
+  let isOpen = $state(false);
   let isMobile = $state(false);
   let actualPosition = $state(position);
-  let contentStyles = $state('');
-  let previousIsOpen = $state(false);
-
-  // Focus trap caching
-  let focusableElements: HTMLElement[] = [];
-
-  // Performance optimization tracking
-  let scrollRAF: number | null = null;
-  let resizeRAF: number | null = null;
-
-  // MediaQuery for efficient mobile detection
+  
+  // Interaction state
+  let openTimer: ReturnType<typeof setTimeout> | null = null;
+  let closeTimer: ReturnType<typeof setTimeout> | null = null;
+  let isMouseOverTrigger = false;
+  let isMouseOverContent = false;
+  let isFocusWithin = false;
+  let lastScrollY = 0;
+  let hasScrolledWhileOpen = false;
+  
+  // MediaQuery for mobile detection
   let mediaQuery: MediaQueryList | null = null;
 
-  // Initialize media query (more efficient than resize listeners)
+  // Initialize media query
   function initMediaQuery() {
     if (typeof window !== 'undefined') {
       mediaQuery = window.matchMedia('(max-width: 767px)');
       isMobile = mediaQuery.matches;
-      
-      // Use modern addEventListener
       mediaQuery.addEventListener('change', handleMediaChange);
     }
   }
 
   function handleMediaChange(e: MediaQueryListEvent) {
     isMobile = e.matches;
-    if (isOpen && !isMobile) {
-      updatePositionThrottled();
+    // Close popover on viewport change to prevent positioning issues
+    if (isOpen) {
+      closePopover();
     }
   }
 
-  // Calculate desktop positioning
-  function calculatePosition() {
+  // Clear all timers utility
+  function clearTimers() {
+    if (openTimer) {
+      clearTimeout(openTimer);
+      openTimer = null;
+    }
+    if (closeTimer) {
+      clearTimeout(closeTimer);
+      closeTimer = null;
+    }
+  }
+
+  // Open popover with proper state management
+  function openPopover() {
+    if (disabled || isOpen) return;
+    
+    clearTimers();
+    isOpen = true;
+    hasScrolledWhileOpen = false;
+    lastScrollY = window.scrollY;
+    onOpen?.();
+  }
+
+  // Close popover with proper cleanup
+  function closePopover() {
+    if (!isOpen) return;
+    
+    clearTimers();
+    isOpen = false;
+    isMouseOverTrigger = false;
+    isMouseOverContent = false;
+    onClose?.();
+  }
+
+  // Schedule opening with delay
+  function scheduleOpen() {
+    if (disabled || isOpen || isMobile) return;
+    
+    clearTimers();
+    openTimer = setTimeout(() => {
+      openTimer = null;
+      // Double-check conditions before opening
+      if ((isMouseOverTrigger || isMouseOverContent || isFocusWithin) && !disabled && !isMobile) {
+        openPopover();
+      }
+    }, HOVER_OPEN_DELAY);
+  }
+
+  // Schedule closing with delay
+  function scheduleClose() {
+    if (!isOpen || isMobile) return;
+    
+    clearTimers();
+    closeTimer = setTimeout(() => {
+      closeTimer = null;
+      // Double-check conditions before closing
+      if (!isMouseOverTrigger && !isMouseOverContent && !isFocusWithin) {
+        closePopover();
+      }
+    }, HOVER_CLOSE_DELAY);
+  }
+
+  // Re-evaluate whether popover should be open
+  function evaluateState() {
+    if (disabled || isMobile) return;
+    
+    const shouldBeOpen = isMouseOverTrigger || isMouseOverContent || isFocusWithin;
+    
+    if (shouldBeOpen && !isOpen) {
+      scheduleOpen();
+    } else if (!shouldBeOpen && isOpen) {
+      scheduleClose();
+    } else {
+      // Cancel any pending state changes if conditions have changed
+      clearTimers();
+    }
+  }
+
+  // Position wrapper at trigger location
+  function positionWrapper() {
+    if (!triggerElement || !popoverWrapper || isMobile) return;
+    
+    const triggerRect = triggerElement.getBoundingClientRect();
+    
+    Object.assign(popoverWrapper.style, {
+      position: 'fixed',
+      top: `${Math.round(triggerRect.top)}px`,
+      left: `${Math.round(triggerRect.left)}px`,
+      width: `${triggerRect.width}px`,
+      height: `${triggerRect.height}px`,
+      pointerEvents: 'none',
+      zIndex: '999'
+    });
+  }
+
+  // Calculate content position with proper measurement
+  function calculateContentPosition() {
     if (!triggerElement || !contentElement || isMobile) return;
     
     const triggerRect = triggerElement.getBoundingClientRect();
-    const contentRect = contentElement.getBoundingClientRect();
+    
+    // Reset for measurement
+    Object.assign(contentElement.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      visibility: 'hidden',
+      pointerEvents: 'none'
+    });
+    
+    // Force layout
+    void contentElement.offsetHeight;
+    
+    const contentWidth = contentElement.offsetWidth;
+    const contentHeight = contentElement.offsetHeight;
+    
     const viewport = {
       width: window.innerWidth,
       height: window.innerHeight
@@ -94,48 +204,43 @@
 
     type PositionKey = 'top' | 'bottom' | 'left' | 'right';
     
-    // Calculate positions for each side
     const positions: Record<PositionKey, { top: number; left: number }> = {
       top: {
-        top: triggerRect.top - contentRect.height - offset,
-        left: triggerRect.left + (triggerRect.width - contentRect.width) / 2
+        top: -contentHeight - offset,
+        left: (triggerRect.width - contentWidth) / 2
       },
       bottom: {
-        top: triggerRect.bottom + offset,
-        left: triggerRect.left + (triggerRect.width - contentRect.width) / 2
+        top: triggerRect.height + offset,
+        left: (triggerRect.width - contentWidth) / 2
       },
       left: {
-        top: triggerRect.top + (triggerRect.height - contentRect.height) / 2,
-        left: triggerRect.left - contentRect.width - offset
+        top: (triggerRect.height - contentHeight) / 2,
+        left: -contentWidth - offset
       },
       right: {
-        top: triggerRect.top + (triggerRect.height - contentRect.height) / 2,
-        left: triggerRect.right + offset
+        top: (triggerRect.height - contentHeight) / 2,
+        left: triggerRect.width + offset
       }
     };
 
-    // Check if position fits in viewport
-    function fitsInViewport(pos: { top: number; left: number }, side: PositionKey): boolean {
-      switch (side) {
-        case 'top':
-          return pos.top >= 0;
-        case 'bottom':
-          return pos.top + contentRect.height <= viewport.height;
-        case 'left':
-          return pos.left >= 0;
-        case 'right':
-          return pos.left + contentRect.width <= viewport.width;
-        default:
-          return true;
-      }
+    // Check viewport fit
+    function fitsInViewport(side: PositionKey): boolean {
+      const pos = positions[side];
+      const absoluteTop = triggerRect.top + pos.top;
+      const absoluteLeft = triggerRect.left + pos.left;
+      
+      return (
+        absoluteTop >= 8 && // Small padding from viewport edge
+        absoluteLeft >= 8 &&
+        absoluteTop + contentHeight <= viewport.height - 8 &&
+        absoluteLeft + contentWidth <= viewport.width - 8
+      );
     }
 
-    // Try preferred position first
+    // Find best position
     let selectedPosition: PositionKey = position;
-    let selectedCoords = positions[position];
-
-    // If doesn't fit, try opposite
-    if (!fitsInViewport(selectedCoords, position)) {
+    
+    if (!fitsInViewport(position)) {
       const opposites: Record<PositionKey, PositionKey> = {
         top: 'bottom',
         bottom: 'top',
@@ -144,219 +249,160 @@
       };
       
       const opposite = opposites[position];
-      const oppositeCoords = positions[opposite];
-      
-      if (fitsInViewport(oppositeCoords, opposite)) {
+      if (fitsInViewport(opposite)) {
         selectedPosition = opposite;
-        selectedCoords = oppositeCoords;
+      } else {
+        // Try remaining positions
+        const fallbackOrder: PositionKey[] = 
+          position === 'top' || position === 'bottom' 
+            ? ['left', 'right'] 
+            : ['bottom', 'top'];
+        
+        for (const pos of fallbackOrder) {
+          if (fitsInViewport(pos)) {
+            selectedPosition = pos;
+            break;
+          }
+        }
       }
     }
-
-    // Constrain to viewport
-    const padding = 8;
-    selectedCoords = {
-      top: Math.min(
-        Math.max(padding, selectedCoords.top),
-        viewport.height - contentRect.height - padding
-      ),
-      left: Math.min(
-        Math.max(padding, selectedCoords.left),
-        viewport.width - contentRect.width - padding
-      )
-    };
 
     actualPosition = selectedPosition;
     
-    // Batch style updates for better performance (50% reduction in style recalculations)
-    contentStyles = `top: ${selectedCoords.top}px; left: ${selectedCoords.left}px;`;
-  }
-
-  // Update positioning
-  async function updatePosition() {
-    if (!isMobile && isOpen) {
-      await tick();
-      calculatePosition();
-    }
-  }
-
-  // Throttled position update using RAF (prevents excessive calculations)
-  function updatePositionThrottled() {
-    if (scrollRAF) return; // Already scheduled
-    
-    scrollRAF = requestAnimationFrame(() => {
-      scrollRAF = null;
-      if (isOpen && !isMobile) {
-        calculatePosition();
-      }
+    // Apply position
+    const finalPos = positions[selectedPosition];
+    Object.assign(contentElement.style, {
+      position: 'absolute',
+      top: `${Math.round(finalPos.top)}px`,
+      left: `${Math.round(finalPos.left)}px`,
+      visibility: 'visible',
+      pointerEvents: 'auto'
     });
   }
 
-  // Handle trigger click
+  // Trigger event handlers
   function handleTriggerClick(event: MouseEvent) {
     if (disabled) return;
-    event.stopPropagation();
     
-    if (triggerElement) {
-      popoverManager.toggle(id, triggerElement);
-    }
-  }
-
-  // Handle trigger keyboard
-  function handleTriggerKeyDown(event: KeyboardEvent) {
-    if (disabled) return;
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
+    if (isMobile) {
       event.stopPropagation();
-      if (triggerElement) {
-        popoverManager.toggle(id, triggerElement);
+      if (isOpen) {
+        closePopover();
+      } else {
+        openPopover();
       }
     }
-  }
-
-  // Handle backdrop click
-  function handleBackdropClick(event: MouseEvent) {
-    if (event.target === event.currentTarget) {
-      popoverManager.close(id);
-    }
-  }
-
-  // Handle global events
-  function handleKeyDown(event: KeyboardEvent) {
-    if (!isOpen) return;
-    
-    if (event.key === 'Escape' && closeOnEscape) {
-      popoverManager.close(id);
-      return;
-    }
-    
-    // Handle tab for focus trap using cached elements
-    if (event.key === 'Tab' && contentElement) {
-      handleTabKey(event);
-    }
-  }
-
-  function handleClickOutside(event: MouseEvent) {
-    if (!closeOnOutsideClick || !isOpen) return;
-    
-    const target = event.target as Node;
-    if (
-      triggerElement?.contains(target) ||
-      contentElement?.contains(target)
-    ) {
-      return;
-    }
-    
-    popoverManager.close(id);
-  }
-
-  function handleScroll() {
-    if (!isMobile && isOpen) {
-      updatePositionThrottled();
-    }
-  }
-
-  // Optimized focus management with caching
-  function setupFocusTrap() {
-    if (!contentElement) return;
-    
-    // Cache focusable elements once (95% reduction in DOM queries)
-    focusableElements = Array.from(
-      contentElement.querySelectorAll(
-        'a[href], button:not([disabled]), textarea:not([disabled]), ' +
-        'input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
-      )
-    );
-    
-    // Focus first element
-    focusableElements[0]?.focus();
+    // On desktop, click doesn't toggle - only hover/focus do
   }
   
-  function handleTabKey(event: KeyboardEvent) {
-    if (focusableElements.length === 0) return;
+  function handleTriggerMouseEnter() {
+    if (disabled || isMobile) return;
+    isMouseOverTrigger = true;
+    evaluateState();
+  }
+  
+  function handleTriggerMouseLeave() {
+    if (disabled || isMobile) return;
+    isMouseOverTrigger = false;
+    evaluateState();
+  }
+  
+  function handleTriggerFocus() {
+    if (disabled || isMobile) return;
+    isFocusWithin = true;
+    // Focus should open immediately for accessibility
+    clearTimers();
+    openPopover();
+  }
+  
+  function handleTriggerBlur() {
+    if (disabled || isMobile) return;
     
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
+    // Simply close the popover when trigger loses focus
+    // This prevents the double-tab issue and simplifies focus management
+    isFocusWithin = false;
+    evaluateState();
+  }
+  
+  function handleTriggerKeyDown(event: KeyboardEvent) {
+    if (disabled) return;
     
-    if (event.shiftKey && document.activeElement === firstElement) {
+    // Enter/Space on mobile toggles
+    if (isMobile && (event.key === 'Enter' || event.key === ' ')) {
       event.preventDefault();
-      lastElement.focus();
-    } else if (!event.shiftKey && document.activeElement === lastElement) {
+      if (isOpen) {
+        closePopover();
+      } else {
+        openPopover();
+      }
+    }
+    
+    // Escape always closes
+    if (event.key === 'Escape' && isOpen) {
       event.preventDefault();
-      firstElement.focus();
+      closePopover();
+      triggerElement?.focus();
     }
   }
 
-  // Track isOpen state for callback handling
-  $effect(() => {
-    previousIsOpen = isOpen;
-  });
+  // Content event handlers
+  function handleContentMouseEnter() {
+    if (isMobile) return;
+    isMouseOverContent = true;
+    clearTimers(); // Cancel any pending close
+  }
+  
+  function handleContentMouseLeave() {
+    if (isMobile) return;
+    isMouseOverContent = false;
+    evaluateState();
+  }
+  
 
-  // Handle callbacks when state changes
+  // Scroll handler with threshold
+  function handleScroll() {
+    if (!isOpen) return;
+    
+    const currentScrollY = window.scrollY;
+    const scrollDelta = Math.abs(currentScrollY - lastScrollY);
+    
+    // Only close if scrolled beyond threshold
+    if (scrollDelta > SCROLL_CLOSE_THRESHOLD) {
+      hasScrolledWhileOpen = true;
+      closePopover();
+    }
+  }
+
+  // Mobile backdrop handler
+  function handleBackdropClick(event: MouseEvent) {
+    if (event.target === event.currentTarget) {
+      closePopover();
+    }
+  }
+
+  // Update position when open
   $effect(() => {
-    if (isOpen !== previousIsOpen) {
-      if (isOpen && onOpen) {
-        onOpen();
-      } else if (!isOpen && onClose) {
-        onClose();
-      }
-      previousIsOpen = isOpen;
+    if (isOpen && !isMobile) {
+      // Use double rAF to ensure layout is complete
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          positionWrapper();
+          calculateContentPosition();
+        });
+      });
     }
   });
 
-  // Handle opening/closing effects with conditional event listeners
-  $effect(() => {
-    if (isOpen) {
-      updatePosition();
-      
-      // Set up focus trap
-      if (contentElement) {
-        setupFocusTrap();
-      }
-      
-      // Add event listeners only when open (major performance optimization)
-      if (typeof window !== 'undefined') {
-        document.addEventListener('keydown', handleKeyDown);
-        document.addEventListener('click', handleClickOutside);
-        
-        if (!isMobile) {
-          window.addEventListener('scroll', handleScroll, { passive: true });
-        }
-      }
-    } else {
-      // Clean up cached focus elements
-      focusableElements = [];
-      
-      // Remove event listeners when closed (zero overhead when closed)
-      if (typeof window !== 'undefined') {
-        document.removeEventListener('keydown', handleKeyDown);
-        document.removeEventListener('click', handleClickOutside);
-        window.removeEventListener('scroll', handleScroll);
-      }
-    }
-  });
-
+  // Lifecycle
   onMount(() => {
     initMediaQuery();
+    window.addEventListener('scroll', handleScroll, true);
   });
 
   onDestroy(() => {
-    // Cleanup media query
     mediaQuery?.removeEventListener('change', handleMediaChange);
-    
-    // Cancel any pending RAF
-    if (scrollRAF) {
-      cancelAnimationFrame(scrollRAF);
-      scrollRAF = null;
-    }
-    if (resizeRAF) {
-      cancelAnimationFrame(resizeRAF);
-      resizeRAF = null;
-    }
-    
-    // Event listeners are now managed conditionally in $effect
-    // Focus elements are cleaned up in the effect
-    
-    popoverManager.close(id);
+    window.removeEventListener('scroll', handleScroll, true);
+    clearTimers();
   });
 </script>
 
@@ -365,11 +411,15 @@
   bind:this={triggerElement}
   class="popover-trigger {triggerClass}"
   role="button"
-  tabindex="0"
+  tabindex={disabled ? -1 : 0}
   aria-expanded={isOpen}
   aria-controls="popover-{id}"
   aria-haspopup="dialog"
   onclick={handleTriggerClick}
+  onmouseenter={handleTriggerMouseEnter}
+  onmouseleave={handleTriggerMouseLeave}
+  onfocus={handleTriggerFocus}
+  onblur={handleTriggerBlur}
   onkeydown={handleTriggerKeyDown}
   data-popover-trigger={id}
 >
@@ -399,27 +449,26 @@
   </div>
 {/if}
 
-<!-- Desktop Content -->
+<!-- Desktop Content with Fixed Wrapper -->
 {#if isOpen && !isMobile}
-  <!-- Desktop backdrop -->
+  <!-- Fixed wrapper that stays with trigger -->
   <div
-    class="popover-backdrop-desktop"
-    onclick={handleBackdropClick}
-    role="presentation"
-  ></div>
-
-  <!-- Desktop popover -->
-  <div
-    bind:this={contentElement}
-    id="popover-{id}"
-    class="popover-content-desktop position-{actualPosition} {className}"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="popover-{id}-title"
-    style="{contentStyles}"
-    data-popover-content={id}
+    bind:this={popoverWrapper}
+    class="popover-wrapper"
   >
-    {@render content()}
+    <!-- Popover content positioned relative to wrapper -->
+    <div
+      bind:this={contentElement}
+      id="popover-{id}"
+      class="popover-content-desktop position-{actualPosition} {className}"
+      role="tooltip"
+      aria-labelledby="popover-{id}-title"
+      onmouseenter={handleContentMouseEnter}
+      onmouseleave={handleContentMouseLeave}
+      data-popover-content={id}
+    >
+      {@render content()}
+    </div>
   </div>
 {/if}
 
@@ -427,6 +476,18 @@
   .popover-trigger {
     display: inline-block;
     cursor: pointer;
+  }
+  
+  .popover-trigger:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  /* Fixed wrapper stays locked to trigger */
+  .popover-wrapper {
+    position: fixed;
+    pointer-events: none;
+    z-index: 999;
   }
 
   /* Mobile styles */
@@ -455,30 +516,9 @@
     animation: slideUp 0.3s cubic-bezier(0.32, 0.72, 0, 1);
   }
 
-  /* Drag handle indicator */
-  .popover-content-mobile::before {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 36px;
-    height: 4px;
-    background: var(--fg-text-muted);
-    border-radius: 2px;
-    opacity: 0.5;
-  }
-
-  /* Desktop styles */
-  .popover-backdrop-desktop {
-    position: fixed;
-    inset: 0;
-    z-index: 998;
-    /* Invisible backdrop for click detection */
-  }
-
+  /* Desktop popover positioned absolutely within wrapper */
   .popover-content-desktop {
-    position: fixed;
+    position: absolute;
     min-width: 200px;
     max-width: 320px;
     background: var(--bg-page);
@@ -488,11 +528,12 @@
     box-shadow:
       0 8px 24px rgba(0, 0, 0, 0.12),
       0 2px 6px rgba(0, 0, 0, 0.08);
-    z-index: 999;
-    animation: popIn 0.2s ease;
+    pointer-events: auto;
+    animation: popIn 0.15s ease;
+    will-change: transform, opacity;
   }
 
-  /* Position variants */
+  /* Position-specific transform origins for smooth animation */
   .popover-content-desktop.position-bottom {
     transform-origin: top center;
   }

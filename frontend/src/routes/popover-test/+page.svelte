@@ -1,23 +1,5 @@
 <script lang="ts">
   import { Popover } from '$lib/components/popover';
-
-  let consoleOutput = $state<string[]>([]);
-
-  function addToConsole(message: string) {
-    consoleOutput = [...consoleOutput, `${new Date().toLocaleTimeString()}: ${message}`];
-  }
-
-  function handleOpen(id: string) {
-    addToConsole(`Popover '${id}' opened`);
-  }
-
-  function handleClose(id: string) {
-    addToConsole(`Popover '${id}' closed`);
-  }
-
-  function clearConsole() {
-    consoleOutput = [];
-  }
 </script>
 
 <svelte:head>
@@ -27,39 +9,22 @@
 <div class="test-page">
   <header class="page-header">
     <h1>🪟 Popover Component Test</h1>
-    <p>Testing the single-component popover with responsive behavior</p>
+    <p>Hover on desktop, click on mobile - opinionated design</p>
   </header>
 
-  <!-- Console Output -->
-  <div class="console">
-    <div class="console-header">
-      <h3>📋 Event Console</h3>
-      <button onclick={clearConsole} class="clear-btn">Clear</button>
-    </div>
-    <div class="console-output">
-      {#each consoleOutput as message}
-        <div class="console-line">{message}</div>
-      {/each}
-      {#if consoleOutput.length === 0}
-        <div class="console-line empty">No events yet...</div>
-      {/if}
-    </div>
-  </div>
 
   <!-- Test Grid -->
   <div class="test-grid">
-    <!-- Basic popover -->
+    <!-- Default behavior -->
     <div class="test-card">
-      <h3>Basic Menu (Bottom)</h3>
-      <p>Standard popover with menu items</p>
+      <h3>Default Behavior</h3>
+      <p>Hover on desktop (150ms), tap on mobile</p>
       
       <Popover
-        id="basic-unified"
-        onOpen={() => handleOpen('basic')}
-        onClose={() => handleClose('basic')}
+        id="hover-basic"
       >
         {#snippet trigger()}
-          <button class="trigger-button">Open Menu</button>
+          <button class="trigger-button">Hover Me</button>
         {/snippet}
         
         {#snippet content()}
@@ -79,13 +44,11 @@
     <!-- Top position -->
     <div class="test-card">
       <h3>Top Position</h3>
-      <p>Popover appearing above trigger</p>
+      <p>Hover on desktop, tap on mobile - positioned above</p>
       
       <Popover
-        id="top-unified"
+        id="top-position"
         position="top"
-        onOpen={() => handleOpen('top')}
-        onClose={() => handleClose('top')}
       >
         {#snippet trigger()}
           <button class="trigger-button">Top Popover</button>
@@ -93,7 +56,7 @@
         
         {#snippet content()}
           <div class="popover-content">
-            <p>✨ This popover appears above the trigger!</p>
+            <p>✨ This popover toggles on click!</p>
             <button>Action Button</button>
           </div>
         {/snippet}
@@ -103,13 +66,11 @@
     <!-- Right position -->
     <div class="test-card">
       <h3>Right Position</h3>
-      <p>Slides in from the right</p>
+      <p>Positioned to the right of trigger</p>
       
       <Popover
-        id="right-unified"
+        id="right-position"
         position="right"
-        onOpen={() => handleOpen('right')}
-        onClose={() => handleClose('right')}
       >
         {#snippet trigger()}
           <button class="trigger-button">Right Popover</button>
@@ -118,7 +79,7 @@
         {#snippet content()}
           <div class="popover-content">
             <p>👉 From the right!</p>
-            <button>Close Me</button>
+            <button>Action Button</button>
           </div>
         {/snippet}
       </Popover>
@@ -127,13 +88,11 @@
     <!-- Left position -->
     <div class="test-card">
       <h3>Left Position</h3>
-      <p>Slides in from the left</p>
+      <p>Positioned to the left of trigger</p>
       
       <Popover
-        id="left-unified"
+        id="left-position"
         position="left"
-        onOpen={() => handleOpen('left')}
-        onClose={() => handleClose('left')}
       >
         {#snippet trigger()}
           <button class="trigger-button">Left Popover</button>
@@ -142,22 +101,20 @@
         {#snippet content()}
           <div class="popover-content">
             <p>👈 From the left!</p>
-            <button>Close Me</button>
+            <p>Smart positioning</p>
           </div>
         {/snippet}
       </Popover>
     </div>
 
-    <!-- Complex content -->
+    <!-- Rich content -->
     <div class="test-card">
-      <h3>Rich Content</h3>
-      <p>Complex interactive content</p>
+      <h3>Rich Interactive Content</h3>
+      <p>Forms and buttons work in hover mode</p>
       
       <Popover
-        id="rich-unified"
+        id="rich-content"
         position="bottom"
-        onOpen={() => handleOpen('rich')}
-        onClose={() => handleClose('rich')}
       >
         {#snippet trigger()}
           <button class="trigger-button">Rich Content</button>
@@ -185,27 +142,21 @@
 
     <!-- No outside click -->
     <div class="test-card">
-      <h3>No Outside Click</h3>
-      <p>Must close with button or Escape</p>
+      <h3>Bottom Position (Default)</h3>
+      <p>Standard bottom positioning with consistent timing</p>
       
       <Popover
-        id="no-outside-unified"
+        id="bottom-position"
         position="bottom"
-        closeOnOutsideClick={false}
-        onOpen={() => handleOpen('no-outside')}
-        onClose={() => handleClose('no-outside')}
       >
         {#snippet trigger()}
-          <button class="trigger-button">Persistent Popover</button>
+          <button class="trigger-button">Bottom Popover</button>
         {/snippet}
         
         {#snippet content()}
           <div class="popover-content">
-            <p>🔒 Click outside won't close this!</p>
-            <p>Use Escape or the button below.</p>
-            <button onclick={() => import('$lib/components/popover').then(m => m.popoverManager.close('no-outside-unified'))}>
-              Close Me
-            </button>
+            <p>⬇️ Standard positioning</p>
+            <p>Consistent 150ms delay for all popovers</p>
           </div>
         {/snippet}
       </Popover>
@@ -216,12 +167,13 @@
   <div class="instructions">
     <h3>🧪 Testing Instructions</h3>
     <ul>
-      <li><strong>Desktop:</strong> Popovers appear positioned relative to trigger with smooth animations</li>
-      <li><strong>Mobile:</strong> Popovers show as bottom sheets with swipe handle</li>
-      <li><strong>Reopen Test:</strong> Open and close each popover multiple times to test for bugs</li>
-      <li><strong>Keyboard:</strong> Use Tab to navigate, Enter/Space to trigger, Escape to close</li>
-      <li><strong>Scroll Test:</strong> Open popover, then scroll page - desktop popovers should follow trigger</li>
-      <li><strong>Resize Test:</strong> Open popover, resize window - should adapt mobile/desktop behavior</li>
+      <li><strong>Desktop:</strong> Hover to show/hide with consistent 150ms delay</li>
+      <li><strong>Mobile:</strong> Tap to toggle - shows as bottom sheet regardless of desktop settings</li>
+      <li><strong>Positioning:</strong> Smart positioning that flips to opposite side if doesn't fit in viewport</li>
+      <li><strong>Content Interaction:</strong> On desktop, mouse can move into popover content without closing</li>
+      <li><strong>Keyboard:</strong> Tab focuses triggers, Enter/Space works on mobile, Escape closes on both</li>
+      <li><strong>Responsive:</strong> Automatically switches behavior at 768px breakpoint</li>
+      <li><strong>Scroll Following:</strong> Desktop popovers follow their triggers during scroll</li>
     </ul>
   </div>
 </div>
@@ -254,56 +206,6 @@
     margin: 0 auto;
   }
 
-  .console {
-    background: var(--bg-primary);
-    border-radius: var(--border-radius-card);
-    margin-bottom: var(--spacing-separated);
-    overflow: hidden;
-  }
-
-  .console-header {
-    background: var(--fg-text-primary);
-    color: var(--bg-page);
-    padding: var(--spacing-related-relaxed);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .console-header h3 {
-    margin: 0;
-    font-size: var(--fs-300);
-  }
-
-  .clear-btn {
-    background: var(--fg-text-danger);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 4px 8px;
-    font-size: var(--fs-250);
-    cursor: pointer;
-  }
-
-  .console-output {
-    padding: var(--spacing-related-relaxed);
-    font-family: var(--font-family-alt);
-    font-size: var(--fs-275);
-    max-height: 200px;
-    overflow-y: auto;
-    background: var(--fg-text-primary);
-    color: var(--bg-page);
-  }
-
-  .console-line {
-    padding: 2px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .console-line.empty {
-    color: rgba(255, 255, 255, 0.5);
-    font-style: italic;
-  }
 
   .test-grid {
     display: grid;
