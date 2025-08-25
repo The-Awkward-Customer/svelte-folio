@@ -54,9 +54,12 @@ interface PopperResult {
 
 ## Server-Side Rendering (SSR) Support
 
-- All functions include `typeof window !== 'undefined'` checks
-- Graceful degradation with fallback dimensions
-- No client-only code execution during SSR
+- All functions include `typeof window !== 'undefined'` checks to prevent runtime errors
+- Graceful degradation with fallback viewport dimensions (1000x1000px)
+- **Important Limitation**: Functions that call `getBoundingClientRect()` require a mounted DOM element and will not produce meaningful values during SSR
+- **Recommended Usage**: Only call positioning utilities after component mount (e.g., in `onMount()`, effects, or user interactions)
+- **Consumer Responsibility**: Components should perform their own runtime checks before invoking DOM-reading utilities during SSR
+- **Alternative Approaches**: Consider providing fallback dimensions, mocked DOMRect objects, or deferring positioning calculations until client-side hydration
 
 ## Usage Example
 
