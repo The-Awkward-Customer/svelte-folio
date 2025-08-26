@@ -31,15 +31,13 @@ lib/components/popover/
 
 ### Component Architecture
 
-**Single Unified Component** - The Popover component handles both trigger and content in one cohesive unit, eliminating complex context sharing and lifecycle management issues.
+**Single Unified Component** - The Popover component handles both trigger and content in one cohesive unit with an internal trigger snippet that renders a standardized icon button.
 
 ```
 <Popover>            // Single component handles everything
-  {#snippet trigger()}      // Trigger content as snippet
-    <Button />              // Any clickable element
-  {/snippet}
+  // Internal trigger snippet renders icon button with scoped styles
   
-  {#snippet content()}      // Popover content as snippet
+  {#snippet content()}      // Only content snippet required
     {content}               // User content
   {/snippet}
 </Popover>
@@ -53,20 +51,16 @@ lib/components/popover/
 interface PopoverProps {
   // Core props
   id: string;                    // Unique popover identifier
-  trigger: Snippet;              // Trigger content as snippet
   content: Snippet;              // Popover content as snippet
   
   // Behavior props
   position?: 'top' | 'bottom' | 'left' | 'right'; // Desktop positioning (default: 'bottom')
   disabled?: boolean;            // Disable trigger interaction (default: false)
-  closeOnOutsideClick?: boolean; // Desktop click outside to close (default: true)
-  closeOnEscape?: boolean;       // Escape key dismissal (default: true)
   mobileSheet?: boolean;         // Enable mobile sheet behavior (default: true)
   
   // Styling props  
   offset?: number;               // Distance from trigger in pixels (default: 8)
   class?: string;                // Additional CSS classes for content
-  triggerClass?: string;         // Additional CSS classes for trigger
   
   // Callbacks
   onOpen?: () => void;           // Called when popover opens
@@ -301,6 +295,70 @@ export const popoverManager = new PopoverManager();
 }
 ```
 
+## Internal Trigger Design
+
+### Standardized Icon Button
+
+The Popover component includes an internal trigger snippet that renders a standardized icon button with scoped styles. This design eliminates the need for parent components to provide trigger markup while ensuring consistent visual appearance and behavior.
+
+#### Internal Trigger Implementation
+
+```svelte
+{#snippet triggerSnippet(props: { class?: string })}
+  <button
+    bind:this={triggerElement}
+    class="popover-trigger {props?.class || ''}"
+    type="button"
+    {disabled}
+    aria-expanded={isOpen}
+    aria-controls="popover-{id}"
+    aria-haspopup="dialog"
+    onclick={handleTriggerClick}
+    onmouseenter={handleTriggerMouseEnter}
+    onmouseleave={handleTriggerMouseLeave}
+    onfocus={handleTriggerFocus}
+    onblur={handleTriggerBlur}
+    onkeydown={handleTriggerKeyDown}
+    data-popover-trigger={id}
+    {...props}
+  >
+    <Icon name="placeholder" />
+  </button>
+{/snippet}
+```
+
+#### Scoped Trigger Styles
+
+```css
+.popover-trigger {
+  display: inline-block;
+  cursor: pointer;
+  width: var(--size-touch-safe);
+  height: var(--size-touch-safe);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--surface-neutral-reading);
+  border: none;
+  box-shadow: inset 0px 0px 0px 1px var(--border-neutral);
+}
+
+.popover-trigger:hover {
+  box-shadow: inset 0px 0px 0px 1px var(--border-hover);
+}
+
+.popover-trigger:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 2px;
+}
+```
+
+#### Benefits of Internal Trigger Design
+
+1. **Consistency**: All popovers have identical trigger appearance and behavior
+2. **Simplification**: Parent components only provide content, no trigger markup needed
+3. **Maintainability**: Trigger styles are centralized and scoped to the component
+4. **Accessibility**: ARIA attributes and keyboard handling are built-in
+5. **Touch-Safe**: Standardized touch target size for mobile devices
+
 ## Implementation Example
 
 ### Basic Usage
@@ -309,14 +367,9 @@ export const popoverManager = new PopoverManager();
 <!-- SimplePopover.svelte -->
 <script>
   import { Popover } from '$lib/components/popover';
-  import { Button } from '$lib/components/actions';
 </script>
 
 <Popover id="user-menu" position="bottom">
-  {#snippet trigger()}
-    <Button>Open Menu</Button>
-  {/snippet}
-  
   {#snippet content()}
     <div class="menu-content">
       <h3>User Menu</h3>
@@ -335,7 +388,6 @@ export const popoverManager = new PopoverManager();
 ```svelte
 <script>
   import { Popover } from '$lib/components/popover';
-  import { IconButton } from '$lib/components/actions';
   
   function handleOpen() {
     console.log('Popover opened');
@@ -351,12 +403,7 @@ export const popoverManager = new PopoverManager();
   position="top"
   onOpen={handleOpen}
   onClose={handleClose}
-  closeOnOutsideClick={false}
 >
-  {#snippet trigger()}
-    <IconButton icon="bell" />
-  {/snippet}
-  
   {#snippet content()}
     <div class="notifications">
       <header>
@@ -379,20 +426,14 @@ export const popoverManager = new PopoverManager();
 </script>
 
 <!-- User menu popover -->
-<Popover id="user-menu" position="bottom-left">
-  {#snippet trigger()}
-    <button>Profile</button>
-  {/snippet}
+<Popover id="user-menu" position="bottom">
   {#snippet content()}
     <div>User settings...</div>
   {/snippet}
 </Popover>
 
 <!-- Notification popover -->  
-<Popover id="notifications" position="bottom-right">
-  {#snippet trigger()}
-    <button>🔔</button>
-  {/snippet}
+<Popover id="notifications" position="bottom">
   {#snippet content()}
     <div>Recent notifications...</div>
   {/snippet}
@@ -1120,6 +1161,39 @@ The original multi-component approach has been replaced with a unified component
 - [ ] Intersection Observer for trigger visibility
 - [ ] Web Animations API alternative to GSAP
 - [ ] CSS-only version for reduced bundle size
+
+---
+
+## Architecture Evolution - Internal Trigger Design
+
+**Date**: August 26, 2025  
+**Time**: Latest Update  
+**Change Type**: Internal trigger snippet with scoped styles  
+
+### Latest Changes - Internal Trigger Snippet
+
+The Popover component has been further refined to include an internal trigger snippet that renders a standardized icon button, eliminating the need for external trigger content while maintaining all functionality.
+
+#### Key Changes:
+1. **Removed `trigger` prop** - No longer accepts external trigger content
+2. **Internal trigger snippet** - Renders standardized icon button with scoped styles  
+3. **Simplified API** - Parent components only provide `content` snippet
+4. **Consistent UX** - All popovers have identical trigger appearance
+5. **Centralized styling** - Trigger styles are scoped within the component
+
+#### New Simplified Interface:
+```typescript
+interface PopoverProps {
+  // Core props
+  id: string;                    // Unique popover identifier
+  content: Snippet;              // Popover content as snippet (only required snippet)
+  
+  // All other props remain the same
+  position?: 'top' | 'bottom' | 'left' | 'right';
+  disabled?: boolean;
+  // ... etc
+}
+```
 
 ---
 

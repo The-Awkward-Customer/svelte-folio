@@ -1,26 +1,30 @@
 <script lang="ts">
-  import { onMount, onDestroy, tick } from 'svelte';
-  import type { Snippet } from 'svelte';
-  import { positionWrapper, calculatePosition, applyPosition, type Position } from '$lib/utils/popper';
+  import { onMount, onDestroy } from "svelte";
+  import type { Snippet } from "svelte";
+  import {
+    positionWrapper,
+    calculatePosition,
+    applyPosition,
+    type Position,
+  } from "$lib/utils/popper";
+  import Icon from "../primitives/Icon.svelte";
 
   interface PopoverProps {
     // Core props
     id: string;
-    trigger: Snippet;
     content: Snippet;
-    
+
     // Behavior props
     position?: Position;
     disabled?: boolean;
-    
+
     // Mobile props
     mobileSheet?: boolean;
-    
+
     // Styling props
     offset?: number;
     class?: string;
-    triggerClass?: string;
-    
+
     // Callbacks
     onOpen?: () => void;
     onClose?: () => void;
@@ -28,20 +32,18 @@
 
   let {
     id,
-    trigger,
     content,
-    position = 'bottom',
+    position = "bottom",
     disabled = false,
     mobileSheet = true,
     offset = 8,
-    class: className = '',
-    triggerClass = '',
+    class: className = "",
     onOpen,
-    onClose
+    onClose,
   }: PopoverProps = $props();
 
   // Timing constants for predictable UX
-  const HOVER_OPEN_DELAY = 200;  // Delay before opening on hover
+  const HOVER_OPEN_DELAY = 200; // Delay before opening on hover
   const HOVER_CLOSE_DELAY = 300; // Delay before closing (longer for forgiveness)
   const SCROLL_CLOSE_THRESHOLD = 10; // Pixels scrolled before closing
 
@@ -52,7 +54,7 @@
   let isOpen = $state(false);
   let isMobile = $state(false);
   let actualPosition = $state(position);
-  
+
   // Interaction state
   let openTimer: ReturnType<typeof setTimeout> | null = null;
   let closeTimer: ReturnType<typeof setTimeout> | null = null;
@@ -60,17 +62,16 @@
   let isMouseOverContent = false;
   let isFocusWithin = false;
   let lastScrollY = 0;
-  let hasScrolledWhileOpen = false;
-  
+
   // MediaQuery for mobile detection
   let mediaQuery: MediaQueryList | null = null;
 
   // Initialize media query
   function initMediaQuery() {
-    if (typeof window !== 'undefined') {
-      mediaQuery = window.matchMedia('(max-width: 767px)');
+    if (typeof window !== "undefined") {
+      mediaQuery = window.matchMedia("(max-width: 767px)");
       isMobile = mediaQuery.matches;
-      mediaQuery.addEventListener('change', handleMediaChange);
+      mediaQuery.addEventListener("change", handleMediaChange);
     }
   }
 
@@ -97,18 +98,17 @@
   // Open popover with proper state management
   function openPopover() {
     if (disabled || isOpen) return;
-    
+
     clearTimers();
     isOpen = true;
-    hasScrolledWhileOpen = false;
-    lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+    lastScrollY = typeof window !== "undefined" ? window.scrollY : 0;
     onOpen?.();
   }
 
   // Close popover with proper cleanup
   function closePopover() {
     if (!isOpen) return;
-    
+
     clearTimers();
     isOpen = false;
     isMouseOverTrigger = false;
@@ -119,12 +119,16 @@
   // Schedule opening with delay
   function scheduleOpen() {
     if (disabled || isOpen || isMobile) return;
-    
+
     clearTimers();
     openTimer = setTimeout(() => {
       openTimer = null;
       // Double-check conditions before opening
-      if ((isMouseOverTrigger || isMouseOverContent || isFocusWithin) && !disabled && !isMobile) {
+      if (
+        (isMouseOverTrigger || isMouseOverContent || isFocusWithin) &&
+        !disabled &&
+        !isMobile
+      ) {
         openPopover();
       }
     }, HOVER_OPEN_DELAY);
@@ -133,7 +137,7 @@
   // Schedule closing with delay
   function scheduleClose() {
     if (!isOpen || isMobile) return;
-    
+
     clearTimers();
     closeTimer = setTimeout(() => {
       closeTimer = null;
@@ -147,9 +151,10 @@
   // Re-evaluate whether popover should be open
   function evaluateState() {
     if (disabled || isMobile) return;
-    
-    const shouldBeOpen = isMouseOverTrigger || isMouseOverContent || isFocusWithin;
-    
+
+    const shouldBeOpen =
+      isMouseOverTrigger || isMouseOverContent || isFocusWithin;
+
     if (shouldBeOpen && !isOpen) {
       scheduleOpen();
     } else if (!shouldBeOpen && isOpen) {
@@ -169,12 +174,12 @@
   // Calculate content position with proper measurement
   function calculateContentPosition() {
     if (!triggerElement || !contentElement || isMobile) return;
-    
+
     const result = calculatePosition(triggerElement, contentElement, {
       position,
-      offset
+      offset,
     });
-    
+
     actualPosition = result.position;
     applyPosition(contentElement, result);
   }
@@ -182,7 +187,7 @@
   // Trigger event handlers
   function handleTriggerClick(event: MouseEvent) {
     if (disabled) return;
-    
+
     if (isMobile) {
       event.stopPropagation();
       if (isOpen) {
@@ -193,19 +198,19 @@
     }
     // On desktop, click doesn't toggle - only hover/focus do
   }
-  
+
   function handleTriggerMouseEnter() {
     if (disabled || isMobile) return;
     isMouseOverTrigger = true;
     evaluateState();
   }
-  
+
   function handleTriggerMouseLeave() {
     if (disabled || isMobile) return;
     isMouseOverTrigger = false;
     evaluateState();
   }
-  
+
   function handleTriggerFocus() {
     if (disabled || isMobile) return;
     isFocusWithin = true;
@@ -213,21 +218,21 @@
     clearTimers();
     openPopover();
   }
-  
+
   function handleTriggerBlur() {
     if (disabled || isMobile) return;
-    
+
     // Simply close the popover when trigger loses focus
     // This prevents the double-tab issue and simplifies focus management
     isFocusWithin = false;
     evaluateState();
   }
-  
+
   function handleTriggerKeyDown(event: KeyboardEvent) {
     if (disabled) return;
-    
+
     // Enter/Space on mobile toggles
-    if (isMobile && (event.key === 'Enter' || event.key === ' ')) {
+    if (isMobile && (event.key === "Enter" || event.key === " ")) {
       event.preventDefault();
       if (isOpen) {
         closePopover();
@@ -235,9 +240,9 @@
         openPopover();
       }
     }
-    
+
     // Escape always closes
-    if (event.key === 'Escape' && isOpen) {
+    if (event.key === "Escape" && isOpen) {
       event.preventDefault();
       closePopover();
       triggerElement?.focus();
@@ -250,24 +255,22 @@
     isMouseOverContent = true;
     clearTimers(); // Cancel any pending close
   }
-  
+
   function handleContentMouseLeave() {
     if (isMobile) return;
     isMouseOverContent = false;
     evaluateState();
   }
-  
 
   // Scroll handler with threshold
   function handleScroll() {
-    if (!isOpen || typeof window === 'undefined') return;
-    
+    if (!isOpen || typeof window === "undefined") return;
+
     const currentScrollY = window.scrollY;
     const scrollDelta = Math.abs(currentScrollY - lastScrollY);
-    
+
     // Only close if scrolled beyond threshold
     if (scrollDelta > SCROLL_CLOSE_THRESHOLD) {
-      hasScrolledWhileOpen = true;
       closePopover();
     }
   }
@@ -295,39 +298,44 @@
   // Lifecycle
   onMount(() => {
     initMediaQuery();
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', handleScroll, true);
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll, true);
     }
   });
 
   onDestroy(() => {
-    mediaQuery?.removeEventListener('change', handleMediaChange);
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('scroll', handleScroll, true);
+    mediaQuery?.removeEventListener("change", handleMediaChange);
+    if (typeof window !== "undefined") {
+      window.removeEventListener("scroll", handleScroll, true);
     }
     clearTimers();
   });
 </script>
 
+{#snippet triggerSnippet(props: { class?: string })}
+  <button
+    bind:this={triggerElement}
+    class="popover-trigger {props?.class || ''}"
+    type="button"
+    {disabled}
+    aria-expanded={isOpen}
+    aria-controls="popover-{id}"
+    aria-haspopup="dialog"
+    onclick={handleTriggerClick}
+    onmouseenter={handleTriggerMouseEnter}
+    onmouseleave={handleTriggerMouseLeave}
+    onfocus={handleTriggerFocus}
+    onblur={handleTriggerBlur}
+    onkeydown={handleTriggerKeyDown}
+    data-popover-trigger={id}
+    {...props}
+  >
+    <Icon name="placeholder" />
+  </button>
+{/snippet}
+
 <!-- Trigger -->
-<div
-  bind:this={triggerElement}
-  class="popover-trigger {triggerClass}"
-  role="button"
-  tabindex={disabled ? -1 : 0}
-  aria-expanded={isOpen}
-  aria-controls="popover-{id}"
-  aria-haspopup="dialog"
-  onclick={handleTriggerClick}
-  onmouseenter={handleTriggerMouseEnter}
-  onmouseleave={handleTriggerMouseLeave}
-  onfocus={handleTriggerFocus}
-  onblur={handleTriggerBlur}
-  onkeydown={handleTriggerKeyDown}
-  data-popover-trigger={id}
->
-  {@render trigger()}
-</div>
+{@render triggerSnippet({})}
 
 <!-- Mobile Content -->
 {#if isOpen && isMobile && mobileSheet}
@@ -355,10 +363,7 @@
 <!-- Desktop Content with Fixed Wrapper -->
 {#if isOpen && !isMobile}
   <!-- Fixed wrapper that stays with trigger -->
-  <div
-    bind:this={popoverWrapper}
-    class="popover-wrapper"
-  >
+  <div bind:this={popoverWrapper} class="popover-wrapper">
     <!-- Popover content positioned relative to wrapper -->
     <div
       bind:this={contentElement}
@@ -379,10 +384,20 @@
   .popover-trigger {
     display: inline-block;
     cursor: pointer;
+    width: var(--size-touch-safe);
+    height: var(--size-touch-safe);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--surface-neutral-reading);
+    border: none;
+    box-shadow: inset 0px 0px 0px 1px var(--border-neutral);
   }
-  
+
+  .popover-trigger:hover {
+    box-shadow: inset 0px 0px 0px 1px var(--border-hover);
+  }
+
   .popover-trigger:focus-visible {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--focus-ring-color);
     outline-offset: 2px;
   }
 
@@ -455,13 +470,21 @@
 
   /* Animations */
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @keyframes slideUp {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
   }
 
   @keyframes popIn {
