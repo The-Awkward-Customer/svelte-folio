@@ -319,12 +319,12 @@ select {
   --width-screen: 100vw;
 
   /* Border radius */
-  --bdr-radius-tiny: 4px;
-  --bdr-radius-small: 8px;
-  --bdr-radius-medium: 16px;
-  --bdr-radius-large: 24px;
-  --bdr-radius-pill: 999px;
-  --border-radius-card: 8px;
+  --border-radius-tiny: 4px;
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --border-radius-pill: 999px;
+
 
   /* Opacity */
   --opacity-invisible: 0; /* 0% */
@@ -454,8 +454,8 @@ select {
   --text-primary-disabled: rgba(38, 39, 45, 1);
 
   /* Border Tokens */
-  --border-neutral: rgba(255, 255, 255, 0.2);
-  --border-hover: rgba(255, 255, 255, 0.5);
+  --border-neutral: rgba(255, 255, 255, 1);
+  --border-hover: rgba(255, 255, 255, 1);
   --border-active: rgba(255, 255, 255, 1);
 
   /* Surface Tokens */
@@ -579,8 +579,9 @@ select {
   --bg-positive-60: rgba(42, 83, 20, 0.6);
 
   /* Border Tokens - Dark Theme */
-  --border-neutral: rgba(255, 255, 255, 0.2);
-  --border-hover: rgba(255, 255, 255, 0.75);
+
+  --border-neutral: rgb(39, 40, 42);
+  --border-hover: rgba(136, 137, 141, 1);
   --border-active: rgba(255, 255, 255, 1);
 
   /* Text Primary Tokens - Dark Theme */

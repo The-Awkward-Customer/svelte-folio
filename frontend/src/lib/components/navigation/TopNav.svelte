@@ -1,5 +1,6 @@
 <script lang="ts">
   import LinkList from "./LinkList.svelte";
+  import Popover from "../popover/Popover.svelte";
 
   interface LinkItem {
     label: string;
@@ -25,24 +26,36 @@
       <LinkList {list} />
     </header>
   </div>
+  <Popover id="bottom-position" position="bottom">
+    {#snippet content()}
+      <div class="popover-content">
+        <p>👉 From the right!</p>
+        <button>Action Button</button>
+      </div>
+    {/snippet}
+  </Popover>
 </section>
 
 <style>
   .top-nav-root {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--spacing-related);
     padding: 24px 0 0 24px;
   }
 
   .animated-border-box {
     position: relative;
-    border-radius: var(--border-radius-card);
-    padding: 1px;
+    border-radius: var(--border-radius-sm);
   }
 
   .animated-border-box::before {
     content: "";
     position: absolute;
     inset: 0;
-    border-radius: var(--border-radius-card);
+    border-radius: var(--border-radius-sm);
     padding: 1px;
     background: var(--border-neutral);
     mask:
@@ -57,9 +70,9 @@
     background: linear-gradient(
       45deg,
       var(--border-neutral),
-      var(--border-hover),
+      var(--border-active),
       var(--border-neutral),
-      var(--border-hover)
+      var(--border-active)
     );
     background-size: 300% 300%;
     animation: bgRotate 10s linear infinite;
@@ -70,7 +83,7 @@
     position: absolute;
     inset: 1px;
     background: var(--surface-neutral-reading);
-    border-radius: calc(var(--border-radius-card) - 1px);
+    border-radius: calc(var(--border-radius-sm) - 1px);
     z-index: -1;
   }
 
@@ -84,7 +97,7 @@
     justify-content: start;
     padding: 2px var(--spacing-grouped);
     background: transparent;
-    border-radius: calc(var(--border-radius-card) - 1px);
+    border-radius: calc(var(--border-radius-sm) - 1px);
   }
 
   @keyframes bgRotate {
