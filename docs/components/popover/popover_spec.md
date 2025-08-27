@@ -51,7 +51,8 @@ lib/components/popover/
 interface PopoverProps {
   // Core props
   id: string;                    // Unique popover identifier
-  content: Snippet;              // Popover content as snippet
+  title: string;                 // Popover title text
+  text: string;                  // Popover body text
   
   // Behavior props
   position?: 'top' | 'bottom' | 'left' | 'right'; // Desktop positioning (default: 'bottom')
@@ -70,11 +71,9 @@ interface PopoverProps {
 
 ### Export Compatibility
 
-Both `Popover` and `Popover` exports point to the same unified component:
+The Popover component is exported as a single unified component:
 
 ```typescript
-// All these imports work identically
-import { Popover } from '$lib/components/popover';
 import { Popover } from '$lib/components/popover';
 ```
 
@@ -369,18 +368,12 @@ The Popover component includes an internal trigger snippet that renders a standa
   import { Popover } from '$lib/components/popover';
 </script>
 
-<Popover id="user-menu" position="bottom">
-  {#snippet content()}
-    <div class="menu-content">
-      <h3>User Menu</h3>
-      <ul>
-        <li><button>Profile</button></li>
-        <li><button>Settings</button></li>
-        <li><button>Logout</button></li>
-      </ul>
-    </div>
-  {/snippet}
-</Popover>
+<Popover 
+  id="user-menu" 
+  title="User Menu"
+  text="Select an option from the menu below"
+  position="bottom" 
+/>
 ```
 
 ### Advanced Usage with Callbacks
@@ -400,22 +393,12 @@ The Popover component includes an internal trigger snippet that renders a standa
 
 <Popover 
   id="notifications" 
+  title="Notifications"
+  text="You have 3 new notifications"
   position="top"
   onOpen={handleOpen}
   onClose={handleClose}
->
-  {#snippet content()}
-    <div class="notifications">
-      <header>
-        <h3>Notifications</h3>
-        <button class="close-btn">×</button>
-      </header>
-      <div class="notification-list">
-        <!-- Notification items -->
-      </div>
-    </div>
-  {/snippet}
-</Popover>
+/>
 ```
 
 ### Multiple Popovers
@@ -426,18 +409,20 @@ The Popover component includes an internal trigger snippet that renders a standa
 </script>
 
 <!-- User menu popover -->
-<Popover id="user-menu" position="bottom">
-  {#snippet content()}
-    <div>User settings...</div>
-  {/snippet}
-</Popover>
+<Popover 
+  id="user-menu" 
+  title="User Settings"
+  text="Manage your account preferences"
+  position="bottom" 
+/>
 
 <!-- Notification popover -->  
-<Popover id="notifications" position="bottom">
-  {#snippet content()}
-    <div>Recent notifications...</div>
-  {/snippet}
-</Popover>
+<Popover 
+  id="notifications" 
+  title="Recent Notifications"
+  text="View your latest updates"
+  position="bottom" 
+/>
 ```
 
 ## Accessibility Requirements
@@ -1164,29 +1149,31 @@ The original multi-component approach has been replaced with a unified component
 
 ---
 
-## Architecture Evolution - Internal Trigger Design
+## Architecture Evolution - String Content Props
 
-**Date**: August 26, 2025  
+**Date**: August 27, 2025  
 **Time**: Latest Update  
-**Change Type**: Internal trigger snippet with scoped styles  
+**Change Type**: Replaced content snippet with title and text string props  
 
-### Latest Changes - Internal Trigger Snippet
+### Latest Changes - Simplified String Props
 
-The Popover component has been further refined to include an internal trigger snippet that renders a standardized icon button, eliminating the need for external trigger content while maintaining all functionality.
+The Popover component has been simplified to use string props for content instead of snippets, making it easier to use while maintaining all functionality.
 
 #### Key Changes:
-1. **Removed `trigger` prop** - No longer accepts external trigger content
-2. **Internal trigger snippet** - Renders standardized icon button with scoped styles  
-3. **Simplified API** - Parent components only provide `content` snippet
-4. **Consistent UX** - All popovers have identical trigger appearance
-5. **Centralized styling** - Trigger styles are scoped within the component
+1. **Removed `content` snippet prop** - No longer accepts snippet content
+2. **Added `title` string prop** - Displays popover title in semantic h3 element  
+3. **Added `text` string prop** - Displays popover body text in semantic p element
+4. **Simplified API** - Parent components only provide strings for content
+5. **Semantic HTML** - Content automatically wrapped in proper semantic elements
+6. **Consistent styling** - Title and text have dedicated CSS classes with design tokens
 
 #### New Simplified Interface:
 ```typescript
 interface PopoverProps {
   // Core props
   id: string;                    // Unique popover identifier
-  content: Snippet;              // Popover content as snippet (only required snippet)
+  title: string;                 // Popover title text
+  text: string;                  // Popover body text
   
   // All other props remain the same
   position?: 'top' | 'bottom' | 'left' | 'right';
@@ -1623,7 +1610,35 @@ The popover component has been significantly enhanced with hardened interaction 
 
 ### Key Improvements in v2.3.0
 
-#### 1. **Hover Interaction Hardening**
+#### 1. **Keyboard vs Mouse Focus Distinction**
+- **Pointer Tracking**: Uses `pointerdown` event to detect mouse/touch interactions
+- **Keyboard-Only Focus**: Only opens popover when focus comes from keyboard (Tab key)
+- **Mouse Click Prevention**: Clicking on desktop no longer triggers popover opening
+- **Accessibility First**: Ensures keyboard users can access popover content easily
+
+```typescript
+// Track if focus is from mouse/touch
+let isPointerDown = false;
+
+function handleTriggerPointerDown() {
+  // Mark that pointer is being used (not keyboard)
+  isPointerDown = true;
+}
+
+function handleTriggerFocus() {
+  // Only open on keyboard focus, not mouse focus
+  if (isPointerDown) {
+    isPointerDown = false;
+    return;
+  }
+  
+  isFocusWithin = true;
+  clearTimers();
+  openPopover();
+}
+```
+
+#### 2. **Hover Interaction Hardening**
 - **Linger Requirement**: Mouse must remain in trigger area for initial check period before hover delay begins
 - **Mouse Position Tracking**: Verifies mouse is still within trigger bounds before opening
 - **Increased Delays**: 
@@ -1811,9 +1826,9 @@ The hardened interaction design in v2.3.0 establishes a solid foundation for:
 
 ---
 
-**Version**: 2.3.0 - Hardened Interaction Design  
-**Last Updated**: August 25, 2025  
-**Status**: Production Ready - Enhanced UX with Robust Focus Management & Scroll-to-Close
+**Version**: 2.4.0 - Simplified String Props & Focus Management  
+**Last Updated**: August 27, 2025  
+**Status**: Production Ready - String Content Props with Keyboard/Mouse Focus Distinction
 
 ### Key Improvements in v2.3.0
 - ✅ Hardened hover interaction with linger requirements (300ms total)
@@ -1825,5 +1840,5 @@ The hardened interaction design in v2.3.0 establishes a solid foundation for:
 - ✅ Optimized event listener management
 - ✅ Consolidated state management with `clearTimers()` utility
 
-**Previous Version**: 2.2.0 - Opinionated Design with Enhanced Positioning  
-**Migration**: Fully backward compatible - no code changes required
+**Previous Version**: 2.3.0 - Hardened Interaction Design  
+**Migration**: Breaking change - content snippet replaced with title/text string props
