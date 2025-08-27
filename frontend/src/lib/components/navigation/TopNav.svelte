@@ -18,6 +18,10 @@
   ];
 
   let { list = defaultListData }: TopNavProps = $props();
+
+  let popoverTitle = "Hey there!";
+  let popoverText =
+    "This site is built using Svelte5.js, Vite and is hosted on Vercel with a little help from Claude. ❤️";
 </script>
 
 <section class="top-nav-root">
@@ -26,14 +30,12 @@
       <LinkList {list} />
     </header>
   </div>
-  <Popover id="bottom-position" position="bottom">
-    {#snippet content()}
-      <div class="popover-content">
-        <p>👉 From the right!</p>
-        <button>Action Button</button>
-      </div>
-    {/snippet}
-  </Popover>
+  <Popover
+    id="bottom-position"
+    position="bottom"
+    title={popoverTitle}
+    text={popoverText}
+  />
 </section>
 
 <style>

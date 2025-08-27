@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
-  import type { Snippet } from "svelte";
   import {
     positionWrapper,
     calculatePosition,
@@ -12,7 +11,8 @@
   interface PopoverProps {
     // Core props
     id: string;
-    content: Snippet;
+    title: string;
+    text: string;
 
     // Behavior props
     position?: Position;
@@ -32,7 +32,8 @@
 
   let {
     id,
-    content,
+    title,
+    text,
     position = "bottom",
     disabled = false,
     mobileSheet = true,
@@ -52,7 +53,10 @@
   let contentElement = $state<HTMLElement>();
   let popoverWrapper = $state<HTMLElement>();
   let isOpen = $state(false);
-  let isMobile = $state(false);
+  // Initialize isMobile based on window width if available
+  let isMobile = $state(
+    typeof window !== "undefined" ? window.innerWidth <= 767 : false,
+  );
   let actualPosition = $state(position);
 
   // Interaction state
@@ -62,6 +66,7 @@
   let isMouseOverContent = false;
   let isFocusWithin = false;
   let lastScrollY = 0;
+  let isPointerDown = false; // Track if focus is from mouse/touch
 
   // MediaQuery for mobile detection
   let mediaQuery: MediaQueryList | null = null;
@@ -185,18 +190,26 @@
   }
 
   // Trigger event handlers
+  function handleTriggerPointerDown() {
+    // Mark that pointer is being used (not keyboard)
+    isPointerDown = true;
+  }
+
   function handleTriggerClick(event: MouseEvent) {
     if (disabled) return;
 
-    if (isMobile) {
-      event.stopPropagation();
-      if (isOpen) {
-        closePopover();
-      } else {
-        openPopover();
-      }
+    // Prevent any click behavior on desktop
+    if (!isMobile) {
+      event.preventDefault();
+      return;
     }
-    // On desktop, click doesn't toggle - only hover/focus do
+
+    event.stopPropagation();
+    if (isOpen) {
+      closePopover();
+    } else {
+      openPopover();
+    }
   }
 
   function handleTriggerMouseEnter() {
@@ -213,6 +226,13 @@
 
   function handleTriggerFocus() {
     if (disabled || isMobile) return;
+
+    // Only open on keyboard focus, not mouse focus
+    if (isPointerDown) {
+      isPointerDown = false;
+      return;
+    }
+
     isFocusWithin = true;
     // Focus should open immediately for accessibility
     clearTimers();
@@ -321,6 +341,7 @@
     aria-expanded={isOpen}
     aria-controls="popover-{id}"
     aria-haspopup="dialog"
+    onpointerdown={handleTriggerPointerDown}
     onclick={handleTriggerClick}
     onmouseenter={handleTriggerMouseEnter}
     onmouseleave={handleTriggerMouseLeave}
@@ -356,7 +377,10 @@
     aria-labelledby="popover-{id}-title"
     data-popover-content={id}
   >
-    {@render content()}
+    <div class="popover-content">
+      <h3 class="popover-title">{title}</h3>
+      <p class="popover-text">{text}</p>
+    </div>
   </div>
 {/if}
 
@@ -375,7 +399,10 @@
       onmouseleave={handleContentMouseLeave}
       data-popover-content={id}
     >
-      {@render content()}
+      <div class="popover-content">
+        <h3 class="popover-title">{title}</h3>
+        <p class="popover-text">{text}</p>
+      </div>
     </div>
   </div>
 {/if}
@@ -387,7 +414,7 @@
     width: var(--size-touch-safe);
     height: var(--size-touch-safe);
     border-radius: var(--border-radius-sm);
-    background-color: var(--surface-neutral-reading);
+    background-color: var(--surface-neutral-mask);
     border: none;
     box-shadow: inset 0px 0px 0px 1px var(--border-neutral);
   }
@@ -423,31 +450,33 @@
     left: 0;
     right: 0;
     max-height: 85vh;
-    background: var(--bg-page);
-    border-radius: var(--border-radius-card) var(--border-radius-card) 0 0;
-    padding: var(--spacing-grouped);
+    background: var(--surface-neutral-reading);
+    border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
+    padding-left: var(--spacing-grouped);
+    padding-right: var(--spacing-grouped);
+    padding-top: var(--spacing-grouped);
     padding-bottom: calc(var(--spacing-grouped) + env(safe-area-inset-bottom));
     z-index: 1000;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
     animation: slideUp 0.3s cubic-bezier(0.32, 0.72, 0, 1);
   }
 
   /* Desktop popover positioned absolutely within wrapper */
   .popover-content-desktop {
     position: absolute;
-    min-width: 200px;
-    max-width: 320px;
-    background: var(--bg-page);
-    border: 1px solid var(--fg-text-muted-60);
-    border-radius: var(--border-radius-card);
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    background: var(--surface-neutral-mask);
+    border: 1px solid var(--border-neutral);
+    border-radius: var(--border-radius-sm);
     padding: var(--spacing-related-relaxed);
     box-shadow:
       0 8px 24px rgba(0, 0, 0, 0.12),
       0 2px 6px rgba(0, 0, 0, 0.08);
     pointer-events: auto;
-    animation: popIn 0.15s ease;
+    animation: popIn 0.15s ease-in-out;
     will-change: transform, opacity;
   }
 
@@ -496,6 +525,22 @@
       opacity: 1;
       transform: scale(1);
     }
+  }
+
+  /* Content styling */
+  .popover-title {
+    font-size: var(--fs-275);
+    font-weight: var(--fw-medium);
+    color: var(--text-primary-muted);
+    padding-bottom: var(--spacing-related-dense);
+  }
+
+  .popover-text {
+    font-size: var(--fs-275);
+    font-weight: var(--fw-medium);
+    line-height: var(--lh-normal);
+    color: var(--text-primary-default);
+    max-width: var(--width-prose-sm);
   }
 
   /* Reduced motion support */
