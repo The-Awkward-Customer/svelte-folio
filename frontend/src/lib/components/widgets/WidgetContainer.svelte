@@ -31,6 +31,7 @@
 
     if (prefersReducedMotion) {
       // Skip animation for users who prefer reduced motion
+      element.classList.add('reduced-motion');
       gsap.set(element, { opacity: 1 });
       return;
     }
@@ -68,6 +69,8 @@
       onComplete: () => {
         // Clear transform after animation for better performance
         gsap.set(element, { clearProps: "transform" });
+        // Re-enable pointer events after animation completes
+        element.style.pointerEvents = "auto";
       },
     });
   }
@@ -131,6 +134,12 @@
   }
 
   .widget-container :global(.placeholder-widget) {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .widget-container :global(.placeholder-widget.reduced-motion) {
     pointer-events: auto;
+    opacity: 1;
   }
 </style>
