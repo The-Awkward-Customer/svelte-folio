@@ -60,7 +60,7 @@
 <style>
   .btn {
     border: none;
-    border-radius: var(--broder-radius-sm);
+    border-radius: var(--border-radius-sm);
     font-weight: var(--fw-semibold);
     height: 44px;
     width: 44px;

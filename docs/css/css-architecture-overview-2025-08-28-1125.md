@@ -17,7 +17,8 @@ frontend/src/styles/
     │   ├── spacing.css              # Margin, padding, gap values
     │   ├── sizing.css               # Width, height, size tokens
     │   ├── motion.css               # Transitions and animations
-    │   ├── elevation.css            # Shadows and opacity
+    │   ├── elevation.css            # Shadows
+    │   ├── opacity.css              # Opacity tokens
     │   └── radius.css               # Border radius values
     ├── themes/                      # Theme-specific tokens
     │   ├── base/
@@ -42,6 +43,7 @@ frontend/src/styles/
 @import './design-tokens/global/sizing.css';
 @import './design-tokens/global/motion.css';
 @import './design-tokens/global/elevation.css';
+@import './design-tokens/global/opacity.css';
 @import './design-tokens/global/radius.css';
 
 /* Import Base Styles */
@@ -89,6 +91,8 @@ frontend/src/styles/
 
 #### Elevation (elevation.css)
 - Shadow tokens: `--shadow-sm/md/lg`
+
+#### Opacity (opacity.css)
 - Opacity tokens: `--opacity-invisible/hover/active/selected`
 
 #### Radius (radius.css)
@@ -213,8 +217,14 @@ The themeManager supports two override methods:
 - Improved maintainability
 
 ### Breaking Changes
-- None - all existing CSS variable names preserved
 - Import path changed from `../app.css` to `../styles/app.css`
+- Border-radius token renames:
+  - `--bdr-radius-tiny` → `--border-radius-tiny`
+  - `--bdr-radius-small` → `--border-radius-sm`
+  - `--bdr-radius-medium` → `--border-radius-md`
+  - `--bdr-radius-large` → `--border-radius-lg`
+  - `--bdr-radius-pill` → `--border-radius-pill`
+- Legacy `--bdr-…` variables have been removed so consumers must update references or add alias fallbacks
 
 ## Best Practices
 
