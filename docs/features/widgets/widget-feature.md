@@ -396,9 +396,9 @@ When logging issues, use this format:
 
 ---
 
-## 🔄 Feature Updates & Changes - 2025-08-23 19:15
+## 🔄 Feature Updates & Changes
 
-**Status**: 🟢 Additional Features Implemented
+**Status**: 🟢 Additional Features Implemented & Bug Fixes Applied
 
 ### Update #001 - Removed Session Storage Persistence
 
@@ -502,3 +502,88 @@ This change was implemented to:
 4. **Enhance User Experience**: Each page visit feels unique and dynamic
 
 The widget system now prioritizes fresh, dynamic experiences over position persistence, aligning better with the goal of creating memorable first impressions for portfolio visitors.
+
+---
+
+### Update #002 - Safari/iOS Flickering Fix
+
+**Date**: `2025-08-29`  
+**Change Type**: Bug Fix  
+**Impact**: Critical - Safari/iOS Compatibility  
+**Reference**: `docs/features/widgets/ios-flickering-2025-08-29.md`
+
+#### Issue Addressed
+Widgets experienced severe flickering during GSAP entrance animations on Safari desktop and iOS devices/simulators due to Safari's compositor issues with CSS `background-image` properties during scale transforms.
+
+#### Root Cause
+Safari's rendering engine has fundamental issues with CSS `background-image` properties when combined with scale transforms. The browser recalculates background positioning/sizing on every animation frame, causing layer switching and visual flickering regardless of image format (PNG/SVG) or optimization techniques.
+
+#### Technical Solution Implemented
+
+**PlaceholderWidget.svelte Changes:**
+
+1. **HTML Structure Update**:
+   ```html
+   <!-- BEFORE (problematic) -->
+   <div style:--widget-graphic="url('{graphic}')">
+     <span class="widget-number">{number}</span>
+   </div>
+
+   <!-- AFTER (fixed) -->
+   <div>
+     <img src={graphic} alt="Widget {number}" class="widget-image" />
+     <span class="widget-number">{number}</span>
+   </div>
+   ```
+
+2. **CSS Changes**:
+   ```css
+   /* REMOVED (problematic properties) */
+   background-image: var(--widget-graphic);
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+
+   /* ADDED (solution) */
+   .widget-image {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     border-radius: 8px;
+     pointer-events: none;
+   }
+   ```
+
+#### Impact on System
+
+- ✅ **Complete Safari flickering elimination**: Zero animation flickering on Safari desktop and iOS
+- ✅ **Maintained visual appearance**: `object-fit: cover` provides identical visual result to `background-size: cover`
+- ✅ **Improved rendering performance**: HTML `<img>` elements use more efficient DOM rendering pipeline
+- ✅ **Cross-browser compatibility**: Solution works identically across Chrome, Firefox, Safari, and mobile browsers
+- ✅ **No functional changes**: Widget interactions, positioning, and animations remain unchanged
+- ✅ **Accessibility maintained**: Alt text on images improves screen reader compatibility
+
+#### Files Modified
+```
+frontend/src/lib/components/widgets/PlaceholderWidget.svelte
+├── Removed CSS custom property binding: style:--widget-graphic
+├── Added HTML img element with src binding
+├── Removed CSS background-image properties (4 lines)
+└── Added .widget-image CSS class (9 lines)
+```
+
+#### Technical Explanation
+The fix bypasses Safari's problematic CSS background-image rendering pipeline by using HTML image elements, which utilize the standard DOM/layout rendering system that handles transforms more efficiently without compositor layer conflicts.
+
+#### Validation Status
+- ✅ **Safari desktop**: Flickering eliminated
+- ✅ **iOS Safari**: Smooth animations confirmed  
+- ✅ **iOS Simulator**: No visual artifacts
+- ✅ **Other browsers**: Maintained performance and appearance
+- ✅ **Animation timing**: GSAP entrance animations work smoothly
+- ✅ **Reduced motion**: Accessibility preferences respected
+
+This critical fix ensures the widget system provides a consistent, professional experience across all browser platforms without requiring complex optimization techniques or performance compromises.

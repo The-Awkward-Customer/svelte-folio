@@ -26,13 +26,13 @@
 	style:--widget-x="{position.x}px"
 	style:--widget-y="{position.y}px"
 	style:--widget-scale="{position.scale}"
-	style:--widget-graphic="url('{graphic}')"
 	onclick={handleClick}
 	onkeydown={handleKeydown}
 	tabindex="0"
 	role="button"
 	aria-label="Placeholder widget {number}"
 >
+	<img src={graphic} alt="Widget {number}" class="widget-image" />
 	<span class="widget-number">{number}</span>
 </div>
 
@@ -45,10 +45,6 @@
 		height: 512px;
 		transform: scale(var(--widget-scale));
 		transform-origin: top left;
-		background-image: var(--widget-graphic);
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
 		border-radius: 8px;
 		cursor: pointer;
 		user-select: none;
@@ -78,6 +74,17 @@
 
 	.placeholder-widget:active {
 		transform: scale(var(--widget-scale)) translateZ(0) scale(0.98);
+	}
+
+	.widget-image {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 8px;
+		pointer-events: none;
 	}
 
 	.widget-number {

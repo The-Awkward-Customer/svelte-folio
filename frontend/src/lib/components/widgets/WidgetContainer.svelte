@@ -31,6 +31,7 @@
 
     if (prefersReducedMotion) {
       // Skip animation for users who prefer reduced motion
+      element.classList.add('reduced-motion');
       gsap.set(element, { opacity: 1 });
       return;
     }
@@ -132,5 +133,10 @@
 
   .widget-container :global(.placeholder-widget) {
     pointer-events: auto;
+    opacity: 0;
+  }
+
+  .widget-container :global(.placeholder-widget.reduced-motion) {
+    opacity: 1;
   }
 </style>
