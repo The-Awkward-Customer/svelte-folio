@@ -8,10 +8,10 @@
   --bg-overlay: rgba(0, 0, 0, 1); /* opaque black overlay */
   --bg-overlay-semi: rgba(0, 0, 0, 0.8); /* semi-transparent black overlay */
 
-  /* Legacy rgb values for backwards compatibility */
-  --bdr-inverse: 0 0 0; /* rgba(0, 0, 0, 1) */
-  --bg-component: 180 180 180; /* rgba(180, 180, 180, 1) */
-  --bg-inverse: 38 39 45; /* rgba(38, 39, 45, 1) */
+  /* Legacy rgba values for backwards compatibility */
+  --bdr-inverse: rgba(0, 0, 0, 1);
+  --bg-component: rgba(180, 180, 180, 1);
+  --bg-inverse: rgba(38, 39, 45, 1);
 
   /* Border inverse with opacity variants */
   --bdr-inverse-full: rgba(0, 0, 0, 1);

@@ -212,9 +212,11 @@ The themeManager supports two override methods:
 
 ### From Monolithic app.css
 - Extracted ~800 lines into focused modules
-- Preserved all existing functionality
-- Maintained backward compatibility
+- Preserved functionality for active modules and components
+- Maintained compatibility for public APIs while deprecating legacy variables
 - Improved maintainability
+
+Legacy variables were intentionally removed or deprecated with migration guidance provided in the Breaking Changes section below.
 
 ### Breaking Changes
 - Import path changed from `../app.css` to `../styles/app.css`
@@ -245,6 +247,12 @@ The themeManager supports two override methods:
 2. Use semantic file names
 3. Group related tokens together
 4. Maintain consistent formatting
+
+### Tooling Updates
+1. Update `create_clean_summary.py` script to no longer treat all `--bdr-*` tokens as legacy
+2. Modify token-analyzer logic to recognize new radius token names (`--border-radius-*`)
+3. Add tests or examples showing corrected classification between legacy border tokens and modern radius tokens
+4. Verify downstream reports and consumers that rely on `create_clean_summary.py` for token categorization
 
 ## Future Enhancements
 

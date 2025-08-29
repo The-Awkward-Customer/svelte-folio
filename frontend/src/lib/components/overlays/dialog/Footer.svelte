@@ -207,7 +207,7 @@
   }
   .dialog-completion-message p {
     font-size: var(--fs-200);
-    color: rgba(var(--color-txt-secondary), 0.8);
+    color: rgb(var(--color-txt-secondary) / 0.8);
     margin: 0;
   }
 
