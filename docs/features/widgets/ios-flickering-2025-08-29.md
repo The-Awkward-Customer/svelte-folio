@@ -44,7 +44,7 @@ Elements flicker during GSAP animations on Safari and iOS simulators when animat
 Add these properties to your existing styles:
 
 ```css
-/* In WidgetCanvas.svelte <style> section */
+/* In WidgetContainer.svelte <style> section */
 .widget-container :global(.placeholder-widget) {
   pointer-events: auto;
   opacity: 0;
@@ -457,16 +457,8 @@ gsap.to(element, {
 });
 ```
 
-#### ✅ Phase 3: Global GSAP Configuration (COMPLETED)
-**Status:** Fully implemented and initialized  
-- Created `/frontend/src/lib/config/gsap-config.ts` with global GSAP settings
-- Added Safari-specific defaults including `force3D: true` and `rotation: 0.01`
-- Initialized in main `+layout.svelte` to run before widget components load
-- **Current Issue:** Global settings applied, but flickering persists
-
-**Files Modified:**
-- `/frontend/src/lib/config/gsap-config.ts` (created)
-- `/frontend/src/routes/+layout.svelte` (updated with initialization)
+#### Phase 3: Global GSAP Configuration (Optional)
+**Status:** Guidance only; not implemented in this PR
 
 ### Current Status Summary:
 
@@ -752,25 +744,25 @@ Safari's compositor struggles with repainting background images during transform
 **Recommended:** Replace background images with CSS-based visual elements or SVG icons for optimal Safari performance.
 
 ### 12:35 PM - SVG Asset Implementation
-- **Action:** Replaced all PNG widget graphics with SVG versions
+- **Action:** Attempted to replace PNG widget graphics with SVG versions  
 - **Implementation Details:**
-  - Updated `widgetGraphics` array: `.png` → `.svg` extensions
-  - New assets: `article.svg`, `compass.svg`, `cv.svg`, `liveChat.svg`, `weatherWidget.svg`
-  - Restored `background-image: var(--widget-graphic)` CSS properties
+  - PNG assets remain in use in `widgetGraphics` array
+  - SVG conversion not completed; original PNG assets still referenced
+  - CSS properties remain unchanged
   - Maintained 256px widget size and force3D GSAP properties
 - **Hypothesis:** SVG vector graphics should eliminate image repainting issues during scale transforms
-- **Expected:** SVG rendering should be more efficient than PNG during transforms
-- **Result:** ❌ **FAILED** - Flickering persists even with SVG assets
-- **Conclusion:** 🚨 **Issue is NOT related to image format or raster vs. vector graphics**
+- **Expected:** SVG rendering should be more efficient than PNG during transforms  
+- **Result:** ❌ **NOT TESTED** - SVG conversion was not completed; PNG assets still in use
+- **Conclusion:** 🚨 **SVG testing incomplete; PNG vs SVG performance comparison pending**
 
 ### 12:40 PM - Revised Root Cause Analysis
 
-**CRITICAL DISCOVERY:** The flickering issue is **NOT** about image format, size, or type. Even SVG assets cause the same flickering.
+**CRITICAL DISCOVERY:** The flickering issue root cause remains unclear since SVG conversion was not completed.
 
 **What we've now ELIMINATED:**
-- ✅ **PNG vs SVG format:** Both cause flickering
+- ❓ **PNG vs SVG format:** Not yet tested (SVG conversion incomplete)
 - ✅ **Image size (512px vs 256px):** Flickering occurs at both sizes  
-- ✅ **Raster vs Vector graphics:** SVG doesn't solve the issue
+- ❓ **Raster vs Vector graphics:** SVG testing incomplete
 - ✅ **Image file size/complexity:** Issue exists with optimized SVGs
 
 **NEW HYPOTHESIS:** The root cause is the **CSS `background-image` property itself** during scale transforms, not the actual image content.
@@ -817,8 +809,9 @@ The issue occurs because Safari recalculates background positioning/sizing on ev
 
 **Final Configuration:**
 - ✅ **HTML `<img>` elements** instead of CSS backgrounds
-- ✅ **256px widget size** (reduced from 512px for better performance) 
-- ✅ **SVG assets** for scalable vector graphics
+- ✅ **WIDGET_BASE_SIZE=512** for consistent sizing
+- ✅ **PNG assets** for optimized raster graphics
+- ✅ **MIN_SCALE lowered to 0.15** for improved animation range
 - ✅ **GSAP force3D + rotation** properties for GPU acceleration
 - ✅ **object-fit: cover** for same visual appearance as background-size
 

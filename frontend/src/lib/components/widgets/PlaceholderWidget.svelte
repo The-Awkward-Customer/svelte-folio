@@ -32,7 +32,7 @@
 	role="button"
 	aria-label="Placeholder widget {number}"
 >
-	<img src={graphic} alt="Widget {number}" class="widget-image" />
+	<img src={graphic} alt="" class="widget-image" aria-hidden="true" />
 	<span class="widget-number">{number}</span>
 </div>
 

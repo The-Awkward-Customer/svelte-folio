@@ -516,7 +516,7 @@ The widget system now prioritizes fresh, dynamic experiences over position persi
 Widgets experienced severe flickering during GSAP entrance animations on Safari desktop and iOS devices/simulators due to Safari's compositor issues with CSS `background-image` properties during scale transforms.
 
 #### Root Cause
-Safari's rendering engine has fundamental issues with CSS `background-image` properties when combined with scale transforms. The browser recalculates background positioning/sizing on every animation frame, causing layer switching and visual flickering regardless of image format (PNG/SVG) or optimization techniques.
+Safari's rendering engine has fundamental issues with CSS `background-image` properties when combined with scale transforms. The browser recalculates background positioning/sizing on every animation frame, causing layer switching and visual flickering regardless of image format (PNG/SVG) or optimization techniques. See WebKit bugs: [Bug 238067](https://bugs.webkit.org/show_bug.cgi?id=238067), [Bug 221054](https://bugs.webkit.org/show_bug.cgi?id=221054), [Bug 27684](https://bugs.webkit.org/show_bug.cgi?id=27684).
 
 #### Technical Solution Implemented
 
@@ -531,7 +531,7 @@ Safari's rendering engine has fundamental issues with CSS `background-image` pro
 
    <!-- AFTER (fixed) -->
    <div>
-     <img src={graphic} alt="Widget {number}" class="widget-image" />
+     <img src={graphic} alt="Widget {number}" class="widget-image" width="240" height="240" loading="lazy" decoding="async" fetchpriority="low" role="img" />
      <span class="widget-number">{number}</span>
    </div>
    ```
@@ -545,7 +545,12 @@ Safari's rendering engine has fundamental issues with CSS `background-image` pro
    background-repeat: no-repeat;
 
    /* ADDED (solution) */
+   .placeholder-widget {
+     position: relative; /* Anchor for absolutely positioned image */
+   }
+   
    .widget-image {
+     display: block; /* Remove inline gap */
      position: absolute;
      top: 0;
      left: 0;
