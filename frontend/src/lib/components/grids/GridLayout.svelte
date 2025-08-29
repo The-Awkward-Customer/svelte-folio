@@ -1,10 +1,11 @@
 <script lang="ts">
+  import type { Component } from 'svelte';
   let P: string = "Graphics Page";
   console.log(`${P} rendered!`);
 
   export interface GridItem {
     readonly id: string;
-    readonly component: any;
+    readonly component: Component<Record<string, any>>;
     readonly size: "2-2" | "4-2";
     readonly props?: Record<string, any>;
   }
