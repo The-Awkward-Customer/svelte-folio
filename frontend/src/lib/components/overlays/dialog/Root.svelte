@@ -1,11 +1,11 @@
 <!-- DialogRoot.svelte -->
 <script lang="ts">
-  import { onMount, onDestroy, tick } from 'svelte';
-  import { dialogManager } from '$lib';
-  import { browser } from '$app/environment'; // Import browser
+  import { onMount, onDestroy, tick } from "svelte";
+  import { dialogManager } from "$lib";
+  import { browser } from "$app/environment"; // Import browser
 
-  import Fresha from './Fresha.svelte';
-  import { TestOne, TestTwo, TestThree } from '../../experimental/dialog';
+  import Fresha from "./Fresha.svelte";
+  import { TestOne, TestTwo, TestThree } from "../../experimental/dialog";
 
   // Reactive statement to check if this dialog should be active
   const isActive = $derived(dialogManager.currentDialog !== null);
@@ -24,16 +24,16 @@
   function handleKeydown(event: KeyboardEvent) {
     if (!isActive) return;
 
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       handleClose();
       return; // Important: return after handling escape
     }
 
-    if (event.key === 'Tab') {
+    if (event.key === "Tab") {
       if (!dialogRootElement) return;
 
       const focusableElements = Array.from(
-        dialogRootElement.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)
+        dialogRootElement.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR),
       );
 
       if (focusableElements.length === 0) {
@@ -77,17 +77,17 @@
 
   // Add event listener on mount
   onMount(() => {
-    window.addEventListener('keydown', handleKeydown);
+    window.addEventListener("keydown", handleKeydown);
   });
 
   // Remove event listener on destroy
   onDestroy(() => {
     if (browser) {
       // Add browser check
-      window.removeEventListener('keydown', handleKeydown);
+      window.removeEventListener("keydown", handleKeydown);
       // Ensure body scroll is restored if component is destroyed while dialog is open
-      if (document.body.classList.contains('dialog-open')) {
-        document.body.classList.remove('dialog-open');
+      if (document.body.classList.contains("dialog-open")) {
+        document.body.classList.remove("dialog-open");
       }
     }
   });
@@ -96,13 +96,13 @@
   $effect(() => {
     if (browser) {
       // Replace typeof check with browser check
-      document.body.classList.toggle('dialog-open', isActive);
+      document.body.classList.toggle("dialog-open", isActive);
 
       if (isActive) {
         // Wait for DOM update, then set focus
         tick().then(() => {
           const closeButton = dialogRootElement?.querySelector<HTMLElement>(
-            '#dialog-close-button'
+            "#dialog-close-button",
           );
           closeButton?.focus();
           // Fallback if button not found (though it should be)
@@ -127,13 +127,13 @@
 
   <!-- Content Area: Centered on top of backdrop -->
   <div class="dialog-root" bind:this={dialogRootElement}>
-    {#if dialogManager.currentDialog === 'fresha'}
+    {#if dialogManager.currentDialog === "fresha"}
       <Fresha />
-    {:else if dialogManager.currentDialog === 'testOne'}
+    {:else if dialogManager.currentDialog === "testOne"}
       <TestOne />
-    {:else if dialogManager.currentDialog === 'testTwo'}
+    {:else if dialogManager.currentDialog === "testTwo"}
       <TestTwo />
-    {:else if dialogManager.currentDialog === 'testThree'}
+    {:else if dialogManager.currentDialog === "testThree"}
       <TestThree />
     {/if}
   </div>
@@ -163,7 +163,7 @@
     align-items: center;
     justify-content: flex-start;
     background-color: rgb(var(--color-bg-primary));
-    border-radius: var(--bdr-radius-medium);
+    border-radius: var(--border-radius-md);
     width: calc(100vw - 4rem);
     height: calc(100vh - 4rem);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);

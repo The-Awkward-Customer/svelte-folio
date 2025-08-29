@@ -1,0 +1,13 @@
+/* Elevation Design Tokens */
+:root {
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* Opacity */
+  --opacity-invisible: 0; /* 0% */
+  --opacity-hover: 0.04; /* 4% */
+  --opacity-active: 0.08; /* 10% */
+  --opacity-selected: 0.12; /* 12% */
+}

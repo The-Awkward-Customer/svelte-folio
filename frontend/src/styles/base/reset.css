@@ -1,0 +1,128 @@
+/* CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 100%;
+  line-height: 1.15;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+:focus {
+  outline: revert;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: revert;
+}
+
+:root {
+  --focus-ring-color: rgba(255, 98, 0, 1);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+}
+
+
+
+/* Brand color transitions */
+:root.transitioning,
+:root.transitioning body,
+:root.transitioning main {
+  transition:
+    background-color 300ms ease-out,
+    color 300ms ease-out;
+}
+
+:root.transitioning * {
+  transition:
+    background-color 300ms ease-out,
+    color 300ms ease-out,
+    border-color 300ms ease-out;
+}
+
+/* Prevent layout shifts during transitions */
+:root.transitioning {
+  overflow-x: hidden;
+}
+
+/* Optional: Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  :root.transitioning,
+  :root.transitioning *,
+  :root.transitioning body,
+  :root.transitioning main {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* Focus styles */
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Typography styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-main);
+}
+
+p,
+span,
+a,
+li,
+ol,
+ul {
+  font-family: var(--font-family-main);
+}
+
+body {
+  background-color: var(--bg-page);
+}

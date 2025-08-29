@@ -4,7 +4,7 @@
   // Similar to React's useEffect hook, but used differently in Svelte
   import { onMount } from 'svelte';
   //import global css
-  import '../../../app.css';
+  import '../../../styles/app.css';
   // $: is Svelte's reactive declaration - any time $page.url.pathname changes,
   // currentPath will be updated automatically (similar to React's useMemo)
   // The $ prefix before page means "subscribe to this store" (Svelte-specific)

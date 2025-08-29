@@ -1,5 +1,5 @@
 <script lang="ts">
-  import '../app.css';
+  import '../styles/app.css';
 
   import { Footer } from '$lib/components/layout';
   import { TopNav } from '$lib/components/navigation';

@@ -1,0 +1,21 @@
+/* Base Theme Colors */
+:root {
+  /* Dev colors */
+  --color-dev-pink: 241 114 255; /* rgba(241, 114, 255, 1) */
+
+  /* Project colors */
+  --fresha-purple: 105, 80, 243;
+
+  /* Focus ring */
+  --focus-ring-color: rgba(255, 98, 0, 1);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
+  /* Breakpoints */
+  --bp-mobile-max: 767px;
+  --bp-mobile-min: 768px;
+  --bp-tablet: 1024px;
+  --bp-desktop: 1440px;
+
+  --brand-fresha-accent: 105, 80, 243; /* rgba(105, 80, 243, 1) */
+}

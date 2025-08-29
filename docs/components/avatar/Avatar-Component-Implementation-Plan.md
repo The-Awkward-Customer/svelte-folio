@@ -121,7 +121,7 @@ Leverage existing CSS custom properties:
   justify-content: center;
   background-color: rgba(var(--bg-page) / 0);
   border: none;
-  border-radius: var(--bdr-radius-small);
+  border-radius: var(--border-radius-sm);
   padding: 4px;
   box-shadow: inset 0 0 0 1px rgba(var(--fg-text-primary) / 1);
   container-type: inline-size;
@@ -135,7 +135,7 @@ Leverage existing CSS custom properties:
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
-  border-radius: var(--bdr-radius-tiny);
+  border-radius: var(--border-radius-sm);
   transition: var(--transition-fast);
 }
 

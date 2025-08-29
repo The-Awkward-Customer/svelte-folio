@@ -2,14 +2,14 @@
   interface PromptButtonProps {
     prompt: string;
     onClick: (prompt: string) => void;
-    variant?: 'default' | 'secondary';
+    variant?: "default" | "secondary";
     disabled?: boolean;
   }
 
   let {
     prompt,
     onClick,
-    variant = 'default',
+    variant = "default",
     disabled = false,
   }: PromptButtonProps = $props();
 
@@ -36,7 +36,7 @@
     align-items: center;
     justify-content: center;
     padding: 0.5rem 0.75rem;
-    border-radius: var(--bdr-radius-pill);
+    border-radius: var(--border-radius-pill);
     font-size: var(--fs-300);
     font-weight: var(--fw-medium);
     line-height: 1.2;

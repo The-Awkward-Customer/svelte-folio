@@ -1,0 +1,80 @@
+/* Import Design Tokens */
+@import './design-tokens/global/typography.css';
+@import './design-tokens/global/spacing.css';
+@import './design-tokens/global/sizing.css';
+@import './design-tokens/global/motion.css';
+@import './design-tokens/global/elevation.css';
+@import './design-tokens/global/radius.css';
+
+/* Import Base Styles */
+@import './base/reset.css';
+@import './base/fonts.css';
+
+/* Import Theme-specific Tokens */
+@import './design-tokens/themes/base/colors.css';
+@import './design-tokens/themes/light/semantic.css';
+@import './design-tokens/themes/dark/semantic.css';
+@import './design-tokens/themes/contrast/semantic.css';
+
+/* Import Brand Colors */
+@import './design-tokens/brands/brand-colors.css';
+
+/* Focus styles */
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Typography styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-main);
+}
+
+p,
+span,
+a,
+li,
+ol,
+ul {
+  font-family: var(--font-family-main);
+}
+
+body {
+  background-color: var(--bg-page);
+}
+
+/* Brand color transitions */
+:root.transitioning,
+:root.transitioning body,
+:root.transitioning main {
+  transition:
+    background-color 300ms ease-out,
+    color 300ms ease-out;
+}
+
+:root.transitioning * {
+  transition:
+    background-color 300ms ease-out,
+    color 300ms ease-out,
+    border-color 300ms ease-out;
+}
+
+/* Prevent layout shifts during transitions */
+:root.transitioning {
+  overflow-x: hidden;
+}
+
+/* Optional: Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  :root.transitioning,
+  :root.transitioning *,
+  :root.transitioning body,
+  :root.transitioning main {
+    transition-duration: 0.01ms !important;
+  }
+}

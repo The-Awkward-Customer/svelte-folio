@@ -1,16 +1,16 @@
 <!-- Docs: ../../../../docs/components/chat/Chat-Implementation-Documentation.md, components/chat/Chat-Implementation-Complete-Documentation.md, components/chat/Chat-Implementation-Progress-Report.md, components/chat/ChatMessages-AutoScroll-Refactor-Plan.md -->
 <!-- Input form component -->
 <script lang="ts">
-  import { createEventDispatcher } from 'svelte';
-  import IconButton from '$lib/components/actions/IconButton.svelte';
-  import type { ChatInputProps, ChatInputEvents } from '$lib/types/chat.js';
+  import { createEventDispatcher } from "svelte";
+  import IconButton from "$lib/components/actions/IconButton.svelte";
+  import type { ChatInputProps, ChatInputEvents } from "$lib/types/chat.js";
 
   // Props with proper typing
-  export let disabled: ChatInputProps['disabled'] = false;
-  export let placeholder: ChatInputProps['placeholder'] = 'Ask me anything...';
+  export let disabled: ChatInputProps["disabled"] = false;
+  export let placeholder: ChatInputProps["placeholder"] = "Ask me anything...";
 
   // State
-  let inputValue: string = '';
+  let inputValue: string = "";
   let textareaElement: HTMLTextAreaElement;
   let inputContainer: HTMLDivElement;
 
@@ -27,15 +27,15 @@
   function sendMessage() {
     const message = inputValue.trim();
     if (message && !disabled) {
-      dispatch('send', message);
-      inputValue = '';
+      dispatch("send", message);
+      inputValue = "";
       resetTextareaHeight();
     }
   }
 
   // Handle keyboard shortcuts
   function handleKeydown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       if (event.shiftKey) {
         // Shift+Enter = new line (default behavior)
         return;
@@ -50,27 +50,27 @@
   // Auto-resize textarea
   function handleInput() {
     if (textareaElement) {
-      textareaElement.style.height = 'auto';
-      textareaElement.style.height = textareaElement.scrollHeight + 'px';
+      textareaElement.style.height = "auto";
+      textareaElement.style.height = textareaElement.scrollHeight + "px";
     }
   }
 
   // Reset textarea height
   function resetTextareaHeight() {
     if (textareaElement) {
-      textareaElement.style.height = 'auto';
+      textareaElement.style.height = "auto";
     }
   }
 
   // Handle focus - scroll input into view on mobile
   function handleFocus() {
-    if (inputContainer && 'scrollIntoView' in inputContainer) {
+    if (inputContainer && "scrollIntoView" in inputContainer) {
       // Delay to allow for keyboard animation
       setTimeout(() => {
         inputContainer.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'nearest',
+          behavior: "smooth",
+          block: "nearest",
+          inline: "nearest",
         });
       }, 300);
     }
@@ -136,7 +136,7 @@
     align-items: center;
     background: var(--bg-primary);
     border: 1px solid #e9ecef;
-    border-radius: var(--bdr-radius-pill);
+    border-radius: var(--border-radius-pill);
     padding: var(--space-base) var(--space-2xl);
     transition:
       border-color 0.2s ease,

@@ -1,10 +1,10 @@
 <script lang="ts">
   interface Props {
     label: string;
-    variant?: 'primary' | 'inverse';
+    variant?: "primary" | "inverse";
   }
 
-  let { label, variant = 'primary' }: Props = $props();
+  let { label, variant = "primary" }: Props = $props();
 </script>
 
 <span class="tag tag--{variant}">
@@ -19,7 +19,7 @@
     padding: var(--space-xs) var(--space-md);
     font-size: var(--fs-350);
     font-weight: var(--fw-semibold);
-    border-radius: var(--bdr-radius-pill);
+    border-radius: var(--border-radius-pill);
     white-space: nowrap;
   }
 
