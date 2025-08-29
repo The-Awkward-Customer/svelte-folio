@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { Icon } from '../primitives';
-  import type { IconName } from '../../types/icons.js';
+  import { Icon } from "../primitives";
+  import type { IconName } from "../../types/icons.js";
 
-  type ButtonVariants = 'inverse' | 'primary';
-  type ButtonRole = 'button' | 'submit' | 'reset';
+  type ButtonVariants = "inverse" | "primary";
+  type ButtonRole = "button" | "submit" | "reset";
 
   type CommonProps = {
     variant?: ButtonVariants;
@@ -13,26 +13,26 @@
     fullWidth?: boolean;
   };
 
-  type ButtonProps<T extends 'button' | 'link'> = CommonProps &
-    (T extends 'button'
+  type ButtonProps<T extends "button" | "link"> = CommonProps &
+    (T extends "button"
       ? {
-          as: 'button';
+          as: "button";
           type?: ButtonRole;
           handleClick: () => void;
         }
       : {
-          as: 'link';
+          as: "link";
           href: string;
-          target?: '_blank' | '_self' | '_parent' | '_top';
+          target?: "_blank" | "_self" | "_parent" | "_top";
           rel?: string;
           handleClick?: never;
         });
 
-  let props: ButtonProps<'button'> | ButtonProps<'link'> = $props();
+  let props: ButtonProps<"button"> | ButtonProps<"link"> = $props();
 
   const {
-    label = 'Replace me',
-    variant = 'inverse',
+    label = "Replace me",
+    variant = "inverse",
     as,
     disabled,
     iconName,
@@ -40,18 +40,18 @@
   } = props;
 
   const iconFillColor = $derived(
-    variant === 'inverse' ? '--fg-text-inverse' : '--fg-text-primary'
+    variant === "inverse" ? "--fg-text-inverse" : "--fg-text-primary",
   );
 </script>
 
-{#if as === 'button'}
-  {@const buttonProps = props as ButtonProps<'button'>}
+{#if as === "button"}
+  {@const buttonProps = props as ButtonProps<"button">}
   <button
     class={`btn ${variant}`}
     class:full-width={fullWidth}
     class:has-icon={iconName}
     aria-label={label}
-    type={buttonProps.type || 'button'}
+    type={buttonProps.type || "button"}
     {disabled}
     onclick={buttonProps.handleClick}
   >
@@ -63,7 +63,7 @@
     </span>
   </button>
 {:else}
-  {@const linkProps = props as ButtonProps<'link'>}
+  {@const linkProps = props as ButtonProps<"link">}
   <a
     class={`btn ${variant}`}
     class:full-width={fullWidth}
@@ -85,7 +85,7 @@
 <style>
   .btn {
     border: none;
-    border-radius: var(--bdr-radius-small);
+    border-radius: var(--border-radius-small);
     font-weight: var(--fw-semibold);
     font-size: var(--fs-300);
     height: 44px;

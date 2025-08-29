@@ -1,11 +1,11 @@
 <script lang="ts">
-  let P: string = 'Graphics Page';
+  let P: string = "Graphics Page";
   console.log(`${P} rendered!`);
 
   export interface GridItem {
     readonly id: string;
     readonly component: any;
-    readonly size: '2-2' | '4-2';
+    readonly size: "2-2" | "4-2";
     readonly props?: Record<string, any>;
   }
 
@@ -17,8 +17,8 @@
   let { items, columns = 4 }: Props = $props();
 
   const sizeMap = {
-    '2-2': { cols: 2, rows: 2 }, // large square
-    '4-2': { cols: 4, rows: 2 }, // large rectangle
+    "2-2": { cols: 2, rows: 2 }, // large square
+    "4-2": { cols: 4, rows: 2 }, // large rectangle
   } as const;
 </script>
 
@@ -54,7 +54,7 @@
   }
 
   .grid-item {
-    border-radius: var(--bdr-radius-small);
+    border-radius: var(--border-radius-sm);
     overflow: hidden;
   }
 
@@ -65,7 +65,7 @@
   }
 
   /* Force square aspect ratio for 2-2 items */
-  .grid-item[data-grid-size='2-2'] {
+  .grid-item[data-grid-size="2-2"] {
     aspect-ratio: 1 / 1;
   }
 

@@ -18,7 +18,7 @@
     align-items: center;
     padding: 6px 10px;
     font-weight: var(--fw-semibold);
-    border-radius: var(--bdr-radius-small);
+    border-radius: var(--border-radius-sm);
     border: none;
     box-shadow: inset 0 0px 0px 1px var(--bg-primary);
     background-color: var(--bg-pae);

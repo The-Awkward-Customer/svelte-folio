@@ -1,47 +1,47 @@
 <!-- DialogFooter.svelte -->
 
 <script lang="ts">
-  import { goto } from '$app/navigation';
-  import { dialogManager } from '$lib';
+  import { goto } from "$app/navigation";
+  import { dialogManager } from "$lib";
   import {
     COMPOSED_DIALOGS,
     DIALOG_METADATA,
-  } from '$lib/config/dialogRegistry.js';
-  import type { GridArea } from './Section.svelte';
-  import { Button } from '../../actions';
-  import { ProgressToast } from '../../feedback';
-  import { Icon } from '../../primitives';
+  } from "$lib/config/dialogRegistry.js";
+  import type { GridArea } from "./Section.svelte";
+  import { Button } from "../../actions";
+  import { ProgressToast } from "../../feedback";
+  import { Icon } from "../../primitives";
 
   interface DialogFooterProps {
     label?: string;
     gridArea?: GridArea;
-    variant?: 'ghost' | 'strong';
+    variant?: "ghost" | "strong";
   }
 
   const {
-    label = 'Close Dialog',
-    gridArea = 'footer',
-    variant = 'strong',
+    label = "Close Dialog",
+    gridArea = "footer",
+    variant = "strong",
   }: DialogFooterProps = $props();
 
   // Reactive button states
   const canContinue = $derived(!dialogManager.cycleCompleted);
   const nextDialogId = $derived(dialogManager.getNextDialog());
   const nextDialogTitle = $derived(
-    nextDialogId ? DIALOG_METADATA[nextDialogId]?.title : null
+    nextDialogId ? DIALOG_METADATA[nextDialogId]?.title : null,
   );
   const rightButtonText = $derived(
     dialogManager.cycleCompleted
-      ? 'Lets chat ❤️'
+      ? "Lets chat ❤️"
       : nextDialogTitle
         ? `Up Next${nextDialogTitle}`
-        : 'Next Case Study'
+        : "Next Case Study",
   );
   const availableDialogsCount = $derived(COMPOSED_DIALOGS.length);
 
   // Calculate unique dialogs viewed (handles revisits correctly)
   const uniqueDialogsViewed = $derived(
-    new Set(dialogManager.dialogHistory).size
+    new Set(dialogManager.dialogHistory).size,
   );
 
   // Calculate progress values for animation
@@ -53,7 +53,7 @@
   const previousProgress = $derived(
     dialogManager.dialogHistory.length <= 1
       ? undefined
-      : new Set(dialogManager.dialogHistory.slice(0, -1)).size
+      : new Set(dialogManager.dialogHistory.slice(0, -1)).size,
   );
 
   function handleLeftButtonClick() {
@@ -67,7 +67,7 @@
       dialogManager.closeDialog();
 
       // Functional tracking - log completion event locally
-      console.log('Dialog cycle completed!', {
+      console.log("Dialog cycle completed!", {
         timestamp: new Date().toISOString(),
         totalDialogs: COMPOSED_DIALOGS.length,
         completedHistory: dialogManager.dialogHistory,
@@ -86,7 +86,7 @@
       const success = dialogManager.cycleToNextDialog();
 
       if (!success) {
-        console.warn('Failed to cycle to next dialog');
+        console.warn("Failed to cycle to next dialog");
         // Could show user feedback here if needed
       }
     }
@@ -94,10 +94,10 @@
 
   // Navigate to contact page when cycle is complete
   function triggerCycleCompletionFlow() {
-    console.log('🎉 Dialog cycle completed - navigating to contact page');
+    console.log("🎉 Dialog cycle completed - navigating to contact page");
 
     // Navigate to contact page using SvelteKit's goto
-    goto('/contact');
+    goto("/contact");
   }
 
   // Simple keyboard shortcuts for dev mode
@@ -105,23 +105,23 @@
     if (!import.meta.env.DEV) return;
 
     // Dev reset: Ctrl+Shift+R
-    if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === 'k') {
+    if (event.ctrlKey && event.shiftKey && event.key.toLowerCase() === "k") {
       event.preventDefault();
-      console.log('🔄 Dev reset triggered via Ctrl+Shift+K');
+      console.log("🔄 Dev reset triggered via Ctrl+Shift+K");
       dialogManager.devReset();
     }
 
     // Quick close: Escape
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       event.preventDefault();
-      console.log('🚪 Dialog closed via Escape key');
+      console.log("🚪 Dialog closed via Escape key");
       dialogManager.closeDialog();
     }
 
     // Next dialog: Ctrl+N
-    if (event.ctrlKey && event.key.toLowerCase() === 'n') {
+    if (event.ctrlKey && event.key.toLowerCase() === "n") {
       event.preventDefault();
-      console.log('⏭️ Next dialog triggered via Ctrl+N');
+      console.log("⏭️ Next dialog triggered via Ctrl+N");
       handleRightButtonClick();
     }
   }
@@ -198,7 +198,7 @@
     text-align: center;
     padding: 2em;
     background-color: rgba(var(--bg-inverse) / 0.8);
-    border-radius: var(--bdr-radius-small);
+    border-radius: var(--border-radius-sm);
     box-shadow: inset 0 0 0 1px rgba(var(--bdr-primary) / 0);
   }
   .dialog-completion-message span {

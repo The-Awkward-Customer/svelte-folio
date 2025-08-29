@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { Avatar } from '$lib/components/primitives';
-  import { Button } from '$lib/components/actions';
-  import Ani_me from '$lib/assets/Ani_me.png';
+  import { Avatar } from "$lib/components/primitives";
+  import { Button } from "$lib/components/actions";
+  import Ani_me from "$lib/assets/Ani_me.png";
 
   // Simplified test state - focus on loading and glitch animation
   let isLoading = $state(true);
   let glitchIntensity = $state(1);
 
   function toggleLoading() {
-    console.log('🔄 toggleLoading called, current isLoading:', isLoading);
+    console.log("🔄 toggleLoading called, current isLoading:", isLoading);
     isLoading = !isLoading;
-    console.log('🔄 toggleLoading finished, new isLoading:', isLoading);
+    console.log("🔄 toggleLoading finished, new isLoading:", isLoading);
   }
 
   function cycleIntensity() {
@@ -42,8 +42,8 @@
     <div class="controls-grid">
       <Button
         as="button"
-        variant={isLoading ? 'primary' : 'inverse'}
-        label={isLoading ? 'Stop Loading' : 'Start Loading'}
+        variant={isLoading ? "primary" : "inverse"}
+        label={isLoading ? "Stop Loading" : "Start Loading"}
         handleClick={toggleLoading}
       />
 
@@ -72,9 +72,9 @@
     <div class="demo-info">
       <p><strong>Current State:</strong></p>
       <ul>
-        <li>Loading: {isLoading ? 'Yes' : 'No'}</li>
+        <li>Loading: {isLoading ? "Yes" : "No"}</li>
         <li>Glitch Intensity: {glitchIntensity}x</li>
-        <li>Animation: {isLoading ? 'Active' : 'Stopped'}</li>
+        <li>Animation: {isLoading ? "Active" : "Stopped"}</li>
       </ul>
     </div>
   </section>
@@ -146,7 +146,7 @@
         {isLoading}
         {glitchIntensity}
         isButton={true}
-        handleClick={() => console.log('Avatar clicked!')}
+        handleClick={() => console.log("Avatar clicked!")}
       />
       <p>Click the avatar above (interactive features simplified)</p>
     </div>
@@ -190,7 +190,7 @@
     margin-bottom: 3rem;
     padding: 2rem;
     background: rgba(var(--bg-inverse) / 0.02);
-    border-radius: var(--bdr-radius-medium);
+    border-radius: var(--border-radius-md);
     border: 1px solid rgba(var(--fg-text-primary) / 0.1);
   }
 
@@ -216,14 +216,14 @@
     align-items: center;
     padding: 3rem;
     background: rgba(var(--bg-primary) / 0.05);
-    border-radius: var(--bdr-radius-small);
+    border-radius: var(--border-radius-sm);
     margin-bottom: 1.5rem;
   }
 
   .demo-info {
     background: rgba(var(--bg-primary) / 0.02);
     padding: 1rem;
-    border-radius: var(--bdr-radius-small);
+    border-radius: var(--border-radius-sm);
     border-left: 4px solid rgb(var(--fg-text-primary));
   }
 
@@ -253,7 +253,7 @@
     text-align: center;
     padding: 1.5rem;
     background: rgba(var(--bg-primary) / 0.02);
-    border-radius: var(--bdr-radius-small);
+    border-radius: var(--border-radius-sm);
     border: 1px solid rgba(var(--fg-text-primary) / 0.05);
   }
 
@@ -274,7 +274,7 @@
     text-align: center;
     padding: 2rem;
     background: rgba(var(--bg-primary) / 0.05);
-    border-radius: var(--bdr-radius-small);
+    border-radius: var(--border-radius-sm);
   }
 
   .interactive-demo p {

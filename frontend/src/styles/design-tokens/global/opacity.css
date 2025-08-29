@@ -1,0 +1,9 @@
+:root{
+
+  /* Opacity */
+  --opacity-invisible: 0; /* 0% */
+  --opacity-hover: 0.04; /* 4% */
+  --opacity-active: 0.08; /* 8% */
+  --opacity-selected: 0.12; /* 12% */
+
+}

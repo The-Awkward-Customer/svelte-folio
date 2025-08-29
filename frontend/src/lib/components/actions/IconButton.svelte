@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { Icon } from '../primitives';
-  import type { IconName } from '../../types/icons.js';
+  import { Icon } from "../primitives";
+  import type { IconName } from "../../types/icons.js";
 
   // Props interface
-  type buttonVariants = 'inverse' | 'primary';
-  type buttonRole = 'button' | 'submit' | 'reset';
+  type buttonVariants = "inverse" | "primary";
+  type buttonRole = "button" | "submit" | "reset";
 
   interface IconButtonProps {
     name: IconName;
@@ -19,19 +19,19 @@
   }
 
   let {
-    name = '01n',
-    variant = 'inverse',
-    type = 'button',
+    name = "01n",
+    variant = "inverse",
+    type = "button",
     disabled = false,
     isLoading = false,
-    alt = '',
+    alt = "",
     size = 32,
     handleClick,
   }: IconButtonProps = $props();
 
   // Compute fill based on variant
   const computedFill = $derived(
-    variant === 'primary' ? '--fg-text-primary' : '--fg-text-inverse'
+    variant === "primary" ? "--fg-text-primary" : "--fg-text-inverse",
   );
 </script>
 
@@ -60,7 +60,7 @@
 <style>
   .btn {
     border: none;
-    border-radius: var(--bdr-radius-small);
+    border-radius: var(--broder-radius-sm);
     font-weight: var(--fw-semibold);
     height: 44px;
     width: 44px;

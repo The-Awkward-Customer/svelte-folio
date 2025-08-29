@@ -1,0 +1,36 @@
+/* Spacing Design Tokens */
+:root {
+  /* Spacing */
+  --space-0: 0rem; /* 0px */
+  --space-2xs: 0.125rem; /* 2px */
+  --space-xs: 0.25rem; /* 4px */
+  --space-sm: 0.5rem; /* 8px */
+  --space-md: 0.75rem; /* 12px */
+  --space-base: 1rem; /* 16px */
+  --space-lg: 1.25rem; /* 20px */
+  --space-xl: 1.5rem; /* 24px */
+  --space-2xl: 1.75rem; /* 28px */
+  --space-3xl: 2rem; /* 32px */
+  --space-4xl: 3rem; /* 48px */
+  --space-5xl: 4rem; /* 64px */
+  --space-6xl: 5rem; /* 80px */
+  --space-7xl: 6rem; /* 96px */
+  --space-8xl: 7rem; /* 112px */
+  --space-9xl: 8rem; /* 128px */
+  --space-10xl: 9rem; /* 144px */
+  --space-11xl: 10rem; /* 160px */
+
+  /* Semantic spacing */
+  --padding-page-default: var(--space-xl);
+
+  /* Spacing tokens */
+  --spacing-none: 0;
+  --spacing-related-inset: 2px;
+  --spacing-related-dense: 4px;
+  --spacing-related: 8px;
+  --spacing-related-relaxed: 12px;
+  --spacing-grouped: 16px;
+  --spacing-grouped-relaxed: 20px;
+  --spacing-separated: 28px;
+  --spacing-isolated: 48px;
+}

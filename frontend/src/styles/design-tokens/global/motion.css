@@ -1,0 +1,11 @@
+/* Motion Design Tokens */
+:root {
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+
+  /* Brand color transitions */
+  --transition-theme: background-color 300ms ease-out, color 300ms ease-out;
+  --transition-theme-with-borders: background-color 300ms ease-out, color 300ms ease-out, border-color 300ms ease-out;
+}

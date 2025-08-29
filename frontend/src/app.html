@@ -10,7 +10,7 @@
     <script>
       // Apply theme immediately before any rendering
       (function () {
-        const saved = localStorage.getItem('theme');
+        const saved = localStorage.getItem('theme-preference');
         const systemPrefers = window.matchMedia('(prefers-color-scheme: dark)')
           .matches
           ? 'dark'

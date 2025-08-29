@@ -1,0 +1,49 @@
+/* Sizing Design Tokens */
+:root {
+  /* Width tokens - Fixed widths */
+  --width-2xs: 0.125rem; /* 2px - matches space-2xs */
+  --width-xs: 0.25rem; /* 4px - matches space-xs */
+  --width-sm: 0.5rem; /* 8px - matches space-sm */
+  --width-md: 0.75rem; /* 12px - matches space-md */
+  --width-base: 1rem; /* 16px - matches space-base */
+  --width-lg: 1.25rem; /* 20px - matches space-lg */
+  --width-xl: 1.5rem; /* 24px - matches space-xl */
+  --width-2xl: 2rem; /* 32px - matches space-3xl */
+  --width-3xl: 3rem; /* 48px - matches space-4xl */
+  --width-4xl: 4rem; /* 64px - matches space-5xl */
+  --width-5xl: 5rem; /* 80px - matches space-6xl */
+  --width-6xl: 6rem; /* 96px - matches space-7xl */
+  --width-7xl: 8rem; /* 128px - matches space-9xl */
+  --width-8xl: 10rem; /* 160px - matches space-11xl */
+
+  /* Width tokens - Content widths */
+  --width-prose: 65ch; /* Optimal reading width */
+  --width-prose-sm: 27ch; /* Compact prose width */
+  --width-prose-md: 45ch; /* Medium prose width */
+  --width-prose-lg: 75ch; /* Extended prose width */
+  --width-content-sm: 640px;
+  --width-content-base: 768px;
+  --width-content-lg: 1024px;
+  --width-content-xl: 1280px;
+  --width-content-2xl: 1440px;
+  --width-content-max: 1920px;
+
+  /* Size */
+  --size-touch-safe-inset: 40px; /* Touch safe area for mobile devices */
+  --size-touch-safe: 44px; /* Touch safe area for mobile devices */
+
+  /* Min-width tokens for responsive components */
+  --min-width-card: 25ch; /* Minimum card width for readability */
+  --min-width-card-sm: 20ch; /* Compact card minimum */
+  --min-width-card-lg: 30ch; /* Larger card minimum */
+  --min-width-card-xl: 35ch; /* Extra large card minimum */
+
+  /* Width tokens - Percentage based */
+  --width-quarter: 25%;
+  --width-third: 33.333%;
+  --width-half: 50%;
+  --width-two-thirds: 66.667%;
+  --width-three-quarters: 75%;
+  --width-full: 100%;
+  --width-screen: 100vw;
+}

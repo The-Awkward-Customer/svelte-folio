@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Subheader, Tag, List } from '$lib/components/primitives';
+  import { Subheader, Tag, List } from "$lib/components/primitives";
 
   // Interface for props
   interface ProjectBodyProps {
@@ -21,25 +21,25 @@
 
   // Dummy placeholder data for debugging
   const defaultProblemStatement = {
-    title: 'Problem space',
+    title: "Problem space",
     content:
       'The "Blue collar" SME market was overserved by bloated existing solutions.',
   };
 
   const defaultImpact = {
-    title: 'Impact',
+    title: "Impact",
     content: [
-      '10X revenue growth to $300+ MRR',
-      'Launched 3 new product features',
-      'Expanded to 5 new markets',
+      "10X revenue growth to $300+ MRR",
+      "Launched 3 new product features",
+      "Expanded to 5 new markets",
     ],
   };
 
   const defaultTeamMembers = {
-    title: 'Team Members',
+    title: "Team Members",
     members: [
-      { name: 'Sarah Chen', role: 'Lead Designer' },
-      { name: 'Marcus Rodriguez', role: 'Frontend Developer' },
+      { name: "Sarah Chen", role: "Lead Designer" },
+      { name: "Marcus Rodriguez", role: "Frontend Developer" },
     ],
   };
 
