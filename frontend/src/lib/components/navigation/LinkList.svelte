@@ -84,13 +84,13 @@
     color: var(--fg-text-primary);
   }
 
-  .nav-link:focus {
+  .nav-link.active {
+    color: var(--fg-text-primary);
+  }
+
+  .nav-link:focus-visible {
     color: var(--fg-text-primary);
     outline: 2px solid var(--focus-ring-color);
     outline-offset: 2px;
-  }
-
-  .nav-link.active {
-    color: var(--fg-text-primary);
   }
 </style>
