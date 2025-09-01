@@ -97,7 +97,7 @@
   header {
     display: flex;
     justify-content: start;
-    padding: 2px var(--spacing-grouped);
+    padding: var(--padding-tiny) var(--padding-medium);
     background: transparent;
     border-radius: calc(var(--border-radius-sm) - 1px);
   }
