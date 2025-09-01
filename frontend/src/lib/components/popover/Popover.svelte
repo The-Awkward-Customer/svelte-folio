@@ -452,10 +452,12 @@
     max-height: 85vh;
     background: var(--surface-neutral-reading);
     border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
-    padding-left: var(--spacing-grouped);
-    padding-right: var(--spacing-grouped);
-    padding-top: var(--spacing-grouped);
-    padding-bottom: calc(var(--spacing-grouped) + env(safe-area-inset-bottom));
+    padding-left: var(--padding-left-medium);
+    padding-right: var(--padding-right-medium);
+    padding-top: var(--padding-top-medium);
+    padding-bottom: calc(
+      var(--padding-bottom-medium) + env(safe-area-inset-bottom)
+    );
     z-index: 1000;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -471,7 +473,7 @@
     background: var(--surface-neutral-mask);
     border: 1px solid var(--border-neutral);
     border-radius: var(--border-radius-sm);
-    padding: var(--spacing-related-relaxed);
+    padding: var(--padding-small-relaxed);
     box-shadow:
       0 8px 24px rgba(0, 0, 0, 0.12),
       0 2px 6px rgba(0, 0, 0, 0.08);
@@ -532,7 +534,7 @@
     font-size: var(--fs-275);
     font-weight: var(--fw-medium);
     color: var(--text-primary-muted);
-    padding-bottom: var(--spacing-related-dense);
+    padding-bottom: var(--padding-bottom-small);
   }
 
   .popover-text {

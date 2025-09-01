@@ -295,10 +295,10 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 0.5em;
+    gap: var(--gap-fluid-half);
     width: 100%;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding-top: var(--padding-top-fluid-half);
+    padding-bottom: var(--padding-bottom-fluid-half);
     border: none;
     font-size: var(--fs-xxlarge-clamped);
     font-weight: var(--fw-semibold);
