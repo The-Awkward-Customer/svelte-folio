@@ -1,13 +1,13 @@
 <script lang="ts">
-  import '../styles/app.css';
+  import "../styles/app.css";
 
-  import { Footer } from '$lib/components/layout';
-  import { TopNav } from '$lib/components/navigation';
-  import { CharacterGridBackground } from '$lib/components/experiments';
+  import { Footer } from "$lib/components/layout";
+  import { TopNav } from "$lib/components/navigation";
+  import { CheckerBackground } from "$lib/components/experiments";
 
-  import { onMount } from 'svelte';
-  import { beforeNavigate } from '$app/navigation';
-  import { themeManager } from '$lib';
+  import { onMount } from "svelte";
+  import { beforeNavigate } from "$app/navigation";
+  import { themeManager } from "$lib";
 
   onMount(() => {
     // Unified theme manager initializes itself in the constructor
@@ -27,7 +27,7 @@
 <TopNav></TopNav>
 
 <main>
-  <CharacterGridBackground />
+  <CheckerBackground />
   {@render children()}
 </main>
 
