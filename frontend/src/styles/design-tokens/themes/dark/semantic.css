@@ -53,6 +53,19 @@
   --fg-text-muted-80: rgba(198, 197, 217, 0.8);
   --fg-text-muted-60: rgba(198, 197, 217, 0.6);
 
+
+  /* Background - Primary states */
+  --bg-primary-key: rgba(255, 255, 255, 1);
+  --bg-primary-default: rgba(255, 255, 255, 1);
+  --bg-primary-hover: rgba(221, 221, 221, 1);
+  --bg-primary-active: rgba(203, 203, 203, 1);
+
+  /* Background - Ghost states (with opacity) */
+  --bg-ghost-key: rgba(255, 255, 255, 0.01);
+  --bg-ghost-default: rgba(255, 255, 255, 0.01);
+  --bg-ghost-hover: rgba(255, 255, 255, 0.05);
+  --bg-ghost-active: rgba(255, 255, 255, 0.10);
+
   /* Background colors with opacity variants */
   --bg-page: rgba(22, 22, 22, 1);
  

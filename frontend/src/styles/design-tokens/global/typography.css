@@ -1,5 +1,52 @@
 /* Typography Design Tokens */
 :root {
+
+    /* Font sizes */
+  --font-size-200: 0.5rem; /* 8px */
+  --font-size-250: 0.75rem; /* 12px */
+  --font-size-275: 0.875rem; /* 14px */
+  --font-size-300: 1rem; /* 16px */
+  --font-size-350: 1.125rem; /* 18px */
+  --font-size-400: 1.25rem; /* 20px */
+  --font-size-500: 1.5rem; /* 24px */
+  --font-size-600: 1.875rem; /* 30px */
+  --font-size-700: 2.5rem; /* 40px */
+  --font-size-800: 3rem; /* 48px */
+  --font-size-900: 4rem; /* 64px */
+  --font-size-1000: 5rem; /* 80px */
+  --font-size-1100: 6rem; /* 96px */
+  --font-size-1200: 7rem; /* 112px */
+  --font-size-1300: 8rem; /* 128px */
+  --font-size-1400: 9rem; /* 144px */
+  --font-size-1500: 10rem; /* 160px */
+
+  
+    /* Font weights */
+  --font-weight-thin: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-super: 900;
+
+   /* Line height tokens - Base options */
+  --line-height-100: 1; /* 1 - No line spacing */
+  --line-height-110: 1.1; /* 1.1 - Tight spacing for headlines */
+  --line-height-125: 1.25; /* 1.25 - Snug spacing for subheadings */
+  --line-height-150: 1.5; /* 1.5 - Standard reading line height */
+  --line-height-160: 1.625; /* 1.625 - Relaxed spacing for comfortable reading */
+  --line-height-200: 2; /* 2 - Loose spacing for enhanced readability */
+
+   /* Text transform */
+  --text-transform-none: none;
+  --text-transform-uppercase: uppercase;
+  --text-transform-lowercase: lowercase;
+  --text-transform-titlecase: capitalize;
+
+
+
+
+  /* Legacy */
   /* Font families */
   --font-family-main: 'Geist', system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, sans-serif;
@@ -60,10 +107,23 @@
   --lh-code: var(--lh-normal); /* For code blocks */
   --lh-list: var(--lh-normal); /* For list items */
 
-  /* Text transform */
-  --text-transform-none: none;
-  --text-transform-uppercase: uppercase;
-  --text-transform-lowercase: lowercase;
-  --text-transform-titlecase: capitalize;
+  /* Line height tokens - Base options */
+  --lh-height-none: 1; /* 1 - No line spacing */
+  --lh-height-tight: 1.1; /* 1.1 - Tight spacing for headlines */
+  --lh-height-snug: 1.25; /* 1.25 - Snug spacing for subheadings */
+  --lh-height-normal: 1.5; /* 1.5 - Standard reading line height */
+  --lh-height-relaxed: 1.625; /* 1.625 - Relaxed spacing for comfortable reading */
+  --lh-height-loose: 2; /* 2 - Loose spacing for enhanced readability */
+
 }
+
+
+/* design-tokens/utilities/typography.css - Composite utility */
+.text-button-sm {
+  font-size: var(--font-size-300);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-100);
+  font-family: var(--font-family-main);
+}
+
 

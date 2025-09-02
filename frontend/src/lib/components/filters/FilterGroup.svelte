@@ -1,5 +1,5 @@
 <script lang="ts">
-  import FilterToggle from './FilterToggle.svelte';
+  import FilterToggle from "./FilterToggle.svelte";
 
   interface Props {
     filters: readonly string[];
@@ -43,8 +43,8 @@
   .filter-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    padding-bottom: var(--space-xl);
+    gap: var(--gap-xsmall);
+    padding-bottom: var(--padding-bottom-small);
   }
 
   @media (max-width: 640px) {

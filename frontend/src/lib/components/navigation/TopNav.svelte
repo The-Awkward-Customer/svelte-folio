@@ -44,8 +44,8 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: var(--spacing-related);
-    padding: 24px 0 0 24px;
+    gap: var(--gap-sm);
+    padding: var(--padding-large);
   }
 
   .animated-border-box {
