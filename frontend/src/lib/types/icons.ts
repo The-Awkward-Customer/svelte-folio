@@ -33,7 +33,8 @@ export type IconName =
   | 'gps_fix'
   | 'emoji_cross_eyed'
   | 'refresh'
-  | 'arrow_up';
+  | 'arrow_up'
+  | 'question_mark';
 
 export interface IconProps {
   name: IconName;
