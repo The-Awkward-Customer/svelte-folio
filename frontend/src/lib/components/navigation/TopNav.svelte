@@ -13,7 +13,6 @@
 
   let defaultListData: LinkItem[] = [
     { label: "Index", href: "/" },
-    { label: "Graphics", href: "/graphics" },
     { label: "Experience", href: "/experience" },
   ];
 
