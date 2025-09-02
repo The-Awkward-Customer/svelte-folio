@@ -31,6 +31,7 @@
   /* Size */
   --size-touch-safe-inset: 40px; /* Touch safe area for mobile devices */
   --size-touch-safe: 44px; /* Touch safe area for mobile devices */
+  --size-touch-utility: 32px; /* Minimum touch target for utility buttons */
 
   /* Min-width tokens for responsive components */
   --min-width-card: 25ch; /* Minimum card width for readability */

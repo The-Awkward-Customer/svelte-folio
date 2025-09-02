@@ -65,6 +65,13 @@
   --padding-right-medium: var(--padding-medium);
   --padding-bottom-medium: var(--padding-medium);
 
+  /* padding - large (24px) */
+  --padding-large: 24px;
+  --padding-left-large: var(--padding-large);
+  --padding-top-large: var(--padding-large);
+  --padding-right-large: var(--padding-large);
+  --padding-bottom-large: var(--padding-large);
+
   /* Padding – responsive padding */
   --padding-fluid-half: 0.5rem;
   --padding-left-fluid-half: var(--padding-fluid-half);
@@ -73,6 +80,6 @@
   --padding-bottom-fluid-half: var(--padding-fluid-half);
 
 /* Padding - Page Default (24px) */
-   --padding-page-default: 24px;
+   --padding-page-default: var(--padding-large);
 
 }
