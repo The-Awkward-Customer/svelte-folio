@@ -351,7 +351,7 @@
     data-popover-trigger={id}
     {...props}
   >
-    <Icon name="placeholder" />
+    <Icon name="question_mark" size={20} />
   </button>
 {/snippet}
 
