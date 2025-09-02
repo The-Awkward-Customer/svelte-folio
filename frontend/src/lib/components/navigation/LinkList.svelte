@@ -32,7 +32,7 @@
     {#each list as item}
       <li>
         <a
-          class={getNavClasses(item.href)}
+          class={getNavClasses(item.href) + " text-link-sm"}
           href={item.href}
           aria-label={`Navigate to ${item.label} page`}
           aria-current={item.href === "/"
@@ -72,11 +72,8 @@
     justify-content: center;
     align-items: center;
     color: var(--fg-text-primary-60);
-    text-decoration: none;
     height: var(--size-touch-safe-inset);
-    border-radius: 0.25rem;
-    font-size: var(--fs-275);
-    font-weight: var(--fw-medium);
+    border-radius: var(--border-radius-sm);
     transition: all 0.2s ease-in-out;
   }
 

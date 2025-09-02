@@ -120,10 +120,18 @@
 
 /* design-tokens/utilities/typography.css - Composite utility */
 .text-button-sm {
-  font-size: var(--font-size-300);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-275);
+  font-weight: var(--font-weight-regular);
   line-height: var(--line-height-100);
   font-family: var(--font-family-main);
+}
+
+.text-link-sm {
+  font-size: var(--font-size-275);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-100);
+  font-family: var(--font-family-main);
+  text-decoration: none;
 }
 
 
