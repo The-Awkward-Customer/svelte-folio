@@ -1,6 +1,5 @@
 // frontend/src/lib/server/embeddings.ts
-// Use process.env for script compatibility
-const HUGGING_FACE_INFERENCE_KEY = process.env.HUGGING_FACE_INFERENCE_KEY;
+import { HUGGING_FACE_INFERENCE_KEY } from '$env/static/private';
 
 const EMBEDDING_MODEL = 'BAAI/bge-small-en-v1.5'; // Popular embedding model
 const EMBEDDING_DIMENSION = 384;
