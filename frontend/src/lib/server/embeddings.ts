@@ -1,17 +1,24 @@
 // frontend/src/lib/server/embeddings.ts
-import { HUGGING_FACE_INFERENCE_KEY } from '$env/static/private';
+// Use process.env for script compatibility
+const HUGGING_FACE_INFERENCE_KEY = process.env.HUGGING_FACE_INFERENCE_KEY;
 
 const EMBEDDING_MODEL = 'BAAI/bge-small-en-v1.5'; // Popular embedding model
 const EMBEDDING_DIMENSION = 384;
 
 export async function generateEmbedding(text: string): Promise<number[]> {
+  const apiKey = HUGGING_FACE_INFERENCE_KEY;
+
+  if (!apiKey) {
+    throw new Error('HUGGING_FACE_INFERENCE_KEY not found in environment variables');
+  }
+
   try {
     const response = await fetch(
       `https://api-inference.huggingface.co/models/${EMBEDDING_MODEL}`,
       {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${HUGGING_FACE_INFERENCE_KEY}`,
+          Authorization: `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
