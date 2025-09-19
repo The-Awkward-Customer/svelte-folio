@@ -1,6 +1,9 @@
 <script lang="ts">
   import LinkList from "./LinkList.svelte";
   import Popover from "../popover/Popover.svelte";
+  import ChatTrigger from "./ChatTrigger.svelte";
+  import { QAChat } from "../chat";
+  import { chatStore } from "$lib/stores/chatStore.svelte.js";
 
   interface LinkItem {
     label: string;
@@ -21,9 +24,17 @@
   let popoverTitle = "Hey there!";
   let popoverText =
     "This site is built using Svelte5.js, Vite and is hosted on Vercel with a little help from Claude. ❤️";
+
+  function handleChatTriggerClick() {
+    chatStore.openChat();
+  }
 </script>
 
 <section class="top-nav-root">
+  <ChatTrigger 
+    handleClick={handleChatTriggerClick}
+    shouldShowIndicator={chatStore.shouldShowIndicator}
+  />
   <div class="top-nav-surface">
     <header class="content">
       <LinkList {list} />
@@ -36,6 +47,8 @@
     text={popoverText}
   />
 </section>
+
+<QAChat />
 
 <style>
   .top-nav-root {
