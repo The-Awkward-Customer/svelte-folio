@@ -135,7 +135,7 @@ The system uses the following thresholds:
 
 3. **Script Infrastructure**
    - Updated `/frontend/src/lib/server/supabase-script.ts` for Node.js compatibility
-   - Modified `/frontend/src/lib/server/embeddings.ts` to use process.env instead of SvelteKit imports
+   - Modified `/frontend/src/lib/server/embeddings.ts` to use `$env/static/private` for proper SvelteKit environment variable handling
    - Enhanced `/frontend/src/scripts/ingest-qa.ts` with comprehensive batch processing
 
 4. **Data Ingestion Process**
@@ -166,7 +166,7 @@ The system uses the following thresholds:
 - `/frontend/src/lib/server/qa.ts` - Schema definition
 - `/frontend/src/lib/server/supabase.ts` - Enhanced with validation
 - `/frontend/src/lib/server/supabase-script.ts` - Node.js compatibility
-- `/frontend/src/lib/server/embeddings.ts` - Environment variable support
+- `/frontend/src/lib/server/embeddings.ts` - Updated to use SvelteKit's `$env/static/private` for proper environment variable access
 - `/frontend/src/lib/server/embeddings-script.ts` - OpenRouter API integration
 - `/frontend/src/scripts/ingest-qa.ts` - Comprehensive ingestion tool
 - `/docs/architecture/database/overview.md` - Database documentation
