@@ -1,7 +1,8 @@
 # LinkList Component
+*Last Updated: 2025-09-22 18:45:00 UTC*
 
 ## Overview
-A navigation component that renders a list of links with active state management and accessibility features.
+A navigation component that renders a list of links with active state management, smooth anchor scrolling, and accessibility features.
 
 ## Location
 `frontend/src/lib/components/navigation/LinkList.svelte`
@@ -23,7 +24,20 @@ interface LinkItem {
 - Index (`/`)
 - Graphics (`/graphics`)
 
+**Note**: The default data varies by parent component. In TopNav, it defaults to anchor links:
+- Introduction (`#introduction`)
+- Work (`#work`)
+- Articles (`#articles`)
+
 ## Features
+
+### Smooth Anchor Scrolling
+<!-- Updated: 2025-09-22 18:45:00 UTC -->
+- Intercepts clicks on anchor links (href starting with `#`)
+- Uses `scrollIntoView()` with smooth behavior for navigation
+- Prevents default browser behavior for anchor links
+- Automatically scrolls to target element with `block: 'start'` alignment
+- Falls back to default navigation for non-anchor links
 
 ### Active State Management
 - Uses `$page.url.pathname` to determine active links
@@ -50,12 +64,91 @@ interface LinkItem {
 - `.nav-link.active` - Active page indicator
 - `.nav-link:focus-visible` - Keyboard focus outline
 
-## Usage Example
+## Technical Implementation
+
+### Anchor Scrolling Logic
+<!-- Updated: 2025-09-22 18:45:00 UTC -->
+```javascript
+function handleAnchorClick(event: MouseEvent, href: string) {
+  // Only handle anchor links (starting with #)
+  if (href.startsWith('#')) {
+    event.preventDefault();
+    const targetId = href.substring(1);
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }
+}
+```
+
+The function:
+1. Checks if the href starts with `#` (anchor link)
+2. Prevents default browser navigation
+3. Extracts the target ID by removing the `#` prefix
+4. Finds the target element using `document.getElementById()`
+5. Smoothly scrolls to the element if found
+
+### Event Handler Integration
+The anchor scrolling is attached via onclick handler:
+```svelte
+<a
+  href={item.href}
+  onclick={(event) => handleAnchorClick(event, item.href)}
+>
+  {item.label}
+</a>
+```
+
+## Usage Examples
+
+### Basic Navigation (Page Routes)
 ```svelte
 <LinkList />
-<!-- or with custom links -->
+<!-- Uses default page navigation -->
+```
+
+### Anchor Navigation (TopNav Integration)
+```svelte
+<LinkList list={[
+  { label: "Introduction", href: "#introduction" },
+  { label: "Work", href: "#work" },
+  { label: "Articles", href: "#articles" }
+]} />
+```
+
+### Mixed Navigation
+```svelte
 <LinkList list={[
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" }
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "#contact" }
 ]} />
+```
+
+## Integration with Page Sections
+
+When using anchor links, ensure target sections have matching IDs:
+
+```svelte
+<!-- In +page.svelte -->
+<section id="introduction" class="section">
+  <p>Introduction Content</p>
+</section>
+
+<section id="work" class="section">
+  <p>Work Content</p>
+</section>
+```
+
+The sections should have sufficient height for proper scrolling behavior:
+```css
+.section {
+  height: 100vh; /* Full viewport height recommended */
+  /* other styles */
+}
 ```

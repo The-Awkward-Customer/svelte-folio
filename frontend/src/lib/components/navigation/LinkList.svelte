@@ -25,6 +25,22 @@
 
     return `nav-link ${isActive ? "active" : ""}`;
   }
+
+  function handleAnchorClick(event: MouseEvent, href: string) {
+    // Only handle anchor links (starting with #)
+    if (href.startsWith('#')) {
+      event.preventDefault();
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+  }
 </script>
 
 <nav aria-label="Main navigation">
@@ -42,6 +58,7 @@
             : $page.url.pathname.startsWith(item.href)
               ? "page"
               : undefined}
+          onclick={(event) => handleAnchorClick(event, item.href)}
         >
           {item.label}
         </a>

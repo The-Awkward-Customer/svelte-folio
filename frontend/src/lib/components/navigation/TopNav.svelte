@@ -15,8 +15,9 @@
   }
 
   let defaultListData: LinkItem[] = [
-    { label: "Index", href: "/" },
-    { label: "Experience", href: "/experience" },
+    { label: "Introduction", href: "#introduction" },
+    { label: "Work", href: "#work" },
+    { label: "Articles", href: "#articles" },
   ];
 
   let { list = defaultListData }: TopNavProps = $props();
