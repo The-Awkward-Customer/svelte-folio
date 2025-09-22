@@ -47,6 +47,14 @@ Quick links to docs and related code in this repository.
   - [`../frontend/src/lib/components/AnimatedTextPathSpag.svelte`](../frontend/src/lib/components/AnimatedTextPathSpag.svelte)
   - [`../frontend/src/lib/components/CanvasAnimation.svelte`](../frontend/src/lib/components/CanvasAnimation.svelte)
 
+### Navigation
+- [anchor-scrolling-implementation.md](./components/navigation/anchor-scrolling-implementation.md)
+- [LinkList.md](./components/linkList/LinkList.md)
+- Related:
+  - [`../frontend/src/lib/components/navigation/TopNav.svelte`](../frontend/src/lib/components/navigation/TopNav.svelte)
+  - [`../frontend/src/lib/components/navigation/LinkList.svelte`](../frontend/src/lib/components/navigation/LinkList.svelte)
+  - [`../frontend/src/routes/+page.svelte`](../frontend/src/routes/+page.svelte)
+
 ## Data
 - [experience_spec.md](./data/experience_spec.md)
 - [Experience-Data-Review.md](./data/Experience-Data-Review.md)
