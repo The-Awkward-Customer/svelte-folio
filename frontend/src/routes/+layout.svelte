@@ -2,7 +2,7 @@
   import "../styles/app.css";
 
   import { Footer } from "$lib/components/layout";
-  import { TopNav } from "$lib/components/navigation";
+  import { TopNavigation } from "$lib/components/navigation";
   import { CheckerBackground } from "$lib/components/experiments";
 
   import { onMount } from "svelte";
@@ -24,7 +24,7 @@
   let { children } = $props();
 </script>
 
-<TopNav></TopNav>
+<TopNavigation></TopNavigation>
 
 <main>
   <CheckerBackground />

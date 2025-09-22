@@ -1,4 +1,5 @@
 # Svelte Folio - Project Reference
+*Last Updated: 2025-09-22 18:50:00 UTC*
 
 ## 🏗️ Core Technologies
 
@@ -49,7 +50,7 @@ layout/
 
 ```
 topNav/
-├── TopNav.svelte         # Main navigation bar
+├── TopNavigation.svelte  # Main navigation bar
 └── ChatTrigger.svelte    # Interactive profile trigger
 
 navigation/

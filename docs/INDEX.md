@@ -1,4 +1,5 @@
 # Documentation Index
+*Last Updated: 2025-09-22 18:50:00 UTC*
 
 Quick links to docs and related code in this repository.
 
@@ -51,7 +52,7 @@ Quick links to docs and related code in this repository.
 - [anchor-scrolling-implementation.md](./components/navigation/anchor-scrolling-implementation.md)
 - [LinkList.md](./components/linkList/LinkList.md)
 - Related:
-  - [`../frontend/src/lib/components/navigation/TopNav.svelte`](../frontend/src/lib/components/navigation/TopNav.svelte)
+  - [`../frontend/src/lib/components/navigation/TopNavigation.svelte`](../frontend/src/lib/components/navigation/TopNavigation.svelte)
   - [`../frontend/src/lib/components/navigation/LinkList.svelte`](../frontend/src/lib/components/navigation/LinkList.svelte)
   - [`../frontend/src/routes/+page.svelte`](../frontend/src/routes/+page.svelte)
 

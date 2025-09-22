@@ -1,9 +1,10 @@
 # Naming & Placement Conventions
+*Last Updated: 2025-09-22 18:50:00 UTC*
 
 ## Naming
 
 - Folders: use domain-based, kebab-case names (e.g., `overlays`, `data-display`, `navigation`, `layout`, `forms`, `feedback`, `media`, `experimental`).
-- Files: PascalCase for Svelte components (e.g., `TopNav.svelte`, `VideoTile.svelte`).
+- Files: PascalCase for Svelte components (e.g., `TopNavigation.svelte`, `VideoTile.svelte`).
 - Subcomponent pattern: within a component group, use scoped names rather than prefixed ones. Example: `dialog/Root.svelte`, `dialog/Header.svelte`, `dialog/Title.svelte` instead of `DialogRoot.svelte`, etc. Re-export via `index.ts`.
 - Barrels: prefer `index.ts` for type safety; keep barrel exports minimal and stable.
 - Tests: pick one pattern — collocate (`Component.spec.ts`) or centralize (`__tests__`) — and apply consistently.
@@ -14,7 +15,7 @@
 - Actions: interactive controls in `components/actions` (e.g., `Button`, `IconButton`, `Link`, `PromptButton`, `GemButton`).
 - Forms: input controls (no buttons) in `components/forms` (e.g., `TextField`, `Select`, `Checkbox`, `Radio`, `Switch`).
 - Overlays: transient UI in `components/overlays` (e.g., `dialog`, `tooltip`, `popover`, `drawer`, `toast`).
-- Navigation: navigational structures in `components/navigation` (e.g., `TopNav`, `LinkList`, `Breadcrumbs`, `Pagination`).
+- Navigation: navigational structures in `components/navigation` (e.g., `TopNavigation`, `LinkList`, `Breadcrumbs`, `Pagination`).
 - Data display: presentational containers in `components/data-display` (e.g., `Card*`, `List`, `Table`, `Badge`).
 - Feedback: status and messaging UI in `components/feedback` (e.g., `Progress`, `Toast`, `Callout`, `Skeleton`).
 - Layout: structural components in `components/layout` (e.g., `Grid`, `GridItem`, `Container`, `Stack`, `Footer`).
