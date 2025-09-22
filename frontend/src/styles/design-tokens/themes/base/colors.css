@@ -1,13 +1,13 @@
 /* Base Theme Colors */
 :root {
   /* Dev colors */
-  --color-dev-pink: 241 114 255; /* rgba(241, 114, 255, 1) */
+  --color-dev-pink: 241 114 255; /* oklch(0.7526 0.2275 323.6) */
 
   /* Project colors */
-  --fresha-purple: 105, 80, 243;
+  --fresha-purple: oklch(0.5565 0.2315 282.9);
 
   /* Focus ring */
-  --focus-ring-color: rgba(255, 98, 0, 1);
+  --focus-ring-color: oklch(0.6909 0.2073 42.3);
   --focus-ring-width: 2px;
   --focus-ring-offset: 2px;
 
@@ -17,5 +17,5 @@
   --bp-tablet: 1024px;
   --bp-desktop: 1440px;
 
-  --brand-fresha-accent: 105, 80, 243; /* rgba(105, 80, 243, 1) */
+  --brand-fresha-accent: oklch(0.5565 0.2315 282.9); /* oklch(0.5565 0.2315 282.9) */
 }
