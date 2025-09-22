@@ -5,129 +5,129 @@
   --noise-color: transparent;
 
   /* Overlay */
-  --bg-overlay: rgba(0, 0, 0, 1); /* opaque black overlay */
-  --bg-overlay-semi: rgba(0, 0, 0, 0.8); /* semi-transparent black overlay */
+  --bg-overlay: oklch(0.0 0.0 0); /* opaque black overlay */
+  --bg-overlay-semi: oklch(0.0 0.0 0 / 0.8); /* semi-transparent black overlay */
 
   /* Legacy rgba values for backwards compatibility */
-  --bdr-inverse: rgba(0, 0, 0, 1);
-  --bg-component: rgba(180, 180, 180, 1);
-  --bg-inverse: rgba(38, 39, 45, 1);
+  --bdr-inverse: oklch(0.0 0.0 0);
+  --bg-component: oklch(0.7699 0.0001 263.3);
+  --bg-inverse: oklch(0.2742 0.0112 278.1);
 
   /* Border inverse with opacity variants */
-  --bdr-inverse-full: rgba(0, 0, 0, 1);
-  --bdr-inverse-80: rgba(0, 0, 0, 0.8);
-  --bdr-inverse-60: rgba(0, 0, 0, 0.6);
-  --bdr-inverse-40: rgba(0, 0, 0, 0.4);
-  --bdr-inverse-20: rgba(0, 0, 0, 0.2);
+  --bdr-inverse-full: oklch(0.0 0.0 0);
+  --bdr-inverse-80: oklch(0.0 0.0 0 / 0.8);
+  --bdr-inverse-60: oklch(0.0 0.0 0 / 0.6);
+  --bdr-inverse-40: oklch(0.0 0.0 0 / 0.4);
+  --bdr-inverse-20: oklch(0.0 0.0 0 / 0.2);
 
   /* RGBA Color Variants with Opacity - High Contrast Theme */
   /* Text colors with opacity variants */
-  --fg-text-primary: rgba(0, 0, 0, 1);
-  --fg-text-primary-90: rgba(0, 0, 0, 0.9);
-  --fg-text-primary-80: rgba(0, 0, 0, 0.8);
-  --fg-text-primary-60: rgba(0, 0, 0, 0.6);
-  --fg-text-primary-40: rgba(0, 0, 0, 0.4);
-  --fg-text-primary-20: rgba(0, 0, 0, 0.2);
-  --fg-text-primary-10: rgba(0, 0, 0, 0.1);
+  --fg-text-primary: oklch(0.0 0.0 0);
+  --fg-text-primary-90: oklch(0.0 0.0 0 / 0.9);
+  --fg-text-primary-80: oklch(0.0 0.0 0 / 0.8);
+  --fg-text-primary-60: oklch(0.0 0.0 0 / 0.6);
+  --fg-text-primary-40: oklch(0.0 0.0 0 / 0.4);
+  --fg-text-primary-20: oklch(0.0 0.0 0 / 0.2);
+  --fg-text-primary-10: oklch(0.0 0.0 0 / 0.1);
 
-  --fg-text-secondary: rgba(0, 0, 0, 1);
-  --fg-text-secondary-80: rgba(0, 0, 0, 0.8);
-  --fg-text-secondary-60: rgba(0, 0, 0, 0.6);
-  --fg-text-secondary-40: rgba(0, 0, 0, 0.4);
+  --fg-text-secondary: oklch(0.0 0.0 0);
+  --fg-text-secondary-80: oklch(0.0 0.0 0 / 0.8);
+  --fg-text-secondary-60: oklch(0.0 0.0 0 / 0.6);
+  --fg-text-secondary-40: oklch(0.0 0.0 0 / 0.4);
 
-  --fg-text-inverse: rgba(255, 255, 255, 1);
-  --fg-text-inverse-90: rgba(255, 255, 255, 0.9);
-  --fg-text-inverse-80: rgba(255, 255, 255, 0.8);
-  --fg-text-inverse-60: rgba(255, 255, 255, 0.6);
-  --fg-text-inverse-40: rgba(255, 255, 255, 0.4);
-  --fg-text-inverse-20: rgba(255, 255, 255, 0.2);
-  --fg-text-inverse-10: rgba(255, 255, 255, 0.1);
+  --fg-text-inverse: oklch(1.0 0.0001 263.3);
+  --fg-text-inverse-90: oklch(1.0 0.0001 263.3 / 0.9);
+  --fg-text-inverse-80: oklch(1.0 0.0001 263.3 / 0.8);
+  --fg-text-inverse-60: oklch(1.0 0.0001 263.3 / 0.6);
+  --fg-text-inverse-40: oklch(1.0 0.0001 263.3 / 0.4);
+  --fg-text-inverse-20: oklch(1.0 0.0001 263.3 / 0.2);
+  --fg-text-inverse-10: oklch(1.0 0.0001 263.3 / 0.1);
 
-  --fg-text-danger: rgba(199, 56, 0, 1);
-  --fg-text-danger-80: rgba(199, 56, 0, 0.8);
-  --fg-text-danger-60: rgba(199, 56, 0, 0.6);
-  --fg-text-danger-40: rgba(199, 56, 0, 0.4);
+  --fg-text-danger: oklch(0.5519 0.187 36.4);
+  --fg-text-danger-80: oklch(0.5519 0.187 36.4 / 0.8);
+  --fg-text-danger-60: oklch(0.5519 0.187 36.4 / 0.6);
+  --fg-text-danger-40: oklch(0.5519 0.187 36.4 / 0.4);
 
-  --fg-text-muted: rgba(0, 0, 0, 1);
-  --fg-text-muted-80: rgba(0, 0, 0, 0.8);
-  --fg-text-muted-60: rgba(0, 0, 0, 0.6);
+  --fg-text-muted: oklch(0.0 0.0 0);
+  --fg-text-muted-80: oklch(0.0 0.0 0 / 0.8);
+  --fg-text-muted-60: oklch(0.0 0.0 0 / 0.6);
 
 
   /* Background - Primary states */
-  --bg-primary-key: rgba(0, 0, 0, 1);
-  --bg-primary-default: rgba(0, 0, 0, 1);
-  --bg-primary-hover: rgba(0, 0, 0, 1);
-  --bg-primary-active: rgba(0, 0, 0, 1);
+  --bg-primary-key: oklch(0.0 0.0 0);
+  --bg-primary-default: oklch(0.0 0.0 0);
+  --bg-primary-hover: oklch(0.0 0.0 0);
+  --bg-primary-active: oklch(0.0 0.0 0);
 
   /* Background - Ghost states (minimal opacity for accessibility) */
-  --bg-ghost-key: rgba(0, 0, 0, 0.01);
-  --bg-ghost-default: rgba(0, 0, 0, 0.01);
-  --bg-ghost-hover: rgba(0, 0, 0, 0.01);
-  --bg-ghost-active: rgba(0, 0, 0, 0.01);
+  --bg-ghost-key: oklch(0.0 0.0 0 / 0.01);
+  --bg-ghost-default: oklch(0.0 0.0 0 / 0.01);
+  --bg-ghost-hover: oklch(0.0 0.0 0 / 0.01);
+  --bg-ghost-active: oklch(0.0 0.0 0 / 0.01);
 
   /* Background colors with opacity variants */
-  --bg-page: rgba(255, 255, 255, 1);
+  --bg-page: oklch(1.0 0.0001 263.3);
 
-  --bg-primary: rgba(38, 39, 45, 1);
-  --bg-primary-90: rgba(38, 39, 45, 0.9);
-  --bg-primary-80: rgba(38, 39, 45, 0.8);
-  --bg-primary-60: rgba(38, 39, 45, 0.6);
-  --bg-primary-40: rgba(38, 39, 45, 0.4);
-  --bg-primary-20: rgba(38, 39, 45, 0.2);
+  --bg-primary: oklch(0.2742 0.0112 278.1);
+  --bg-primary-90: oklch(0.2742 0.0112 278.1 / 0.9);
+  --bg-primary-80: oklch(0.2742 0.0112 278.1 / 0.8);
+  --bg-primary-60: oklch(0.2742 0.0112 278.1 / 0.6);
+  --bg-primary-40: oklch(0.2742 0.0112 278.1 / 0.4);
+  --bg-primary-20: oklch(0.2742 0.0112 278.1 / 0.2);
 
   /* Border colors with opacity variants */
-  --bdr-primary: rgba(0, 0, 0, 1);
-  --bdr-primary-60: rgba(0, 0, 0, 0.6);
-  --bdr-primary-40: rgba(0, 0, 0, 0.4);
-  --bdr-primary-20: rgba(0, 0, 0, 0.2);
+  --bdr-primary: oklch(0.0 0.0 0);
+  --bdr-primary-60: oklch(0.0 0.0 0 / 0.6);
+  --bdr-primary-40: oklch(0.0 0.0 0 / 0.4);
+  --bdr-primary-20: oklch(0.0 0.0 0 / 0.2);
 
-  --bdr-secondary: rgba(0, 0, 0, 1);
-  --bdr-secondary-60: rgba(0, 0, 0, 0.6);
-  --bdr-secondary-40: rgba(0, 0, 0, 0.4);
+  --bdr-secondary: oklch(0.0 0.0 0);
+  --bdr-secondary-60: oklch(0.0 0.0 0 / 0.6);
+  --bdr-secondary-40: oklch(0.0 0.0 0 / 0.4);
 
   /* Status colors with opacity variants */
-  --fg-positive: rgba(63, 115, 0, 1);
-  --fg-positive-80: rgba(63, 115, 0, 0.8);
-  --fg-positive-60: rgba(63, 115, 0, 0.6);
+  --fg-positive: oklch(0.4992 0.1421 133.5);
+  --fg-positive-80: oklch(0.4992 0.1421 133.5 / 0.8);
+  --fg-positive-60: oklch(0.4992 0.1421 133.5 / 0.6);
 
-  --bg-positive: rgba(255, 255, 255, 1);
-  --bg-positive-80: rgba(255, 255, 255, 0.8);
-  --bg-positive-60: rgba(255, 255, 255, 0.6);
+  --bg-positive: oklch(1.0 0.0001 263.3);
+  --bg-positive-80: oklch(1.0 0.0001 263.3 / 0.8);
+  --bg-positive-60: oklch(1.0 0.0001 263.3 / 0.6);
 
   /* Border Tokens - High Contrast Theme */
-  --border-neutral: rgba(255, 255, 255, 0.2);
-  --border-hover: rgba(255, 255, 255, 0.5);
-  --border-active: rgba(255, 255, 255, 1);
+  --border-neutral: oklch(1.0 0.0001 263.3 / 0.2);
+  --border-hover: oklch(1.0 0.0001 263.3 / 0.5);
+  --border-active: oklch(1.0 0.0001 263.3);
 
   /* Text Primary Tokens - High Contrast Theme */
-  --text-primary-key: rgba(0, 0, 0, 1);
-  --text-primary-default: rgba(0, 0, 0, 1);
-  --text-primary-hover: rgba(0, 0, 0, 1);
-  --text-primary-active: rgba(0, 0, 0, 1);
-  --text-primary-muted: rgba(0, 0, 0, 1);
-  --text-primary-disabled: rgba(0, 0, 0, 1);
+  --text-primary-key: oklch(0.0 0.0 0);
+  --text-primary-default: oklch(0.0 0.0 0);
+  --text-primary-hover: oklch(0.0 0.0 0);
+  --text-primary-active: oklch(0.0 0.0 0);
+  --text-primary-muted: oklch(0.0 0.0 0);
+  --text-primary-disabled: oklch(0.0 0.0 0);
 
   /* Surface Tokens - High Contrast Theme */
-  --surface-neutral-mask: rgba(255, 255, 255, 1);
-  --surface-neutral-reading: rgba(0, 0, 0, 1);
-  --surface-neutral-loud: rgba(0, 0, 0, 1);
-  --surface-positive-loud: rgba(0, 0, 0, 1);
-  --surface-positive-muted: rgba(0, 0, 0, 0.6);
-  --surface-transparent: rgba(255, 255, 255, 0);
+  --surface-neutral-mask: oklch(1.0 0.0001 263.3);
+  --surface-neutral-reading: oklch(0.0 0.0 0);
+  --surface-neutral-loud: oklch(0.0 0.0 0);
+  --surface-positive-loud: oklch(0.0 0.0 0);
+  --surface-positive-muted: oklch(0.0 0.0 0 / 0.6);
+  --surface-transparent: oklch(1.0 0.0001 263.3 / 0.0);
 
   /* Brand Colors */
-  --color-brand-jio: rgba(2, 35, 134, 1);
-  --color-brand-fresha: rgba(105, 80, 243, 1);
-  --color-brand-godesk: rgba(221, 255, 0, 1);
-  --color-brand-suzuki: rgba(1, 48, 68, 1);
-  --color-brand-warhammer: rgba(0, 0, 0, 1);
-  --color-brand-shell: rgba(251, 206, 7, 1);
-  --color-brand-ikea: rgba(255, 218, 26, 1);
-  --color-brand-postoffice: rgba(238, 39, 34, 1);
-  --color-brand-hsbc: rgba(255, 255, 255, 1);
-  --color-brand-unilever: rgba(15, 14, 154, 1);
-  --color-brand-axa: rgba(52, 60, 61, 1);
-  --color-brand-tsb: rgba(0, 168, 225, 1);
+  --color-brand-jio: oklch(0.3212 0.167 263.7);
+  --color-brand-fresha: oklch(0.5565 0.2315 282.9);
+  --color-brand-godesk: oklch(0.9423 0.2215 119.1);
+  --color-brand-suzuki: oklch(0.2909 0.0592 232.9);
+  --color-brand-warhammer: oklch(0.0 0.0 0);
+  --color-brand-shell: oklch(0.8653 0.1762 92.7);
+  --color-brand-ikea: oklch(0.8931 0.18 96.3);
+  --color-brand-postoffice: oklch(0.61 0.2306 28.4);
+  --color-brand-hsbc: oklch(1.0 0.0001 263.3);
+  --color-brand-unilever: oklch(0.324 0.2054 267.1);
+  --color-brand-axa: oklch(0.3491 0.0109 205.9);
+  --color-brand-tsb: oklch(0.6868 0.1397 231.7);
 
   /* Legacy variable mappings for backward compatibility */
   --color-fg-primary: var(--fg-text-primary);
