@@ -298,5 +298,5 @@
 
 **top-nav/** (2/2 with styles)
   ✓ ChatTrigger
-  ✓ TopNav
+  ✓ TopNavigation
 

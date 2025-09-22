@@ -77,7 +77,7 @@ src/lib/components/
     index.ts
 
   navigation/
-    TopNav.svelte
+    TopNavigation.svelte
     Link.svelte
     LinkList.svelte
     Breadcrumbs.svelte

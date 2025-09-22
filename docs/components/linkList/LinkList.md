@@ -1,5 +1,5 @@
 # LinkList Component
-*Last Updated: 2025-09-22 18:45:00 UTC*
+*Last Updated: 2025-09-22 18:50:00 UTC*
 
 ## Overview
 A navigation component that renders a list of links with active state management, smooth anchor scrolling, and accessibility features.
@@ -24,7 +24,7 @@ interface LinkItem {
 - Index (`/`)
 - Graphics (`/graphics`)
 
-**Note**: The default data varies by parent component. In TopNav, it defaults to anchor links:
+**Note**: The default data varies by parent component. In TopNavigation, it defaults to anchor links:
 - Introduction (`#introduction`)
 - Work (`#work`)
 - Articles (`#articles`)
@@ -112,7 +112,7 @@ The anchor scrolling is attached via onclick handler:
 <!-- Uses default page navigation -->
 ```
 
-### Anchor Navigation (TopNav Integration)
+### Anchor Navigation (TopNavigation Integration)
 ```svelte
 <LinkList list={[
   { label: "Introduction", href: "#introduction" },

@@ -53,7 +53,7 @@ isOpen = $state(false);
 
 #### 4. Two-Way Binding Flow
 ```
-TopNav.openChat() → chatStore.openChat() → isOpen = true
+TopNavigation.openChat() → chatStore.openChat() → isOpen = true
 ChatDialog closes → bind:isOpen updates store → chatStore.isOpen = false
 ```
 

@@ -1,4 +1,5 @@
 # Frontend Component Structure Proposal
+*Last Updated: 2025-09-22 18:50:00 UTC*
 
 ## Executive Summary
 
@@ -83,7 +84,7 @@ frontend/src/lib/components/
 ├── navigation/                         # Navigation components
 │   ├── ChatTrigger.svelte
 │   ├── LinkList.svelte
-│   ├── TopNav.svelte
+│   ├── TopNavigation.svelte
 │   ├── Breadcrumb.svelte              # New
 │   └── index.ts
 │
@@ -335,7 +336,7 @@ import { GridLayout } from '$lib/components/layout';
 ### Navigation
 - Components for site navigation
 - May include state management
-- Examples: TopNav, Breadcrumbs, menus
+- Examples: TopNavigation, Breadcrumbs, menus
 
 ### Layout
 - Structural components for page organization

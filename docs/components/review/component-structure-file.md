@@ -102,7 +102,7 @@ frontend/src/lib/components/
 │   └── index.ts
 └── top-nav/                             # Top navigation
     ├── ChatTrigger.svelte
-    ├── TopNav.svelte
+    ├── TopNavigation.svelte
     └── index.ts
 ```
 

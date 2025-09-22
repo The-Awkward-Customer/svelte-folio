@@ -1,5 +1,6 @@
 # Anchor Scrolling Navigation Implementation
 *Created: 2025-09-22 18:45:00 UTC*
+*Last Updated: 2025-09-22 18:50:00 UTC*
 
 ## Overview
 
@@ -9,16 +10,16 @@ This document describes the anchor scrolling functionality implemented in the Sv
 
 The anchor scrolling feature consists of three main components working together:
 
-1. **TopNav Component** - Provides anchor-based navigation links
+1. **TopNavigation Component** - Provides anchor-based navigation links
 2. **LinkList Component** - Handles the smooth scrolling behavior
 3. **Index Page Sections** - Target sections with matching IDs
 
 ## Component Integration
 
-### TopNav.svelte
-**Location**: `/frontend/src/lib/components/navigation/TopNav.svelte`
+### TopNavigation.svelte
+**Location**: `/frontend/src/lib/components/navigation/TopNavigation.svelte`
 
-The TopNav component has been updated to use anchor links instead of page routes:
+The TopNavigation component has been updated to use anchor links instead of page routes:
 
 ```javascript
 let defaultListData: LinkItem[] = [
@@ -184,7 +185,7 @@ Potential improvements for the anchor scrolling system:
 
 ## Related Files
 
-- `/frontend/src/lib/components/navigation/TopNav.svelte`
+- `/frontend/src/lib/components/navigation/TopNavigation.svelte`
 - `/frontend/src/lib/components/navigation/LinkList.svelte`
 - `/frontend/src/routes/+page.svelte`
 - `/docs/components/linkList/LinkList.md`
