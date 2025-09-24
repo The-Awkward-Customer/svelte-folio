@@ -8,6 +8,7 @@
 
   interface LinkListProps {
     list?: LinkItem[];
+    axis?: "horizontal" | "vertical";
   }
 
   let defaultListData: LinkItem[] = [
@@ -15,7 +16,7 @@
     { label: "Graphics", href: "/graphics" },
   ];
 
-  let { list = defaultListData }: LinkListProps = $props();
+  let { list = defaultListData, axis = "horizontal" }: LinkListProps = $props();
 
   function getNavClasses(href: string): string {
     const isActive =
@@ -28,15 +29,15 @@
 
   function handleAnchorClick(event: MouseEvent, href: string) {
     // Only handle anchor links (starting with #)
-    if (href.startsWith('#')) {
+    if (href.startsWith("#")) {
       event.preventDefault();
       const targetId = href.substring(1);
       const targetElement = document.getElementById(targetId);
 
       if (targetElement) {
         targetElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+          behavior: "smooth",
+          block: "start",
         });
       }
     }
@@ -44,7 +45,7 @@
 </script>
 
 <nav aria-label="Main navigation">
-  <ul role="list">
+  <ul role="list" class="link-list link-list--{axis}">
     {#each list as item}
       <li>
         <a
@@ -72,11 +73,18 @@
     display: block;
   }
 
-  ul {
+  .link-list {
     display: flex;
-    flex-direction: row;
-    gap: 0.5em;
     list-style: none;
+    align-items: flex-start;
+  }
+
+  .link-list--horizontal {
+    flex-direction: row;
+  }
+
+  .link-list--vertical {
+    flex-direction: column;
   }
 
   li {
@@ -90,6 +98,7 @@
     align-items: center;
     color: var(--fg-text-primary-60);
     height: var(--size-touch-safe-inset);
+    padding: var(--padding-none) var(--padding-sm);
     border-radius: var(--border-radius-sm);
     transition: all 0.2s ease-in-out;
   }

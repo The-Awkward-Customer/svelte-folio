@@ -3,7 +3,6 @@
 
   import { Footer } from "$lib/components/layout";
   import { TopNavigation } from "$lib/components/navigation";
-  import { CheckerBackground } from "$lib/components/experiments";
 
   import { onMount } from "svelte";
   import { beforeNavigate } from "$app/navigation";
@@ -27,7 +26,6 @@
 <TopNavigation></TopNavigation>
 
 <main>
-  <CheckerBackground />
   {@render children()}
 </main>
 

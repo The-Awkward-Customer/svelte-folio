@@ -2,14 +2,14 @@
 :root {
 
    /* Gap tokens for CSS Grid/Flexbox */
-  --gap-tiny: 2px;
-  --gap-xsmall: 4px;
+  --gap-1xs: 2px;
+  --gap-xs: 4px;
   --gap-sm: 8px;
-  --gap-small-relaxed: 12px;
-  --gap-medium: 16px;
-  --gap-medium-relaxed: 20px;
-  --gap-large: 32px;
-  --gap-xlarge: 48px;
+  --gap-sm-relaxed: 12px;
+  --gap-md: 16px;
+  --gap-md-relaxed: 20px;
+  --gap-lg: 32px;
+  --gap-xl: 48px;
 
   /* Fluid gap tokens for responsive spacing */
   --gap-fluid-half: 0.5rem;
@@ -30,47 +30,61 @@
   --padding-right-tiny: var(--padding-tiny);
   --padding-bottom-tiny: var(--padding-tiny);
 
-   /* Padding - xsmall (4) */
-  --padding-xsmall: 4px;
-  --padding-left-xsmall: var(--padding-xsmall);
-  --padding-top-xsmall: var(--padding-xsmall);
-  --padding-right-xsmall: var(--padding-xsmall);
-  --padding-bottom-xsmall: var(--padding-xsmall);
+   /* Padding - xs (4) */
+  --padding-xs: 4px;
+  --padding-left-xs: var(--padding-xsmall);
+  --padding-top-xs: var(--padding-xsmall);
+  --padding-right-xs: var(--padding-xsmall);
+  --padding-bottom-xs: var(--padding-xsmall);
 
-   /* Padding - small (8px) */
-  --padding-small: 8px;
-  --padding-left-small: var(--padding-small);
-  --padding-top-small: var(--padding-small);
-  --padding-right-small: var(--padding-small);
-  --padding-bottom-small: var(--padding-small);
+  /* Padding - sm (8px) */
+  --padding-sm: 8px;
+  --padding-left-sm: var(--padding-small);
+  --padding-top-sm: var(--padding-small);
+  --padding-right-sm: var(--padding-small);
+  --padding-bottom-sm: var(--padding-small);
 
-  /* Padding - Small (8px) */
-  --padding-small: 8px;
-  --padding-left-small: var(--padding-small);
-  --padding-top-small: var(--padding-small);
-  --padding-right-small: var(--padding-small);
-  --padding-bottom-small: var(--padding-small);
+  /* Padding - sm Relaxed (12px) */
+  --padding-sm-relaxed: 12px;
+  --padding-left-sm-relaxed: var(--padding-small-relaxed);
+  --padding-top-sm-relaxed: var(--padding-small-relaxed);
+  --padding-right-sm-relaxed: var(--padding-small-relaxed);
+  --padding-bottom-sm-relaxed: var(--padding-small-relaxed);
 
-  /* Padding - Small Relaxed (12px) */
-  --padding-small-relaxed: 12px;
-  --padding-left-small-relaxed: var(--padding-small-relaxed);
-  --padding-top-small-relaxed: var(--padding-small-relaxed);
-  --padding-right-small-relaxed: var(--padding-small-relaxed);
-  --padding-bottom-small-relaxed: var(--padding-small-relaxed);
+  /* Padding - md (16px) */
+  --padding-md: 16px;
+  --padding-left-md: var(--padding-medium);
+  --padding-top-md: var(--padding-medium);
+  --padding-right-md: var(--padding-medium);
+  --padding-bottom-md: var(--padding-medium);
 
-  /* Padding - medium (16px) */
-  --padding-medium: 16px;
-  --padding-left-medium: var(--padding-medium);
-  --padding-top-medium: var(--padding-medium);
-  --padding-right-medium: var(--padding-medium);
-  --padding-bottom-medium: var(--padding-medium);
+  /* padding - lg (24px) */
+  --padding-lg: 24px;
+  --padding-left-lg: var(--padding-large);
+  --padding-top-lg: var(--padding-large);
+  --padding-right-lg: var(--padding-large);
+  --padding-bottom-lg: var(--padding-large);
 
-  /* padding - large (24px) */
-  --padding-large: 24px;
-  --padding-left-large: var(--padding-large);
-  --padding-top-large: var(--padding-large);
-  --padding-right-large: var(--padding-large);
-  --padding-bottom-large: var(--padding-large);
+  /* padding - xl */
+  --padding-xl: 32px;
+  --padding-left-xl: var(--padding-xl);
+  --padding-top-xl: var(--padding-xl);
+  --padding-right-xl: var(--padding-xl);
+  --padding-bottom-xl: var(--padding-xl);
+
+  /* padding - 2xl */
+  --padding-xl: 43px;
+  --padding-left-xl: var(--padding-2xl);
+  --padding-top-xl: var(--padding-2xl);
+  --padding-right-xl: var(--padding-2xl);
+  --padding-bottom-xl: var(--padding-2xl);
+
+  /* padding - 2xl */
+  --padding-xl: 57px;
+  --padding-left-xl: var(--padding-3xl);
+  --padding-top-xl: var(--padding-3xl);
+  --padding-right-xl: var(--padding-3xl);
+  --padding-bottom-xl: var(--padding-3xl);
 
   /* Padding – responsive padding */
   --padding-fluid-half: 0.5rem;
