@@ -1,5 +1,5 @@
 # LinkList Component
-*Last Updated: 2025-09-22 18:50:00 UTC*
+*Last Updated: 2025-01-24 16:30:00 UTC*
 
 ## Overview
 A navigation component that renders a list of links with active state management, smooth anchor scrolling, and accessibility features.
@@ -11,6 +11,7 @@ A navigation component that renders a list of links with active state management
 
 ### LinkListProps
 - `list?: LinkItem[]` - Optional array of link items. Defaults to predefined navigation items.
+- `axis?: 'horizontal' | 'vertical'` - Optional layout direction. Defaults to `'horizontal'`.
 
 ### LinkItem Interface
 ```typescript
@@ -52,13 +53,17 @@ interface LinkItem {
 - `aria-current="page"` for active links
 
 ### Styling
-- Flexbox horizontal layout with gap
+- Flexbox layout with configurable direction (horizontal/vertical)
+- Responsive gap spacing
 - Hover and focus-visible states
-- Touch-safe height sizing
+- Touch-safe height sizing with padding
 - Custom CSS properties for colors and spacing
 - Smooth transitions (0.2s ease-in-out)
 
 ## CSS Classes
+- `.link-list` - Base list container styling
+- `.link-list--horizontal` - Horizontal layout (flex-direction: row)
+- `.link-list--vertical` - Vertical layout (flex-direction: column)
 - `.nav-link` - Base link styling
 - `.nav-link:hover` - Hover state
 - `.nav-link.active` - Active page indicator
@@ -109,7 +114,13 @@ The anchor scrolling is attached via onclick handler:
 ### Basic Navigation (Page Routes)
 ```svelte
 <LinkList />
-<!-- Uses default page navigation -->
+<!-- Uses default page navigation with horizontal layout -->
+```
+
+### Vertical Navigation Layout
+```svelte
+<LinkList axis="vertical" />
+<!-- Same navigation but in vertical layout -->
 ```
 
 ### Anchor Navigation (TopNavigation Integration)
@@ -119,6 +130,18 @@ The anchor scrolling is attached via onclick handler:
   { label: "Work", href: "#work" },
   { label: "Articles", href: "#articles" }
 ]} />
+```
+
+### Vertical Table of Contents
+```svelte
+<LinkList
+  axis="vertical"
+  list={[
+    { label: "Section 1", href: "#section-1" },
+    { label: "Section 2", href: "#section-2" },
+    { label: "Section 3", href: "#section-3" }
+  ]}
+/>
 ```
 
 ### Mixed Navigation

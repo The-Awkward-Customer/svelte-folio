@@ -67,7 +67,7 @@
   --bg-ghost-active: oklch(1.0 0.0001 263.3 / 0.1);
 
   /* Background colors with opacity variants */
-  --bg-page: oklch(0.2002 0.0 263.3);
+  --bg-page: oklch(0.192 0.0 0.0);
  
 
   --bg-primary: oklch(1.0 0.0001 263.3);
@@ -102,17 +102,17 @@
   --border-hover: oklch(0.6305 0.0061 274.8);
   --border-active: oklch(1.0 0.0001 263.3);
 
-  /* Text Primary Tokens - Dark Theme */
-  --text-primary-key: oklch(1.0 0.0001 263.3);
-  --text-primary-default: oklch(1.0 0.0001 263.3);
-  --text-primary-hover: oklch(1.0 0.0001 263.3);
-  --text-primary-active: oklch(1.0 0.0001 263.3);
-  --text-primary-muted: oklch(0.8141 0.0001 263.3);
-  --text-primary-disabled: oklch(0.6032 0.0001 263.3);
+  /* fg Primary Tokens - Dark Theme */
+  --fg-primary-key: oklch(1.0 0.0001 263.3);
+  --fg-primary-default: oklch(1.0 0.0001 263.3);
+  --fg-primary-hover: oklch(1.0 0.0001 263.3);
+  --fg-primary-active: oklch(1.0 0.0001 263.3);
+  --fg-primary-muted: oklch(0.8141 0.0001 263.3);
+  --fg-primary-disabled: oklch(0.6032 0.0001 263.3);
 
   /* Surface Tokens - Dark Theme */
   --surface-neutral-mask: oklch(0.2002 0.0 263.3);
-  --surface-neutral-reading: oklch(0.2269 0.0019 286.0);
+  --surface-neutral-reading: oklch(0.135 0.0 0.0);
   --surface-neutral-loud: oklch(0.3653 0.0068 286.0);
   --surface-positive-loud: oklch(0.9126 0.2425 129.2);
   --surface-positive-muted: oklch(0.9126 0.2425 129.2 / 0.6);

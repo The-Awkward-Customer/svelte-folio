@@ -1,5 +1,6 @@
 # Documentation Index
-*Last Updated: 2025-09-22 18:50:00 UTC*
+*Created: 2025-09-22 18:50:00 UTC*
+*Last Updated: 2025-09-24 09:45:00 UTC*
 
 Quick links to docs and related code in this repository.
 
@@ -13,6 +14,21 @@ Quick links to docs and related code in this repository.
 - [theming-documentation.md](./architecture/theming-documentation.md)
 
 ## Components
+
+### Article System
+<!-- Updated: 2025-09-24 09:45:00 UTC -->
+- [README.md](./components/article/README.md) - Complete article component system documentation
+- Related:
+  - [`../frontend/src/lib/components/article/ArticleLayout.svelte`](../frontend/src/lib/components/article/ArticleLayout.svelte)
+  - [`../frontend/src/lib/components/article/ArticleBody.svelte`](../frontend/src/lib/components/article/ArticleBody.svelte)
+  - [`../frontend/src/lib/components/article/ArticleSection.svelte`](../frontend/src/lib/components/article/ArticleSection.svelte)
+  - [`../frontend/src/lib/components/article/ArticleHeader.svelte`](../frontend/src/lib/components/article/ArticleHeader.svelte)
+  - [`../frontend/src/lib/components/article/ArticleText.svelte`](../frontend/src/lib/components/article/ArticleText.svelte)
+  - [`../frontend/src/lib/components/article/ArticleImage.svelte`](../frontend/src/lib/components/article/ArticleImage.svelte)
+  - [`../frontend/src/lib/components/article/ArticleList.svelte`](../frontend/src/lib/components/article/ArticleList.svelte)
+  - [`../frontend/src/lib/components/article/ArticleOrnament.svelte`](../frontend/src/lib/components/article/ArticleOrnament.svelte)
+  - [`../frontend/src/lib/components/article/ArticleTableOfContents.svelte`](../frontend/src/lib/components/article/ArticleTableOfContents.svelte)
+  - Example: [`../frontend/src/routes/text/+page.svelte`](../frontend/src/routes/text/+page.svelte)
 
 ### Accordion
 - [accordion-scroll-to-top-feature.md](./components/accordion/accordion-scroll-to-top-feature.md)
