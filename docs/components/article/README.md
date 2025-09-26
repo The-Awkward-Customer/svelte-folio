@@ -1,6 +1,6 @@
 # Article Component System
 *Created: 2025-09-24 09:45:00 UTC*
-*Last Updated: 2025-09-24 18:45:00 UTC*
+*Last Updated: 2025-09-25 12:50:00 UTC*
 
 ## Overview
 
@@ -322,7 +322,7 @@ interface Props {
 
 ### ArticleImage
 
-Rich image component with captions, sizing, and alignment options.
+Rich image component with captions, sizing, and alignment options. Built using the [Image primitive component](../primitives/Image.md) for consistent behavior and enhanced functionality.
 
 #### Props
 ```typescript
@@ -337,28 +337,50 @@ interface Props {
 
 #### Features
 - **Responsive Images**: Automatic sizing with `max-width: 100%`
-- **Lazy Loading**: Built-in `loading="lazy"` for performance
+- **Lazy Loading**: Built-in `loading="lazy"` for performance through Image primitive
 - **Caption Support**: Styled figcaption with italic text
 - **Placeholder Mode**: Visual placeholder when no src provided
 - **Multiple Alignments**: Flexible positioning options
+- **Primitive Integration**: Uses Image primitive with `borderRadius="sm"` for consistent styling
 
-#### New Features (v3.0)
+#### New Features (v4.0)
+<!-- Updated: 2025-09-25 12:50:00 UTC -->
+- **Image Primitive Integration**: Now uses the Image primitive component for enhanced functionality
+- **Consistent Placeholder System**: Inherits advanced placeholder features from Image primitive
+- **Border Radius Support**: Automatic small border radius through primitive integration
+- **Enhanced Object Fit**: Leverages Image primitive's object-fit variants
+- **Reduced Code Duplication**: Simplified implementation using composable primitives
+
+#### Previous Features (v3.0)
 <!-- Updated: 2025-09-24 18:45:00 UTC -->
-- **Fixed Aspect Ratio**: All images now maintain a consistent 16:9 aspect ratio
+- **Fixed Aspect Ratio**: All images maintain a consistent 16:9 aspect ratio
 - **Enhanced Object Fit**: Uses `object-fit: cover` to maintain proportions within the fixed aspect ratio
-- **Consistent Placeholders**: Placeholder also maintains the same 16:9 aspect ratio for design consistency
+- **Consistent Placeholders**: Placeholder maintains the same 16:9 aspect ratio for design consistency
 - **Improved Layout Predictability**: Fixed dimensions prevent layout shifts during loading
 
 #### Technical Implementation
-<!-- Updated: 2025-09-24 18:45:00 UTC -->
-Images now use CSS properties:
-```css
-img {
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-}
+<!-- Updated: 2025-09-25 12:50:00 UTC -->
+ArticleImage now composes the Image primitive:
+```svelte
+<script>
+  import { Image } from "$lib/components/primitives";
+</script>
 
-.article-image-placeholder {
+{#if src}
+  <Image {src} {alt} borderRadius="sm" class="article-image" />
+{:else}
+  <div class="article-image-placeholder">
+    <span>Image Placeholder</span>
+    <small>{width} width, {alignment} aligned</small>
+  </div>
+{/if}
+```
+
+Legacy CSS properties (now handled by Image primitive):
+```css
+.article-image {
+  width: 100%;
+  height: auto;
   aspect-ratio: 16 / 9;
 }
 ```
@@ -957,10 +979,11 @@ Planned improvements for the article system:
 
 | Date | Version | Changes |
 |------|---------|---------|
+| 2025-09-25 12:50:00 UTC | v4.0 | Updated ArticleImage to use Image primitive component for enhanced functionality and reduced code duplication |
 | 2025-09-24 18:45:00 UTC | v3.0 | Added interactive ArticleOrnament with hover animations, fixed 16:9 aspect ratios for ArticleImage, optional subtitles for ArticleText, simplified ArticleList API with required items array |
 | 2025-09-24 15:30:00 UTC | v2.0 | ArticleLayout sticky sidebar fixes, ArticleTableOfContents improvements |
 | 2025-09-24 09:45:00 UTC | v1.0 | Initial comprehensive documentation |
 
 ---
 
-*This documentation covers the complete Article Component System as of September 24, 2025 (v3.0). For the most current implementation details, refer to the individual component files in `/frontend/src/lib/components/article/`.*
+*This documentation covers the complete Article Component System as of September 25, 2025 (v4.0). For the most current implementation details, refer to the individual component files in `/frontend/src/lib/components/article/`.*
