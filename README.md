@@ -23,35 +23,43 @@ A modern, high-performance portfolio application built with SvelteKit 5, featuri
 - **Node.js** >= 18.0.0
 - **npm** >= 9.0.0
 - **Docker** (for local database)
+- **Supabase CLI** >= 1.0.0 (install with `npm install -g supabase`)
 
 ## 🛠 Installation
 
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd svelte-folio/frontend
+cd svelte-folio
 
-# Install dependencies
+# Install root dependencies
+npm install
+
+# Install frontend dependencies
+cd frontend
 npm install
 
 # Set up environment variables
 cp .env.example .env.local
 # Edit .env.local with your configuration
 
-# Start the database
-npm run db:start
-
-# Run database migrations
-npm run db:migrate
+# Start Supabase local development environment
+cd ..
+supabase start
 
 # Generate design tokens
+cd frontend
 npm run build:tokens
 ```
 
 ## 🚦 Getting Started
 
 ```bash
-# Development server
+# Make sure Supabase is running (from project root)
+supabase status
+
+# Start the frontend development server (from frontend/ directory)
+cd frontend
 npm run dev
 
 # Open browser at http://localhost:5173
@@ -80,12 +88,22 @@ npm run check:console   # Scan app code for raw console.* (excludes server/scrip
 npm run lint:ci         # CI-friendly wrapper (currently runs check:console)
 ```
 
-### Database
+### Database & Supabase
 ```bash
-npm run db:start     # Start PostgreSQL with Docker
+# Supabase local development (from project root)
+supabase start       # Start all Supabase services
+supabase stop        # Stop all services
+supabase status      # Check service status
+supabase db reset    # Reset database with fresh migrations
+
+# Database management (from frontend/ directory)
 npm run db:push      # Push schema changes
 npm run db:migrate   # Run migrations
 npm run db:studio    # Open Drizzle Studio
+
+# Edge Functions
+supabase functions serve    # Start Edge Functions locally
+supabase functions deploy   # Deploy functions to remote
 ```
 
 ### Data Management
@@ -154,15 +172,41 @@ DATABASE_URL=postgresql://user:password@localhost:5432/dbname
 ```
 
 ### Database Setup
-```bash
-# Start PostgreSQL container
-docker compose up -d
 
-# Apply migrations
+#### Local Development with Supabase
+```bash
+# From project root - Start Supabase stack
+supabase start
+
+# This will start:
+# - PostgreSQL database (port 54322)
+# - Supabase Studio (port 54323)
+# - Supabase API (port 54321)
+# - Edge Runtime (port 54321)
+# - Storage API
+# - Auth service
+# - Realtime service
+
+# From frontend/ directory - Apply migrations
 npm run db:migrate
 
 # Optional: Open Drizzle Studio
 npm run db:studio
+
+# Optional: View Supabase Studio
+# Open http://127.0.0.1:54323 in browser
+```
+
+#### Keep-Alive Function
+The project includes a keep-alive Edge Function to prevent database hibernation:
+
+```bash
+# Test the function locally
+curl -X POST http://127.0.0.1:54321/functions/v1/keep-alive \
+  -H "Authorization: Bearer <anon_key>" \
+  -H "Content-Type: application/json"
+
+# The function runs automatically in production to maintain database activity
 ```
 
 ## 🧪 Testing
