@@ -92,7 +92,7 @@
           "Consistency: Maintaining uniform styling throughout the experience",
           "Contrast: Creating clear distinctions between different content types",
           "Rhythm: Establishing a consistent vertical flow through spacing",
-          "Personality: Allowing the typeface to reflect the content's tone"
+          "Personality: Allowing the typeface to reflect the content's tone",
         ]}
       />
 
@@ -123,7 +123,7 @@
           "Font Loading: Optimizing for performance while maintaining design integrity",
           "Responsive Scaling: Ensuring readability across all device sizes",
           "Accessibility: Supporting users with diverse visual needs",
-          "Browser Compatibility: Maintaining consistency across platforms"
+          "Browser Compatibility: Maintaining consistency across platforms",
         ]}
       />
 

@@ -32,20 +32,21 @@
 </script>
 
 <section class="top-nav-root">
-  <ChatTrigger 
-    handleClick={handleChatTriggerClick}
-    shouldShowIndicator={chatStore.shouldShowIndicator}
-  />
   <div class="top-nav-surface">
     <header class="content">
       <LinkList {list} />
     </header>
+
+    <Popover
+      id="bottom-position"
+      position="bottom"
+      title={popoverTitle}
+      text={popoverText}
+    />
   </div>
-  <Popover
-    id="bottom-position"
-    position="bottom"
-    title={popoverTitle}
-    text={popoverText}
+  <ChatTrigger
+    handleClick={handleChatTriggerClick}
+    shouldShowIndicator={chatStore.shouldShowIndicator}
   />
 </section>
 
@@ -55,16 +56,25 @@
   .top-nav-root {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     gap: var(--gap-sm);
-    padding: var(--padding-large);
+    padding: var(--padding-lg) var(--padding-sm);
+    min-width: 100%;
   }
 
   .top-nav-surface {
-    background-color: var(--surface-neutral-mask);
-    border: 1px solid var(--border-neutral);
-    border-radius: var(--border-radius-sm);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    flex: 1;
+    max-width: 1024px;
+    border-radius: var(--border-radius-pill);
+    padding: var(--padding-sm) var(--padding-sm);
+
+    background-color: var(--surface-neutral-reading);
   }
 
   header {

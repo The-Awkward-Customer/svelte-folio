@@ -37,7 +37,7 @@
     position = "bottom",
     disabled = false,
     mobileSheet = true,
-    offset = 8,
+    offset = 12,
     class: className = "",
     onOpen,
     onClose,
@@ -413,14 +413,14 @@
     cursor: pointer;
     width: var(--size-touch-safe);
     height: var(--size-touch-safe);
-    border-radius: var(--border-radius-sm);
-    background-color: var(--surface-neutral-mask);
+    border-radius: var(--border-radius-pill);
+    background-color: var(--surface-neutral-reading);
     border: none;
-    box-shadow: inset 0px 0px 0px 1px var(--border-neutral);
+    box-shadow: inset 0px 0px 0px 1px var(--border-neutral-default);
   }
 
   .popover-trigger:hover {
-    box-shadow: inset 0px 0px 0px 1px var(--border-hover);
+    box-shadow: inset 0px 0px 0px 1px var(--border-neutral-hover);
   }
 
   .popover-trigger:focus-visible {
@@ -470,10 +470,10 @@
     display: flex;
     flex-direction: column;
     width: max-content;
-    background: var(--surface-neutral-mask);
-    border: 1px solid var(--border-neutral);
+    background: var(--surface-neutral-reading);
+    border: 1px solid var(--border-neutral-active);
     border-radius: var(--border-radius-sm);
-    padding: var(--padding-small-relaxed);
+    padding: var(--padding-sm-relaxed);
     box-shadow:
       0 8px 24px rgba(0, 0, 0, 0.12),
       0 2px 6px rgba(0, 0, 0, 0.08);
@@ -533,7 +533,7 @@
   .popover-title {
     font-size: var(--fs-275);
     font-weight: var(--fw-medium);
-    color: var(--text-primary-muted);
+    color: var(--fg-primary-muted);
     padding-bottom: var(--padding-bottom-small);
   }
 
@@ -541,7 +541,7 @@
     font-size: var(--fs-275);
     font-weight: var(--fw-medium);
     line-height: var(--lh-normal);
-    color: var(--text-primary-default);
+    color: var(--fg-primary-default);
     max-width: var(--width-prose-sm);
   }
 

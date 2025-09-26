@@ -67,7 +67,7 @@
   --bg-ghost-active: oklch(1.0 0.0001 263.3 / 0.1);
 
   /* Background colors with opacity variants */
-  --bg-page: oklch(0.192 0.0 0.0);
+  --bg-page: oklch(24.354% 0.00003 271.152);
  
 
   --bg-primary: oklch(1.0 0.0001 263.3);
@@ -98,9 +98,9 @@
 
   /* Border Tokens - Dark Theme */
 
-  --border-neutral: oklch(0.2766 0.004 264.5);
-  --border-hover: oklch(0.6305 0.0061 274.8);
-  --border-active: oklch(1.0 0.0001 263.3);
+  --border-neutral-default: oklch(0.2766 0.004 264.5);
+  --border-neutral-hover: oklch(0.6305 0.0061 274.8);
+  --border-neutral-active: oklch(1.0 0.0001 263.3);
 
   /* fg Primary Tokens - Dark Theme */
   --fg-primary-key: oklch(1.0 0.0001 263.3);
