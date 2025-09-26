@@ -1,13 +1,16 @@
 # Database Overview
+*Last Updated: 2025-09-26 16:38:00 UTC*
 
-This document outlines the expected database structure for the Svelte Folio application, specifically focusing on the chat/Q&A feature implementation.
+This document outlines the complete database structure and development workflow for the Svelte Folio application, including local development with Supabase and production deployment.
 
 ## Technology Stack
 
-- **Database**: PostgreSQL with pgVector extension
-- **Provider**: Supabase
+- **Database**: PostgreSQL 17 with pgVector extension
+- **Provider**: Supabase (local development + production)
 - **ORM**: Drizzle ORM
 - **Vector Dimensions**: 384 (sentence-transformers embeddings)
+- **Local Development**: Supabase CLI with Docker
+- **Edge Functions**: Deno runtime for serverless functions
 
 ## Schema Definition
 
@@ -107,12 +110,81 @@ The system uses the following thresholds:
 - **Rate Limit Window**: 60 seconds
 - **Max Search Results**: 3-5 similar Q&A pairs
 
+## Local Development Workflow
+
+### Prerequisites
+- **Supabase CLI** >= 1.0.0
+- **Docker** (for local database stack)
+- **Node.js** >= 18.0.0
+
+### Setup Process
+
+1. **Initialize Supabase**
+   ```bash
+   # From project root
+   supabase start
+
+   # This starts:
+   # - PostgreSQL database (port 54322)
+   # - Supabase Studio (port 54323)
+   # - API Gateway (port 54321)
+   # - Edge Functions runtime
+   ```
+
+2. **Apply Schema**
+   ```bash
+   # From frontend/ directory
+   npm run db:push      # Apply Drizzle schema to local DB
+   npm run db:migrate   # Generate migrations if needed
+   ```
+
+3. **Verify Setup**
+   ```bash
+   # Check services status
+   supabase status
+
+   # Open database management UI
+   # http://127.0.0.1:54323 (Supabase Studio)
+
+   # Or use Drizzle Studio
+   npm run db:studio
+   ```
+
+### Development Commands
+
+```bash
+# Database operations
+supabase db reset           # Reset with fresh migrations
+supabase db diff            # Generate schema differences
+supabase db push           # Apply local changes to remote
+
+# Edge Functions
+supabase functions serve    # Start functions locally
+supabase functions deploy   # Deploy to production
+supabase functions logs     # View function logs
+
+# Data management
+npm run ingest             # Import Q&A data
+npm run db:studio          # Open Drizzle Studio
+```
+
 ## Related Files
 
-- Schema Definition: `/frontend/src/lib/server/qa.ts`
-- Supabase Integration: `/frontend/src/lib/server/supabase.ts`
-- Chat Types: `/frontend/src/lib/types/chat.ts`
-- API Endpoint: `/frontend/src/routes/api/qa-chat/+server.ts`
+### Core Database Files
+- **Schema Definition**: `/frontend/src/lib/server/qa.ts`
+- **Supabase Client**: `/frontend/src/lib/server/supabase.ts`
+- **Chat Types**: `/frontend/src/lib/types/chat.ts`
+- **API Endpoint**: `/frontend/src/routes/api/qa-chat/+server.ts`
+
+### Supabase Configuration
+- **Main Config**: `/supabase/config.toml`
+- **Keep-Alive Function**: `/supabase/functions/keep-alive/index.ts`
+- **Environment Setup**: `/frontend/.env.local`
+
+### Data Ingestion
+- **Ingestion Script**: `/frontend/src/scripts/ingest-qa.ts`
+- **Embeddings Generator**: `/frontend/src/lib/server/embeddings.ts`
+- **Source Data**: `/frontend/src/modelData/dataSets/`
 
 ---
 
@@ -171,4 +243,125 @@ The system uses the following thresholds:
 - `/frontend/src/scripts/ingest-qa.ts` - Comprehensive ingestion tool
 - `/docs/architecture/database/overview.md` - Database documentation
 
-The chat feature database is now fully operational and ready for semantic search queries.
+### 2025-09-26 - Supabase Local Development Setup
+<!-- Updated: 2025-09-26 16:38:00 UTC -->
+
+**Changes Made:**
+
+1. **Complete Supabase Integration**
+   - Added `/supabase/config.toml` with comprehensive local development configuration
+   - Configured PostgreSQL 17, Supabase Studio, API Gateway, and Edge Runtime
+   - Set up proper port mapping and service integration
+
+2. **Keep-Alive Edge Function**
+   - Implemented `/supabase/functions/keep-alive/index.ts` to prevent database hibernation
+   - Added proper CORS handling and error management
+   - Configured automatic deployment and JWT verification
+
+3. **Local Development Workflow**
+   - Established `supabase start/stop` commands for service management
+   - Integrated Drizzle ORM with local Supabase instance
+   - Added database reset and migration workflows
+
+4. **Documentation Updates**
+   - Created comprehensive Supabase integration guide
+   - Added keep-alive function documentation
+   - Updated main README with local development instructions
+
+**New Services Available:**
+- Supabase Studio: http://127.0.0.1:54323
+- PostgreSQL: http://127.0.0.1:54322
+- API Gateway: http://127.0.0.1:54321
+- Edge Functions: http://127.0.0.1:54321/functions/v1
+
+**Files Added:**
+- `/supabase/config.toml` - Main Supabase configuration
+- `/supabase/functions/keep-alive/index.ts` - Database keep-alive function
+- `/supabase/functions/keep-alive/deno.json` - Deno runtime config
+- `/docs/integrations/supabase-integration.md` - Integration documentation
+- `/docs/integrations/keep-alive-function.md` - Keep-alive function guide
+
+## Production Deployment
+
+### Supabase Project Setup
+
+1. **Create Project**
+   ```bash
+   # Link to Supabase project
+   supabase link --project-ref <your-project-ref>
+
+   # Deploy schema and functions
+   supabase db push
+   supabase functions deploy
+   ```
+
+2. **Environment Variables**
+   ```bash
+   # Set production secrets
+   supabase secrets set OPENAI_API_KEY=<your-key>
+   supabase secrets set HUGGINGFACE_API_KEY=<your-key>
+   ```
+
+3. **Data Migration**
+   ```bash
+   # Import production data
+   npm run ingest
+   ```
+
+### Keep-Alive Function
+
+The project includes a critical keep-alive Edge Function to prevent database hibernation:
+
+- **Location**: `/supabase/functions/keep-alive/`
+- **Purpose**: Maintains database activity to prevent free-tier hibernation
+- **Scheduling**: Should be called every 10-15 minutes in production
+- **Documentation**: See [Keep-Alive Function Guide](/docs/integrations/keep-alive-function.md)
+
+### Environment Configuration
+
+#### Local Development
+```env
+# .env.local
+SUPABASE_URL=http://127.0.0.1:54321
+SUPABASE_ANON_KEY=<local_anon_key>
+DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
+```
+
+#### Production
+```env
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=<production_anon_key>
+SUPABASE_SERVICE_ROLE_KEY=<production_service_role_key>
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Database Connection Failed**
+   ```bash
+   # Check if Supabase is running
+   supabase status
+
+   # Restart services
+   supabase stop && supabase start
+   ```
+
+2. **Schema Sync Issues**
+   ```bash
+   # Reset local database
+   supabase db reset
+
+   # Reapply schema
+   npm run db:push
+   ```
+
+3. **Vector Dimension Mismatch**
+   ```bash
+   # Check embedding dimensions in data
+   supabase sql --file - <<< "SELECT array_length(embedding, 1) FROM qa_embeddings LIMIT 5;"
+
+   # Should return 384 for all records
+   ```
+
+The chat feature database is now fully operational with local development support and ready for semantic search queries.

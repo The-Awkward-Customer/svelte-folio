@@ -1,6 +1,6 @@
 # Documentation Index
 *Created: 2025-09-22 18:50:00 UTC*
-*Last Updated: 2025-09-24 09:45:00 UTC*
+*Last Updated: 2025-09-26 16:40:00 UTC*
 
 Quick links to docs and related code in this repository.
 
@@ -12,6 +12,14 @@ Quick links to docs and related code in this repository.
 - [PROJECT_STRUCTURE_REVIEW_COMPARATIVE.md](./architecture/PROJECT_STRUCTURE_REVIEW_COMPARATIVE.md)
 - [STRUCTURE_REFACTOR_PLAN.md](./architecture/STRUCTURE_REFACTOR_PLAN.md)
 - [theming-documentation.md](./architecture/theming-documentation.md)
+
+### Database
+<!-- Updated: 2025-09-26 16:40:00 UTC -->
+- [overview.md](./architecture/database/overview.md) - Complete database structure, Supabase integration, and local development workflow
+- Related:
+  - [`../supabase/config.toml`](../supabase/config.toml) - Supabase local development configuration
+  - [`../frontend/src/lib/server/qa.ts`](../frontend/src/lib/server/qa.ts) - Database schema definition
+  - [`../frontend/src/lib/server/supabase.ts`](../frontend/src/lib/server/supabase.ts) - Supabase client integration
 
 ## Components
 
@@ -80,6 +88,18 @@ Quick links to docs and related code in this repository.
   - `../frontend/src/modelData/dataSets/experience.json`
 
 ## Integrations
+
+### Supabase Integration
+<!-- Updated: 2025-09-26 16:40:00 UTC -->
+- [supabase-integration.md](./integrations/supabase-integration.md) - Complete Supabase setup, configuration, and workflow guide
+- [keep-alive-function.md](./integrations/keep-alive-function.md) - Keep-alive Edge Function documentation and deployment
+- Related:
+  - [`../supabase/config.toml`](../supabase/config.toml) - Main Supabase configuration
+  - [`../supabase/functions/keep-alive/index.ts`](../supabase/functions/keep-alive/index.ts) - Keep-alive Edge Function
+  - [`../frontend/.env.local`](../frontend/.env.local) - Environment configuration template
+  - Database: [overview.md](./architecture/database/overview.md)
+
+### Weather API
 - [weather_api_separation_plan.md](./integrations/weather_api_separation_plan.md)
 - Related:
   - [`../frontend/src/lib/components/Snoop/Weather.svelte`](../frontend/src/lib/components/Snoop/Weather.svelte)
