@@ -1,6 +1,6 @@
 <script lang="ts">
   import Anim_me from "$lib/assets/Ani_me.png";
-  import { Indicator } from "$lib/components/primitives";
+  import { Badge } from "$lib/components/primitives";
 
   interface ChatTriggerProps {
     handleClick?: () => void;
@@ -30,9 +30,9 @@
   aria-label="Chat with Peter Abbott"
   onmouseenter={onMouseEnter}
 >
-  <span class="profile-image" style="background-image: url({Anim_me})"></span>
+  <img src={Anim_me} alt="Peter Abbott" class="profile-image" />
   {#if shouldShowIndicator}
-    <Indicator class="chat-indicator" pulse />
+    <Badge class="chat-indicator" pulse />
   {/if}
 </button>
 
@@ -42,14 +42,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--width-4xl);
-    aspect-ratio: 4 / 5;
+    width: 62px;
+    height: 62px;
     background-color: var(--bg-page);
     border: none;
-    border-radius: var(--bdr-radius-small);
+    border-radius: var(--border-radius-pill);
     cursor: pointer;
     padding: 4px;
     box-shadow: inset 0 0 0 1px var(--fg-text-primary);
     container-type: inline-size;
+  }
+
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius-pill);
+    object-fit: cover;
   }
 </style>

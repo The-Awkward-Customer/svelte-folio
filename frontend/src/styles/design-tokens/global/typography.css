@@ -27,10 +27,10 @@
   --text-base-clamped: clamp(var(--text-base), 3vw, var(--text-lg));
   --text-lg-clamped: clamp(var(--text-lg), 3.5vw, var(--text-xl));
   --text-xl-clamped: clamp(var(--text-xl), 4vw, var(--text-2xl));
-  --text-2xl-clamped: clamp(var(--text-2xl), 5vw, var(--text-3xl));
-  --text-3xl-clamped: clamp(var(--text-3xl), 6vw, var(--text-4xl));
-  --text-4xl-clamped: clamp(var(--text-4xl), 7vw, var(--text-5xl));
-  --text-5xl-clamped: clamp(var(--text-5xl), 8vw, var(--text-6xl));
+  --text-2xl-clamped: clamp(var(--text-xl), 5vw, var(--text-3xl));
+  --text-3xl-clamped: clamp(var(--text-2xl), 6vw, var(--text-4xl));
+  --text-4xl-clamped: clamp(var(--text-3xl), 7vw, var(--text-5xl));
+  --text-5xl-clamped: clamp(var(--text-4xl), 8vw, var(--text-6xl));
 
 
 
@@ -98,9 +98,10 @@
 
 .headline-display {
   font-size: var(--text-2xl-clamped);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-regular);
   line-height: var(--leading-tight);
   font-family: var(--font-family-serif);
+  text-transform: var(--text-transform-titlecase);
 }
 
 
@@ -120,6 +121,8 @@
   font-family: var(--font-family-main);
   text-transform: var(--text-transform-titlecase);
 }
+
+
 
 
 /* ============================================
@@ -151,11 +154,18 @@
   font-family: var(--font-family-main);
 }
 
-
+.text-kicker-display{
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--tracking-wide);
+  line-height: var(--leading-none);
+  font-family: var(--font-family-serif);
+  margin-block-start: 0.5em;
+}
 
 
 /* ============================================
-   BUTTON & UTILITY
+   ACTIONS
    ============================================ */
 
 .text-button-sm {

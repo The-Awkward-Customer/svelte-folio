@@ -1,20 +1,18 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { scale } from 'svelte/transition';
-  import { bounceOut } from 'svelte/easing';
+  import { onMount } from "svelte";
+  import { scale } from "svelte/transition";
+  import { bounceOut } from "svelte/easing";
 
   interface Props {
     pulse?: boolean;
     class?: string;
   }
 
-  let { pulse = false, class: className = '' }: Props = $props();
+  let { pulse = false, class: className = "" }: Props = $props();
   let mounted = $state(false);
 
   const classes = $derived(
-    ['indicator', pulse && 'indicator--pulse', className]
-      .filter(Boolean)
-      .join(' ')
+    ["badge", pulse && "badge--pulse", className].filter(Boolean).join(" "),
   );
 
   onMount(() => {
@@ -28,26 +26,26 @@
   <span
     class={classes}
     role="status"
-    aria-label="Status indicator"
+    aria-label="Status badge"
     in:scale={{ duration: 800, start: 0, easing: bounceOut }}
   ></span>
 {/if}
 
 <style>
-  .indicator {
+  .badge {
     position: absolute;
     display: inline-block;
     width: 16px;
     height: 16px;
-    border-radius: var(--bdr-radius-pill);
-    border: 2px solid var(--bg-page);
+    border-radius: var(--border-radius-pill);
+    border: 2px solid var(--surface-neutral-reading);
     background-color: var(--fg-text-danger);
-    top: -6px;
-    right: -6px;
+    top: 0px;
+    right: 0px;
   }
 
   /* Pulse animation */
-  .indicator--pulse {
+  .badge--pulse {
     animation: scale 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
@@ -63,7 +61,7 @@
 
   /* Respect reduced motion preference */
   @media (prefers-reduced-motion: reduce) {
-    .indicator--pulse {
+    .badge--pulse {
       animation: none;
     }
   }
