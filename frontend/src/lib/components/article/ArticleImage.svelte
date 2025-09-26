@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { Image } from "$lib/components/primitives";
+
   interface Props {
     src?: string;
     alt?: string;
@@ -16,12 +18,11 @@
   }: Props = $props();
 </script>
 
-ad
 <figure
   class="article-image-root article-image-root--{width}-width article-image-root--align-{alignment}"
 >
   {#if src}
-    <img {src} {alt} loading="lazy" />
+    <Image {src} {alt} borderRadius="sm" class="article-image" />
   {:else}
     <div class="article-image-placeholder">
       <span>Image Placeholder</span>
@@ -66,12 +67,10 @@ ad
     margin-right: auto;
   }
 
-  img {
+  .article-image {
     width: 100%;
     height: auto;
-    border-radius: var(--border-radius-sm);
     aspect-ratio: 16 / 9;
-    object-fit: cover;
   }
 
   .article-image-placeholder {
