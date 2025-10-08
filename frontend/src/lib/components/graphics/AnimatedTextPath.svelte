@@ -13,7 +13,7 @@
   export let fixedCanvasWidth: number = 2560; // Fixed width for stability
   export let pathStyle = {
     strokeColor: '#cccccc',
-    strokeWidth: 2,
+    strokeWidth: 40,
     opacity: 0.5,
   };
   export let textStyle = {
@@ -454,9 +454,9 @@
 
 <style>
   .animated-text-path-container {
-    position: absolute;
+    position: relative;
     width: 100%;
-    height: 100vh; /* Adjust as needed */
+    height: 20vh;
     overflow-x: hidden;
     overflow-y: visible;
     z-index: -999;

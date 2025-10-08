@@ -1,10 +1,10 @@
 <script lang="ts">
   interface SubheaderProps {
     text: string;
-    color?: 'primary' | 'inverse';
+    color?: "primary" | "inverse";
   }
 
-  let { text, color = 'primary' }: SubheaderProps = $props();
+  let { text, color = "primary" }: SubheaderProps = $props();
 </script>
 
 <h2 class="subheader {color}">
@@ -16,6 +16,7 @@
     font-family: var(--font-family-main);
     font-size: var(--fs-xlarge-clamped);
     font-weight: var(--fw-semibold);
+    text-align: center;
   }
 
   .subheader.primary {

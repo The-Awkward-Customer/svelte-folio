@@ -32,22 +32,23 @@
 </script>
 
 <section class="top-nav-root">
-  <div class="top-nav-surface">
-    <header class="content">
-      <LinkList {list} />
-    </header>
+  <nav class="top-nav-surface">
+    <nav class="top-nav-content">
+      <ChatTrigger
+        handleClick={handleChatTriggerClick}
+        shouldShowIndicator={chatStore.shouldShowIndicator}
+      />
 
-    <Popover
-      id="bottom-position"
-      position="bottom"
-      title={popoverTitle}
-      text={popoverText}
-    />
-  </div>
-  <ChatTrigger
-    handleClick={handleChatTriggerClick}
-    shouldShowIndicator={chatStore.shouldShowIndicator}
-  />
+      <LinkList {list} />
+
+      <Popover
+        id="bottom-position"
+        position="bottom"
+        title={popoverTitle}
+        text={popoverText}
+      />
+    </nav>
+  </nav>
 </section>
 
 <QAChat />
@@ -59,27 +60,28 @@
     justify-content: center;
     align-items: center;
     gap: var(--gap-sm);
-    padding: var(--padding-lg) var(--padding-sm);
-    min-width: 100%;
+    width: 100%;
+    padding-bottom: 2px;
   }
 
   .top-nav-surface {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
-    flex: 1;
-    max-width: 1024px;
-    border-radius: var(--border-radius-pill);
+    width: 100%;
     padding: var(--padding-sm) var(--padding-sm);
 
     background-color: var(--surface-neutral-reading);
   }
 
-  header {
+  .top-nav-content {
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    max-width: 1024px;
     padding: var(--padding-tiny) var(--padding-medium);
     background: transparent;
     border-radius: calc(var(--border-radius-sm) - 1px);
