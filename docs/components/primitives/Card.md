@@ -1,9 +1,26 @@
-# Card Primitive Component
+# Card Primitive Component [DEPRECATED]
 *Created: 2025-09-25 12:30:00 UTC*
+*Last Updated: 2025-09-30 22:15:00 UTC*
+*Deprecated: 2025-10-06 00:00:00 UTC*
 
-## Overview
+## Deprecation Notice
 
-The Card primitive component provides a flexible container with consistent styling, alignment options, and modern Svelte 5 children snippet patterns. It serves as a foundational building block for layouts, content grouping, and UI composition throughout the application.
+**This component has been removed from the codebase as of October 6, 2025.**
+
+The Card component has been decomposed into two more focused, reusable primitives:
+- **AnimatedBorder** - Reusable animated gradient border wrapper (see [AnimatedBorder.md](./AnimatedBorder.md))
+- **Section** - Grid-based layout component for page sections (see [Section.md](./Section.md))
+
+### Migration Path
+
+If you were using the Card component, please migrate to:
+1. **AnimatedBorder** for components that need animated borders
+2. **Section** for layout and content sectioning
+3. Custom div elements for simple container needs
+
+## Overview (Historical)
+
+The Card primitive component provided a flexible container with consistent styling, alignment options, modern Svelte 5 children snippet patterns, and an animated gradient border effect. It served as a foundational building block for layouts, content grouping, and UI composition throughout the application.
 
 ## Component Features
 
@@ -12,12 +29,15 @@ The Card primitive component provides a flexible container with consistent styli
 - **Svelte 5 Snippets**: Modern children pattern using snippets for optimal performance
 - **Design Token Integration**: Consistent styling using OKLCH color space
 - **Responsive Design**: Automatic responsive behavior with full-width constraints
+- **Viewport Detection**: IntersectionObserver integration to detect when cards enter the viewport
+- **Animated Border**: Rotating gradient border that activates when card is visible
 
 ### Visual Characteristics
 - **Rounded Corners**: Uses `--border-radius-lg` token for consistent corner rounding
 - **Neutral Background**: Subtle background using `--surface-neutral-reading` token
 - **Flexbox Layout**: Column-based layout with customizable content alignment
 - **Full Container**: Takes full width and height of parent container
+- **Animated Gradient Border**: Multi-color conic gradient border that rotates when card is in viewport
 
 ## Props Interface
 
@@ -237,6 +257,53 @@ Content is aligned to the flex-end, creating right-aligned layouts.
 </Card>
 ```
 
+## Animated Border Feature
+<!-- Updated: 2025-09-30 22:15:00 UTC -->
+
+The Card component includes a sophisticated animated border effect that activates when the card enters the viewport. This feature uses modern CSS techniques to create a rotating gradient border without affecting the card's content.
+
+### How It Works
+
+1. **Viewport Detection**: An IntersectionObserver monitors when the card enters the viewport (with a 10% threshold)
+2. **State Management**: The `isInViewport` state updates when the card's visibility changes
+3. **CSS Class Toggle**: The `card--in-viewport` class is added when the card is visible
+4. **Border Animation**: A rotating conic gradient border animates continuously when the viewport class is active
+
+### Technical Implementation
+
+The animated border uses a `::before` pseudo-element with:
+- **Conic gradient**: Multi-color gradient with custom color stops
+- **CSS Custom Property**: `--gradient-angle` for animatable rotation
+- **Mask Composite**: Creates border effect by masking the content area
+- **Smooth Transition**: 0.3s opacity transition for graceful appearance
+
+### Border Color Palette
+
+```css
+#161616 (Dark) → #C679C4 (Purple) → #FA3D1D (Red) →
+#FFC800 (Yellow) → #E1E1E1 (Light Gray) → #3B58E7 (Blue) →
+Transparent → #161616 (Dark)
+```
+
+### Animation Behavior
+
+- **Initial State**: Border is invisible (opacity: 0)
+- **In Viewport**: Border fades in and begins rotating
+- **Animation Duration**: 8 seconds for one complete rotation
+- **Animation Type**: Linear, infinite loop
+- **Performance**: Uses CSS custom properties with `@property` for optimal GPU acceleration
+
+### Accessibility
+
+The animation respects user motion preferences:
+```css
+@media (prefers-reduced-motion: reduce) {
+  .card--in-viewport::before {
+    animation: none;
+  }
+}
+```
+
 ## CSS Classes and Styling
 
 ### Generated Classes
@@ -248,6 +315,9 @@ Content is aligned to the flex-end, creating right-aligned layouts.
 .card--left      /* align-items: flex-start */
 .card--center    /* align-items: center */
 .card--right     /* align-items: flex-end */
+
+/* Viewport state */
+.card--in-viewport  /* Applied when card is visible in viewport */
 ```
 
 ### Default Styling
@@ -260,6 +330,40 @@ Content is aligned to the flex-end, creating right-aligned layouts.
   height: 100%;
   border-radius: var(--border-radius-lg);
   background-color: var(--surface-neutral-reading);
+  position: relative;
+}
+```
+
+### Animated Border Styling
+```css
+.card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: var(--border-radius-lg);
+  padding: 2px;
+  background: conic-gradient(
+    from var(--gradient-angle, 0deg),
+    #161616 0%,
+    #161616 33.33%,
+    #C679C4 40%,
+    #FA3D1D 45%,
+    #FFC800 50%,
+    #E1E1E1 55%,
+    #3B58E7 60%,
+    rgba(255, 255, 255, 0.00) 66%,
+    #161616 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card--in-viewport::before {
+  opacity: 1;
+  animation: rotate-border 8s linear infinite;
 }
 ```
 
@@ -558,10 +662,69 @@ interface Props {
 - [Primitives Overview](./README.md) - Complete primitives system
 - [CSS Architecture](../../css/css-architecture-overview-2025-08-28-1125.md) - Design system integration
 
+## Viewport Detection API
+
+### IntersectionObserver Configuration
+
+The Card component automatically sets up viewport detection using the IntersectionObserver API:
+
+```typescript
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      isInViewport = entry.isIntersecting;
+    });
+  },
+  { threshold: 0.1 }
+);
+```
+
+### Configuration Options
+
+- **Threshold**: 0.1 (10%) - Card is considered "in viewport" when 10% is visible
+- **Root**: Default (viewport) - Uses the browser viewport as the root
+- **Automatic Cleanup**: Observer is properly disconnected when component unmounts
+
+### State Management
+
+The component uses Svelte 5's `$state` rune for reactive viewport tracking:
+
+```typescript
+let isInViewport = $state(false);
+```
+
+This state automatically updates when the card enters or exits the viewport, triggering the animated border effect.
+
+## Performance Considerations
+
+### Viewport Detection Performance
+
+- **Lightweight Observer**: Single IntersectionObserver instance per card
+- **Efficient Threshold**: 10% threshold balances early activation with performance
+- **Proper Cleanup**: Observer is disconnected on component unmount to prevent memory leaks
+
+### Animation Performance
+
+- **CSS-Only Animation**: Border rotation uses pure CSS for 60fps performance
+- **GPU Acceleration**: Conic gradient and custom properties leverage GPU
+- **Mask Composite**: Modern CSS mask technique for efficient border rendering
+- **No JavaScript Animation Loop**: All animation handled by CSS engine
+
+### Browser Support
+
+The animated border feature requires:
+- CSS `@property` support for smooth gradient rotation
+- CSS `conic-gradient` support
+- CSS mask compositing support
+- IntersectionObserver API support
+
+**Fallback Behavior**: On browsers without full support, the border will not animate but the card remains fully functional.
+
 ## Revision History
 
 | Date | Version | Changes |
 |------|---------|---------|
+| 2025-09-30 22:15:00 UTC | v1.1 | Added animated gradient border feature with viewport detection using IntersectionObserver |
 | 2025-09-25 12:30:00 UTC | v1.0 | Initial Card primitive documentation with alignment variants and Svelte 5 patterns |
 
 ---
