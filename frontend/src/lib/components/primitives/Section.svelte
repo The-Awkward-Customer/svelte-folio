@@ -44,11 +44,14 @@
     grid-template-rows: 1fr;
     grid-template-areas: "leading main trailing";
     width: 100%;
-    gap: 4px;
+    gap: 1px;
     min-height: 200px;
   }
 
   .section-grid__leading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     grid-area: leading;
     background-color: var(--surface-neutral-reading);
@@ -64,6 +67,8 @@
 
   .section-grid__trailing {
     display: flex;
+    align-items: center;
+    justify-content: center;
     grid-area: trailing;
     background-color: var(--surface-neutral-reading);
     width: 100%;

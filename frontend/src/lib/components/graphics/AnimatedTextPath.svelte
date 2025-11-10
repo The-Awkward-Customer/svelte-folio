@@ -279,18 +279,30 @@
     const separator = '  ';
     const pattern = selectedText + separator;
 
-    // Calculate pattern width
-    const patternWidth = ctx.measureText(pattern).width;
+    // Find the widest character to use as uniform spacing
+    let maxCharWidth = 0;
+    for (const char of pattern) {
+      const charWidth = ctx.measureText(char).width;
+      if (charWidth > maxCharWidth) {
+        maxCharWidth = charWidth;
+      }
+    }
+
+    // Use uniform width for all characters (widest char + padding)
+    const uniformWidth = maxCharWidth * 1.3; // Add 30% padding to widest character
 
     // We only need to store one pattern's worth of characters
     textChars = [];
-    totalTextWidth = patternWidth;
+    let calculatedWidth = 0;
 
-    // Measure each character in one pattern
+    // Assign uniform width to all characters
     for (const char of pattern) {
-      const width = ctx.measureText(char).width;
-      textChars.push({ char, width });
+      textChars.push({ char, width: uniformWidth });
+      calculatedWidth += uniformWidth;
     }
+
+    // Use the calculated width for pattern positioning
+    totalTextWidth = calculatedWidth;
   }
 
   // Render frame

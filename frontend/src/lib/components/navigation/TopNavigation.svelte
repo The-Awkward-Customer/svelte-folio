@@ -15,9 +15,9 @@
   }
 
   let defaultListData: LinkItem[] = [
-    { label: "Introduction", href: "#introduction" },
-    { label: "Work", href: "#work" },
-    { label: "Articles", href: "#articles" },
+    // { label: "Introduction", href: "#introduction" },
+    // { label: "Work", href: "#work" },
+    // { label: "Articles", href: "#articles" },
   ];
 
   let { list = defaultListData }: TopNavProps = $props();
@@ -61,7 +61,7 @@
     align-items: center;
     gap: var(--gap-sm);
     width: 100%;
-    padding-bottom: 2px;
+    padding-bottom: 1px;
   }
 
   .top-nav-surface {
@@ -78,7 +78,7 @@
 
   .top-nav-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-grow: 1;
     max-width: 1024px;
