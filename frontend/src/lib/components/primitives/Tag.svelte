@@ -16,9 +16,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: var(--space-xs) var(--space-md);
-    font-size: var(--fs-350);
-    font-weight: var(--fw-semibold);
+    padding: var(--padding-xs) var(--padding-md);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    font-family: var(--font-family-main);
     border-radius: var(--border-radius-pill);
     white-space: nowrap;
   }

@@ -152,8 +152,8 @@
   /* Base message styles */
   .message {
     display: flex;
-    gap: 0.75rem;
-    padding: 0.75rem 1.5rem;
+    gap: var(--gap-sm-relaxed);
+    padding: var(--padding-sm-relaxed) var(--padding-lg);
     align-items: flex-start;
     justify-content: flex-start;
   }
@@ -186,8 +186,8 @@
   /* Message bubble styles */
   .message-bubble {
     background: var(--bg-primary);
-    border-radius: 18px;
-    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius-md);
+    padding: var(--padding-sm-relaxed) var(--padding-md);
     max-width: 100%;
     word-wrap: break-word;
     position: relative;
@@ -196,40 +196,41 @@
   .user-bubble {
     background: var(--bg-primary);
     color: var(--fg-text-inverse);
-    border-radius: var(--bdr-radius-small) var(--bdr-radius-small) 0px
-      var(--bdr-radius-small);
+    border-radius: var(--border-radius-md) var(--border-radius-md) 0px
+      var(--border-radius-md);
   }
 
   .assistant-bubble {
     background: var(--bg-inverse);
     color: var(--fg-text-primary);
-    border-color: var(--fg-text-primary);
+    border-color: var(--bdr-primary);
     border-style: solid;
     border-width: 1px;
-    border-radius: var(--bdr-radius-small) var(--bdr-radius-small)
-      var(--bdr-radius-small) 0px;
+    border-radius: var(--border-radius-md) var(--border-radius-md)
+      var(--border-radius-md) 0px;
   }
 
   .message-bubble p {
     margin: 0;
-    line-height: 130%;
-    font-size: 1.2rem;
+    line-height: var(--leading-snug);
+    font-size: var(--text-base);
+    font-family: var(--font-family-main);
   }
 
   /* Message meta styles */
   .message-meta {
-    margin-top: 0.25rem;
-    padding: 0 0.25rem;
+    margin-top: var(--gap-xs);
+    padding: 0 var(--padding-xs);
   }
 
   .message-time {
-    font-size: 0.75rem;
-    color: var(--fg-text-primary);
-    opacity: 0.7;
+    font-size: var(--text-sm);
+    color: var(--fg-text-primary-60);
+    font-family: var(--font-family-main);
   }
 
   .user-meta .message-time {
-    color: var(--fg-text-primary);
+    color: var(--fg-text-primary-60);
   }
 
   /* Loading message styles */
@@ -238,10 +239,10 @@
   }
 
   .loading-bubble {
-    background: var(--bg-page);
+    background: var(--surface-neutral-loud);
     color: var(--fg-text-primary);
-    border-radius: 18px;
-    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius-md);
+    padding: var(--padding-sm-relaxed) var(--padding-md);
     width: 100%;
     word-wrap: break-word;
     position: relative;
@@ -250,42 +251,44 @@
 
   .loading-text {
     margin: 0;
-    line-height: 130%;
-    font-family: var(--font-family-alt);
-    font-size: var(--fs-200);
+    line-height: var(--leading-snug);
+    font-family: var(--font-family-main);
+    font-size: var(--text-base);
   }
 
   /* Error message styles */
   .error-message {
-    padding: 1rem 1.5rem;
+    padding: var(--padding-md) var(--padding-lg);
   }
 
   .error-content {
     display: flex;
-    gap: 0.75rem;
+    gap: var(--gap-sm-relaxed);
     align-items: flex-start;
-    background: var(--error-bg, #fef2f2);
-    border: 1px solid var(--error-border, #fecaca);
-    border-radius: 8px;
-    padding: 1rem;
+    background: var(--fg-text-danger-20);
+    border: 1px solid var(--fg-text-danger);
+    border-radius: var(--border-radius-sm);
+    padding: var(--padding-md);
   }
 
   .error-icon {
     flex-shrink: 0;
-    font-size: 1.25rem;
+    font-size: var(--text-lg);
   }
 
   .error-title {
-    margin: 0 0 0.25rem 0;
-    font-weight: 600;
-    color: var(--error-text, #dc2626);
-    font-size: 0.875rem;
+    margin: 0 0 var(--gap-xs) 0;
+    font-weight: var(--font-weight-semibold);
+    color: var(--fg-text-danger);
+    font-size: var(--text-sm);
+    font-family: var(--font-family-main);
   }
 
   .error-details {
     margin: 0;
-    color: var(--error-text-secondary, #7f1d1d);
-    font-size: 0.8125rem;
+    color: var(--fg-text-danger-80);
+    font-size: var(--text-sm);
+    font-family: var(--font-family-main);
   }
 
   /* Welcome message styles */
@@ -293,15 +296,15 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    gap: var(--gap-sm);
+    margin-top: var(--gap-md);
     max-width: 100%;
   }
 
   /* Responsive button layout */
   @media (min-width: 480px) {
     .prompt-buttons {
-      gap: 0.75rem;
+      gap: var(--gap-sm-relaxed);
     }
   }
 </style>

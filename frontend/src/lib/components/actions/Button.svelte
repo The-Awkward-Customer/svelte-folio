@@ -2,7 +2,7 @@
   import { Icon } from "../primitives";
   import type { IconName } from "../../types/icons.js";
 
-  type ButtonVariants = "inverse" | "primary";
+  type ButtonVariants = "inverse" | "primary" | "ghost";
   type ButtonRole = "button" | "submit" | "reset";
 
   type CommonProps = {
@@ -85,12 +85,13 @@
 <style>
   .btn {
     border: none;
-    border-radius: var(--border-radius-small);
-    font-weight: var(--fw-semibold);
-    font-size: var(--fs-300);
+    border-radius: var(--border-radius-sm);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-sm);
+    font-family: var(--font-family-main);
     height: 44px;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: var(--padding-sm);
+    padding-right: var(--padding-sm);
     /* Ensure anchor elements look identical to buttons */
     text-decoration: none;
     display: inline-flex;
@@ -101,6 +102,7 @@
     width: fit-content;
     min-width: max-content;
     flex-shrink: 0;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
   }
 
   .inverse {
@@ -110,25 +112,40 @@
   }
 
   .inverse:hover {
-    background-color: var(--bg-primary);
+    background-color: var(--bg-primary-hover);
   }
 
   .inverse:active {
-    background-color: var(--bg-primary);
+    background-color: var(--bg-primary-active);
   }
 
   .primary {
     background-color: var(--bg-page);
-    box-shadow: inset 0 0px 0px 1px var(--bg-inverse);
+    box-shadow: inset 0 0px 0px 1px var(--bdr-primary);
     color: var(--fg-text-primary);
   }
 
   .primary:hover {
-    background-color: var(--bg-page);
+    background-color: var(--bg-ghost-hover);
   }
 
   .primary:active {
-    background-color: var(--bg-page);
+    background-color: var(--bg-ghost-active);
+  }
+
+  .ghost {
+    background-color: transparent;
+    box-shadow: inset 0 0px 0px 1px var(--bdr-primary-40);
+    color: var(--fg-text-primary);
+  }
+
+  .ghost:hover {
+    background-color: var(--bg-ghost-hover);
+    box-shadow: inset 0 0px 0px 1px var(--bdr-primary-60);
+  }
+
+  .ghost:active {
+    background-color: var(--bg-ghost-active);
   }
 
   .full-width {
@@ -141,14 +158,11 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding-left: 12px;
-    padding-top: 8px;
-    padding-right: 12px;
-    padding-bottom: 8px;
+    gap: var(--gap-xs);
+    padding: var(--padding-sm) var(--padding-sm-relaxed);
   }
 
   .has-icon {
-    padding-left: 6px;
+    padding-left: var(--padding-xs);
   }
 </style>

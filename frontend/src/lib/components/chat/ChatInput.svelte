@@ -121,7 +121,7 @@
 
 <style>
   .input-container {
-    padding: 1rem 0;
+    padding: var(--padding-md) 0;
     width: 100%;
     max-width: 800px; /* Limit width for better readability */
   }
@@ -132,12 +132,12 @@
 
   .input-wrapper {
     display: flex;
-    gap: 0.75rem;
+    gap: var(--gap-sm-relaxed);
     align-items: center;
     background: var(--bg-primary);
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--bdr-primary-40);
     border-radius: var(--border-radius-pill);
-    padding: var(--space-base) var(--space-2xl);
+    padding: var(--padding-md) var(--padding-lg);
     transition:
       border-color 0.2s ease,
       box-shadow 0.2s ease;
@@ -155,8 +155,8 @@
     background: transparent;
     resize: none;
     /* Prevent zoom on input focus (iOS) - minimum 16px font size */
-    font-size: var(--fs-350);
-    line-height: 1.5;
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
     color: var(--fg-text-inverse);
     min-height: 24px;
     max-height: 120px;
@@ -174,26 +174,26 @@
   }
 
   .input-hint {
-    padding-top: var(--space-md);
+    padding-top: var(--padding-sm);
     text-align: center;
   }
 
   .hint-text {
-    font-family: var(--font-family-alt);
-    font-size: var(--fs-300);
+    font-family: var(--font-family-main);
+    font-size: var(--text-sm);
     color: var(--fg-text-primary-60);
   }
 
   /* Responsive adjustments with iOS-specific fixes */
   @media (max-width: 768px) {
     .input-container {
-      padding: 1rem;
+      padding: var(--padding-md);
       /* Account for safe areas on mobile */
-      padding-left: max(1rem, env(safe-area-inset-left));
-      padding-right: max(1rem, env(safe-area-inset-right));
+      padding-left: max(var(--padding-md), env(safe-area-inset-left));
+      padding-right: max(var(--padding-md), env(safe-area-inset-right));
       /* Critical: Add bottom padding to lift above browser chrome */
       padding-bottom: max(
-        1rem,
+        var(--padding-md),
         env(safe-area-inset-bottom),
         var(--keyboard-height, 0px)
       );
@@ -203,18 +203,18 @@
     }
 
     .input-wrapper {
-      padding: 0.625rem 0.875rem;
+      padding: var(--padding-sm) var(--padding-sm-relaxed);
       /* Ensure minimum touch target */
       min-height: 44px;
     }
 
     .message-input {
       /* Maintain 16px minimum to prevent zoom */
-      font-size: max(16px, 0.875rem);
+      font-size: max(16px, var(--text-sm));
     }
 
     .hint-text {
-      font-size: 0.6875rem;
+      font-size: var(--text-xs);
     }
   }
 
@@ -222,9 +222,9 @@
   @supports not (padding: env(safe-area-inset-left)) {
     @media (max-width: 768px) {
       .input-container {
-        padding-left: 1rem;
-        padding-right: 1rem;
-        padding-bottom: 1.5rem; /* Extra padding for iOS Safari */
+        padding-left: var(--padding-md);
+        padding-right: var(--padding-md);
+        padding-bottom: var(--padding-lg); /* Extra padding for iOS Safari */
       }
     }
   }
