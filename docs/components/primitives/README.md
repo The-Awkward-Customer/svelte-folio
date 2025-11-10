@@ -1,5 +1,6 @@
 # Primitive Components System
 *Created: 2025-09-25 12:15:00 UTC*
+*Last Updated: 2025-10-06 00:00:00 UTC*
 
 ## Overview
 
@@ -27,16 +28,38 @@ The Primitive Components System provides foundational UI building blocks designe
 | Component | Purpose | Status | Location |
 |-----------|---------|--------|----------|
 | [Image](#image) | Image display with placeholders and variants | ✅ Active | `$lib/components/primitives/Image.svelte` |
-| [Card](#card) | Flexible container with alignment options | ✅ Active | `$lib/components/primitives/Card.svelte` |
+| [AnimatedBorder](#animatedborder) | Animated gradient border wrapper | ✅ Active | `$lib/components/primitives/AnimatedBorder.svelte` |
+| [Section](#section) | Grid-based layout with three areas | ✅ Active | `$lib/components/primitives/Section.svelte` |
 | [Badge](#badge) | Status indicators with animations | ✅ Active | `$lib/components/primitives/Badge.svelte` |
+| [Card](#card) | Flexible container with alignment options | ⚠️ Deprecated | Removed Oct 6, 2025 |
 
 ## Recent Changes
-<!-- Updated: 2025-09-25 12:15:00 UTC -->
+<!-- Updated: 2025-10-06 00:00:00 UTC -->
+
+### Component Updates (October 2025)
+- **REMOVED** (2025-10-06): Card component deprecated and removed from codebase
+  - Decomposed into AnimatedBorder and Section primitives
+  - See migration guide in [Card.md](./Card.md)
+- **NEW** (2025-10-06): AnimatedBorder primitive component
+  - Reusable animated gradient border wrapper
+  - Extracted from Card component for better composability
+  - Works with any child element
+  - Viewport-based animation activation via IntersectionObserver
+- **NEW** (2025-10-06): Section primitive component
+  - Grid-based layout with leading, main, and trailing areas
+  - Responsive breakpoints (mobile: 21px sidebars, desktop: 1fr sidebars with 1024px max content)
+  - Svelte 5 snippet-based content areas
+  - Optional section IDs for navigation and anchors
 
 ### Component Updates (September 2025)
-- **NEW**: Image primitive component with comprehensive placeholder functionality
-- **UPDATED**: Card component extracted with alignment props and Svelte 5 children snippets
-- **RENAMED**: Indicator component renamed to Badge with updated class names and imports
+- **UPDATED** (2025-09-30): Card component enhanced with animated gradient border and viewport detection
+  - Added IntersectionObserver for viewport tracking
+  - Rotating conic gradient border animation when card is visible
+  - CSS custom properties with @property for smooth gradient rotation
+  - Respects prefers-reduced-motion for accessibility
+- **NEW** (2025-09-25): Image primitive component with comprehensive placeholder functionality
+- **UPDATED** (2025-09-25): Card component extracted with alignment props and Svelte 5 children snippets
+- **RENAMED** (2025-09-25): Indicator component renamed to Badge with updated class names and imports
 
 ## Design System Integration
 
@@ -66,18 +89,24 @@ Use primitives directly in your components:
 
 ```svelte
 <script>
-  import { Image, Card, Badge } from '$lib/components/primitives';
+  import { Image, AnimatedBorder, Section, Badge } from '$lib/components/primitives';
 </script>
 
-<Card alignment="center">
-  <Image
-    src="/example.jpg"
-    alt="Example image"
-    borderRadius="md"
-    objectFit="cover"
-  />
-  <Badge pulse={true} />
-</Card>
+<Section id="featured">
+  {#snippet main()}
+    <AnimatedBorder borderWidth={2}>
+      <div style="padding: 2rem; border-radius: 8px;">
+        <Image
+          src="/example.jpg"
+          alt="Example image"
+          borderRadius="md"
+          objectFit="cover"
+        />
+        <Badge pulse={true} />
+      </div>
+    </AnimatedBorder>
+  {/snippet}
+</Section>
 ```
 
 ### Composition Pattern
@@ -85,28 +114,43 @@ Build higher-level components using primitives:
 
 ```svelte
 <script>
-  import { Image, Card } from '$lib/components/primitives';
+  import { Image, AnimatedBorder, Section } from '$lib/components/primitives';
 
   interface Props {
     imageUrl: string;
     title: string;
     description: string;
+    id?: string;
   }
 
-  let { imageUrl, title, description }: Props = $props();
+  let { imageUrl, title, description, id }: Props = $props();
 </script>
 
-<Card alignment="left">
-  <Image
-    src={imageUrl}
-    alt={title}
-    borderRadius="lg"
-    placeholder={!imageUrl}
-    placeholderText="No image available"
-  />
-  <h3>{title}</h3>
-  <p>{description}</p>
-</Card>
+<Section {id}>
+  {#snippet main()}
+    <AnimatedBorder borderWidth={2}>
+      <div class="content-card">
+        <Image
+          src={imageUrl}
+          alt={title}
+          borderRadius="lg"
+          placeholder={!imageUrl}
+          placeholderText="No image available"
+        />
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </div>
+    </AnimatedBorder>
+  {/snippet}
+</Section>
+
+<style>
+  .content-card {
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+  }
+</style>
 ```
 
 ## Component Documentation
@@ -114,11 +158,14 @@ Build higher-level components using primitives:
 ### Quick Reference Links
 
 - **[Image Component](./Image.md)** - Image display with placeholder functionality
-- **[Card Component](./Card.md)** - Flexible container with alignment options
+- **[AnimatedBorder Component](./AnimatedBorder.md)** - Animated gradient border wrapper
+- **[Section Component](./Section.md)** - Grid-based layout component
 - **[Badge Component](./Badge.md)** - Animated status indicators
+- **[Card Component [DEPRECATED]](./Card.md)** - Historical Card component (removed Oct 6, 2025)
 
 ### Migration Guides
 
+- **[Card → AnimatedBorder/Section Migration](./Card.md#migration-path)** - Guide for migrating from deprecated Card component
 - **[Indicator → Badge Migration](./Badge.md#migration-guide)** - Guide for updating existing Indicator usage
 
 ## Best Practices
@@ -131,17 +178,23 @@ Build higher-level components using primitives:
 ### Composition Guidelines
 **Do**: Use primitives as building blocks
 ```svelte
-<Card alignment="center">
-  <Image src="/avatar.jpg" borderRadius="pill" />
-  <Badge pulse={true} />
-</Card>
+<Section id="profile">
+  {#snippet main()}
+    <AnimatedBorder borderWidth={2}>
+      <div class="profile-card">
+        <Image src="/avatar.jpg" borderRadius="pill" />
+        <Badge pulse={true} />
+      </div>
+    </AnimatedBorder>
+  {/snippet}
+</Section>
 ```
 
 **Don't**: Nest primitives inappropriately
 ```svelte
 <!-- Avoid this -->
 <Image>
-  <Card>Content</Card>
+  <Section>Content</Section>
 </Image>
 ```
 
@@ -159,8 +212,13 @@ All primitives include development-friendly class names following BEM convention
 .image--cover
 .image--radius-md
 
-.card
-.card--center
+.animated-border
+.animated-border--active
+
+.section-grid
+.section-grid__leading
+.section-grid__main
+.section-grid__trailing
 
 .badge
 .badge--pulse
@@ -217,8 +275,10 @@ All animations respect `prefers-reduced-motion`:
 
 | Date | Version | Changes |
 |------|---------|---------|
+| 2025-10-06 00:00:00 UTC | v2.0 | Major update: Removed Card component, added AnimatedBorder and Section primitives |
+| 2025-09-30 22:25:00 UTC | v1.1 | Updated Card component documentation with animated border feature and viewport detection |
 | 2025-09-25 12:15:00 UTC | v1.0 | Initial primitives documentation with Image, Card, and Badge components |
 
 ---
 
-*This documentation covers the Primitive Components System as of September 25, 2025. For implementation details, refer to the individual component files in `/frontend/src/lib/components/primitives/`.*
+*This documentation covers the Primitive Components System as of October 6, 2025. For implementation details, refer to the individual component files in `/frontend/src/lib/components/primitives/`.*

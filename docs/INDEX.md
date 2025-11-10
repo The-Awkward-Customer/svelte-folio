@@ -1,6 +1,6 @@
 # Documentation Index
 *Created: 2025-09-22 18:50:00 UTC*
-*Last Updated: 2025-09-26 16:40:00 UTC*
+*Last Updated: 2025-10-06 00:00:00 UTC*
 
 Quick links to docs and related code in this repository.
 
@@ -65,12 +65,28 @@ Quick links to docs and related code in this repository.
   - `../frontend/src/lib/stores/chatStore.svelte.ts`
   - API: `../frontend/src/routes/api/messages/+server.js`
 
-### Animation
+### Graphics & Animation
+<!-- Updated: 2025-09-30 22:30:00 UTC -->
+- [AnimatedTextPath.md](./components/graphics/AnimatedTextPath.md) - Organic animated text following dynamic paths
 - [Enhanced-Glitch-Animation-Refactor-Plan.md](./components/animation/Enhanced-Glitch-Animation-Refactor-Plan.md)
 - Related:
-  - [`../frontend/src/lib/components/AnimatedTextPath.svelte`](../frontend/src/lib/components/AnimatedTextPath.svelte)
+  - [`../frontend/src/lib/components/graphics/AnimatedTextPath.svelte`](../frontend/src/lib/components/graphics/AnimatedTextPath.svelte)
   - [`../frontend/src/lib/components/AnimatedTextPathSpag.svelte`](../frontend/src/lib/components/AnimatedTextPathSpag.svelte)
   - [`../frontend/src/lib/components/CanvasAnimation.svelte`](../frontend/src/lib/components/CanvasAnimation.svelte)
+
+### Primitives
+<!-- Updated: 2025-10-06 00:00:00 UTC -->
+- [README.md](./components/primitives/README.md) - Primitive components system overview
+- [AnimatedBorder.md](./components/primitives/AnimatedBorder.md) - Animated gradient border wrapper component
+- [Section.md](./components/primitives/Section.md) - Grid-based layout component with three areas
+- [Image.md](./components/primitives/Image.md) - Image component with placeholder support
+- [Badge.md](./components/primitives/Badge.md) - Status indicator component
+- [Card.md](./components/primitives/Card.md) - **[DEPRECATED]** Card component (removed Oct 6, 2025)
+- Related:
+  - [`../frontend/src/lib/components/primitives/AnimatedBorder.svelte`](../frontend/src/lib/components/primitives/AnimatedBorder.svelte)
+  - [`../frontend/src/lib/components/primitives/Section.svelte`](../frontend/src/lib/components/primitives/Section.svelte)
+  - [`../frontend/src/lib/components/primitives/Image.svelte`](../frontend/src/lib/components/primitives/Image.svelte)
+  - [`../frontend/src/lib/components/primitives/Badge.svelte`](../frontend/src/lib/components/primitives/Badge.svelte)
 
 ### Navigation
 - [anchor-scrolling-implementation.md](./components/navigation/anchor-scrolling-implementation.md)

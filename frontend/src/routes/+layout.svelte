@@ -23,7 +23,7 @@
   let { children } = $props();
 </script>
 
-<TopNavigation></TopNavigation>
+<!-- <TopNavigation></TopNavigation> -->
 
 <main>
   {@render children()}
@@ -36,6 +36,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    gap: 1px;
     justify-content: flex-start;
     width: 100%;
   }
