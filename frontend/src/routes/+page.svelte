@@ -3,6 +3,7 @@
   import { QAChat } from "$lib/components/chat";
   import { chatStore } from "$lib/stores/chatStore.svelte.js";
   import AnimatedTextPath from "$lib/components/graphics/AnimatedTextPath.svelte";
+  import Button from "$lib/components/actions/Button.svelte";
 
   function handleChatTriggerClick() {
     chatStore.openChat();
@@ -61,10 +62,19 @@
   </div>
 
   <div class="content">
-    <div class="chat-trigger-container">
-      <ChatTrigger
-        handleClick={handleChatTriggerClick}
-        shouldShowIndicator={chatStore.shouldShowIndicator}
+    <div class="top-bar">
+      <div class="chat-trigger-container">
+        <ChatTrigger
+          handleClick={handleChatTriggerClick}
+          shouldShowIndicator={chatStore.shouldShowIndicator}
+        />
+      </div>
+      <Button
+        as="link"
+        href="/documents/Peter_Abbott_CV_04:08:25.pdf"
+        label="Download CV"
+        variant="primary"
+        target="_blank"
       />
     </div>
 
@@ -110,10 +120,17 @@
     padding: var(--padding-xl);
   }
 
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--padding-medium) 0;
+    width: 100%;
+  }
+
   .chat-trigger-container {
     display: flex;
     justify-content: flex-start;
-    padding: var(--padding-medium) 0;
   }
 
   .coming-soon {
