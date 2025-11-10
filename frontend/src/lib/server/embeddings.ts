@@ -13,7 +13,7 @@ export async function generateEmbedding(text: string): Promise<number[]> {
 
   try {
     const response = await fetch(
-      `https://api-inference.huggingface.co/models/${EMBEDDING_MODEL}`,
+      `https://router.huggingface.co/hf-inference/models/${EMBEDDING_MODEL}`,
       {
         method: 'POST',
         headers: {
@@ -32,22 +32,52 @@ export async function generateEmbedding(text: string): Promise<number[]> {
 
     if (!response.ok) {
       const error = await response.text();
+      console.error('HuggingFace API error:', {
+        status: response.status,
+        error,
+      });
       throw new Error(`HuggingFace API error: ${response.status} - ${error}`);
     }
 
     const result = await response.json();
 
-    // This model returns embeddings directly as an array
-    if (!Array.isArray(result) || result.length !== EMBEDDING_DIMENSION) {
-      console.error('Unexpected response:', {
-        type: Array.isArray(result) ? 'array' : typeof result,
-        length: Array.isArray(result) ? result.length : 'N/A',
-        sample: JSON.stringify(result).slice(0, 100),
-      });
-      throw new Error(`Invalid embedding response`);
+    console.log('HuggingFace response:', {
+      type: Array.isArray(result) ? 'array' : typeof result,
+      length: Array.isArray(result) ? result.length : 'N/A',
+      sample: JSON.stringify(result).slice(0, 200),
+    });
+
+    // Handle different response formats
+    let embedding: number[];
+
+    if (Array.isArray(result) && typeof result[0] === 'number') {
+      // Direct array of numbers
+      embedding = result;
+    } else if (Array.isArray(result) && Array.isArray(result[0])) {
+      // Nested array [[...]]
+      embedding = result[0];
+    } else if (result && typeof result === 'object' && 'embeddings' in result) {
+      // Object with embeddings key
+      embedding = result.embeddings[0] || result.embeddings;
+    } else if (result && typeof result === 'object' && 'data' in result) {
+      // Object with data key
+      embedding = result.data[0] || result.data;
+    } else {
+      console.error('Unexpected response format:', result);
+      throw new Error(`Invalid embedding response format`);
     }
 
-    return result;
+    if (!Array.isArray(embedding) || embedding.length !== EMBEDDING_DIMENSION) {
+      console.error('Invalid embedding dimensions:', {
+        expected: EMBEDDING_DIMENSION,
+        actual: Array.isArray(embedding) ? embedding.length : 'not an array',
+      });
+      throw new Error(
+        `Invalid embedding dimensions: expected ${EMBEDDING_DIMENSION}, got ${Array.isArray(embedding) ? embedding.length : 'not an array'}`
+      );
+    }
+
+    return embedding;
   } catch (error) {
     console.error('Error generating embedding:', error);
     throw new Error('Failed to generate embedding');
