@@ -106,7 +106,7 @@
         {#if chatStore.messages.length > 0}
           <Button
             as="button"
-            variant="inverse"
+            variant="ghost"
             label="Clear"
             handleClick={clearMessages}
           />
@@ -151,19 +151,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
+    padding: var(--padding-md) var(--padding-lg);
     width: 100%;
     /* Prevent header from shrinking */
     flex-shrink: 0;
     /* Account for safe areas on mobile */
-    padding-left: max(1.5rem, env(safe-area-inset-left));
-    padding-right: max(1.5rem, env(safe-area-inset-right));
+    padding-left: max(var(--padding-lg), env(safe-area-inset-left));
+    padding-right: max(var(--padding-lg), env(safe-area-inset-right));
   }
 
 
   .chat-actions {
     display: flex;
-    gap: 0.5rem;
+    gap: var(--gap-sm);
     align-items: center;
   }
 
@@ -178,28 +178,28 @@
     }
 
     .chat-header {
-      padding: 1rem;
+      padding: var(--padding-md);
       /* Ensure safe area handling */
-      padding-left: max(1rem, env(safe-area-inset-left));
-      padding-right: max(1rem, env(safe-area-inset-right));
+      padding-left: max(var(--padding-md), env(safe-area-inset-left));
+      padding-right: max(var(--padding-md), env(safe-area-inset-right));
     }
 
     .chat-actions {
-      gap: 0.25rem;
+      gap: var(--gap-xs);
     }
   }
 
   /* Support for older browsers without env() */
   @supports not (padding: env(safe-area-inset-left)) {
     .chat-header {
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
+      padding-left: var(--padding-lg);
+      padding-right: var(--padding-lg);
     }
 
     @media (max-width: 768px) {
       .chat-header {
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-left: var(--padding-md);
+        padding-right: var(--padding-md);
       }
     }
   }

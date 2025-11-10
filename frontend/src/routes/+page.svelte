@@ -47,7 +47,7 @@
 <div class="page-container">
   <div class="background-animation">
     <AnimatedTextPath
-      texts={["• PERCULATING"]}
+      texts={["COMING SOON"]}
       showPath={false}
       speed={80}
       pathWildness={0.9}
@@ -69,7 +69,7 @@
     </div>
 
     <div class="coming-soon">
-      <h1>Coming<br />Soon</h1>
+      <h1>Peter<br />Abbott</h1>
     </div>
   </div>
 </div>
@@ -119,17 +119,18 @@
   .coming-soon {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-end;
     flex-grow: 1;
     width: 100%;
   }
 
   .coming-soon h1 {
     font-size: clamp(4rem, 15vw, 12rem);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     line-height: 0.9;
-    color: var(--fg-text-muted);
+    color: var(--fg-text-primary);
     text-align: left;
+    text-transform: uppercase;
   }
 
   /* .card-header_root {

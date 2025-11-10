@@ -121,7 +121,7 @@
   }
 
   .chat-dialog::backdrop {
-    background: var(--bg-page-20);
+    background: var(--bg-primary-20);
     backdrop-filter: blur(4px);
     animation: backdropFadeIn 0.5s ease-in-out;
   }
@@ -145,10 +145,10 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    padding-bottom: max(var(--padding-md), env(safe-area-inset-bottom));
     padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
     /* Top inline shadow */
-    box-shadow: inset 0 1px 0 0 var(--fg-text-primary);
+    box-shadow: inset 0 1px 0 0 var(--bdr-primary);
   }
 
   /* Enhanced Animations */

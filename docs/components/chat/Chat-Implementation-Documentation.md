@@ -1,5 +1,7 @@
 # Chat Implementation Documentation
 
+*Last Updated: 2025-01-10*
+
 ## Overview
 
 This documentation covers the Q&A chat system implementation in the Svelte portfolio application. The system consists of server-side API handling and client-side Svelte components that provide an AI-powered chat interface for visitors to ask questions about the portfolio owner's background, skills, and experience.
@@ -30,7 +32,7 @@ This documentation covers the Q&A chat system implementation in the Svelte portf
 - **Backend**: SvelteKit API routes
 - **AI Model**: Claude 3 Haiku via OpenRouter
 - **Database**: Supabase with pgVector for embeddings
-- **Styling**: Custom CSS with CSS variables
+- **Styling**: Design System with CSS Custom Properties (Design Tokens)
 
 ## Server Implementation (`/frontend/src/lib/server/`)
 
@@ -102,12 +104,18 @@ This documentation covers the Q&A chat system implementation in the Svelte portf
   - Smooth slide-in animation
   - Safe area support for mobile devices
   - Escape key and backdrop click to close
-  
+
 - **Props**:
   - `isOpen: boolean` - Controls dialog visibility
-  
+
 - **Events**:
   - `close` - Fired when dialog should be closed
+
+- **Design Token Integration**:
+  - Backdrop: `--bg-primary-20` with 4px blur
+  - Border: `--bdr-primary` for top inline shadow
+  - Background: `--bg-page`
+  - Spacing: `--padding-md` for safe areas
 
 ### 2. `ChatInput.svelte`
 - **Purpose**: Message input form with send button
@@ -118,13 +126,19 @@ This documentation covers the Q&A chat system implementation in the Svelte portf
   - Mobile keyboard handling with 16px minimum font size
   - Scroll into view on focus for mobile
   - Safe area support
-  
+
 - **Props**:
   - `disabled: boolean` - Disables input during loading
   - `placeholder: string` - Input placeholder text
-  
+
 - **Events**:
   - `send: string` - Fired with message content
+
+- **Design Token Integration**:
+  - Border: `--bdr-primary-40` for input wrapper
+  - Spacing: `--padding-sm`, `--padding-md`, `--gap-sm`
+  - Typography: `--text-base`, `--leading-snug`, `--font-family-main`
+  - Colors: `--bg-page`, `--fg-text-primary`, `--fg-text-secondary`
 
 ### 3. `ChatMessage.svelte`
 - **Purpose**: Individual message display with multiple states
@@ -134,19 +148,26 @@ This documentation covers the Q&A chat system implementation in the Svelte portf
   - Loading state (with animated avatar)
   - Error messages
   - Welcome message with suggested prompts
-  
+
 - **Props**:
   - `message?: ChatMessage` - Message data
   - `displayType?: MessageDisplayType` - Override display type
   - `error?: string` - Error message
   - `isLoading?: boolean` - Loading state
   - `onPromptSelected?: (prompt: string) => void` - Prompt click handler
-  
+
 - **Features**:
   - Snippet-based architecture for clean conditional rendering
   - Timestamp formatting
   - Suggested prompts in welcome state
   - Responsive message bubbles
+
+- **Design Token Integration**:
+  - Spacing: `--padding-sm`, `--padding-md`, `--gap-sm`, `--gap-md`
+  - Typography: `--text-sm`, `--text-base`, `--leading-normal`, `--font-family-main`
+  - Colors: `--fg-text-primary`, `--fg-text-secondary`, `--fg-text-danger`, `--bg-primary`, `--bg-page`
+  - Border Radius: `--border-radius-md`, `--border-radius-sm`
+  - Error states use `--fg-text-danger` for visual emphasis
 
 ### 4. `ChatMessages.svelte`
 - **Purpose**: Message list container with scroll management
@@ -158,12 +179,16 @@ This documentation covers the Q&A chat system implementation in the Svelte portf
   - Scroll lock mechanism to prevent conflicts
   - Direction tracking for intelligent scroll behavior
   - Efficient message tracking by ID
-  
+
 - **Props**:
   - `messages: ChatMessage[]` - Array of messages
   - `isLoading: boolean` - Loading state
   - `error: string | null` - Error state
   - `onPromptSelected?: (prompt: string) => void` - Prompt handler
+
+- **Design Token Integration**:
+  - Spacing: `--padding-md`, `--gap-md` for message list layout
+  - Colors: `--bg-page` for container background
 
 ### 5. `QAChat.svelte`
 - **Purpose**: Main chat component orchestrating the entire chat experience
@@ -172,17 +197,21 @@ This documentation covers the Q&A chat system implementation in the Svelte portf
   - API integration with `/api/chat-test` endpoint
   - Message creation and management
   - Error handling with user-friendly messages
-  - Clear chat functionality
+  - Clear chat functionality with "ghost" variant button
   - Loading states
   - Beta tag indicator
-  
+
 - **Props**:
   - `isOpen: boolean` - Controls chat visibility
-  
+
 - **State Management**:
   - Uses `ChatState` type for type-safe state
   - Reactive declarations for easy state access
   - Immutable state updates
+
+- **Design Token Integration**:
+  - Clear button uses new Button "ghost" variant for reduced visual emphasis
+  - All spacing and layout use design tokens for consistency
 
 ### 6. `index.ts`
 - **Purpose**: Barrel export for all chat components
@@ -308,6 +337,131 @@ The implementation includes a comprehensive test setup (`test-setup.ts`) that ve
 - Chat response generation
 
 Run tests with appropriate environment variables configured.
+
+## Design System Integration
+
+*Last Updated: 2025-01-10*
+
+All chat components have been updated to align with the project's design system, replacing hardcoded values with semantic design tokens. This ensures visual consistency, maintainability, and theme compatibility across the application.
+
+### Design Token Categories Used
+
+#### 1. Spacing Tokens
+- **Padding**: `--padding-xs`, `--padding-sm`, `--padding-md`, `--padding-lg`
+- **Gap**: `--gap-xs`, `--gap-sm`, `--gap-md`
+- **Usage**: Applied to component internal spacing, flex/grid gaps, and safe area padding
+
+#### 2. Color Tokens (Semantic)
+- **Foreground Text**:
+  - `--fg-text-primary` - Primary text content
+  - `--fg-text-secondary` - Secondary/muted text
+  - `--fg-text-inverse` - Text on dark backgrounds
+  - `--fg-text-danger` - Error states and warnings
+- **Background**:
+  - `--bg-page` - Main page/container background
+  - `--bg-primary` - Primary brand background
+  - `--bg-primary-20` - Backdrop with 20% opacity
+  - `--bg-ghost-hover` - Hover state for ghost buttons
+  - `--bg-ghost-active` - Active state for ghost buttons
+- **Border**:
+  - `--bdr-primary` - Primary borders
+  - `--bdr-primary-40` - Border with 40% opacity
+  - `--bdr-primary-60` - Border with 60% opacity
+
+#### 3. Typography Tokens
+- **Font Size**: `--text-sm`, `--text-base`
+- **Line Height**: `--leading-normal`, `--leading-snug`
+- **Font Family**: `--font-family-main`
+- **Font Weight**: `--font-weight-semibold`
+
+#### 4. Border Radius Tokens
+- `--border-radius-sm` - Small radius for buttons and tags
+- `--border-radius-md` - Medium radius for message bubbles and cards
+
+### Component-Specific Updates
+
+#### ChatDialog.svelte
+```css
+/* Before */
+background: rgba(0, 0, 0, 0.2);
+padding: 16px;
+
+/* After */
+background: var(--bg-primary-20);
+padding: var(--padding-md);
+```
+
+#### ChatMessage.svelte
+```css
+/* Before */
+padding: 8px 12px;
+color: #333;
+border-radius: 12px;
+
+/* After */
+padding: var(--padding-sm) var(--padding-md);
+color: var(--fg-text-primary);
+border-radius: var(--border-radius-md);
+```
+
+#### ChatInput.svelte
+```css
+/* Before */
+border: 1px solid rgba(0, 0, 0, 0.4);
+font-size: 16px;
+gap: 8px;
+
+/* After */
+border: 1px solid var(--bdr-primary-40);
+font-size: var(--text-base);
+gap: var(--gap-sm);
+```
+
+### Button Component Enhancement
+
+The Button component (`/frontend/src/lib/components/actions/Button.svelte`) received a new "ghost" variant specifically for reduced visual emphasis scenarios like the chat's clear button.
+
+#### Ghost Variant Properties
+- **Background**: Transparent
+- **Border**: `--bdr-primary-40` (subtle 40% opacity)
+- **Hover**: `--bg-ghost-hover` background, `--bdr-primary-60` border
+- **Active**: `--bg-ghost-active` background
+- **Usage**: QAChat clear button now uses this variant
+
+#### All Button Variants
+```typescript
+type ButtonVariants = "inverse" | "primary" | "ghost";
+```
+
+1. **inverse** - High contrast, primary actions (dark background, light text)
+2. **primary** - Standard emphasis (light background, dark text, visible border)
+3. **ghost** - Minimal emphasis (transparent, subtle border) *[NEW]*
+
+### Tag Component Update
+
+The Tag component (`/frontend/src/lib/components/primitives/Tag.svelte`) was updated to use proper padding tokens:
+```css
+/* Before */
+padding: 4px 16px;
+
+/* After */
+padding: var(--padding-xs) var(--padding-md);
+```
+
+### Benefits of Design Token Implementation
+
+1. **Theme Consistency**: Components automatically adapt to theme changes (light/dark/contrast)
+2. **Maintainability**: Single source of truth for design values
+3. **Accessibility**: Semantic tokens ensure proper contrast ratios
+4. **Scalability**: Easy to update design system without touching component code
+5. **Type Safety**: Design tokens are validated through CSS custom properties
+
+### Design Token Location
+
+All design tokens are defined in `/frontend/src/styles/design-tokens/`:
+- **Global Tokens**: `/global/` - spacing, typography, radius, etc.
+- **Theme Tokens**: `/themes/` - light, dark, contrast semantic colors
+- **Brand Tokens**: `/brands/` - brand-specific color palettes
 
 ## Critical Analysis
 
