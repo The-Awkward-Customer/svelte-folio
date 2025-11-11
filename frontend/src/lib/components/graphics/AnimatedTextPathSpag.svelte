@@ -789,15 +789,20 @@
 
       const separator = '  ';
       const pattern = pathData.config.text + separator;
-      const patternWidth = ctx.measureText(pattern).width;
 
       pathData.textChars = [];
-      pathData.totalTextWidth = patternWidth;
+      let calculatedWidth = 0;
 
+      // Use font's advance width for proper proportional spacing
       for (const char of pattern) {
-        const width = ctx.measureText(char).width;
-        pathData.textChars.push({ char, width });
+        const metrics = ctx.measureText(char);
+        // Use advance width with 15% extra padding for breathing room
+        const charWidth = metrics.width * 1.15;
+        pathData.textChars.push({ char, width: charWidth });
+        calculatedWidth += charWidth;
       }
+
+      pathData.totalTextWidth = calculatedWidth;
     }
   }
 
@@ -809,15 +814,20 @@
 
     const separator = '  ';
     const pattern = selectedText + separator;
-    const patternWidth = ctx.measureText(pattern).width;
 
     textChars = [];
-    totalTextWidth = patternWidth;
+    let calculatedWidth = 0;
 
+    // Use font's advance width for proper proportional spacing
     for (const char of pattern) {
-      const width = ctx.measureText(char).width;
-      textChars.push({ char, width });
+      const metrics = ctx.measureText(char);
+      // Use advance width with 15% extra padding for breathing room
+      const charWidth = metrics.width * 1.15;
+      textChars.push({ char, width: charWidth });
+      calculatedWidth += charWidth;
     }
+
+    totalTextWidth = calculatedWidth;
   }
 
   // Segment-based render function with unified path+text rendering
@@ -924,8 +934,11 @@
     while (currentDistance < segment.endDistance + pathData.totalTextWidth) {
       let charPosition = 0;
 
-      for (const { char, width } of pathData.textChars) {
-        const distance = currentDistance + charPosition;
+      for (let i = 0; i < pathData.textChars.length; i++) {
+        const { char, width } = pathData.textChars[i];
+
+        // Position character at center of its space
+        const distance = currentDistance + charPosition + width / 2;
 
         // Only process characters that are within this segment
         if (
@@ -978,8 +991,11 @@
     while (currentDistance < pathData.length + pathData.totalTextWidth) {
       let charPosition = 0;
 
-      for (const { char, width } of pathData.textChars) {
-        const distance = currentDistance + charPosition;
+      for (let i = 0; i < pathData.textChars.length; i++) {
+        const { char, width } = pathData.textChars[i];
+
+        // Position character at center of its space
+        const distance = currentDistance + charPosition + width / 2;
 
         // Only process characters that are on the path
         if (distance >= 0 && distance <= pathData.length) {
@@ -1128,8 +1144,11 @@
       // Draw one instance of the pattern
       let charPosition = 0;
 
-      for (const { char, width } of textChars) {
-        const distance = currentDistance + charPosition;
+      for (let i = 0; i < textChars.length; i++) {
+        const { char, width } = textChars[i];
+
+        // Position character at center of its space
+        const distance = currentDistance + charPosition + width / 2;
 
         // Only process characters that are on the path
         if (distance >= 0 && distance <= pathLength) {

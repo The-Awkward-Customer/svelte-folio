@@ -288,17 +288,21 @@
       }
     }
 
-    // Use uniform width for all characters (widest char + padding)
-    const uniformWidth = maxCharWidth * 1.3; // Add 30% padding to widest character
-
     // We only need to store one pattern's worth of characters
     textChars = [];
     let calculatedWidth = 0;
 
-    // Assign uniform width to all characters
+    // Use font's advance width for proper proportional spacing
+    // The advance width is what font designers use to define proper character spacing
     for (const char of pattern) {
-      textChars.push({ char, width: uniformWidth });
-      calculatedWidth += uniformWidth;
+      const metrics = ctx.measureText(char);
+
+      // Use advance width (metrics.width) which includes proper glyph spacing
+      // Add 15% extra padding for breathing room along the curve
+      const charWidth = metrics.width * 1.15;
+
+      textChars.push({ char, width: charWidth });
+      calculatedWidth += charWidth;
     }
 
     // Use the calculated width for pattern positioning
@@ -359,8 +363,11 @@
       // Draw one instance of the pattern
       let charPosition = 0;
 
-      for (const { char, width } of textChars) {
-        const distance = currentDistance + charPosition;
+      for (let i = 0; i < textChars.length; i++) {
+        const { char, width } = textChars[i];
+
+        // Position character at center of its space
+        const distance = currentDistance + charPosition + width / 2;
 
         // Only process characters that are on the path
         if (distance >= 0 && distance <= pathLength) {
