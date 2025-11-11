@@ -262,12 +262,13 @@ The component is used on the homepage to replace large inline SVG decorative ele
 
 ### Letters Running Together
 **Problem**: Characters appearing too close together or overlapping
-**Solution**: Character spacing is controlled by a multiplier applied to measured widths (line 291). The default 1.15 multiplier adds 15% spacing. Increase this value (e.g., 1.2 or 1.3) for more letter spacing, or decrease (e.g., 1.1) for tighter spacing. Alternatively, add more spaces to the separator string (line 279).
+**Solution**: Character spacing uses font advance width with a multiplier (line 302). Characters are positioned at the center of their allocated space (line 370). The default 1.15 multiplier adds 15% spacing to the advance width. Increase this value (e.g., 1.2 or 1.3) for more letter spacing, or decrease (e.g., 1.1) for tighter spacing. The key fix is positioning each character at `charPosition + width / 2` to properly center them within their proportional space.
 
 ## Revision History
 
 | Date | Version | Changes |
 |------|---------|---------|
+| 2025-11-11 | v1.4 | Fixed character positioning to center each character within its proportional space (charPosition + width / 2) for optically correct spacing |
 | 2025-11-10 | v1.3 | Changed to uniform character spacing based on widest character to prevent overlap |
 | 2025-11-10 | v1.2.2 | Increased spacing multiplier to 1.4x (40%) to fix narrow letters like I and L |
 | 2025-11-10 | v1.2.1 | Fixed letter spacing calculation to include multiplier in total width (1.2x spacing) |
